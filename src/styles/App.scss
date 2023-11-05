@@ -1,0 +1,253 @@
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+// paleta de colores primciaples y complementarios
+
+$color-principal: #0260a7;
+$color-complementario: #f2efe1;
+
+// eetilos de barra de navegacion 
+.nav-custom{
+    background-color: $color-principal;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
+    padding: 0.2em 3.5rem;
+    .logotipo{
+        width: 7em;
+        padding: 4px 0 0 0;
+        cursor: pointer;
+    }
+    .btn-modal-login{
+        background-color: #0260a7;
+        border: none;
+    }
+    .nav-link-custom{
+        color: $color-complementario;
+        font-weight: 300;
+        font-size: 15px;
+        transition: color 0.3s ease;
+        &:hover {
+          color: rgb(158, 158, 207);
+          box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+    }
+    .btn-custom-movil{
+        color: white;
+        background-color: #f2efe1;
+    }
+   
+}
+// Estilos para modales login y registro
+.login-form{
+    display: flex;
+    flex-direction: column;
+    .fav-login{
+        align-self: center;
+        width: 7em;
+        margin: 1em 0;
+    }
+    .text-form{
+        color: #213C65;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+}
+.form-register{
+    display: flex;
+    flex-direction: column;
+    .text-form{
+        color: #213C65;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+}
+.btn-alter-modal{
+    border: none;
+    background-color: white;
+    color: black;
+    float: right;
+    margin-top: 1.5em;
+    font-family: $contenidoFonts;
+    &:hover{
+        color: rgb(60, 21, 202);
+    }
+}
+.btn-recovery{
+    text-decoration: none;
+    float: right;
+    margin-top: -5px;
+    font-family: $contenido2;
+    font-size: 15px;
+}
+
+//estilos generales para modales
+
+.btn-close-custom, .footer-modal-custom{
+    border: none;
+}
+
+.modal-recovery{
+    background-color: rgba(0, 0, 0, .3);
+    padding-top: 5em;
+    backdrop-filter: blur(5px);
+}
+.txt-warning, .txt-vacio{
+    color: rgb(248, 3, 3);
+    font-size: 14px;
+    margin-left: 10px;
+    display: none;
+}
+
+.carrusel-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5em;
+    .img-carrusel{
+        width: 90em;
+        display: block;
+        margin: 0 auto;
+    }
+    .carrusel-item {
+        width: 100%;
+      }
+}
+
+//Estilos para las cards y textos  de home
+
+.container-cards-home{
+    gap: 10px;
+    display: grid;
+    justify-content: space-around;
+}
+.card{
+    width: 15rem;
+}
+
+.typewriter-container{
+    margin: 2em 0;
+    height: 50px;
+    text-align: center;
+    .txt-primario{
+        font-family: $tittlesFonts;
+        font-size: 30px;
+        color: #213C65;
+        font-weight: 600;
+    }
+}
+.txt{
+    text-align: center;
+    font-family: $contenidoFonts;
+    font-size: 14px;
+    margin: 2em 0 3em 0;
+    padding: 10px;
+}
+.txt-secundario h2, h3{
+    font-size:25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+    text-align: center;
+    margin-top: 2em;
+    padding: 10px;
+}
+.txt-complementario{
+    font-family: $contenidoFonts;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 14px;
+    margin-bottom: 4rem;
+    padding: 10px;
+
+}
+
+.contenedor-home{
+    display: grid;
+    place-content: center;
+
+}
+
+.animated-truck{
+    float: right;
+    width: 100px; 
+    animation: moveTruck 3s linear infinite;
+}
+
+@keyframes moveTruck {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(50px); 
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+
+
+.svg-home{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 650px) {
+    .svg-home {
+      display: flex;
+      justify-content: space-evenly;
+    }
+}
+
+.svg-store {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    .text-svg-store{
+        font-size: 13px;
+        font-weight: bold;
+        font-family: $contenido2;
+        text-align: left;
+    }
+    .text-svg{
+        font-size: 12px;
+        font-family: $contenido2;
+    }
+
+}
+.svg-truck{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .text-svg-truck{
+        font-size: 13px;
+        font-weight: bold;
+        font-family: $contenido2;
+        text-align: left;
+    }
+    .text-svg{
+        font-size: 12px;
+        font-family: $contenido2;
+    }
+}
+
+.jumping-text {
+    font-size: 13px;
+    font-family: $contenido2;
+    text-align: center;
+    animation: jumping 3s linear infinite;
+  }
+  
+  @keyframes jumping {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px); 
+    }
+  }
+section{
+    margin-top: 5em;
+}
+.footer{
+    background-color: #213C65;
+}
