@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import RecoveryPassword from './recoveryPassword';
 import '../styles/App.css';
 import Register from './formRegister';
+import axios from 'axios';
 
 
 function BiPersonCircle(props) {
@@ -56,7 +57,7 @@ function LoginModal() {
         <>
           <FormLogin />
           <button className='btn-alter-modal' onClick={handleShowRegisterModal}>
-            Quiero resgitrarme
+            Quiero registrarme
           </button>
         </>
       );
@@ -95,6 +96,32 @@ export default LoginModal;
 
 
 function FormLogin() {
+  // const handleSubmit = async (values) => {
+  //   try {
+  //     const URL = 'http://localhost:3000/login';
+  //     const response = await axios.post(URL, values);
+  //     if (response.status === 1000) {
+  //       setMessage('Registro exitoso');
+  //       setTimeout(() =>{
+  //         nanvigate('/Home')
+  //       }, 2000); 
+  //     } else {
+  //       setMessage('El correo ya está registrado');
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 400 && error.response.data.error) {
+  //       setMessage(error.response.data.error);
+  //     } else {
+  //       setMessage('Ocurrió un error al registrar el usuario');
+  //     }
+  //   }
+  // };
+
+
+
+
+
+
   return (
     <Form className='login-form'>
       <img src={imgFav} className="fav-login"></img>
