@@ -1,11 +1,13 @@
 const mysql = require('mysql');
-const util = require('util'); // Para utilizar promesas
+const util = require('util'); 
+const dotenv = require('dotenv')
+dotenv.config()
 
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '96747391',
-  database: 'database_app'
+  host:process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database:process.env.DATABASE
 };
 
 const connection = mysql.createConnection(dbConfig);
