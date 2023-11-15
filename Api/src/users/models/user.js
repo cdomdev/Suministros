@@ -1,51 +1,57 @@
-const Sequelize = require('sequelize');
+const {Sequelize, DataTypes} = require('sequelize');
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv')
+dotenv.config()
 
 const sequelize = new Sequelize(
-  'database_app', 'root', '96747391', {
-    host: 'localhost',
+  process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
+    host: process.env.HOST,
     dialect: 'mysql'
   }
 );
 
 const Users = sequelize.define('usuarios', {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
   name: {
-    type: Sequelize.STRING,
+    type:  DataTypes.STRING,
     allowNull: false
   },
   email: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true
   },
   password: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false
-  }
+  },
+  role:{
+    type: DataTypes.INTEGER,
+    allowNull: true, 
+    defaultValue: 0, 
+    }
 }, {
   tableName: 'usuarios',
-  timestamps: false // Deshabilitar las columnas createdAt y updatedAt
+  timestamps: false 
 });
 
-// Método personalizado para verificar una contraseña
-Users.prototype.verifyPassword = function (password) {
-  return bcrypt.compare(password, this.password);
+Users.userExisting = async function (email) {
+  return this.findOne({
+    where: {
+      email: email,
+    },
+  });
 };
 
-Users.beforeCreate((user, options) => {
-  return bcrypt.hash(user.password, 10)
-    .then(hash => {
-      user.password = hash;
-    })
-    .catch(err => {
-      throw new Error(err);
-    });
-});
+// Función para verificar si la contraseña coincide
+Users.prototype.validPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 
 module.exports = Users;
