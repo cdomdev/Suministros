@@ -1,18 +1,16 @@
 import React from "react";
-import NavbarComponent from "../components/nav/NavbarComponent";
+import { NavbarComponent } from "../components/NavbarComponent";
 
-function Ofertas(){
-    return(
-        <>
-        <header>
-        <NavbarComponent/>
-        </header>
-       
-        <div>
-            <h1>Este el Ofertas</h1>
-        </div>
-        </>
-    )
-}
+export const Ofertas = () => {
+  return (
+    <>
+      <header>
+        <NavbarComponent />
+      </header>
 
-export default Ofertas;
+      <div>
+        <h1>Este el Ofertas</h1>
+      </div>
+    </>
+  );
+};

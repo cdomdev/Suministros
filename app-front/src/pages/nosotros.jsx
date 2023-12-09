@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarComponent from "../components/nav/NavbarComponent";
+import {NavbarComponent} from "../components/NavbarComponent";
 
-function Nosotros(){
+export const  Nosotros =() =>{
     return(
         <>
         <header>
@@ -13,5 +13,3 @@ function Nosotros(){
         </>
     )
 }
-
-export default Nosotros;

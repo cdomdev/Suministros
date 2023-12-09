@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarComponent from "../components/nav/NavbarComponent";
+import {NavbarComponent} from "../components/NavbarComponent";
 
-function Productos(){
+export const  Productos = () =>{
     return(
         <>
         <header>
@@ -15,5 +15,3 @@ function Productos(){
         
     )
 }
-
-export default Productos;
