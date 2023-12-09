@@ -4,16 +4,21 @@ const guardarProducto = async (req, res) => {
   try { 
     const { productos } = req.body;
 
-    console.log(`entrada de datos desde el front ${productos}`)
-    
-    for(const producto of productos){
+    console.log(`entrada de datos desde el front:  ${JSON.stringify(productos)}`)
+    for (const producto of productos) {
+      console.log('Datos del producto:', producto);
+      console.log('title:', producto.title);
+      console.log('Valor:', producto.valor);
+      console.log('Descripción:', producto.description);
+      console.log('Imagen:', producto.image);
       const nuevoProducto = await Inventario.create({
-        marca: producto.title,
+        title: producto.title,
         valor: producto.valor,
-        descripcion: producto.description,
-        image: producto.image, 
+        description: producto.description,
+        image: producto.image,
       });
-      console.log(producto.image)
+
+      console.log(`en lace de la imagen ${producto.image}`)
 
       if (!nuevoProducto) {
         return res.status(500).json({ error: "No se pudo crear el producto" });

@@ -12,15 +12,14 @@ $color-complementario: #f2efe1;
 .nav-custom{
     background-color: $color-principal;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
+    padding: 10px 0;
     .logotipo{
-        width: 7.5em;
-        padding: 4px 0;
+        width: 9em;
         cursor: pointer;
-        margin: 0 15px 11px 0 ;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
+        margin: 0 12px 1px 0 ;
         &:hover{
             scale: 1.1;
-            transform: rotate(4deg)
         };
     }
     .btn-modal-login{
@@ -46,36 +45,41 @@ $color-complementario: #f2efe1;
     }
    
 }
+.modal-body{
+    padding: 0;
+}
 // Estilos para modales login y registro
 .login-form{
     display: flex;
     flex-direction: column;
+    padding: 30px;
     .fav-login{
         align-self: center;
         width: 7em;
     }
     .text-form{
         color: #213C65;
-        text-align: center;
         margin-bottom: 10px;
     }
     .container-btn-login{
-        display: grid;
-        place-content: center;
-        .txt-form-login{
-            margin-top: 10px;
-        }
+       margin: 1em 15px;
+       height: 25px;
+    }
+    .txt-form-login{
+        margin-top: 10px;
+        text-align: center;
     }
    
     .contenedor-liner{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
    
 }
 .form-register{
+    padding: 30px;
     display: flex;
     flex-direction: column;
     .text-form{
@@ -85,17 +89,19 @@ $color-complementario: #f2efe1;
 
     }
     .container-btn-login{
-        display: grid;
-        place-content: center;
-        .txt-form-login{
-            margin-top: 10px;
-        }
+        margin: 1em 15px;
+        height: 25px;
+        
+    }
+    .txt-form-login{
+        margin-top: 10px;
+        text-align: center;
     }
     .contenedor-liner{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 }
 .btn-alter-modal{
@@ -103,7 +109,7 @@ $color-complementario: #f2efe1;
     background-color: white;
     color: black;
     float: right;
-    margin-top: 1.5em;
+    margin-right: 22px;
     font-family: $contenidoFonts;
     &:hover{
         color: rgb(60, 21, 202);
@@ -263,17 +269,8 @@ $color-complementario: #f2efe1;
     font-size: 13px;
     font-family: $contenido2;
     text-align: center;
-    animation: jumping 3s linear infinite;
   }
   
-  @keyframes jumping {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-25px); 
-    }
-  }
 section{
     margin-top: 5em;
 }

@@ -14,9 +14,9 @@ export const GuardarProductos = ({ listadoState, setListadoState }) => {
       }));
       console.log(`lista de productos actulizados que van en la solicitud ${updatedList}`)
 
-      console.log(updatedList)
+      console.log(JSON.stringify(updatedList))
       const response = await axios.post('http://localhost:3000/api/guardarproductos', {
-        productos: JSON.stringify(updatedList) 
+        productos: updatedList 
       });
   
       if (response.status === 200 || response.status === 201) {

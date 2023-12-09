@@ -50,10 +50,10 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
           handleCloseModal={handleCloseModal}
           setIsLoggedIn={setIsLoggedIn}
         />
-        <Form.Label className="txt-form-login">
+      </div>
+      <Form.Label className="txt-form-login">
           Ingresa con tu cuenta de Google
         </Form.Label>
-      </div>
       <div className="contenedor-liner">
         <hr style={{ border: "solid black", width: "13em" }} />
         <span style={{ margin: "0 10px" }}>O</span>
@@ -76,7 +76,7 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
           placeholder="Contraseña"
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="mt-3">
+      <Button variant="primary" type="submit" className="mt-1">
         Iniciar sesión
       </Button>
       {setMessage && (

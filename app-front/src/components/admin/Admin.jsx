@@ -22,10 +22,10 @@ export const Admin = () => {
           </section>
          
             <aside className="side-bar">
-              <Buscador
+              {/* <Buscador
                 listadoState={listadoState}
                 setListadoState={setListadoState}
-              />
+              /> */}
               <Crear setListadoState={setListadoState} />
               <GuardarProductos
                 listadoState={listadoState}

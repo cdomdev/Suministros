@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { DecodedJWT } from "../utils/DecodedJWT";
 import axios from "axios";
-import { json, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { SaveStorage } from "../helper/SaveStorage";
 
 const CLIENT_ID = import.meta.env.VITE_USER_ID_CLIENT;
@@ -53,6 +53,10 @@ export const BtnGoogle = ({handleCloseModal,  setIsLoggedIn}) => {
           useOneTap
           setIsLoggedIn={setIsLoggedIn}
           handleCloseModal={handleCloseModal}
+          width='700'
+          logo_alignment="center"
+          size="medium"
+          theme="outline"
         />
       )}
       {email && <p>Email de usuario {email} </p>}

@@ -1,17 +1,16 @@
 .nav-custom {
   background-color: #243a5e;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
+  padding: 10px 0;
 }
 .nav-custom .logotipo {
-  width: 7.5em;
-  padding: 4px 0;
+  width: 9em;
   cursor: pointer;
-  margin: 0 15px 11px 0;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
+  margin: 0 12px 1px 0;
 }
 .nav-custom .logotipo:hover {
   scale: 1.1;
-  transform: rotate(4deg);
 }
 .nav-custom .btn-modal-login {
   background-color: #243a5e;
@@ -35,9 +34,14 @@
   background-color: #f2efe1;
 }
 
+.modal-body {
+  padding: 0;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 .login-form .fav-login {
   align-self: center;
@@ -45,24 +49,25 @@
 }
 .login-form .text-form {
   color: #213C65;
-  text-align: center;
   margin-bottom: 10px;
 }
 .login-form .container-btn-login {
-  display: grid;
-  place-content: center;
+  margin: 1em 15px;
+  height: 25px;
 }
-.login-form .container-btn-login .txt-form-login {
+.login-form .txt-form-login {
   margin-top: 10px;
+  text-align: center;
 }
 .login-form .contenedor-liner {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-register {
+  padding: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -72,17 +77,18 @@
   margin-bottom: 1em;
 }
 .form-register .container-btn-login {
-  display: grid;
-  place-content: center;
+  margin: 1em 15px;
+  height: 25px;
 }
-.form-register .container-btn-login .txt-form-login {
+.form-register .txt-form-login {
   margin-top: 10px;
+  text-align: center;
 }
 .form-register .contenedor-liner {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .btn-alter-modal {
@@ -90,7 +96,7 @@
   background-color: white;
   color: black;
   float: right;
-  margin-top: 1.5em;
+  margin-right: 22px;
   font-family: "Roboto", sans-serif;
 }
 .btn-alter-modal:hover {
@@ -244,17 +250,8 @@
   font-size: 13px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  animation: jumping 3s linear infinite;
 }
 
-@keyframes jumping {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-25px);
-  }
-}
 section {
   margin-top: 5em;
 }

@@ -12,11 +12,7 @@ const Inventario = sequelize.define('Inventario', {
     allowNull: false,
     validate: {
       notNull: {
-        msg: 'El campo marca es requerido',
-      },
-      len: {
-        args: [1, 100],
-        msg: 'La marca debe tener entre 1 y 100 caracteres',
+        msg: 'El title es requerido',
       },
     },
   },
@@ -33,20 +29,16 @@ const Inventario = sequelize.define('Inventario', {
       },
     },
   },
-  descripcion: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notNull: {
         msg: 'El campo descripcion es requerido',
       },
-      len: {
-        args: [1, 255],
-        msg: 'La descripcion debe tener entre 1 y 255 caracteres',
-      },
     },
   },
-  imagen: {
+  image: {
     type: DataTypes.TEXT, 
     allowNull: false,
     validate: {
