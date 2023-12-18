@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Editar } from "./Editar";
 import { Button } from "react-bootstrap";
 
-export const Listado = ({ listadoState, setListadoState, setProductoState}) => {
+export const Listado = ({
+  listadoState,
+  setListadoState,
+  setProductoState,
+}) => {
   const [editar, setEditar] = useState(0);
 
   useEffect(() => {
@@ -23,7 +27,7 @@ export const Listado = ({ listadoState, setListadoState, setProductoState}) => {
       (prodcuto) => prodcuto.id !== id
     );
     // Actulizar estado del listado
-    setListadoState(nuevoListadoProductos);
+    setListadoState([...nuevoListadoProductos]);
     // Actuliza datos en el localStorage eliminando el producto por su ID
     localStorage.removeItem(`productos${id}`);
 
@@ -34,7 +38,6 @@ export const Listado = ({ listadoState, setListadoState, setProductoState}) => {
       localStorage.setItem("productos", JSON.stringify(nuevoListadoProductos));
     }
   };
-
 
   return (
     <>
@@ -49,25 +52,29 @@ export const Listado = ({ listadoState, setListadoState, setProductoState}) => {
                   alt="Preview"
                 />
               )}
-              <span className="title-cards">{producto.title}</span> <br />
-              <span className="valor-cards">$: {producto.valor}</span>
-              <p className="descripcion">{producto.description}</p>
-              <div className="content-btn-card">
-                <Button
-                  className="btn-custom"
-                  onClick={() => {
-                    setEditar(producto.id);
-                  }}>
-                  Editar
-                </Button>
-                <Button
-                  className="btn-custom"
-                  variant="primary"
-                  onClick={() => borrarProducto(producto.id)}>
-                  Borrar
-                </Button>
+              <div className="container-datail-product-edits">
+                <span className="title-cards">Marca: {producto.title}</span>
+                <span className="valor-cards"> valor: $ {producto.valor}</span>
+                <p className="descripcion">
+                  Descripcion: {producto.description}
+                </p>
+                <span className="cantidad">Cantidad: {producto.cantidad}</span>
+                <div className="content-btn-card">
+                  <Button
+                    className="btn-custom"
+                    onClick={() => {
+                      setEditar(producto.id);
+                    }}>
+                    Editar
+                  </Button>
+                  <Button
+                    className="btn-custom"
+                    variant="primary"
+                    onClick={() => borrarProducto(producto.id)}>
+                    Borrar
+                  </Button>
+                </div>
               </div>
-              {/* {aparece el fomulario  para editar} */}
               {editar === producto.id && (
                 <Editar
                   producto={producto}
@@ -80,7 +87,8 @@ export const Listado = ({ listadoState, setListadoState, setProductoState}) => {
           );
         })
       ) : (
-        <h2>No hay productos para mostrar</h2>
+        <h2 className='text-listar-products-admin'>No hay productos para mostrar</h2>
+       
       )}
     </>
   );

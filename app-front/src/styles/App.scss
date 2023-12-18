@@ -8,16 +8,19 @@ $contenido2: "Montserrat", sans-serif;
 $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
+
 // barra de navegacion 
 .nav-custom{
     background-color: $color-principal;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
     padding: 10px 0;
     .logotipo{
-        width: 9em;
+        fill: #ccc;
+        width: 8em;
         cursor: pointer;
         transition: all 0.5s ease;
-        margin: 0 12px 1px 0 ;
+        margin: 0 8px -5px 0 ;
+        text-shadow: 0 0 3px black;
         &:hover{
             scale: 1.1;
         };
@@ -28,11 +31,11 @@ $color-complementario: #f2efe1;
     }
     .nav-link-custom{
         color: $color-complementario;
-        font-weight: 300;
-        font-size: 15px;
+        font-weight: lighter;
+        font-size: 14px;
         transition: color 0.3s ease;
         text-decoration: none;
-        margin-right: 15px;
+        margin-right: 10px;
         transition: all 0.3s ease;
         &:hover {
           color: rgb(158, 158, 207);
@@ -45,29 +48,38 @@ $color-complementario: #f2efe1;
     }
    
 }
-.modal-body{
-    padding: 0;
+.modal-content{
+    border: none;
+    box-shadow: 0 0 6px rgb(96, 96, 96);
+    .modal-body{
+        padding: 0;
+    }   
 }
+
 // Estilos para modales login y registro
 .login-form{
     display: flex;
     flex-direction: column;
     padding: 30px;
+     
     .fav-login{
         align-self: center;
         width: 7em;
     }
     .text-form{
         color: #213C65;
-        margin-bottom: 10px;
+        margin: 20px 0 ;
     }
-    .container-btn-login{
-       margin: 1em 15px;
-       height: 25px;
+    .container-btn-login {
+       display: flex;
+       justify-content: center;
+       margin: 0 15px;       
     }
+   
     .txt-form-login{
         margin-top: 10px;
         text-align: center;
+        font-weight: 600;
     }
    
     .contenedor-liner{
@@ -75,6 +87,20 @@ $color-complementario: #f2efe1;
         justify-content: center;
         align-items: center;
         margin-bottom: 10px;
+        .liner-separator{
+            border: 1px solid black;
+            width: 13em
+           }
+    }
+
+    .message-response-server{
+        color: red;
+        text-align: center;
+        margin:7px 10px;
+        font-weight: 500;
+        font-size: 15px;
+        height: 15px;
+        font-family: $contenido2;
     }
    
 }
@@ -85,31 +111,46 @@ $color-complementario: #f2efe1;
     .text-form{
         color: #213C65;
         text-align: center;
-        margin-bottom: 1em;
-
+        margin: 10px 0  20px 0;
     }
-    .container-btn-login{
-        margin: 1em 15px;
-        height: 25px;
-        
-    }
+    .container-btn-login {
+        display: flex;
+        justify-content: center;
+        margin: 0 15px;       
+     }
     .txt-form-login{
         margin-top: 10px;
         text-align: center;
+        font-weight: 600;
     }
     .contenedor-liner{
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 10px;
+        .liner-separator{
+            border: 1px solid black;
+            width: 13em
+           }
     }
+    .message-response-server{
+        color: red;
+        text-align: center;
+        margin:15px 10px;
+        font-weight: 500;
+        font-size: 15px;
+        height: 15px;
+        font-family: $contenido2;
+    }
+   
 }
+
 .btn-alter-modal{
     border: none;
     background-color: white;
     color: black;
     float: right;
-    margin-right: 22px;
+    margin: 0 22px 15px 0;
     font-family: $contenidoFonts;
     &:hover{
         color: rgb(60, 21, 202);
@@ -313,11 +354,33 @@ section{
 
 // --------------------------------------------------------------------------------------------
 
-// estilos para el dasboard de administrador
-.nav{
-    grid-area: nav;
-}
 
+// estilos para el dasboard de administrador
+.nav-custome-admin{
+    box-shadow: 2px 2px 4px rgba(166, 166, 166, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
+    .logotipo{
+        margin: 0 0 -5px 0;
+        transition: all ease 0.4s;
+        cursor: pointer;
+
+        &:hover{
+            scale: 1.1;
+        }
+    
+    }
+    .nav-link-custome{
+        font-weight: 400;
+        color: $color-principal;
+        cursor: pointer;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        margin-right: 15px;
+        &:hover{
+            scale: 1.1;
+        }
+    }
+    
+}
 
 
 
@@ -327,13 +390,10 @@ section{
     height: auto;
     display: grid;
     grid-template-areas: 
-    'header header header header'
-    'nav  nav nav nav '
-    'content content content side-bar'
-    'footer footer footer footer'
+    'side-bar content content content '
     ;
     grid-template-rows: auto auto auto auto ;
-    grid-template-columns: auto 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr auto ;
 
     .content {
         grid-area: content;
@@ -344,8 +404,14 @@ section{
         gap: 10px;
         flex-wrap: wrap;
         margin: 0 20px;
+        .text-listar-products-admin{
+            align-self: center;
+            font-family: $tittlesFonts;
+            font-size: 35px;
+            color: #b7b6b6;
+            font-weight: 500;
+        }
      
-            
         .productos-cards {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             padding: 25px 15px;
@@ -386,6 +452,16 @@ section{
                 gap: 10px;
                 justify-content: center;
             }
+            .container-datail-product-edits{
+                display: flex;
+                flex-direction: column;
+                .title-cards{
+                    font-weight: 400;
+                }
+                .cantidad{
+                    margin: -12px 0 10px 0;
+                }
+            }
             .custom-file-upload {
                 border: 1px solid #ccc;
                 display: inline-block;
@@ -398,8 +474,7 @@ section{
                 background-color: #0d6efd;
                 color: white;
                 .uploap{
-                    width: 20px;
-                    margin: -1px 4px 0 0;
+                    margin: 5px 1px 0 0;
                   }
               }
                     
@@ -419,9 +494,7 @@ section{
         display: flex;
         justify-content: right;
         flex-direction:column;
-      
-        
-    
+        margin-top: 30px;
         .textarea-crear{
             display: block;
             padding: 10px;
@@ -436,11 +509,8 @@ section{
             margin-top: 1em;
         }
         .custom-file-upload {
-            border: 1px solid #ccc;
-            display: inline-block;
-            padding: 6px 12px;
+            padding: 6px 10px;
             cursor: pointer;
-            background-color: #f7f7f7;
             color: #333;
             margin-top: 10px;
             border-radius: 4px;
@@ -450,8 +520,17 @@ section{
                 width: 20px;
                 margin: -1px 4px 0 0;
               }
-          }
-          
+        }
+        .contenedor-refStock{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 5px;
+            .form-ref{
+                width: 50%;
+             } 
+        }
+         
         .container-btn{
             display: flex;
             border: none;
@@ -467,13 +546,14 @@ section{
         
     }
     .side-bar div {
+        background-color: white;
         width:100%;
         max-width: 400px; 
         word-wrap: break-word; 
         box-sizing: border-box;
         padding: 15px;
         border-radius: 3px;
-        box-shadow: 0px 0px 3px #ddd;
+        box-shadow: 0px 0px 3px #e6e6e6;
         margin: 10px 0;
         align-items: center;
         overflow: hidden; 
@@ -506,11 +586,101 @@ section{
 
 }
 
-// pruebas para el componente de perfil de usuario
 
-.profile-avatar{
-    background-color: red;
-    border: none;
-    border-radius: 50%;
-    padding: 20px;
+.layout-admin-home{
+    margin-top: -25px;
+    background-color: #f4f4f4;
+    display: grid;
+    .section-cards-home-admin{
+        display: flex;
+        margin: 0;
+        flex-direction: column;
+        width: 100%;
+        .navbar-admin-section{
+            width: 100%;
+            margin: 10px 0;
+            text-align: center;
+            flex-wrap: wrap;
+            border-radius: 5px;
+            padding: 10px 0;
+            box-shadow: 0 0 6px rgb(229, 229, 229);
+            background-color: white;
+    
+        }
+        
+        .container-cards-home-admin{
+            width: 100%;
+            gap: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .link-box{
+                text-decoration: none;
+                color: #213C65;
+            }
+            .box-rutas-admin{
+                padding: 10px;
+                box-shadow: 0 0 6px rgb(229, 229, 229);
+                width: 300px;
+                border-radius: 7px;
+                height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                background-color: white;
+                cursor: pointer;
+                transition: all ease 0.2s;
+                &:hover{
+                  box-shadow: 0 0px 6px rgb(183, 182, 182);;
+                }
+                .icon-box{
+                    font-size: 100px;
+                }
+                .text-box-routes{
+                    font-family: $contenidoFonts;
+                }
+                
+            }
+           
+        
+        }
+      
+       
+    }
+  
+    
 }
+
+.body-components-admin{
+    margin-top: -22px;
+    background-color: #f4f4f4;
+    height: 90vh;
+    .layout-admin-user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .title-user-layout{
+            align-self: flex-start;
+            margin: 1em 0 0 5em;
+            font-size: 30px;
+            font-family: $tittlesFonts;
+        }
+        .table-user-admin{
+            box-shadow: 0 0 6px rgb(183, 182, 182);
+            width: 80%;
+            margin-top: 2em;
+            .thead-table-users{
+                background-color: #0c5dd6;
+                color: $color-complementario;
+            }
+        }
+    }
+    
+}
+
+

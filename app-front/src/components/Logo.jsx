@@ -1,19 +1,7 @@
-import { useState } from "react";
 import React from "react";
 
-export const Logo = () => {
-  const [hovered, setHovered] = useState(false);
-
-  const changeColor = () => {
-    setHovered(true);
-  };
-
-  const resetColor = () => {
-    setHovered(false);
-  };
-
-  const fillColor = hovered ? "#f2f3f5" : "#f1f1f1"; // Color diferente al pasar el ratón
-
+export const Logo = ({fillColor,strokeColor}) => {
+  
   return (
     <svg
       className="logotipo"
@@ -21,23 +9,23 @@ export const Logo = () => {
       xmlns="http://www.w3.org/2000/svg"
       width="150"
       height="40"
-      viewBox="0 -55 280 80"
-      preserveAspectRatio="xMidYMid meet"
-      onMouseOver={changeColor}
-      onMouseOut={resetColor}>
-      <text fontSize="40" fill={fillColor}>
+      viewBox="0 -50 270 80"
+      preserveAspectRatio="xMidYMid meet">
+      <text fontSize="40" fill={fillColor} stroke={strokeColor}>
         <tspan
-          fontSize="70"
+          fontSize="60"
           fontFamily="'Roboto', sans-serif"
-          fontWeight="700">
+          fontWeight="800"
+          y='1'
+          x='3'>
           S
         </tspan>
         <tspan
           x="48"
           y="-1"
           fontFamily="'Montserrat', sans-serif"
-          fontWeight="700"
-          fontSize="35">
+          fontWeight="800"
+          fontSize="30">
           UMINISTROS
         </tspan>
       </text>

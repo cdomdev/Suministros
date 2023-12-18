@@ -4,16 +4,15 @@ import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { BtnGoogle } from "../auth/BtnGoogle";
+import { BtnGoogle } from "../components/BtnGoogle";
 
 export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
   const [message, setMessage] = useState("");
-
   const nanvigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
-      const URL = "http://localhost:3000/registro";
+      const URL = "http://localhost:3000/api/register";
       const response = await axios.post(URL, values);
       if (response.status === 201) {
         setMessage("Registro exitoso");
@@ -31,7 +30,7 @@ export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
       ) {
         setMessage(error.response.data.error);
       } else {
-        setMessage("Ocurrió un error al registrar el usuario");
+        setMessage("¡ Error en el resgistro, intentelo de nuevo !");
       }
     }
   };
@@ -81,18 +80,18 @@ export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
               />
             </div>
             <Form.Label className="txt-form-login">
-                Registrate con tu cuenta de Google
-              </Form.Label>
+              Registrate con tu cuenta de Google
+            </Form.Label>
             <div className="contenedor-liner">
-              <hr style={{ border: "solid black", width: "13em" }} />
-              <span style={{ margin: "0 10px" }}>O</span>
-              <hr style={{ border: "solid black", width: "13em" }} />
+              <hr className="liner-separator" />
+              <span className="m-1">O</span>
+              <hr className="liner-separator" />
             </div>
-            <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Group className="mb-1" controlId="formBasicName">
               <Form.Label>Nombre y apellido</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Ingrese un nombre y apellido"
+                placeholder="Ingrese su nombre"
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -103,11 +102,11 @@ export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
                 {errors.name}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-1" controlId="formBasicEmail">
               <Form.Label>Dirección de correo electrónico</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Ingrese el correo electrónico"
+                placeholder="Ingrese su correo electrónico"
                 name="email"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -122,7 +121,7 @@ export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Contraseña"
+                placeholder="Ingrese una contraseña"
                 name="password"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -139,17 +138,21 @@ export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
             <Button variant="primary" type="submit" disabled={isSubmitting}>
               Regístrame
             </Button>
+            <span>
+              {setMessage && (
+                <p
+                  className={`message-response-server ${
+                    message === "Inicio de sesión exitoso"
+                      ? "success-message"
+                      : "error-message"
+                  }`}>
+                  {message}
+                </p>
+              )}
+            </span>
           </Form>
         )}
       </Formik>
-      {message && (
-        <p
-          className={`message-response-server ${
-            message === "Registro exitoso" ? "success-message" : "error-message"
-          }`}>
-          {message}
-        </p>
-      )}
     </div>
   );
 };

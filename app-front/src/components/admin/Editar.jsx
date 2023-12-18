@@ -20,11 +20,13 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
 
     let productoActualizado = {
       id,
-      title: target.titulo.value || producto.title, // Usar valor actual si el campo está vacío
+      title: target.titulo.value || producto.title,
       valor: target.valor.value || producto.valor,
       description: target.descripcion.value || producto.description,
+      cantidad: target.cantidad.value || producto.cantidad,
       image: selectedImage ? null : producto.image,
       displayImages: selectedImage ? URL.createObjectURL(selectedImage) : previewImage,
+     
     };
 
     if (selectedImage) {
@@ -89,7 +91,14 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
           defaultValue={producto.valor}
           className="mt-2"
         />
-        <input
+         <Form.Control
+          placeholder="Actualizar cantidad"
+          name="cantidad"
+          defaultValue={producto.cantidad}
+          className="mt-2"
+        />
+        {/** para el cambio de imagen, queda en revision */}
+        {/* <input
           type="file"
           name="imagen"
           id="file-actulizar"
@@ -114,7 +123,7 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
             </svg>
             Añadir imagen del producto
           </span>
-        </label>
+        </label> */}
         <Form.Control
           as="textarea"
           name="descripcion"

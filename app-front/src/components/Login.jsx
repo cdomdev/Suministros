@@ -1,16 +1,17 @@
-import "../styles/App.css";
+// import "../styles/App.css";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import imgFav from "../assets/img/favicon.png";
-import RecoveryPassword from "./recoveryPassword";
+import { RecoveryPassword } from "./RecoveryPassword";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { SaveStorage } from "../helper/SaveStorage";
-import { BtnGoogle } from "../auth/BtnGoogle";
+import { BtnGoogle } from "../components/BtnGoogle";
+import { useUserRole } from "../hook/UserRoleProvider";
 
 export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { setUserRole } = useUserRole();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,12 +23,13 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
       const response = await axios.post(URL, { email, password });
       const { role, name, token } = response.data;
 
-      SaveStorage("userToken", token);
-      SaveStorage("role", role);
+      sessionStorage.setItem("userToken", token);
+      sessionStorage.setItem("role", role);
       if (response.status === 200 || response.status === 201) {
         setMessage("Inicio de sesión exitoso");
         setIsLoggedIn(true);
         handleCloseModal();
+        setUserRole(role);
         if (role === "admin") {
           navigate("/admin");
         } else {
@@ -37,31 +39,31 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
         setMessage("Usuario o contraseña incorrectos");
       }
     } catch (error) {
-      setMessage("Ocurrió un error al iniciar sesión");
+      console.log(error);
+      setMessage("¡ Error en el inicio de sesion !");
     }
   };
 
   return (
     <Form className="login-form" onSubmit={handleSubmit}>
-      <img src={imgFav} className="fav-login" alt="Fav Icon" />
+      <img src={imgFav} className="fav-login" alt="Favicon" />
       <h3 className="text-form">Bienvenido a suministros</h3>
-      <div className="container-btn-login">
-        <BtnGoogle
-          handleCloseModal={handleCloseModal}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      </div>
+      <BtnGoogle
+        handleCloseModal={handleCloseModal}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Form.Label className="txt-form-login">
-          Ingresa con tu cuenta de Google
-        </Form.Label>
+        Ingresa con tu cuenta de Google
+      </Form.Label>
       <div className="contenedor-liner">
-        <hr style={{ border: "solid black", width: "13em" }} />
-        <span style={{ margin: "0 10px" }}>O</span>
-        <hr style={{ border: "solid black", width: "13em" }} />
+        <hr className="liner-separator" />
+        <span className="m-1">O</span>
+        <hr className="liner-separator" />
       </div>
       <Form.Group className="mb-3 form-login" controlId="formGroupEmail">
         <Form.Label>Dirección de correo electrónico</Form.Label>
         <Form.Control
+          className="login-email"
           type="email"
           name="email"
           placeholder="Email@example.com"
@@ -79,16 +81,18 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
       <Button variant="primary" type="submit" className="mt-1">
         Iniciar sesión
       </Button>
-      {setMessage && (
-        <p
-          className={`message-response-server ${
-            message === "Inicio de sesión exitoso"
-              ? "success-message"
-              : "error-message"
-          }`}>
-          {message}
-        </p>
-      )}
+      <span>
+        {setMessage && (
+          <p
+            className={`message-response-server ${
+              message === "Inicio de sesión exitoso"
+                ? "success-message"
+                : "error-message"
+            }`}>
+            {message}
+          </p>
+        )}
+      </span>
     </Form>
   );
 };

@@ -12,18 +12,19 @@ app.use(cors());
 
 const port = process.env.PORT || 3100;
 
-// rutas para usuarios 
-const registroRouter = require('./src/modules/routes/registroRoute');
-app.use('/registro', registroRouter);
+//  ruta antes del cambio
+// const registroRouter = require('./src/modules/routes/registroRoute');
+// app.use('/registro', registroRouter);
+// const loginRoute = require('./src/modules/routes/loginRouter')
+// app.use('/login', loginRoute);
 
-const loginRoute = require('./src/modules/routes/loginRouter')
-app.use('/login', loginRoute);
-
-
+// rutas para usuarios
+const usersRoutes = require('./src/modules/routes/rutasUsers')
+app.use('/', usersRoutes)
 // rutas para administradores 
 
-const inventarioRoute = require('./src/modules/routes/rutasAdmin');
-app.use('/api', inventarioRoute)
+const adminRoutes = require('./src/modules/routes/rutasAdmin');
+app.use('/api', adminRoutes)
 
 // Manejador de errores
 app.use((err, req, res, next) => {

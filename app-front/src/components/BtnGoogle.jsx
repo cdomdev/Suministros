@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { DecodedJWT } from "../utils/DecodedJWT";
-import axios from "axios";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SaveStorage } from "../helper/SaveStorage";
+import { useUserRole } from "../hook/UserRoleProvider";
 
 const CLIENT_ID = import.meta.env.VITE_USER_ID_CLIENT;
 
-export const BtnGoogle = ({handleCloseModal,  setIsLoggedIn}) => {
+export const BtnGoogle = ({ handleCloseModal, setIsLoggedIn }) => {
   const [email, setEmail] = useState(null);
   const [message, setMesage] = useState("");
+  const { setUserRole } = useUserRole();
   const navigate = useNavigate();
 
   async function handleSuccess(credentialResponse) {
@@ -20,20 +22,22 @@ export const BtnGoogle = ({handleCloseModal,  setIsLoggedIn}) => {
         const response = await axios.post(URL, {
           googleToken: credentialResponse.credential,
         });
-        const {role, token} = response.data;
-        SaveStorage('userSesionToken', token)
-        SaveStorage('userRole', role)
+        const { role, token } = response.data;
+
+        SaveStorage("userSesionToken", token);
         if (response.status === 200 || response.status === 201) {
           setMesage("Inicio de sesion exitoso");
           handleCloseModal();
-          setIsLoggedIn(true)
-          if(role === 'admin'){
-            navigate('/admin')
-          }else{
+          setIsLoggedIn(true);
+          setUserRole(role);
+          if (role === "admin") {
+            navigate("/admin");
+            setEmail(true);
+          } else {
             navigate("/home");
           }
-        }else{
-          setMesage('Hubo con problemas con el incio de sesion')
+        } else {
+          setMesage("Hubo con problemas con el incio de sesion");
         }
       } catch (error) {
         console.log(error);
@@ -47,17 +51,21 @@ export const BtnGoogle = ({handleCloseModal,  setIsLoggedIn}) => {
   return (
     <GoogleOAuthProvider clientId={CLIENT_ID}>
       {email === null && (
-        <GoogleLogin
-          onError={handleError}
-          onSuccess={handleSuccess}
-          useOneTap
-          setIsLoggedIn={setIsLoggedIn}
-          handleCloseModal={handleCloseModal}
-          width='700'
-          logo_alignment="center"
-          size="medium"
-          theme="outline"
-        />
+        <div className="container-btn-login">
+          <GoogleLogin
+            onError={handleError}
+            onSuccess={handleSuccess}
+            useOneTap
+            setIsLoggedIn={setIsLoggedIn}
+            handleCloseModal={handleCloseModal}
+            locale="es"
+            logo_alignment="center"
+            size="large"
+            theme="filled_blue"
+            shape="circle"
+            width='300'
+          />
+        </div>
       )}
       {email && <p>Email de usuario {email} </p>}
     </GoogleOAuthProvider>

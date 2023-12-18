@@ -1,6 +1,6 @@
 
 import {Button, Card} from 'react-bootstrap';
-import img from '../assets/img/logo.png'
+import img from '../assets/img/favicon.png'
 
 export const  CardComponent = () => {
   return (

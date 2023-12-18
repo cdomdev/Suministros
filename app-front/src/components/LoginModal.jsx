@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { BiPersonCircle } from "../components/BipersonCircle";
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
-
+import Avatar from "@mui/material/Avatar";
 
 export const LoginModal = ({ setIsLoggedIn }) => {
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +26,10 @@ export const LoginModal = ({ setIsLoggedIn }) => {
     if (isLoginMode) {
       return (
         <>
-         <Login setIsLoggedIn={setIsLoggedIn} handleCloseModal={handleCloseModal}/>
+          <Login
+            setIsLoggedIn={setIsLoggedIn}
+            handleCloseModal={handleCloseModal}
+          />
           <button className="btn-alter-modal" onClick={handleShowRegisterModal}>
             Quiero registrarme
           </button>
@@ -36,7 +38,10 @@ export const LoginModal = ({ setIsLoggedIn }) => {
     } else {
       return (
         <>
-          <Register />
+          <Register
+            setIsLoggedIn={setIsLoggedIn}
+            handleCloseModal={handleCloseModal}
+          />
           <button className="btn-alter-modal" onClick={handleShowLoginModal}>
             Ya tengo una cuenta
           </button>
@@ -50,18 +55,15 @@ export const LoginModal = ({ setIsLoggedIn }) => {
       <Button
         variant="primary"
         onClick={handleShowLoginModal}
-        className="btn-modal-login"
-      >
-        <BiPersonCircle />
+        className="btn-modal-login">
+        <Avatar src="/broken-image.jpg" sx={{ width: 34, height: 34 }} />
       </Button>
       <Modal
         show={showModal}
         onHide={handleCloseModal}
-        className="content-modal-login"
-      >
+        className="content-modal-login">
         <Modal.Header closeButton className="btn-close-custom"></Modal.Header>
         <Modal.Body>{renderContent()}</Modal.Body>
-        <Modal.Footer className="footer-modal-custom"></Modal.Footer>
       </Modal>
     </>
   );

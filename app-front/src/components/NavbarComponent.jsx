@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, Link } from "react-router-dom";
 import { Logo } from "./Logo";
 import { LoginModal } from "./LoginModal";
 import { isAuthenticated } from "../auth/Auth";
@@ -13,20 +13,24 @@ export const NavbarComponent = () => {
   useEffect(() => {
     setIsLoggedIn(isAuthenticated());
   }, []);
-
+  const redirectToHome = () => {
+    navigate("/home");
+  };
 
   return (
     <>
       <Navbar expand="lg" className="nav-custom" fixed="top">
         <Container>
-          <Logo />
+          <Link to='/home' onClick={redirectToHome}>
+            <Logo />
+          </Link>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             className="btn-custom-movil"
           />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink  to="/home" className="nav-link-custom">
+              <NavLink to="/home" className="nav-link-custom">
                 Home
               </NavLink>
               <NavLink to="/productos" className="nav-link-custom">
@@ -48,7 +52,7 @@ export const NavbarComponent = () => {
         </Container>
       </Navbar>
       <section>
-        <Outlet></Outlet>
+        <Outlet />
       </section>
     </>
   );

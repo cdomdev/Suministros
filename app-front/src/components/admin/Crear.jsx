@@ -1,16 +1,35 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 export const Crear = ({ setListadoState }) => {
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
+
+  const [categorias, setCategoria] = useState([]);
+  const [selectedCategoria, setSelectedCategoria] = useState("");
+
+  useEffect(() => {
+    // Peticion de la categoria
+    axios
+      .get("http://localhost:3000/api/obtener-categorias")
+      .then((response) => {
+        console.log(response.data);
+        setCategoria(response.data);
+      })
+      .catch((e) => {
+        console.log(`Error al obtener las categorias ${e}`);
+      });
+  }, []);
+
   const [productState, setProductState] = useState({
     title: "",
     description: "",
     valor: "",
     displayImages: "",
+    cantidad: "",
+    referencia: "",
     imagesToSend: "",
   });
 
@@ -25,12 +44,23 @@ export const Crear = ({ setListadoState }) => {
     });
   };
 
+  const handleCategoriaChange = (event) => {
+    setSelectedCategoria(event.target.value);
+  };
   const getFormValues = async (e) => {
     e.preventDefault();
 
-    const { title, description, valor, imagesToSend } = productState;
+    const { title, description, valor, cantidad, referencia, imagesToSend } =
+      productState;
 
-    if (!title || !description || !valor || imagesToSend.length === 0) {
+    if (
+      !title ||
+      !description ||
+      !valor ||
+      !cantidad ||
+      !referencia ||
+      imagesToSend.length === 0
+    ) {
       setMessage("Por favor, complete todos los campos");
       return;
     }
@@ -43,7 +73,6 @@ export const Crear = ({ setListadoState }) => {
         "http://localhost:3000/api/upload",
         formData
       );
-      console.log(response.data);
 
       if (response.status === 200) {
         const { uploadedFiles } = response.data;
@@ -55,7 +84,10 @@ export const Crear = ({ setListadoState }) => {
           description: description,
           valor: valor,
           displayImages: productState.displayImages,
+          cantidad: cantidad,
+          referencia: referencia,
           image: imageUrls[0],
+          categoria: selectedCategoria,
         };
         // hasta aqui va todo bien
         setListadoState((prevListado) => {
@@ -71,10 +103,12 @@ export const Crear = ({ setListadoState }) => {
           description: "",
           valor: "",
           displayImages: "",
+          cantidad: "",
+          referencia: "",
           imagesToSend: "",
         });
 
-        setMessage("Producto añadido con éxito");
+        setMessage("¡Producto creado con exito!");
       }
     } catch (error) {
       console.log(`Hubo un error en la solicitud ${error}`);
@@ -84,8 +118,20 @@ export const Crear = ({ setListadoState }) => {
   return (
     <div className="add">
       <h3 className="text-titles-admin">Añadir productos: </h3>
+      {message && (
+        <span
+          style={{
+            color: "red",
+            fontWeight: "500",
+            fontSize: "18px",
+            margin: "10px",
+          }}>
+          {message}
+        </span>
+      )}
       <Form onSubmit={getFormValues}>
         <Form.Control
+          className="mt-2"
           type="text"
           placeholder="Marca del producto"
           value={productState.title}
@@ -106,34 +152,68 @@ export const Crear = ({ setListadoState }) => {
           maxLength={30}
           minLength={1}
         />
-        {message && <span style={{ color: "red" }}>{message}</span>}
-        <label htmlFor="file-upload" className="custom-file-upload">
-          <span className="container-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1}
-              stroke="currentColor"
-              className="w-5 h-5 uploap">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            Añadir imagen del producto
-          </span>
-        </label>
-        <br />
-        <span>{fileName}</span>
-        <input
-          id="file-upload"
-          type="file"
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-          name="imagen"
+
+        <Form.Control
+          type="number"
+          placeholder="Referencia del producto"
+          value={productState.referencia}
+          onChange={(e) => {
+            setProductState({ ...productState, referencia: e.target.value });
+          }}
+          className="mt-2"
+          maxLength={20}
+          minLength={1}
         />
+        <span className="contenedor-refStock">
+          <Form.Control
+            type="number"
+            placeholder="Cantidad en stock"
+            value={productState.cantidad}
+            onChange={(e) => {
+              setProductState({ ...productState, cantidad: e.target.value });
+            }}
+            className="mt-2 form-ref"
+            maxLength={10}
+            minLength={1}
+          />
+          <label htmlFor="file-upload" className="custom-file-upload form-ref">
+            <span className="container-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1}
+                stroke="currentColor"
+                className="w-5 h-5 uploap ">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                />
+              </svg>
+              Añadir imagen
+            </span>
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+            name="imagen"
+          />
+        </span>
+        <span style={{ color: "#213C65" }}>{fileName}</span>
+        <Form.Select
+          className="mt-3"
+          onChange={handleCategoriaChange}
+          value={selectedCategoria}>
+          <option>Seleccionar categoria</option>
+          {categorias.map((categoria) => (
+            <option key={categoria.nombre} value={categoria.nombre}>
+              {categoria.nombre}
+            </option>
+          ))}
+        </Form.Select>
         <Form.Control
           as="textarea"
           placeholder="Descripcion (Nombre del producto) "

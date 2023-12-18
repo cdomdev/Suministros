@@ -10,23 +10,21 @@ export const GuardarProductos = ({ listadoState, setListadoState }) => {
       const updatedList = listadoState.map((producto) => ({
         ...producto,
         displayImages: undefined,
-        image: producto.image, // Mantienes solo la URL del servidor
+        image: producto.image, 
       }));
-      console.log(`lista de productos actulizados que van en la solicitud ${updatedList}`)
-
-      console.log(JSON.stringify(updatedList))
       const response = await axios.post('http://localhost:3000/api/guardarproductos', {
         productos: updatedList 
       });
   
       if (response.status === 200 || response.status === 201) {
-        console.log('Productos con URL guardados con éxito');
+        setMessage('Productos guardados con éxito!');
+        setListadoState([])
+        localStorage.removeItem('productos')
       } else {
-        console.log('Hubo un error al guardar los productos');
+        setMessage('Hubo un error al guardar los productos');
       }
     } catch (error) {
       console.error('Error al subir y guardar imágenes:', error);
-      setMessage("Error al guardar los productos");
     }
   };
   
