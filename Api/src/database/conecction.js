@@ -14,7 +14,6 @@ const dbConfig = {
 const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
   host: dbConfig.host,
   dialect: 'mysql',
-  // Más opciones de configuración según sea necesario
 });
 
 // Verificar la conexión y sincronizar modelos
