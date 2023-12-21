@@ -2,44 +2,76 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
-export const GuardarProductos = ({ listadoState, setListadoState }) => {
-  const [message, setMessage] = useState("");
+export const GuardarProductos = ({ listadoState, setListadoState}) => {
+
+  const [messageSave, setMessageSave] = useState('')
   const handleGuardarProducto = async () => {
     try {
-    
+      if (listadoState === null) {
+        setMessageSave("¡No hay productos para guardar!");
+        setTimeout(() => {
+          setMessageSave("");
+        }, 5000);
+        return;
+      }
+
+      if (listadoState.length === 0) {
+        setMessageSave("¡No hay elementos en la lista para guardar!.");
+        setTimeout(() => {
+          setMessageSave("");
+        }, 2000);
+        return;
+      }
+
       const updatedList = listadoState.map((producto) => ({
         ...producto,
         displayImages: undefined,
-        image: producto.image, 
+        image: producto.image,
       }));
-      const response = await axios.post('http://localhost:3000/api/guardarproductos', {
-        productos: updatedList 
-      });
-  
+
+      const response = await axios.post(
+        "http://localhost:3000/api/guardarproductos",
+        {
+          productos: updatedList,
+        }
+      );
+
       if (response.status === 200 || response.status === 201) {
-        setMessage('Productos guardados con éxito!');
-        setListadoState([])
-        localStorage.removeItem('productos')
+        setMessageSave("Productos guardados con éxito!");
+        setListadoState([]);
+        localStorage.removeItem("productos");
+        setTimeout(() => {
+          setMessageSave("");
+        }, 2000);
       } else {
-        setMessage('Hubo un error al guardar los productos');
+        setMessageSave("Hubo un error al guardar los productos");
       }
     } catch (error) {
-      console.error('Error al subir y guardar imágenes:', error);
+      console.error("Error al subir y guardar imágenes:", error);
     }
   };
-  
+
   return (
     <>
-      <span style={{ display: "flex", height: "20px", marginLeft: "7em" }}>
-        {!listadoState && (
-          <p style={{ color: "red", fontSize: "14px" }}>{message}</p>
-        )}
-      </span>
+      
       <div className="container-btn">
         <Button variant="secondary" onClick={handleGuardarProducto}>
           Guardar productos
         </Button>
       </div>
+
+      <span style={{ display: "flex", height: "20px", margin: "auto" }}>
+        {messageSave && (
+          <p
+            style={{
+              color: messageSave.includes("éxito") ? "green" : "red",
+              fontSize: "18px",
+              margin: "auto",
+            }}>
+            {messageSave}
+          </p>
+        )}
+      </span>
     </>
   );
 };

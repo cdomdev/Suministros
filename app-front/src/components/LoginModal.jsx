@@ -52,12 +52,11 @@ export const LoginModal = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <Button
-        variant="primary"
+      <Avatar
+        src="/broken-image.jpg"
         onClick={handleShowLoginModal}
-        className="btn-modal-login">
-        <Avatar src="/broken-image.jpg" sx={{ width: 34, height: 34 }} />
-      </Button>
+        sx={{ cursor: "pointer" }}
+      />
       <Modal
         show={showModal}
         onHide={handleCloseModal}

@@ -25,8 +25,10 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
       description: target.descripcion.value || producto.description,
       cantidad: target.cantidad.value || producto.cantidad,
       image: selectedImage ? null : producto.image,
+      referencia: target.referencia.value || producto.referencia,
       displayImages: selectedImage ? URL.createObjectURL(selectedImage) : previewImage,
-     
+      categoria: producto.categoria,
+      categoria_id: producto.categoria_id
     };
 
     if (selectedImage) {
@@ -97,33 +99,12 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
           defaultValue={producto.cantidad}
           className="mt-2"
         />
-        {/** para el cambio de imagen, queda en revision */}
-        {/* <input
-          type="file"
-          name="imagen"
-          id="file-actulizar"
-          style={{ display: "none" }}
-          className="imagen-editada "
-          onChange={handleImagenChange}
+          <Form.Control
+          placeholder="Actualizar referencia"
+          name="referencia"
+          defaultValue={producto.referencia}
+          className="mt-2"
         />
-        <label htmlFor="file-actulizar" className="custom-file-upload mt">
-          <span className="container-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1}
-              stroke="currentColor"
-              className="w-1 h-1 uploap">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            Añadir imagen del producto
-          </span>
-        </label> */}
         <Form.Control
           as="textarea"
           name="descripcion"

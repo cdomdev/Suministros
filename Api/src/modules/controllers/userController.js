@@ -1,5 +1,5 @@
 const UserModel = require("../models/userRegister");
-const AuthModel = require('../models/authModel');
+const AuthModel = require("../models/authModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -7,11 +7,9 @@ const claveSecreta = process.env.CLAVE_SECRETA;
 const { OAuth2Client } = require("google-auth-library");
 
 const CLIENT_ID = process.env.CLIENT_ID;
-const tiempoExpiracion = '1h';
-
+const tiempoExpiracion = "1h";
 
 const client = new OAuth2Client(CLIENT_ID);
-
 
 // constrolador para el resgitro de usaurios
 
@@ -31,6 +29,7 @@ const registroController = async (req, res) => {
         user = await UserModel.create({
           name: userData.name,
           email: userData.email,
+          picture: userData.picture,
           password: defaultPassword,
           role: "user",
         });
@@ -39,7 +38,14 @@ const registroController = async (req, res) => {
       const token = jwt.sign({ user }, claveSecreta, { expiresIn: "1h" });
       return res
         .status(201)
-        .json({ message: "Inicio de sesion exitoso", token, role: user.role });
+        .json({
+          message: "Inicio de sesion exitoso",
+          token,
+          role: user.role,
+          name: user.name,
+          picture: user.picture,
+          email: user.email,
+        });
     } else {
       // Registro normal
       const existingUser = await UserModel.findOne({ where: { email } });
@@ -69,8 +75,7 @@ const registroController = async (req, res) => {
   }
 };
 
-
-// constrolador para el login de usuarios 
+// constrolador para el login de usuarios
 
 const loginController = async (req, res) => {
   const { email, password } = req.body;
@@ -79,33 +84,43 @@ const loginController = async (req, res) => {
     const userFromDB = await AuthModel.userExisting(email);
 
     if (userFromDB) {
-      const passwordMatch = await AuthModel.passwordMatch(password, userFromDB.password);
+      const passwordMatch = await AuthModel.passwordMatch(
+        password,
+        userFromDB.password
+      );
 
       if (passwordMatch) {
         const { id, role, email, name } = userFromDB;
-      
-        const token = jwt.sign({ userId: id, email, role, name}, claveSecreta, {
-          expiresIn: tiempoExpiracion,
-        });
+
+        const token = jwt.sign(
+          { userId: id, email, role, name },
+          claveSecreta,
+          {
+            expiresIn: tiempoExpiracion,
+          }
+        );
         res.json({
           success: true,
           message: `Inicio de sesión exitoso (${role})`,
           name: name,
           role: role,
-          token: token
+          token: token,
         });
       } else {
-        res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+        res
+          .status(401)
+          .json({ success: false, message: "Contraseña incorrecta" });
       }
     } else {
-      res.status(401).json({ success: false, message: 'Usuario no encontrado' });
+      res
+        .status(401)
+        .json({ success: false, message: "Usuario no encontrado" });
     }
   } catch (error) {
-    console.error('Error en el controlador de inicio de sesión:', error);
-    res.status(500).json({ success: false, message: 'Error en el servidor' });
+    console.error("Error en el controlador de inicio de sesión:", error);
+    res.status(500).json({ success: false, message: "Error en el servidor" });
   }
 };
-
 
 async function verifyGoogleToken(token) {
   const ticket = await client.verifyIdToken({
@@ -116,8 +131,9 @@ async function verifyGoogleToken(token) {
   return payload;
 }
 
+
+
 module.exports = {
   registroController,
-  loginController
-
+  loginController,
 };

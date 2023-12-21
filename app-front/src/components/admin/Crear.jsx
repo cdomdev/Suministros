@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
-export const Crear = ({ setListadoState }) => {
+export const Crear = ({
+  setListadoState,
+  listadoState,
+}) => {
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
-
-  const [categorias, setCategoria] = useState([]);
+  const [categorias, setCategoria] = useState({});
   const [selectedCategoria, setSelectedCategoria] = useState("");
+  // const [messageSave, setMessageSave] = useState("");
 
   useEffect(() => {
     // Peticion de la categoria
     axios
       .get("http://localhost:3000/api/obtener-categorias")
       .then((response) => {
-        console.log(response.data);
-        setCategoria(response.data);
+        const categoriasObj = {};
+        response.data.categorias.forEach((categoria) => {
+          categoriasObj[categoria.id] = categoria.nombre;
+        });
+        setCategoria(categoriasObj);
       })
       .catch((e) => {
         console.log(`Error al obtener las categorias ${e}`);
@@ -46,6 +52,7 @@ export const Crear = ({ setListadoState }) => {
 
   const handleCategoriaChange = (event) => {
     setSelectedCategoria(event.target.value);
+    console.log(event.target.value);
   };
   const getFormValues = async (e) => {
     e.preventDefault();
@@ -61,7 +68,10 @@ export const Crear = ({ setListadoState }) => {
       !referencia ||
       imagesToSend.length === 0
     ) {
-      setMessage("Por favor, complete todos los campos");
+      setMessage("¡Por favor, complete todos los campos!");
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
       return;
     }
 
@@ -87,7 +97,8 @@ export const Crear = ({ setListadoState }) => {
           cantidad: cantidad,
           referencia: referencia,
           image: imageUrls[0],
-          categoria: selectedCategoria,
+          categoria: categorias[selectedCategoria],
+          categoria_id: selectedCategoria[0],
         };
         // hasta aqui va todo bien
         setListadoState((prevListado) => {
@@ -107,8 +118,10 @@ export const Crear = ({ setListadoState }) => {
           referencia: "",
           imagesToSend: "",
         });
-
         setMessage("¡Producto creado con exito!");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.log(`Hubo un error en la solicitud ${error}`);
@@ -121,8 +134,8 @@ export const Crear = ({ setListadoState }) => {
       {message && (
         <span
           style={{
-            color: "red",
-            fontWeight: "500",
+            color: message.includes("exito") ? "green" : "red",
+            fontWeight: "340",
             fontSize: "18px",
             margin: "10px",
           }}>
@@ -208,9 +221,9 @@ export const Crear = ({ setListadoState }) => {
           onChange={handleCategoriaChange}
           value={selectedCategoria}>
           <option>Seleccionar categoria</option>
-          {categorias.map((categoria) => (
-            <option key={categoria.nombre} value={categoria.nombre}>
-              {categoria.nombre}
+          {Object.keys(categorias).map((categoriaId) => (
+            <option key={categoriaId} value={categoriaId}>
+              {categorias[categoriaId]}
             </option>
           ))}
         </Form.Select>

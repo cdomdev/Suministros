@@ -4,11 +4,17 @@ import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import { useUserData } from '../hook/UserDataProvider';
+import Avatar from "@mui/material/Avatar";
+import { AiOutlinePoweroff } from "react-icons/ai";
 
 
-export const UserProfile = ({ username, email, avatarUrl, setIsLoggedIn}) => {
 
+export const UserProfile = ({ setIsLoggedIn}) => {
   const navigate = useNavigate()
+
+  const {user} = useUserData()
+
 
   const logout = () => {
     localStorage.removeItem("userSesionToken");
@@ -25,15 +31,15 @@ export const UserProfile = ({ username, email, avatarUrl, setIsLoggedIn}) => {
           key={placement}
           placement={placement}
           overlay={
-            <Popover id={`popover-positioned-${placement}`}>
-              <Popover.Body>
-                <p>infromacion de usuario</p>
-                <Button variant="primary" onClick={logout}>Cerrar sesion</Button>
+            <Popover id={`popover-positioned-${placement}`}style={{width: '270px'}}>
+              <Popover.Body className='popover-user-profile'>
+                <span className='name-user-profile'>{user.name}</span>
+                <Button className='btn-profile-users' onClick={logout}><AiOutlinePoweroff className='icon-btn-off'/>Cerrar sesion</Button>
               </Popover.Body>
             </Popover>
           }
         >
-          <Button variant="secondary">Profile</Button>
+          <Avatar alt={user.name} src={user.picture} sx={{ cursor: 'pointer' }} />
         </OverlayTrigger>
       ))}
     </>

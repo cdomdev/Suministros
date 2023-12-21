@@ -15,6 +15,6 @@ router.post('/crear-categoria',controllerInvenatirio.crearCategorias)
 
 router.get('/obtener-categorias', controllerAdmin.listarCategorias );
 
-
+router.get('/listar/productos', controllerAdmin.listarProductos)
 
 module.exports = router;

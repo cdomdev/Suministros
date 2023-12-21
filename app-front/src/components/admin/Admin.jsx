@@ -9,25 +9,28 @@ export const Admin = () => {
   const [listadoState, setListadoState] = useState([]);
   return (
     <>
-    <div className="body-components-admin">
-    <div className="layout">
-        <NavAdmin />
-        <section className="content">
-          <Listado
-            listadoState={listadoState}
-            setListadoState={setListadoState}
-          />
-        </section>
-        <aside className="side-bar">
-          <Crear setListadoState={setListadoState} />
-          <GuardarProductos
-            listadoState={listadoState}
-            setListadoState={setListadoState}
-          />
-        </aside>
+      <div className="body-components-admin">
+        <div className="layout">
+          <NavAdmin />
+          <section className="sidebar">
+            <aside>
+              <Crear setListadoState={setListadoState} />
+            </aside>
+            <article>
+              <GuardarProductos
+                setListadoState={setListadoState}
+                listadoState={listadoState}
+              />
+            </article>
+          </section>
+          <section className="content">
+            <Listado
+              listadoState={listadoState}
+              setListadoState={setListadoState}
+            />
+          </section>
+        </div>
       </div>
-    </div>
-     
     </>
   );
 };

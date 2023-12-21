@@ -40,6 +40,23 @@ const Productos = sequelize.define(
         },
       },
     },
+    referencia: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El campo referencia es requerido",
+        },
+      },
+    },
+    categoria_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Categoria",
+        key: "id",
+      },
+    },
     image: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -52,7 +69,7 @@ const Productos = sequelize.define(
   },
     {
     tableName: "Productos",
-    timestamps: false,
+    timestamps: true,
   }
 );
 

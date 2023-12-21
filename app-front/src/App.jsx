@@ -1,5 +1,5 @@
 import React from "react";
-import { UserRoleProvider } from "./hook/UserRoleProvider";
+import { UserDataProvider } from "./hook/UserDataProvider";
 import { BrowserRouter } from "react-router-dom";
 import { DashboardUser } from "./routes/DashboardUser";
 
@@ -9,9 +9,9 @@ export const App = () => {
     <>
       <BrowserRouter>
         <div className="App">
-          <UserRoleProvider>
+          <UserDataProvider>
             <DashboardUser />
-          </UserRoleProvider>
+          </UserDataProvider>
         </div>
       </BrowserRouter>
     </>

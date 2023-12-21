@@ -6,12 +6,12 @@ import { RecoveryPassword } from "./RecoveryPassword";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BtnGoogle } from "../components/BtnGoogle";
-import { useUserRole } from "../hook/UserRoleProvider";
+import { useUserData } from "../hook/UserDataProvider";
 
 export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const { setUserRole } = useUserRole();
+  const { setUserData } = useUserData();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +29,8 @@ export const Login = ({ setIsLoggedIn, handleCloseModal }) => {
         setMessage("Inicio de sesión exitoso");
         setIsLoggedIn(true);
         handleCloseModal();
-        setUserRole(role);
+        setUserData(role);
+        console.log('role del usuario en el contexto general:', role)
         if (role === "admin") {
           navigate("/admin");
         } else {

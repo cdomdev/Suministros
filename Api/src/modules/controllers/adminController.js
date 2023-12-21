@@ -1,5 +1,5 @@
 const User = require("../models/userRegister");
-const {Categoria} = require('../models/inventaryModel')
+const {Categoria, Productos} = require('../models/inventaryModel')
 
 
 
@@ -18,7 +18,7 @@ const listarUsuarios = async (req, res) => {
 
 const listarCategorias = async(req, res) =>{
   try{
-    const categorias = await Categoria.findAll({attributes: ['nombre']})
+    const categorias = await Categoria.findAll({attributes: ['id','nombre']})
     res.json({categorias})
 
   }catch(e){
@@ -34,7 +34,7 @@ const saveImagenServer = (req, res) =>{
     }
     const uploadedFiles = req.files.map((file) => {
       // Modifica la URL base según tu estructura
-      const imageUrl = `https://localhost:3000/src/modules/uploads/products/${file.filename}`;
+      const imageUrl = `http://localhost:3000/src/modules/uploads/products/${file.filename}`;
       return {
         originalName: file.originalname,
         imageUrl: imageUrl,
@@ -48,8 +48,19 @@ const saveImagenServer = (req, res) =>{
   }
 }
 
+const listarProductos = async(req, res) =>{
+  try{
+    const productos = await Productos.findAll({attributes: ['id','title', 'valor', 'description', 'image', 'referencia']})
+    res.json({productos})
+  }catch(e){
+    console.log(e)
+    res.status(500).json({error: 'Error al obtener los productos'})
+  }
+}
+
 module.exports = {
   listarUsuarios,
   saveImagenServer,
-  listarCategorias
+  listarCategorias,
+  listarProductos
 };

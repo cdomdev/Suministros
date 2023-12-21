@@ -26,8 +26,7 @@ $color-complementario: #f2efe1;
         };
     }
     .btn-modal-login{
-        background-color:$color-principal;
-        border: none;
+        cursor: pointer;
     }
     .nav-link-custom{
         color: $color-complementario;
@@ -47,6 +46,8 @@ $color-complementario: #f2efe1;
         background-color: #f2efe1;
     }
    
+  
+   
 }
 .modal-content{
     border: none;
@@ -55,6 +56,7 @@ $color-complementario: #f2efe1;
         padding: 0;
     }   
 }
+
 
 // Estilos para modales login y registro
 .login-form{
@@ -320,10 +322,7 @@ section{
 }
 
 // estilos para la parte del administrador 
-.card{
-    background-color: #0260a7;
-    width: 18em;
-}
+
 
 
 
@@ -387,23 +386,29 @@ section{
 .layout{
     margin-top: 5em;
     width: 100%;
-    height: auto;
+    height:auto;
+    background-color:#f4f4f4 ;
     display: grid;
     grid-template-areas: 
-    'side-bar content content content '
+    'sidebar content content content '
+    'sidebar content content content '
+    'sidebar content content content '
+    'sidebar content content content '
     ;
     grid-template-rows: auto auto auto auto ;
-    grid-template-columns: 1fr 1fr 1fr auto ;
+    grid-template-columns: 25% 75%;
+
 
     .content {
         grid-area: content;
-        display: grid;
+        display: flex;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
+        text-align: center;
         gap: 10px;
         flex-wrap: wrap;
-        margin: 0 20px;
+        margin: 3em 20px;
         .text-listar-products-admin{
             align-self: center;
             font-family: $tittlesFonts;
@@ -411,20 +416,25 @@ section{
             color: #b7b6b6;
             font-weight: 500;
         }
-     
+       
         .productos-cards {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             padding: 25px 15px;
-            margin: 10px 2px;
+            margin: 0 2px;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
             border-radius: 5px;
-            position: relative;
-            width: 90%; 
-            height: auto; 
-            max-width: 350px;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            width: 350px;
+            max-width: 600px;
+            background-color: white;
             cursor: pointer;
             text-align: center;
             transition: box-shadow 0.3s ease-in-out;
+            
             .title-cards{
                 font-size: 15px;
                 font-weight: 600;
@@ -441,8 +451,8 @@ section{
             }
             
             .img-productos{
-                width: 100%; 
-                height: auto; 
+                width: 12em; 
+                height: 12em; 
                 display: block; 
                 border-radius: 5px;
             }
@@ -458,9 +468,7 @@ section{
                 .title-cards{
                     font-weight: 400;
                 }
-                .cantidad{
-                    margin: -12px 0 10px 0;
-                }
+               
             }
             .custom-file-upload {
                 border: 1px solid #ccc;
@@ -480,17 +488,17 @@ section{
                     
         }
         .productos-cards:hover{
-            box-shadow: 0 0 5px rgba(44, 43, 43, 0.2);
+            box-shadow: 0 0 5px rgba(156, 154, 154, 0.2);
         }
       
         
     }
 
-    .side-bar{
-        grid-area: side-bar;
-        width: 100%;
+    .sidebar{
+        grid-area: sidebar;
         padding: 10px;
         max-width: 600px;
+        width: 400px;
         display: flex;
         justify-content: right;
         flex-direction:column;
@@ -536,6 +544,7 @@ section{
             border: none;
             justify-content: center;
         }
+        
         .btn-custom{
             width: 150px;
         }
@@ -545,7 +554,7 @@ section{
         }
         
     }
-    .side-bar div {
+    .sidebar div {
         background-color: white;
         width:100%;
         max-width: 400px; 
@@ -553,37 +562,61 @@ section{
         box-sizing: border-box;
         padding: 15px;
         border-radius: 3px;
-        box-shadow: 0px 0px 3px #e6e6e6;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         margin: 10px 0;
         align-items: center;
         overflow: hidden; 
     }
     
-    
-   
-    @media screen and (min-width: 1441px) {
-        .content {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
+    @media screen and (max-width: 1280px) {
+      .content{
+        display: flex;
+        justify-content: center;
+        .productos-cards {
+            width: 300px;
+          }
+      }
+     
     }
-
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         .content {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
+            .productos-cards {
+                width: 250px;
+              }
+        } 
     }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 821px) {
         .content {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-        .content-btn-card{
             display: flex;
-            flex-wrap: wrap;
-        }
+            justify-content: flex-end;
+            .productos-cards {
+                width: 350px;
+              }
+        } 
     }
+
+}
+
+@media screen and (max-width: 770px ){
+    .layout{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-areas: 
+        'sidebar sidebar '
+        'sidebar sidebar '
+        'content content'
+        'content content'
+        ;
+        .sidebar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+         }
+    }
+   
     
-
-
 }
 
 
@@ -658,7 +691,7 @@ section{
 .body-components-admin{
     margin-top: -22px;
     background-color: #f4f4f4;
-    height: 90vh;
+    height: 100vh;
     .layout-admin-user{
         display: flex;
         flex-direction: column;
@@ -683,4 +716,59 @@ section{
     
 }
 
+// estilos de la pagina de gestion de productos 
+
+.container-products-db{
+    margin: 2em;
+    width: 20rem;
+    height: 20rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 1px rgb(156, 155, 155);
+    display: flex;
+    flex-direction: column;
+    .img-products{
+        width: 7em;
+        height: 7em;
+        padding: 10px;
+    }
+    .info-products{
+        padding: 10px;
+        text-align: left;
+        line-height: 25px;
+        p{
+            margin: 0;
+        }
+    }
+}
+
+
+
+//customizacion del componente perfil de usuario
+
+
+.popover-user-profile{
+    display: flex;
+    flex-direction: column;
+    .name-user-profile{
+        color: #243a5e;
+        text-align: center;
+    }
+    .btn-profile-users{
+        width: 60%;
+        background-color: white;
+        color: #243a5e;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: white;
+            color: red;
+        }
+        text-align: left;
+    }
+    .icon-btn-off{
+        margin: -3px 5px 0 0;
+        font-size: 19px;
+    }
+}
 

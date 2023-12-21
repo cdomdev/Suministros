@@ -7,16 +7,17 @@ const {
 const guardarProducto = async (req, res) => {
   try {
     const { productos } = req.body;
-
     for (const producto of productos) {
       const nuevoProducto = await Productos.create({
         title: producto.title,
         valor: producto.valor,
         description: producto.description,
         referencia: producto.referencia,
-        categoria: producto.cantegoria,
+        categoria_Id: producto.categoria_id,
         image: producto.image,
       });
+
+      console.log('nuevo producto', nuevoProducto)
 
       if (!nuevoProducto) {
         return res.status(500).json({ error: "No se pudo crear el producto" });
@@ -57,6 +58,7 @@ const crearCategorias = async (req, res) => {
       .json({
         mensaje: "Categoria creada exitosamente",
         categoria: nuevaCategoria,
+        
       });
   } catch (error) {
     console.log(error);

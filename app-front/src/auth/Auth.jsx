@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
-import { useUserRole } from '../hook/UserRoleProvider';
+import { useUserData } from '../hook/UserDataProvider';
 
 export const PrivateRoute = ({ roleAllowed, ...props }) => {
-  const { role } = useUserRole();
+  const { role } = useUserData();
 
   if (role === roleAllowed) {
     return <Route {...props} />;
