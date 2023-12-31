@@ -1,15 +1,19 @@
 import React from "react";
-import {NavbarComponent} from "../components/NavbarComponent";
+import {NavbarComponent} from "../components/user/Nav/NavbarComponent";
+import { Container } from "react-bootstrap";
 
-export const  Productos = () =>{
+export const Productos = () =>{
     return(
         <>
         <header>
             <NavbarComponent />
         </header>
-        <div>
-            <h1>Este el Productos</h1>
-        </div>
+        <Container style={{height: '100vh', backgroundColor:'blue',}}>
+            <div style={{display:'flex', gap:'50px'}}>
+            <p>Lista de productos</p><p>Lista de productos</p><p>Lista de productos</p><p>Lista de productos</p><p>Lista de productos</p>
+            </div>
+            
+        </Container>
        
         </>
         

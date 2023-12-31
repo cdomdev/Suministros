@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, DATEONLY } = require("sequelize");
 const sequelize = require("../../database/conecction");
 
 const Productos = sequelize.define(
@@ -41,7 +41,7 @@ const Productos = sequelize.define(
       },
     },
     referencia: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -67,7 +67,7 @@ const Productos = sequelize.define(
       },
     },
   },
-    {
+  {
     tableName: "Productos",
     timestamps: true,
   }
@@ -110,7 +110,8 @@ const Inventario = sequelize.define(
     timestamps: false,
   }
 );
-// Modelo de categorias 
+
+// Modelo de categorias
 
 const Categoria = sequelize.define(
   "Categoria",
@@ -120,7 +121,7 @@ const Categoria = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    nombre:{
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -128,15 +129,112 @@ const Categoria = sequelize.define(
           msg: "La categoria es requerida",
         },
       },
-    }
+    },
   },
   {
     tableName: "Categoria",
     timestamps: true,
   }
-)
+);
+
+// modelo de ofertas
+const Ofertas = sequelize.define(
+  "ofertas",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El nombre es requerido",
+        },
+      },
+    },
+    descuento: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El campo porcentaje es requerido",
+        },
+      },
+    },
+    fecha_inicio: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El campo fecha inicio es requerido",
+        },
+      },
+    },
+    fecha_fin: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El campo fecha fin es requerido",
+        },
+      },
+    },
+  },
+  {
+    tableName: "ofertas",
+    timestamps: false,
+  }
+);
+
+// modeo de relacion entre productos y ofertas
+
+const OfertasProductos = sequelize.define(
+  "productos_ofertas",
+  {
+    id_ofertas: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
+    id_productos: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
+  },
+  {
+    tableName: "productos_ofertas",
+    timestamps: false,
+  }
+);
+
+//------ Relaciones entre modelos ------
+
+// productos - categorias
+Productos.belongsTo(Categoria, { foreignKey: "categoria_id" });
+
+// relacion invetario y porductos
+Productos.hasMany(Inventario, { foreignKey: "producto_Id" });
+
+// productos - tabla intermediara de ofertas
+Productos.belongsToMany(Ofertas, {
+  through: "productos_ofertas",
+  foreignKey: "id_productos",
+});
+
+// tabla intermedia con relacion entre productos y ofertas
+Ofertas.belongsToMany(Productos, {
+  through: "productos_ofertas",
+  foreignKey: "id_ofertas",
+});
+
 module.exports = {
   Productos,
   Inventario,
   Categoria,
+  Ofertas,
+  OfertasProductos,
 };

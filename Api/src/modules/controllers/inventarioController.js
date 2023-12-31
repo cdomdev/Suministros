@@ -17,8 +17,6 @@ const guardarProducto = async (req, res) => {
         image: producto.image,
       });
 
-      console.log('nuevo producto', nuevoProducto)
-
       if (!nuevoProducto) {
         return res.status(500).json({ error: "No se pudo crear el producto" });
       }
@@ -29,11 +27,9 @@ const guardarProducto = async (req, res) => {
       });
 
       if (!createdInventario) {
-        return res
-          .status(500)
-          .json({
-            error: "No se pudo crear el inventario asociado al producto",
-          });
+        return res.status(500).json({
+          error: "No se pudo crear el inventario asociado al producto",
+        });
       }
     }
     return res
@@ -47,28 +43,29 @@ const guardarProducto = async (req, res) => {
   }
 };
 
+// Controlador para crear categorias
+
 const crearCategorias = async (req, res) => {
   try {
     // extraer elemntos
-    const { nombre } = req.body;
-    // crear nueva categoria en la db
-    const nuevaCategoria = await Categoria.create({ nombre});
-    res
-      .status(201)
-      .json({
+    if (req) {
+      const { nombre } = req.body;
+      // crear nueva categoria en la db
+      const nuevaCategoria = await Categoria.create({ nombre });
+      res.status(201).json({
         mensaje: "Categoria creada exitosamente",
         categoria: nuevaCategoria,
-        
       });
+    }
   } catch (error) {
     console.log(error);
     res
       .status(400)
-      .json({ mensaje: "Huno un probla al crear la categoria", error: error });
+      .json({ mensaje: "Huno un problema al crear la categoria", error: error });
   }
 };
 
 module.exports = {
   guardarProducto,
-  crearCategorias
+  crearCategorias,
 };

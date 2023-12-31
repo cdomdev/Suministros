@@ -1,12 +1,10 @@
 import React from "react";
-import {Carrusel} from "../components/Carrusel";
-import { Container, Row, Col } from "react-bootstrap";
+import { Carrusel } from "../components/user/Carrusel/Carrusel";
+import { Container} from "react-bootstrap";
 import TypewriterText from "../components/textWrite";
-import TextPages from "../components/texComponent";
 import MdiTruckFast from "../assets/animation/trck";
-import { NavbarComponent } from "../components/NavbarComponent";
-import { CardComponent } from "../components/CardComponent";
-
+import { NavbarComponent } from "../components/user/Nav/NavbarComponent";
+import '../styles/App.css'
 export const HomeUser = () => {
   return (
     <>
@@ -15,80 +13,49 @@ export const HomeUser = () => {
       </header>
       <main>
         <Carrusel />
-        <section className="cards-home">
-          <div className="typewriter-container">
-            <TypewriterText />
-          </div>
-          <div className="contenedor-home"></div>
-          <TextPages
-            textParts={[
-              { tag: "h2", content: "Bienvenidos a Nuestra Tienda Virtual" },
-            ]}
-            className="txt-secundario"
-          />
-          <div className="container">
-            <TextPages
-              textParts={[
-                {
-                  tag: "p",
-                  content:
-                    "Suministro es una empresa especializada en acabados para la remodelación de baños, cocinas y otras áreas de tu hogar u oficina. \n En nuestro portafolio de productos importados y nacionales exhibidos. Nos especializamos para brindar lo que necesitas ",
-                },
-              ]}
-              className="txt"
-            />
+        <div className="typewriter-container">
+          <TypewriterText />
+        </div>
+        <Container>
+          <h2 className="subtitulo-home">
+            Bienvenidos a Nuestra Tienda Virtual
+          </h2>
+          <p className="content-text-home">
+            Suministro es una empresa especializada en acabados para la
+            remodelación de baños, cocinas y otras áreas de tu hogar u oficina.
+            <br />
+            En nuestro portafolio de productos importados y nacionales
+            exhibidos. Nos especializamos para brindar lo que necesitas
+          </p>
+          <div className="box-products-home">
+            <div className="caja">caja 1</div>
+            <div className="caja">caja 2</div>
+            <div className="caja">caja 3</div>
           </div>
 
-          <div className="contenedor-home">
-            <Container>
-              <Row>
-                <Col sm={4}>
-                  <CardComponent />
-                </Col>
-                <Col sm={4}>
-                  <CardComponent />
-                </Col>
-                <Col sm={4}>
-                  <CardComponent />
-                </Col>
-              </Row>
-            </Container>
-          </div>
+          <h3 className="subtitulo-home">
+            Todo para la remodelación de tus espacios
+          </h3>
 
-          <TextPages
-            textParts={[
-              {
-                tag: "h3",
-                content: "Todo para la remodelación de tus espacios",
-              },
-            ]}
-            className="txt-secundario"
-          />
-          <div className="container">
-            <TextPages
-              textParts={[
-                {
-                  tag: "p",
-                  content:
-                    "Somos la marca de remodelación de los colombianos, con una tienda virtual para que compres fácil y rápido, con una amplia red de distribución por todo el país.\n Aquí encontrarás una oferta completa para todos los espacios del hogar.",
-                },
-                {
-                  tag: "p",
-                  content:
-                    "Ofrecemos una amplia variedad de productos para que puedas encontrar exactamente lo que necesitas: pinturas, materiales de construcción y más.\n Somos fabricantes y distribuidores de marcas como Corona SAS y Listo SAS.",
-                },
-                {
-                  tag: "p",
-                  content:
-                    "Inspírate, escoge los productos y cómpralos desde donde estés.\n También contamos con un equipo de asesores virtuales que pueden ayudarte a encontrar la solución perfecta para tu casa o negocio.",
-                },
-              ]}
-              className="txt-complementario"
-            />
-          </div>
+          <p className="content-text-home">
+            Somos la marca de remodelación de los colombianos, con una tienda
+            virtual para que compres fácil y rápido, con una amplia red de
+            distribución por todo el país. <br /> Aquí encontrarás una oferta
+            completa para todos los espacios del hogar.
+            <br />
+            Ofrecemos una amplia variedad de productos para que puedas encontrar
+            exactamente lo que necesitas: pinturas, materiales de construcción y
+            más.
+            <br /> Somos fabricantes y distribuidores de marcas como Corona SAS
+            y Listo SAS.
+            <br />
+            Inspírate, escoge los productos y cómpralos desde donde estés.{" "}
+            <br />
+            También contamos con un equipo de asesores virtuales que pueden
+            ayudarte a encontrar la solución perfecta para tu casa o negocio.
+          </p>
 
           <h5 className="jumping-text">¡Tu visión, nuestra misión!</h5>
-
           <div className="container">
             <div className="svg-home">
               <div className="svg-store">
@@ -116,7 +83,7 @@ export const HomeUser = () => {
               </div>
             </div>
           </div>
-        </section>
+        </Container>
       </main>
     </>
   );

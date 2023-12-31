@@ -1,12 +1,13 @@
 // DashboardAdmin.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { HomeAdmin } from '../components/admin/HomeAdmin';
-import { GestionUsuarios } from '../components/admin/GestionUsuarios';
-import {Admin } from '../components/admin/Admin'
-import { GestionInventary } from '../components/admin/GestionInventary';
+import { HomeAdmin } from '../components/admin/Home/HomeAdmin';
+import { GestionUsuarios } from '../components/admin/usuarios/GestionUsuarios';
+import {Admin } from '../components/admin/agregarProductos/Admin'
+import { GestionInventary } from '../components/admin/inventario/GestionInventary';
 import {HomeUser} from '../pages'
-import {Category} from '../components/admin/Category'
+import {Category} from '../components/admin/categoria/Category'
+import { Ofertas } from '../components/admin/ofertas/Ofertas';
 
 export const DashboardAdmin = () => {
   return (
@@ -16,6 +17,7 @@ export const DashboardAdmin = () => {
       <Route path='/añadir/productos' element={<Admin/>} />
       <Route path='/gestion/categorias' element={<Category/>} />
       <Route path='/gestion/inventario' element={<GestionInventary/>} />
+      <Route path='/crear/ofertas' element={<Ofertas/>} />
       <Route path='/ver/tienda' element={<HomeUser/>} />
     </Routes>
   );

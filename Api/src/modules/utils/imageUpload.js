@@ -1,5 +1,5 @@
-const multer = require('multer');
 const path =  require('path');
+const multer = require('multer')
 
 // Configuración de Multer para guardar archivos en el directorio 'uploads'
 const storage = multer.diskStorage({

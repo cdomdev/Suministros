@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const TypewriterText = () => {
   const [text, setText] = useState('');
-  const fullText = `Sumérgete en un océano de ofertas en Suministro.`;
+  const fullText = `Pinturas, cocinas,  baños y mucho mas aqui en suministros.`;
 
   useEffect(() => {
     let currentIndex = 0;
@@ -15,7 +15,7 @@ const TypewriterText = () => {
         currentIndex = 0;
         setText('');
       }
-    }, 220); 
+    }, 230); 
 
     return () => clearInterval(interval);
   }, []);

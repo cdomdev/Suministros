@@ -3,6 +3,29 @@ $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
 
+// estilos para parrafos en general
+
+@mixin parrafos-generales{
+    font-size: 15px;
+    font-family: $contenidoFonts
+}
+// estilos generales para los tutilos 
+@mixin titulos-generales{
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+}
+// estilos generanes para los subtitulos o parrafaos secundarios
+@mixin subtitulos-generales{
+    font-size:25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+}
+@mixin backgroundSectionAdmin{
+    margin-top: 3em;
+    background-color: #f4f4f4;
+}
 // paleta de colores primciaples y complementarios
 
 $color-principal: #243a5e;
@@ -45,8 +68,6 @@ $color-complementario: #f2efe1;
         color: white;
         background-color: #f2efe1;
     }
-   
-  
    
 }
 .modal-content{
@@ -106,6 +127,7 @@ $color-complementario: #f2efe1;
     }
    
 }
+//  registro 
 .form-register{
     padding: 30px;
     display: flex;
@@ -146,6 +168,7 @@ $color-complementario: #f2efe1;
     }
    
 }
+// alternar modal
 
 .btn-alter-modal{
     border: none;
@@ -158,6 +181,7 @@ $color-complementario: #f2efe1;
         color: rgb(60, 21, 202);
     }
 }
+// boton de cuperara contraseña
 .btn-recovery{
     text-decoration: none;
     float: right;
@@ -190,7 +214,8 @@ $color-complementario: #f2efe1;
     justify-content: center;
     margin-top: 5em;
     .img-carrusel{
-        width: 90em;
+        width: 92em;
+        height: auto;
         display: block;
         margin: 0 auto;
     }
@@ -199,8 +224,38 @@ $color-complementario: #f2efe1;
       }
 }
 
-//Estilos para las cards y textos  de home
+// componente de perfil de usuarios
+.popover-user-profile{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 6px 2px rgb(216, 216, 216);
+    border-radius: 10px;
+    .name-user-profile{
+        color: #243a5e;
+        text-align: center;
+    }
+    .btn-profile-users{
+        width: 60%;
+        background-color: white;
+        color: #243a5e;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: white;
+            color: red;
+        }
+        text-align: left;
+    }
+    .icon-btn-off{
+        margin: -3px 5px 0 0;
+        font-size: 19px;
+    }
+}
 
+
+ 
+
+//Estilos para las cards y textos  de home
 
 
 .typewriter-container{
@@ -208,41 +263,40 @@ $color-complementario: #f2efe1;
     height: 50px;
     text-align: center;
     .txt-primario{
-        font-family: $tittlesFonts;
-        font-size: 30px;
-        color: #213C65;
-        font-weight: 600;
+       @include titulos-generales()
     }
 }
-.txt{
+
+// estilos de parrafo  de la página home
+
+.subtitulo-home {
+    @include subtitulos-generales();
     text-align: center;
-    font-family: $contenidoFonts;
-    font-size: 14px;
+    padding: 10px;
+    margin: 0;
+    height: 40px;
+}
+
+.content-text-home{
+    text-align: center;
     margin: 2em 0 3em 0;
     padding: 10px;
+    height: auto;
+    @include parrafos-generales()
 }
-.txt-secundario h2, h3{
-    font-size:25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-    text-align: center;
-    margin-top: 2em;
-    padding: 10px;
-}
-.txt-complementario{
-    font-family: $contenidoFonts;
-    text-align: center;
-    margin-top: 2em;
-    font-size: 14px;
-    margin-bottom: 4rem;
-    padding: 10px;
-
-}
-
-.contenedor-home{
-    display: grid;
-    place-content: center;
-
+.box-products-home{
+    background-color: #0d6efd;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    .caja{
+        width: 100px;
+        height: 100px;
+        background-color: #f2efe1;
+    }
 }
 
 .animated-truck{
@@ -261,9 +315,7 @@ $color-complementario: #f2efe1;
     100% {
       transform: translateX(0);
     }
-  }
-
-
+}
 
 .svg-home{
     display: flex;
@@ -312,49 +364,69 @@ $color-complementario: #f2efe1;
     font-size: 13px;
     font-family: $contenido2;
     text-align: center;
-  }
-  
-section{
-    margin-top: 5em;
 }
+  
 .footer{
     background-color: #213C65;
 }
+// esitlode la pagina Nosotros 
 
-// estilos para la parte del administrador 
+.seccion-nosotros-user{
+    margin-top: 5rem;
+    height: 100vh;
+    .title-nosotros{
+        @include titulos-generales();
+        text-align: center;
 
-
-
-
-.contenedor{
-    display: grid;
-    grid-template-columns: 70% 30%;
-    .section-product{
-        background-color: #0260a7;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        padding: 15px;
     }
-    .sidebar{
-        height: 50vh;
-        padding: 10px;
-        border-left: solid 2px black;
+    .text-nosotros{
+        @include parrafos-generales();
+        margin-top: 3em;
+        color: #243a5e;
+        font-weight: 500;
+        text-align: center;
     }
-    
-}
-@media screen and (max-width: 1471px) {
-    .section-product{
+    .contenedor-mision-objetivos{
+        margin-top: 4em;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 40px;
+        .text-title-nosotros{
+            @include subtitulos-generales();
+            text-align: center
+        }
+        .text-nosotros-mision-objetivos{
+            @include parrafos-generales();
+            margin: 2em 0;
+            color: #243a5e;
+        }
+    }
+    .contenedor-redes-sociales{
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        margin-top: 3em;
+
+        .redes{
+            margin-top: 2em;
+            display: flex;
+            gap: 20px;
+            
+            .icon-redes{
+                width: 50px;
+                height: 50px;
+            }
+        }
+
     }
 }
 
 
-// --------------------------------------------------------------------------------------------
 
 
 // estilos para el dasboard de administrador
+
 .nav-custome-admin{
     box-shadow: 2px 2px 4px rgba(166, 166, 166, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
     .logotipo{
@@ -378,31 +450,169 @@ section{
             scale: 1.1;
         }
     }
+}
+
+
+// estilos para el dashboard adminitrador
+
+.layout-admin-home{
+   @include backgroundSectionAdmin();
+    display: grid;
+    .section-cards-home-admin{
+        display: flex;
+        margin: 0;
+        flex-direction: column;
+        width: 100%;
+        .navbar-admin-section{
+            width: 100%;
+            margin-top: 1em;
+            text-align: center;
+            flex-wrap: wrap;
+            border-radius: 5px;
+            padding: 10px 0;
+            box-shadow: 0 0 6px rgb(229, 229, 229);
+            background-color: white;
+    
+        }
+        
+        .container-cards-home-admin{
+            width: 100%;
+            gap: 25px;
+            margin-top: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .link-box{
+                text-decoration: none;
+                color: #213C65;
+            }
+            .box-rutas-admin{
+                padding: 10px;
+                box-shadow: 0 0 6px rgb(229, 229, 229);
+                width: 300px;
+                border-radius: 7px;
+                height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                background-color: white;
+                cursor: pointer;
+                transition: all ease 0.2s;
+                &:hover{
+                  box-shadow: 0 0px 6px rgb(183, 182, 182);;
+                }
+                .icon-box{
+                    font-size: 100px;
+                }
+                .text-primiry-box-rutas{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .text-box-routes{
+                        font-family: $contenidoFonts;
+                        margin: 0;
+                    }
+                    .span-box-rutas{
+                        font-size: 13px;
+                        opacity: 60%;
+                        font-family: $contenidoFonts;
+                        color:$contenido2
+                    }
+                }    
+            }
+        }
+        @media screen and (max-width: 1280px){
+            .container-cards-home-admin{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+    }
+}
+// modal de categorias en dashborad admin
+.modal-category{
+    .header-modal-category{
+        border: none;
+    }
+    .title-modal-category{
+        color:#213C65;
+        font-family: $tittlesFonts;
+        font-weight: 500;
+    }
+    .body-modal-category{
+        padding: 20px;
+        .input-category{
+            border-right: none;
+            border-top: none;
+            border-left: none;
+            font-family: $contenidoFonts;
+        }
+    }
+    .footer-modal-category{
+        border: none;
+    }
+  
+    .lista-categrtorias-modal{
+        padding: 20px;
+    }
+    .contendor-category-delete{
+        margin: 1em;
+        .text{
+            font-family: $contenidoFonts;
+        }
+        .text-category-warning{
+            font-size: 13px;
+            color:#243a5e;
+            font-weight: 500;
+            font-family: $contenidoFonts;
+        }
+       
+    }
+
+
+}
+
+.body-components-admin{
+   @include backgroundSectionAdmin();
+    height: 100vh;
+    .layout-admin-user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .title-user-layout{
+            align-self: flex-start;
+            margin: 1em 0 0 5em;
+            font-size: 30px;
+            font-family: $tittlesFonts;
+        }
+        .table-user-admin{
+            box-shadow: 0 0 6px rgb(183, 182, 182);
+            width: 80%;
+            margin-top: 2em;
+            .thead-table-users{
+                background-color: #0c5dd6;
+                color: $color-complementario;
+            }
+        }
+    }
     
 }
 
 
+// estilos para la pagina de crear productos seccion de administrador
 
-.layout{
-    margin-top: 5em;
-    width: 100%;
-    height:auto;
-    background-color:#f4f4f4 ;
-    display: grid;
-    grid-template-areas: 
-    'sidebar content content content '
-    'sidebar content content content '
-    'sidebar content content content '
-    'sidebar content content content '
-    ;
-    grid-template-rows: auto auto auto auto ;
-    grid-template-columns: 25% 75%;
-
-
+.layout-crear-productos{
+    display: flex;
     .content {
-        grid-area: content;
         display: flex;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         justify-content: flex-start;
         align-items: flex-start;
         text-align: center;
@@ -410,65 +620,55 @@ section{
         flex-wrap: wrap;
         margin: 3em 20px;
         .text-listar-products-admin{
+            text-align: center;
             align-self: center;
             font-family: $tittlesFonts;
             font-size: 35px;
             color: #b7b6b6;
             font-weight: 500;
+            margin: 5em;
         }
-       
-        .productos-cards {
+        .productos-cards-listar{
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 25px 15px;
-            margin: 0 2px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            border-radius: 5px;
+            display:grid;
+            width: 530px;
+            padding: 10px 30px;
             justify-content: center;
             align-items: center;
-            height: auto;
-            width: 350px;
-            max-width: 600px;
+            grid-template-columns: 20% 60% 20%;
+            gap: 10px;
             background-color: white;
-            cursor: pointer;
-            text-align: center;
             transition: box-shadow 0.3s ease-in-out;
-            
-            .title-cards{
-                font-size: 15px;
-                font-weight: 600;
-            }
-            .text-titles-admin{
-                margin-top: -0.5rem;
-                font-size: 20px;
-            }
-            
-            .container-btn{
-                display: flex;
-                border: none;
-                justify-content: center;
-            }
-            
             .img-productos{
-                width: 12em; 
-                height: 12em; 
-                display: block; 
-                border-radius: 5px;
+                width: 7em; 
+                height: 7em; 
+                
             }
-             
-            .content-btn-card{
-                display: flex;
-                gap: 10px;
-                justify-content: center;
-            }
+            
             .container-datail-product-edits{
+                padding-left: 10px;
+                font-size:14px ;
                 display: flex;
                 flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
                 .title-cards{
                     font-weight: 400;
                 }
                
+            }
+            .content-btn-card{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                .btn-custom{
+                    width: 70%;
+                }
+              
+
+              
             }
             .custom-file-upload {
                 border: 1px solid #ccc;
@@ -490,10 +690,12 @@ section{
         .productos-cards:hover{
             box-shadow: 0 0 5px rgba(156, 154, 154, 0.2);
         }
+     
       
         
     }
-
+   
+    
     .sidebar{
         grid-area: sidebar;
         padding: 10px;
@@ -554,6 +756,7 @@ section{
         }
         
     }
+ 
     .sidebar div {
         background-color: white;
         width:100%;
@@ -568,207 +771,370 @@ section{
         overflow: hidden; 
     }
     
+    
     @media screen and (max-width: 1280px) {
-      .content{
-        display: flex;
-        justify-content: center;
-        .productos-cards {
-            width: 300px;
-          }
-      }
-     
-    }
-    @media screen and (max-width: 1024px) {
         .content {
-            .productos-cards {
-                width: 250px;
-              }
-        } 
-    }
-    @media screen and (max-width: 821px) {
-        .content {
-            display: flex;
-            justify-content: flex-end;
-            .productos-cards {
-                width: 350px;
-              }
-        } 
-    }
-
-}
-
-@media screen and (max-width: 770px ){
-    .layout{
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        grid-template-areas: 
-        'sidebar sidebar '
-        'sidebar sidebar '
-        'content content'
-        'content content'
-        ;
-        .sidebar{
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-         }
-    }
-   
-    
-}
-
-
-.layout-admin-home{
-    margin-top: -25px;
-    background-color: #f4f4f4;
-    display: grid;
-    .section-cards-home-admin{
-        display: flex;
-        margin: 0;
-        flex-direction: column;
-        width: 100%;
-        .navbar-admin-section{
-            width: 100%;
-            margin: 10px 0;
-            text-align: center;
-            flex-wrap: wrap;
-            border-radius: 5px;
-            padding: 10px 0;
-            box-shadow: 0 0 6px rgb(229, 229, 229);
-            background-color: white;
-    
-        }
-        
-        .container-cards-home-admin{
-            width: 100%;
-            gap: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 5px;
-            justify-content: flex-start;
-            align-items: flex-start;
-            .link-box{
-                text-decoration: none;
-                color: #213C65;
-            }
-            .box-rutas-admin{
-                padding: 10px;
-                box-shadow: 0 0 6px rgb(229, 229, 229);
-                width: 300px;
-                border-radius: 7px;
-                height: 200px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-top: 10px;
-                background-color: white;
-                cursor: pointer;
-                transition: all ease 0.2s;
-                &:hover{
-                  box-shadow: 0 0px 6px rgb(183, 182, 182);;
-                }
-                .icon-box{
-                    font-size: 100px;
-                }
-                .text-box-routes{
-                    font-family: $contenidoFonts;
-                }
-                
-            }
-           
-        
-        }
-      
-       
+            
+        } 
     }
   
     
-}
+    @media screen and (max-width: 1024px) {
+        .content {
+            display: flex;
+            justify-content: center;
+            .productos-cards-listar {
+               display: flex;
+               width: 250px;
+               flex-direction: column;
 
-.body-components-admin{
-    margin-top: -22px;
-    background-color: #f4f4f4;
-    height: 100vh;
-    .layout-admin-user{
+               .container-datail-product-edits{
+                text-align: left;
+               }
+               .content-btn-card{
+                display: flex;
+                flex-direction: row;
+               }
+              }
+        } 
+    }
+
+}
+// modal para editar productos en el componente crear
+.modal-body-editar{
+    margin: 15px;
+}
+// media para el layout admin general
+@media screen and (max-width: 770px ){
+    
+    .layout-crear-productos{
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        .title-user-layout{
-            align-self: flex-start;
-            margin: 1em 0 0 5em;
-            font-size: 30px;
-            font-family: $tittlesFonts;
-        }
-        .table-user-admin{
-            box-shadow: 0 0 6px rgb(183, 182, 182);
-            width: 80%;
-            margin-top: 2em;
-            .thead-table-users{
-                background-color: #0c5dd6;
-                color: $color-complementario;
-            }
-        }
     }
-    
 }
 
-// estilos de la pagina de gestion de productos 
 
-.container-products-db{
-    margin: 2em;
-    width: 20rem;
-    height: 20rem;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 6px 1px rgb(156, 155, 155);
-    display: flex;
-    flex-direction: column;
-    .img-products{
-        width: 7em;
-        height: 7em;
-        padding: 10px;
+
+// pagina de listar productos en admin --- inventario 
+.body-components-inventary{
+    height: 100vh;
+    margin-top: -10px;
+    background-color: #f4f4f4;
+    .contenedor-inventario{
+        margin:0 auto;
+        margin-top: 4em;
+        display:flex;
+        width: 100%;
+        flex-wrap: wrap;
+        .card-products-inventario{
+            font-family: $contenido2;
+            margin: 1rem;
+            padding: 0 2px;
+            width: 38em;
+            display: grid;
+            border: none;
+            box-shadow: 0 0 5px rgb(207, 207, 207);
+            grid-template-columns: 25% 40% 35%;
+            gap: 10px;
+            cursor: pointer;
+            transition: all ease 0.2s;
+            .img-productos-inventario{
+                width: 10em;
+                margin: auto;
+            }
+            .container-btn-card-products-inventary{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                justify-content: center;
+                align-items:flex-start;
+                padding: 20px;
+
+                .btn-custome-inventary{
+                    font-family: $contenidoFonts;
+                    font-size: 15px;
+                }
+            }
+            &:hover{
+                box-shadow: 0 0px 6px rgb(183, 182, 182);;
+              }
+           
+        }
+         
+       
+        @media screen and (max-width: 1280px){
+            .card-products-inventario{
+                display: flex;
+                width: 18em;
+            }
+           
+        }
+    
     }
-    .info-products{
-        padding: 10px;
-        text-align: left;
-        line-height: 25px;
-        p{
+    @media screen and (max-width: 1280px) {
+        .contenedor-inventario{
+            display: flex;
+            justify-content: center;
+        }
+    } 
+   
+}
+
+.modal-edit-inventary {
+    .modal-title{
+        color: #243a5e;
+        font-family: $tittlesFonts;
+    }
+    .modal-body-editar-inventary {
+        margin: 20px;
+        .text-modal-inventary {
+            font-family: $contenidoFonts;
+            color:#243a5e;
             margin: 0;
         }
+        .text-recorderi{
+            font-size: 14px;
+            font-family: $contenidoFonts;
+            color: #243a5e;
+            margin-bottom: 10px;
+        }
+        .text-modal{
+            margin-top: 10px;
+            color: #243a5e;
+            font-family: $contenidoFonts
+        }
+       
     }
+   
+}
+.modal-update-inventory-products{
+    .title-modal-update{
+        font-family: $tittlesFonts;
+        color: #243a5e;
+    }
+    .modal-body-update-inventory{
+        margin: 20px;
+        .text-modal-update-inventary{
+            font-family: $contenidoFonts;
+            color: #243a5e;
+        }
+        .text-update{
+            font-size: 13px;
+            font-family: $contenido2;
+            color: #243a5e;
+        }
+    }
+   
 }
 
 
+.modal-delete-inventary{
+    .modal-body-delete-inventary{
+        display: flex;
+        flex-direction: column;
+    }
+    .title-delete-modal{
+        margin: auto;
+        color: red;
+        font-family: $tittlesFonts;
+    }
+    .icon-warning-modal-delete{
+        width: 100px;
+        margin: auto;
+        height: 100px;
+        color: red;
+    }
+    .warning{
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0 20px 10px;
+        text-align: center;
+        color: rgb(246, 24, 12);
+    }
+    .text-modal-delete{
+        font-family: $contenidoFonts;
+        color:#243a5e;
+        margin: 2em 15px;
+    }
+}
 
-//customizacion del componente perfil de usuario
-
-
-.popover-user-profile{
-    display: flex;
-    flex-direction: column;
-    .name-user-profile{
+.section-ofertas{
+    height:100vh;
+    @include backgroundSectionAdmin();
+    .title-ofertas{
+        font-family: $tittlesFonts;
         color: #243a5e;
         text-align: center;
+        padding-top: 1em;
     }
-    .btn-profile-users{
-        width: 60%;
+   .container-section-ofertas{
+    padding: 2em 0;
+    display: grid;
+    grid-template-columns:70% 30% ;
+    gap: 20px;
+
+    .add-ofertas{
+        height: auto;
+        max-width:400px;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px;
+        font-family: $contenidoFonts;
         background-color: white;
-        color: #243a5e;
-        border: none;
-        cursor: pointer;
-        &:hover{
-            background-color: white;
-            color: red;
+        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
+        .title-add-ofertas{
+            font-size: 20px;
+            font-family: $tittlesFonts;
+            color: #243a5e;
+            margin-bottom: 20px;
+           
         }
-        text-align: left;
+        .label-date{
+            font-size: 12px;
+            color: #243a5e;
+        }
+        .text{
+            font-family: $contenidoFonts;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+            color: #243a5e;
+            text-align: left;
+            margin-top: 2em;
+        }
+       
     }
-    .icon-btn-off{
-        margin: -3px 5px 0 0;
-        font-size: 19px;
+       
+    .section-listado-ofertas{
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
+        border-radius: 10px;
+       .title-list-ofertas{
+        font-family: $tittlesFonts;
+        color: #243a5e;
+        padding: 20px;
+       }
+       .body-ofertas-acordeon{
+        display: flex;
+        gap: 5em;
+
+        .content-buttons-section{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+       }
+       .text-oferta{
+        font-family: $contenido2;
+        color: #243a5e;
+       }
+       .sale{
+        color: red;
+       }
+       .text-producto-oferta{
+        font-family: $tittlesFonts;
+       }
+       ul {
+        padding: 0;
+       }
+       li{
+        list-style: none;
+        color: #243a5e;
+        font-family: $contenido2;
+       }
+       
+    }
+   }
+  
+
+    @media screen and (max-width: 1280px) {
+        .container-section-ofertas {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 50px;
+            
+        } 
+       .aside-ofertas{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+    }
+  
+   
+}
+.modal-ofertas-delete{
+    .title-modal-delete{
+        color: red;
+        font-family: $tittlesFonts;
+        padding: 20px;
+        text-align: center;
+    }
+    .w-ofertas{
+        display: block;
+        width: 80px;
+        margin: auto ;
+        height: 80px;
+        color: red;
+    }
+    .body-modal-ofertas-delete{
+        padding:20px ;
+    }
+    .content-button-ofertas{
+        display: flex;
+        gap: 10px;
+        justify-content: end;
+        padding: 20px;
+        margin-top: 2em;
+    }
+    .text-delete-oferta{
+        color: #243a5e;
+        font-family: $contenidoFonts;
+        text-align: center;
+        margin-top: 2em;
+    }
+    .t{
+        color: red;
+        margin-left: 10px ;
+    }
+}
+.modal-ofertas-update{
+    .header-modal-update{
+        border: none;
+        .title-modal-update{
+            color: #243a5e;
+            font-family: $tittlesFonts;
+        }
+    }
+    .text-ofertas{
+        color: #243a5e;
+        text-align: left;
+        font-size: 15px;
+        margin: 0 ;
+        font-family: $contenido2;
+        padding: 0 20px;
+    }
+    .body-modal-ofertas-update{
+        padding: 20px;
+        font-family: $contenido2;
+        color: #243a5e;
+        text-align: center;
+
+       .label-date{
+        font-size: 12px;
+        color: #243a5e;
+       }
+    }
+    .content-button-ofertas{
+        padding: 20px;
+        display: flex;
+        justify-content: end;
     }
 }
 
