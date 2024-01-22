@@ -1,0 +1,527 @@
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+$otro: 'Lato', sans-serif;
+
+
+.insignia-car {
+  position: absolute;
+  top: -5px;
+  right: -1px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.container-car{
+    height: 100vh;
+  
+  .box-car{
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    .contendor-infor-car{
+        gap: 4px;
+        display: flex;
+        flex-direction: column;
+        .box1{
+            background-color: white;
+            height: 40px ;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            .carrito-text{
+                font-size: 20px;
+                padding: 10px;
+                font-family: $tittlesFonts;
+                color: #213C65;
+            }
+           
+           
+        }
+        .box2{
+          overflow-y: auto;
+          max-height: 600px;
+          overflow-wrap: break-word;
+          font-family: $contenidoFonts;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding: 10px 5px;
+          .car-empty{
+            font-family:$otro;
+            background-color: white;
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p{
+              font-size: 15px;
+            }
+          }
+          .add-product{
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            width: 14em;
+            margin: auto;
+            border: none;
+            border-radius: 20px;
+            padding: 5px;
+            background-color: #f4f4f4;
+            transition: all ease 0.3s;
+            &:hover{
+              background-color: #243a5e;
+              color: white;
+            }
+          }
+            .card-product{
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                box-shadow: 0 0 5px rgb(172, 172, 172);
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                gap: 40px;
+                transition: all 0.3s;
+               &:hover{
+                box-shadow: 0 0 5px  rgb(251, 251, 251);
+               }
+               ul{
+                box-shadow: none;
+                flex-direction: column;
+                gap: 2px;
+               }
+               .total-value-productos{
+                flex-direction: column;
+                display: flex;
+               }
+               .delete{
+                color: red;
+                background-color: white;
+                border: none;
+                font-size: 16px;
+                
+               }
+            }
+            li{
+                padding: 0;
+                display: flex;
+                align-items: center;
+                max-width: 350px;
+            }
+            .img-car-shop{
+                width: 10em;
+                padding: 10px;
+            }
+            .quantity {
+                border: 1px solid;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                border-radius: 5px;
+                padding: 5px;
+                gap: 5px;
+              
+              input[type="number"] {
+                border: 1px  solid;
+                border-top: none;
+                border-bottom: none;
+                width: 40px;
+                padding: 5px;
+                text-align: center;
+              
+                  &::-webkit-inner-spin-button,
+                  &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0; 
+                }
+              }
+            
+              .increment{
+                box-shadow: 0 0 3px 1px rgb(207, 207, 207);
+                background-color: white;
+                padding: 1px 7px;
+                border: none;
+                border-radius: 5px;
+                color: #243a5e;
+                transition: all ease 0.3s;
+                &:hover{
+                    box-shadow: 0 0 6px 1px rgb(237, 236, 236);
+                }
+              }
+              .decrement{
+                box-shadow: 0 0 3px 1px rgb(207, 207, 207);
+                background-color: white;
+                border: none;
+                padding: 1px 7px;
+                border-radius: 5px;
+                color: #243a5e;
+                transition: all ease 0.5s;
+                &:hover{
+                    box-shadow: 0 0 6px 1px rgb(237, 236, 236);
+                }
+              }
+            }
+            .loged-user-from-car{
+              box-shadow: 0 0 3px 1px rgb(207, 207, 207);
+              background-color: white;
+              padding: 2em 20px;
+              .content-modal-for-loggin{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                span{
+                  margin: 0;
+                  padding: 0;
+                  font-family: $contenido2;
+                  font-size: 14px;   
+                }
+                .contenedor-btn-custome{
+                  display: flex;
+                  width: 50%;
+                  justify-content: center;
+                  gap: 30px;
+                  .btn-custome{
+                    padding: 10px 30px;
+                    transition: all 0.3s;
+                  }
+                  
+                }
+
+              }
+             
+            }
+              
+        }
+        .box-entrega{
+            background-color: white;
+            height: auto;
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            padding: 20px;
+            font-family: $contenidoFonts;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .envio-programado {
+                cursor: pointer;
+                margin-bottom: 10px;
+                padding: 25px 5px;
+                background-color: white;
+                border: solid 1px rgb(172, 172, 172);
+                transition: all ease 0.5s;
+                border-radius: 5px;
+                .contenido {
+                  display: none;
+                  padding: 10px;
+                  background-color: white;
+                  height: auto;
+                  margin: 30px ; 
+                  text-align: center ;
+                }
+                .contenido div{
+                  display: flex;
+                  margin-top: 1em;
+                  justify-content: center;
+                }
+              
+                &.expanded .contenido {
+                  display: block;
+                  height: 40px;
+                }
+              
+                .check-container {
+                    .hidden-checkbox {
+                      position: absolute;
+                      left: -9999px;
+                    }
+                  
+                    .custom-checkbox {
+                      margin-left: 10px;
+                      width: 20px;
+                      height: 20px;
+                      border: 2px solid #333;
+                      border-radius: 50%;
+                      cursor: pointer;
+                      font-size: 18px;
+                      transition: background-color 0.3s;
+                      position: relative;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      .circle{
+                        position: absolute;
+                        width: 14px;
+                        height: 14px;
+                        border-radius: 50%;
+                      }
+                      &.checked {
+                        background-color: white;
+                        color: #fff;
+                        border: blue 2px solid;
+                        .circle{
+                            background-color:blue;
+                            border: solid 1px white;
+                        }
+                      }
+                  
+                      &:hover {
+                        background-color: #f0f0f0;
+                      }
+                    }
+                  
+                    .contenedor-label-delivery {
+                      display: flex;
+                      align-items: flex-start;
+                      justify-content: space-between;
+                      .truck{
+                        margin: 0  20px 0 10px;
+                        font-size: 28px;
+                        margin-top: -5px;
+                      }
+                      .label-de {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 18px;
+                      }
+                  
+                      .value {
+                        margin-right: 20px;
+                      }
+                    }
+                }
+            }
+        }
+    }
+    .contenedor-summary{
+        gap: 4px ;
+        display: flex;
+        flex-direction: column;
+        .box3{
+            background-color: white;
+            height: 40px ;
+            padding: 5px;
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            .summary-text{
+                color: #213C65;
+                font-size: 18px;
+                margin-left: 10px;
+                font-family: $tittlesFonts;
+            }
+        }
+        .box4{
+            background-color: white;
+            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            font-family: $contenidoFonts;
+            padding: 10px;
+            .subtotal{
+                color: #213C65;
+            }
+            h3{
+                font-size: 20px;
+                font-weight: bold;   
+            }
+            .costo{
+                font-size: 13px;
+            }
+            .cont-btn{
+                display: flex;
+                width: 80%;
+                margin: 0 auto;
+                .btn-comtinue{
+                    width: 90%;
+                    margin: auto;
+                    background-color: #213C65;
+                    color: white;
+                    &:hover{
+                        background-color: opacify($color: #345c98, $amount: 0);
+                    }
+                }
+            }
+
+            .line{
+                font-weight: lighter;
+                color: gray;
+            }   
+        }  
+    }
+    .contenedor-box-text{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .box-text{
+            border-style: dotted;
+            padding: 5px;
+            margin-bottom: 10px;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+            h5{
+                font-size: 15px;
+                font-weight: bold;
+                margin: 0;
+            }
+            p{
+                font-weight: lighter;
+                font-size: 12px;
+                text-align: left;
+                margin: 0;
+              
+            }
+            .icon1{
+                font-size: 70px;
+            }
+            .icon2{
+                font-size: 50px;
+            }
+            .icon3{
+              font-size: 250px;
+              margin-top: -100px;
+            }
+        }
+    }
+   
+  }
+
+  .steps{
+    margin-bottom: 1em;
+    font-family: $contenidoFonts;
+  }
+}
+
+
+@media screen and (max-width: 420px) {
+  .container-car{
+    .box-car{
+      display: grid;
+      grid-template-columns: 50% 50%;
+      .contendor-infor-car{
+        font-size: 12px;
+        .btn{
+          font-size: 10px;
+        }
+        .box1{
+          .carrito-text{
+            font-size: 13px;
+          }
+
+        }
+        .box2{
+          .loged-user-from-car{
+            font-size: 12px;
+            padding: 5px;
+            .content-modal-for-loggin{
+              span {font-size: 12px};
+              .contenedor-btn-custome{
+                gap: 5px;
+                .btn{
+                  width: 100px;
+                  padding: 2px 25px;
+                }
+              }
+            }
+           
+            ul{
+              display: flex;
+              gap: 12px;
+              li{
+                font-size: 10px;
+                .img-car-shop{
+                  width: 7em;
+                  padding: 0;
+                  
+                }
+              }
+              .total-value-productos{
+                font-size: 12px;
+                margin: 0;
+              }
+              hr{
+                width: 50px;
+                margin: 0 auto;
+              }
+              .quantity{
+                display: none;
+              }
+             
+            }
+          }
+          .car-empty{
+            display: flex;
+            span{
+              text-align: center;
+            }
+          }
+        }
+      }
+      .contenedor-summary{
+        .box3{
+          .summary-text{
+            font-size: 13px;
+          }
+        }
+        .box4{
+          .subtotal{
+            font-size: 13px;
+          }
+          span{
+            font-size: 12px;
+          }
+          h3{
+            font-size: 13px;
+          }
+          .costo{
+            font-size: 9px;
+          }
+        }
+      }
+      .contenedor-box-text{
+        .box-text{
+          gap: 7px;
+          h5{
+            font-size: 13px;
+          }
+          p{
+            font-size: 11px;
+          }
+          .icon1{
+            font-size:90px;
+            margin-top: -10px;
+          }
+          .icon2{
+            font-size: 40px;
+          }
+          
+        }
+      }
+    }
+  }
+  .steps{
+    span{
+      font-size: 11px;
+    }
+  }
+  .contenedor-car {
+      position: relative;
+      width: 100px;
+       .insignia-car {
+           position: absolute;
+           left: 39px;
+         }
+     }
+}

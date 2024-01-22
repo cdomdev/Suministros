@@ -1,4 +1,4 @@
-const { DataTypes, DATEONLY } = require("sequelize");
+const { DataTypes, } = require("sequelize");
 const sequelize = require("../../database/conecction");
 
 const Productos = sequelize.define(
@@ -130,6 +130,16 @@ const Categoria = sequelize.define(
         },
       },
     },
+    codigo: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El código de la categoría es requerido",
+        },
+      },
+    },
   },
   {
     tableName: "Categoria",
@@ -215,6 +225,8 @@ const OfertasProductos = sequelize.define(
 
 // productos - categorias
 Productos.belongsTo(Categoria, { foreignKey: "categoria_id" });
+// categoria - productos 
+Categoria.hasMany(Productos, {foreignKey: 'categoria_id'})
 
 // relacion invetario y porductos
 Productos.hasMany(Inventario, { foreignKey: "producto_Id" });
@@ -223,12 +235,14 @@ Productos.hasMany(Inventario, { foreignKey: "producto_Id" });
 Productos.belongsToMany(Ofertas, {
   through: "productos_ofertas",
   foreignKey: "id_productos",
+  onDelete: 'CASCADE'
 });
 
 // tabla intermedia con relacion entre productos y ofertas
 Ofertas.belongsToMany(Productos, {
   through: "productos_ofertas",
   foreignKey: "id_ofertas",
+  onDelete: 'CASCADE'
 });
 
 module.exports = {

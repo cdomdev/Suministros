@@ -1,0 +1,23 @@
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+  }
+  
+  @mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+  @mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+  }
+  
+  @mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+  }

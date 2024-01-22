@@ -1,0 +1,294 @@
+
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+}
+  
+@mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+}
+  
+@mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+}
+  
+@mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+}
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+//  carrito 
+.contenedor-car{
+    position: relative;
+    .carshop{
+        width: 50px;
+        height: 40px;
+        cursor: pointer;  
+    }
+  
+}
+
+// barra de navegacion 
+.nav-custom{
+    background-color: #f4f4f4;
+    box-shadow: 2px 2px 4px rgba(84, 84, 84, 0.4), -2px -2px 1px rgba(255, 0, 0, 0.4);
+    .header-nav{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .contenedor-header-nav{
+            flex-direction: column;
+            display: flex;
+            gap: 2px;
+           .header-logo{
+            width: 100%;
+            justify-content: space-around;
+            display: flex;
+            align-items: center;
+            .input-nav{
+                justify-content: center;
+                height: 40px;
+                display: flex;
+                width: 30%;
+                align-self: center;
+            }
+           }
+           .content-icons-nav{
+            display: flex;
+            gap: 20px;
+            .MuiAvatar-circular{
+                background-color:#243a5e;
+            }
+            .box-pedidos{
+                margin-top: -10px;
+                width: 35px;
+                height: 35px;
+                cursor: pointer;
+            }
+           }
+           .content-icons-nav div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: $contenido2;
+            span{
+                color: gray;
+                margin-top: 5px;
+                font-size: 7px;
+                cursor: pointer;
+                &:hover{
+                    color: black;
+                    scale: 1.1;
+                }
+            }
+            .pedidos{
+                margin-bottom: -17px;
+            }
+           }
+           
+        }
+        .menu-navegacion{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .nav-list{
+                justify-content: flex-start;
+                align-items: start;
+                margin-left: 12em;
+                display: flex;
+                gap: 20px;
+            }
+            .nav-link-custom{
+                padding: 15px 0;
+                color: #213C65;
+                font-size: 15px;
+                transition: color 0.3s ease;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                &:hover {
+                  color: rgb(158, 158, 207);
+                  scale: 1.1;
+                }
+                
+            }
+            
+        }
+       
+    }
+   
+    .logotipo{
+        fill:$color-principal;
+        width: 10em;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        margin: 0 -10px -3px  0 ;
+    }
+ 
+   
+   
+    .btn-custom-movil{
+        color: white;
+        background-color: #f2efe1;
+    }
+    
+   
+}
+
+
+@media (min-width: 800px) and (max-width: 1400px) {
+  
+    .nav-custom .header-nav .contenedor-header-nav .header-logo{
+        justify-content: space-around;
+        gap: 20px;
+        hr{
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 500px) and (max-width: 780px) {
+    .nav-custom .header-nav{
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-around;
+        hr{
+            display: none;
+        }
+        .header-logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .nav-custom .header-nav .contenedor-header-nav .header-logo{
+        width: 100%;
+        justify-content: space-around;
+        gap: 20px;
+    }
+    .nav-custom .header-nav .contenedor-header-nav .header-logo .input-nav{
+        display: none;
+    }
+    .nav-custom .header-nav .contenedor-header-nav .content-icons-nav {
+        display: flex;
+        flex-direction: row;
+        gap:0;
+        justify-content: center;
+        align-items: center;
+    }
+    
+   
+    
+}
+
+@media (min-width: 320px) and (max-width: 490px) {
+ 
+    .nav-custom{
+        .header-nav{
+            
+           
+            hr{
+                display: none;
+            }
+            .navbar-toggler{
+                width: 35px;
+                height: 35px;
+                .navbar-toggler-icon{
+                    width: 20px;
+                    height: 20px;
+                    margin: -5px 0 0 -5px;
+
+                }
+            }
+            .contenedor-header-nav{
+                .header-logo{
+                    .logotipo{
+                        width: 6em;
+                        margin-left: 10px;
+                    }
+                    display: flex;
+                    justify-content: space-around;
+                    .input-nav{
+                        display: none;
+                    }
+                    .content-icons-nav{
+                        display: flex;
+                        flex-direction: row;
+                        gap:0;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .cont-icon{
+                        gap: -10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .box-pedidos{
+                            width: 25px;
+                            margin-top: -22px;    
+                        }
+                        .carshop{
+                            width: 33px;
+                            height: 35px;
+                        }
+                        .carrito{
+                            margin: 0 0 -10px 0;
+                        }
+                        .MuiAvatar-root{
+                            margin-top: -3px;
+                            width: 35px;
+                            height: 35px;
+                        }
+                        .MuiSvgIcon-fontSizeMedium{
+                            width: 25px;
+                            height: 25px;
+                        } 
+                        .contenedor-car {
+                            position: relative;
+                            width: 100px;
+                            .insignia-car {
+                                position: absolute;
+                                left: 50px;
+                                top: -15px;
+    
+                            }
+                        }
+                        
+                    }
+                    
+                    
+                   
+                    .car{
+                        width: 60px;
+                    }
+                }
+            }
+        }
+    }  
+   
+    .offcanvas-body{
+        .nav-link-custom{
+            color: #213C65;
+            padding: 4px 0;
+            font-size: 15px;
+            text-decoration: none;
+
+        }
+    }
+}
+
+

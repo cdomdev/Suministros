@@ -1,0 +1,37 @@
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+  
+@mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+
+.container-ofertas{
+    font-family: $contenido2;
+
+    h1{
+        @include titulos-generales();
+    }
+
+}
+
+
+@media screen and (max-width: 420px) {
+    .container-ofertas{
+        h1{
+            font-size: 18px;
+            margin-top: 4em;
+        }
+        p{
+            font-size: 12px;
+            text-align: center;
+            margin-top: 2em;
+        }
+    }
+}
+

@@ -6,7 +6,7 @@ function crearToken(idUsuario, usuario) {
         usuario_id: idUsuario,
         usuario: usuario
     };
-    const token = jwt.sign(informacion, claveSecreta, { expiresIn: '1h' });
+    const token = jwt.sign(informacion, claveSecreta, { expiresIn: 3600 });
     return token;
 }
 

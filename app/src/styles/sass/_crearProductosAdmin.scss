@@ -1,0 +1,246 @@
+@use 'colors';
+@use 'fuentes';
+@use 'mixins';
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+  }
+  
+  @mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+  @mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+  }
+  
+  @mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+  }
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+
+// estilos para la pagina de crear productos seccion de administrador
+
+.layout-crear-productos{
+    display: flex;
+    .content {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 3em 20px;
+        .text-listar-products-admin{
+            text-align: center;
+            align-self: center;
+            font-family: $tittlesFonts;
+            font-size: 35px;
+            color: #b7b6b6;
+            font-weight: 500;
+            margin: 5em;
+        }
+        .productos-cards-listar{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display:grid;
+            width: 530px;
+            padding: 10px 30px;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: 20% 60% 20%;
+            gap: 10px;
+            background-color: white;
+            transition: box-shadow 0.3s ease-in-out;
+            .img-productos{
+                width: 7em; 
+                height: 7em; 
+                
+            }
+            
+            .container-datail-product-edits{
+                padding-left: 10px;
+                font-size:14px ;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                .title-cards{
+                    font-weight: 400;
+                }
+               
+            }
+            .content-btn-card{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                .btn-custom{
+                    width: 70%;
+                }
+              
+
+              
+            }
+            .custom-file-upload {
+                border: 1px solid #ccc;
+                display: inline-block;
+                padding: 6px 12px;
+                cursor: pointer;
+                background-color: #f7f7f7;
+                color: #333;
+                margin-top: 10px;
+                border-radius: 4px;
+                background-color: #0d6efd;
+                color: white;
+                .uploap{
+                    margin: 5px 1px 0 0;
+                  }
+              }
+                    
+        }
+        .productos-cards:hover{
+            box-shadow: 0 0 5px rgba(156, 154, 154, 0.2);
+        }
+     
+      
+        
+    }
+   
+    
+    .sidebar{
+        grid-area: sidebar;
+        padding: 10px;
+        max-width: 600px;
+        width: 400px;
+        display: flex;
+        justify-content: right;
+        flex-direction:column;
+        margin-top: 30px;
+        .textarea-crear{
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(236, 236, 236);
+            border: none;
+            margin: 5px auto;
+            width: 90%;
+            color: black;
+            border-color:transparent;
+            outline: 0;
+            margin-top: 1em;
+        }
+        .custom-file-upload {
+            padding: 6px 10px;
+            cursor: pointer;
+            color: #333;
+            margin-top: 10px;
+            border-radius: 4px;
+            background-color: #6c757d;
+            color: white;
+            .uploap{
+                width: 20px;
+                margin: -1px 4px 0 0;
+              }
+        }
+        .contenedor-refStock{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 5px;
+            .form-ref{
+                width: 50%;
+             } 
+        }
+         
+        .container-btn{
+            display: flex;
+            border: none;
+            justify-content: center;
+        }
+        
+        .btn-custom{
+            width: 150px;
+        }
+        .text-titles-admin{
+            margin-top: -0.5rem;
+            font-size: 20px;
+        }
+        
+    }
+ 
+    .sidebar div {
+        background-color: white;
+        width:100%;
+        max-width: 400px; 
+        word-wrap: break-word; 
+        box-sizing: border-box;
+        padding: 15px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 10px 0;
+        align-items: center;
+        overflow: hidden; 
+    }
+    
+    
+    @media screen and (max-width: 1280px) {
+        .content {
+            display: flex;
+            justify-content: center;
+            
+        } 
+    }
+  
+    
+    @media screen and (max-width: 1024px) {
+        .content {
+            display: flex;
+            justify-content: center;
+            .productos-cards-listar {
+               display: flex;
+               width: 250px;
+               flex-direction: column;
+
+               .container-datail-product-edits{
+                text-align: left;
+               }
+               .content-btn-card{
+                display: flex;
+                flex-direction: row;
+               }
+              }
+        } 
+    }
+
+}
+
+// modal para editar productos en el componente crear
+.modal-body-editar{
+    margin: 15px;
+}
+// media para el layout admin general
+@media screen and (max-width: 770px ){
+    
+    .layout-crear-productos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

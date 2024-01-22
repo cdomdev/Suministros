@@ -1,0 +1,63 @@
+@use 'colors';
+@use 'fuentes';
+@use 'mixins';
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+  }
+  
+  @mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+  @mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+  }
+  
+  @mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+  }
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+
+
+.body-components-admin{
+    @include backgroundSectionAdmin();
+     height: 100vh;
+     .layout-admin-user{
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         .title-user-layout{
+             align-self: flex-start;
+             margin: 1em 0 0 5em;
+             font-size: 30px;
+             font-family: $tittlesFonts;
+        }
+         .table-user-admin{
+             box-shadow: 0 0 6px rgb(183, 182, 182);
+             width: 80%;
+             margin-top: 2em;
+             .thead-table-users{
+                 background-color: #0c5dd6;
+                 color: $color-complementario;
+            }
+        }
+    }
+     
+}

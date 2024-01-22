@@ -1,0 +1,396 @@
+
+@use 'colors';
+@use 'fuentes';
+@use 'mixins';
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+}
+  
+@mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+}
+  
+@mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+}
+  
+@mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+}
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+// carrusel 
+.content-carrusel{
+    .carrusel{
+        display: flex;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+// carrtio de compras
+
+
+
+// componente de perfil de usuarios
+
+.popover-user-profile{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 6px 2px rgb(216, 216, 216);
+    border-radius: 10px;
+    .name-user-profile{
+        color: #243a5e;
+        text-align: center;
+    }
+    .btn-profile-users{
+        width: 60%;
+        background-color: white;
+        color: #243a5e;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: white;
+            color: red;
+        }
+        text-align: left;
+    }
+    .icon-btn-off{
+        margin: -3px 5px 0 0;
+        font-size: 19px;
+    }
+}
+
+
+// home 
+
+
+@keyframes moveTruck {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(50px); 
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+
+.contenido{
+    h1{
+       @include titulos-generales();
+        margin: 1em  0 20px 0;
+        text-align: center;
+    }
+    p{
+        font-size: 15px;
+        text-align: center;
+        font-family: $contenido2;
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .txt{
+        text-align: center;
+    }
+    h2{
+        font-family: $tittlesFonts;
+        font-size: 23px;
+        color: #213C65;
+        text-align: center;
+        margin-top: 3em;
+    }
+
+    
+ .box-products-home{   
+    margin: 1em 0 2em 0;
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    .link{
+        text-decoration: none;
+    }
+    .box-route{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f4f4f4;
+        width: 16em;
+        border: none;
+        height: 12em;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all ease 0.8s;
+        box-shadow:  0 0 5px 2px rgb(207, 206, 206);
+       
+        &:hover{
+            scale: 1.1;
+        }
+    }
+    .text-box{
+        color: white;
+        font-size: 25px;
+        font-family: $contenido2;
+        font-weight: bold;
+        margin-top: 5em;
+       
+    }
+    .box1{
+        background-image: url(https://www.publicdomainpictures.net/pictures/70000/velka/paint-explosion.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+    }
+    .box2{
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnpA6Cf7LAXJfHdVbJKIf8nTG2NR50rAh3XQ&usqp=CAU);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .box3{
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-ocYS8EDl-20UWCo3GaTHafZUc1-SYwDbWV946EL81duQvRzN);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+ }
+    .jumping-text{
+        @include parrafos-generales();
+        text-align: center;
+        color: #243a5e;
+        margin-top: 6em;
+    }
+
+    
+}
+
+.animated-truck{
+    float: right;
+    width: 100px; 
+    animation: moveTruck 3s linear infinite;
+ }
+
+
+
+ .svg-home{
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .svg-store {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    .text-svg-store{
+        font-size: 13px;
+        font-weight: bold;
+        font-family: $contenido2;
+        text-align: left;
+    }
+    .text-svg{
+        font-size: 12px;
+        font-family: $contenido2;
+    }
+
+ }
+ .svg-truck{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .text-svg-truck{
+        font-size: 13px;
+        font-weight: bold;
+        font-family: $contenido2;
+        text-align: left;
+    }
+    .text-svg{
+        font-size: 12px;
+        font-family: $contenido2;
+    }
+ }
+
+@media screen and (max-width: 1024px) {
+    .contenedor-card{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width: 769px) {
+    .nav-custom{
+        .nav-link-custom{
+            padding: 10px;
+        }
+    }
+   
+    .container{
+        margin: 0 auto;
+        .title-productos{
+            margin-top: 6em;
+            font-size: 22px;
+        }
+        .text{
+            font-size: 13px;
+        } 
+        .box-products-home{
+            .box-route{
+                width: 10em;
+                height: 10em;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+            }
+        }
+    }
+    .content-icons-nav{
+       margin-top: 10px;
+       display: flex;
+       flex-direction: column;
+    }
+    .contenedor-car {
+      position: relative;
+      width: 100px;
+      margin-left: -5px;
+        .insignia-car {
+            position: absolute;
+            left: 38px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 430px) {
+    .nav-custom{
+        padding-left: 6px;
+        .btn-custom-movil{
+            color: #213C65;
+            width: 40px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .MuiAvatar-root{
+            width: 30px;
+            height: 30px;
+        }
+        .nav-link-custom{
+            padding: 0;
+            font-size: 12px;
+        }
+        .logotipo{
+            width: 8em;
+        }
+        .carshop{
+            width: 40px;
+            margin: -10px 0 0 3px;
+        }
+        .content-icons-nav{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+   .container{
+    margin-top: -6em;
+    h1{
+        margin-top: 6em;
+      font-size: 20px;
+    }
+    h2{
+     font-size: 19px;
+    }
+    .txt{
+     font-size: 12px;
+     text-align: center;
+    }
+    p{
+     font-size: 12px;
+    }
+    .box-products-home{
+        gap: 20px;
+        .box-route{
+            width: 5em;
+            height: 5em;
+            background-size: cover;
+            background-repeat: no-repeat;
+            .text-box{
+                font-size: 12px;
+            }
+        }
+    }
+    .jumping-text{
+        font-size: 12px;
+    }
+   
+     .svg-home{
+        margin-top: 9em;
+        padding: 4px;
+        margin-left: -15px;
+        .svg-truck{
+            .svg-truck{
+                margin: -3px 0 -2px 0  ;
+                font-size: 13px;
+            }
+            .text-svg{
+                font-size: 9px;
+            }
+         }
+         .svg-store{
+            .text-svg-store{
+                font-size: 12px;
+                margin-bottom: -2px;
+            }
+            .text-svg{
+                font-size: 9px;
+            }
+         }
+     }
+     
+
+   }
+   
+   
+    .contenedor-car {
+     position: relative;
+     width: 100px;
+     margin-left: -7px;
+      .insignia-car {
+          position: absolute;
+          left: 39px;
+        }
+    }
+   .svg-home {
+     display: flex;
+     justify-content: space-evenly;
+    }
+  
+
+}
+    
+  

@@ -3,7 +3,6 @@ const claveSecreta = process.env.CLAVE_SECRETA
 
 const verificarToken = (req, res, next) => {
     const token = req.headers.authorization;
-    console.log(`token de la cabecera de la solicitud ${token}`)
   
     if (!token) {
       return res.status(401).json({ success: false, message: 'Acceso denegado. Token no proporcionado.' });

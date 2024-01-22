@@ -1,0 +1,179 @@
+@use 'colors';
+@use 'fuentes';
+@use 'mixins';
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+  }
+  
+  @mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+  @mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+  }
+  
+  @mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+  }
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+
+// pagina de listar productos en admin --- inventario 
+.body-components-inventary{
+    height: 100vh;
+    margin-top: -10px;
+    background-color: #f4f4f4;
+    .contenedor-inventario{
+        margin:0 auto;
+        margin-top: 4em;
+        display:flex;
+        width: 100%;
+        flex-wrap: wrap;
+        .card-products-inventario{
+            font-family: $contenido2;
+            margin: 1rem;
+            padding: 0 2px;
+            width: 38em;
+            display: grid;
+            border: none;
+            box-shadow: 0 0 5px rgb(207, 207, 207);
+            grid-template-columns: 25% 40% 35%;
+            gap: 10px;
+            cursor: pointer;
+            transition: all ease 0.2s;
+            .img-productos-inventario{
+                width: 10em;
+                margin: auto;
+            }
+            .container-btn-card-products-inventary{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                justify-content: center;
+                align-items:flex-start;
+                padding: 20px;
+
+                .btn-custome-inventary{
+                    font-family: $contenidoFonts;
+                    font-size: 15px;
+                }
+            }
+            &:hover{
+                box-shadow: 0 0px 6px rgb(183, 182, 182);;
+              }
+           
+        }
+         
+       
+        @media screen and (max-width: 1280px){
+            .card-products-inventario{
+                display: flex;
+                width: 18em;
+            }
+           
+        }
+    
+    }
+    @media screen and (max-width: 1280px) {
+        .contenedor-inventario{
+            display: flex;
+            justify-content: center;
+        }
+    } 
+   
+}
+
+.modal-edit-inventary {
+    .modal-title{
+        color: #243a5e;
+        font-family: $tittlesFonts;
+    }
+    .modal-body-editar-inventary {
+        margin: 20px;
+        .text-modal-inventary {
+            font-family: $contenidoFonts;
+            color:#243a5e;
+            margin: 0;
+        }
+        .text-recorderi{
+            font-size: 14px;
+            font-family: $contenidoFonts;
+            color: #243a5e;
+            margin-bottom: 10px;
+        }
+        .text-modal{
+            margin-top: 10px;
+            color: #243a5e;
+            font-family: $contenidoFonts
+        }
+       
+    }
+   
+}
+.modal-update-inventory-products{
+    .title-modal-update{
+        font-family: $tittlesFonts;
+        color: #243a5e;
+    }
+    .modal-body-update-inventory{
+        margin: 20px;
+        .text-modal-update-inventary{
+            font-family: $contenidoFonts;
+            color: #243a5e;
+        }
+        .text-update{
+            font-size: 13px;
+            font-family: $contenido2;
+            color: #243a5e;
+        }
+    }
+   
+}
+
+
+.modal-delete-inventary{
+    .modal-body-delete-inventary{
+        display: flex;
+        flex-direction: column;
+    }
+    .title-delete-modal{
+        margin: auto;
+        color: red;
+        font-family: $tittlesFonts;
+    }
+    .icon-warning-modal-delete{
+        width: 100px;
+        margin: auto;
+        height: 100px;
+        color: red;
+    }
+    .warning{
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0 20px 10px;
+        text-align: center;
+        color: rgb(246, 24, 12);
+    }
+    .text-modal-delete{
+        font-family: $contenidoFonts;
+        color:#243a5e;
+        margin: 2em 15px;
+    }
+}

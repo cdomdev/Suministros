@@ -1,0 +1,215 @@
+
+
+@mixin parrafos-generales {
+    font-size: 15px;
+    font-family: $contenidoFonts;
+  }
+  
+  @mixin titulos-generales {
+    font-family: $tittlesFonts;
+    font-size: 30px;
+    color: #213C65;
+    font-weight: 600;
+  }
+  
+  @mixin subtitulos-generales {
+    font-size: 25px;
+    font-family: $tittlesFonts;
+    color: #213C65;
+  }
+  
+  @mixin backgroundSectionAdmin {
+    margin-top: 3em;
+    background-color: #f4f4f4;
+  }
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+
+
+$color-principal: #243a5e;
+$color-complementario: #f2efe1;
+
+.section-ofertas{
+    @include backgroundSectionAdmin();
+    .title-ofertas{
+        font-family: $tittlesFonts;
+        color: #243a5e;
+        text-align: center;
+        padding-top: 1em;
+    }
+   .container-section-ofertas{
+    padding: 2em 0;
+    display: grid;
+    grid-template-columns:70% 30% ;
+    gap: 20px;
+
+    .add-ofertas{
+        height: auto;
+        max-width:400px;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px;
+        font-family: $contenidoFonts;
+        background-color: white;
+        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
+        .title-add-ofertas{
+            font-size: 20px;
+            font-family: $tittlesFonts;
+            color: #243a5e;
+            margin-bottom: 20px;
+           
+        }
+        .label-date{
+            font-size: 12px;
+            color: #243a5e;
+        }
+        .text{
+            font-family: $contenidoFonts;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+            color: #243a5e;
+            text-align: left;
+            margin-top: 2em;
+        }
+       
+    }
+       
+    .section-listado-ofertas{
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
+        border-radius: 10px;
+       .title-list-ofertas{
+        font-family: $tittlesFonts;
+        color: #243a5e;
+        padding: 20px;
+       }
+       .ofertas-no-disponibles{
+        color: #243a5e;
+        font-size: 17px;
+        font-family: $tittlesFonts;
+        padding: 10px 0;
+        margin: 0 auto;
+        text-align: center;
+       }
+       .body-ofertas-acordeon{
+        display: flex;
+        gap: 5em;
+
+        .content-buttons-section{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+       }
+       .text-oferta{
+        font-family: $contenido2;
+        color: #243a5e;
+       }
+       .sale{
+        color: red;
+       }
+       .text-producto-oferta{
+        font-family: $tittlesFonts;
+       }
+       ul {
+        padding: 0;
+       }
+       li{
+        list-style: none;
+        color: #243a5e;
+        font-family: $contenido2;
+       }
+       
+    }
+   }
+  
+
+    @media screen and (max-width: 1280px) {
+        .container-section-ofertas {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 50px;
+            
+        } 
+       .aside-ofertas{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+    }
+  
+   
+}
+.modal-ofertas-delete{
+    .title-modal-delete{
+        color: red;
+        font-family: $tittlesFonts;
+        padding: 20px;
+        text-align: center;
+    }
+    .w-ofertas{
+        display: block;
+        width: 80px;
+        margin: auto ;
+        height: 80px;
+        color: red;
+    }
+    .body-modal-ofertas-delete{
+        padding:20px ;
+    }
+    .content-button-ofertas{
+        display: flex;
+        gap: 10px;
+        justify-content: end;
+        padding: 20px;
+        margin-top: 2em;
+    }
+    .text-delete-oferta{
+        color: #243a5e;
+        font-family: $contenidoFonts;
+        text-align: center;
+        margin-top: 2em;
+    }
+    .t{
+        color: red;
+        margin-left: 10px ;
+    }
+}
+.modal-ofertas-update{
+    .header-modal-update{
+        border: none;
+        .title-modal-update{
+            color: #243a5e;
+            font-family: $tittlesFonts;
+        }
+    }
+    .text-ofertas{
+        color: #243a5e;
+        text-align: left;
+        font-size: 15px;
+        margin: 0 ;
+        font-family: $contenido2;
+        padding: 0 20px;
+    }
+    .body-modal-ofertas-update{
+        padding: 20px;
+        font-family: $contenido2;
+        color: #243a5e;
+        text-align: center;
+
+       .label-date{
+        font-size: 12px;
+        color: #243a5e;
+       }
+    }
+    .content-button-ofertas{
+        padding: 20px;
+        display: flex;
+        justify-content: end;
+    }
+}
