@@ -3,28 +3,13 @@
 @use 'mixins';
 
 
-@mixin parrafos-generales {
-    font-size: 15px;
-    font-family: $contenidoFonts;
-  }
+@mixin bordeBox{
+    border: solid 1px #ebebeb ;
+    box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+    box-sizing: border-box;
+    background-color: white;
+}
   
-  @mixin titulos-generales {
-    font-family: $tittlesFonts;
-    font-size: 30px;
-    color: #213C65;
-    font-weight: 600;
-  }
-  
-  @mixin subtitulos-generales {
-    font-size: 25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-  }
-  
-  @mixin backgroundSectionAdmin {
-    margin-top: 3em;
-    background-color: #f4f4f4;
-  }
 
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
@@ -36,49 +21,66 @@ $color-complementario: #f2efe1;
 
 // pagina de listar productos en admin --- inventario 
 .body-components-inventary{
-    height: 100vh;
-    margin-top: -10px;
-    background-color: #f4f4f4;
     .contenedor-inventario{
         margin:0 auto;
         margin-top: 4em;
         display:flex;
-        width: 100%;
-        flex-wrap: wrap;
+        gap: 1em;
+        padding: 10px;
+        flex-direction: column;
+        .contenedor-det-img{
+            display: flex;   
+            justify-content: space-between; 
+            gap: 30px;
+        }
         .card-products-inventario{
+            @include bordeBox();
             font-family: $contenido2;
-            margin: 1rem;
-            padding: 0 2px;
-            width: 38em;
-            display: grid;
-            border: none;
-            box-shadow: 0 0 5px rgb(207, 207, 207);
-            grid-template-columns: 25% 40% 35%;
-            gap: 10px;
-            cursor: pointer;
-            transition: all ease 0.2s;
-            .img-productos-inventario{
-                width: 10em;
-                margin: auto;
-            }
-            .container-btn-card-products-inventary{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content:space-between;
+            gap: 1em;
+            padding: 20px;
+            .content-img{
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
-                justify-content: center;
-                align-items:flex-start;
-                padding: 20px;
-
-                .btn-custome-inventary{
-                    font-family: $contenidoFonts;
-                    font-size: 15px;
+                max-width: 300px;
+                text-align: left;
+                img{
+                    width: 15em;
+                }
+                .nombre{
+                    line-height: 18px;
+                    font-size: 16px;
                 }
             }
-            &:hover{
-                box-shadow: 0 0px 6px rgb(183, 182, 182);;
-              }
+            .details{
+                strong{
+                 font-size: 16px;
+                 margin: 2px 0;
+                 span{
+                    font-size: 13px;
+                    font-weight: lighter;
+                 }
+                }
+                line-height: 15px;
+                max-width: 550px;
+                display: flex;
+                text-align: justify;
+                flex-direction: column;
+                font-size: 14px;
+            }
            
         }
+        .container-btn{
+            flex-direction: column;
+            display: flex;
+            margin-left: 5em;
+            gap: 20px;
+        }
+       
+        
          
        
         @media screen and (max-width: 1280px){

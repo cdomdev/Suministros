@@ -44,7 +44,7 @@ $color-complementario: #f2efe1;
 
 // barra de navegacion 
 .nav-custom{
-    background-color: #f4f4f4;
+    background-color: white;
     box-shadow: 2px 2px 4px rgba(84, 84, 84, 0.4), -2px -2px 1px rgba(255, 0, 0, 0.4);
     .header-nav{
         width: 100%;
@@ -59,26 +59,61 @@ $color-complementario: #f2efe1;
             justify-content: space-around;
             display: flex;
             align-items: center;
-            .input-nav{
-                justify-content: center;
-                height: 40px;
+            .contenedor-search{
+                width: 400px;
                 display: flex;
-                width: 30%;
-                align-self: center;
+                .form-control{
+                    border-radius: 1px;
+                }
+                .btn{
+                    border-radius: 1px;
+                }
+                .btn-icon{
+                    border: solid 1px rgb(197, 197, 197);
+                    padding: 0 15px;
+                    background-color: #909193;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    .icon{
+                        font-size: 20px;
+                    }
+                }
+                .input-nav{
+                    justify-content: center;
+                    height: 40px;
+                    display: flex;
+                    width: 90%;
+                    align-self: center;
+                }
             }
+           
            }
            .content-icons-nav{
+            margin-top: 10px;
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 20px;
             .MuiAvatar-circular{
                 background-color:#243a5e;
+            }
+            .pedidos{
+                margin-bottom: -10px;
             }
             .box-pedidos{
                 margin-top: -10px;
                 width: 35px;
                 height: 35px;
                 cursor: pointer;
+               
             }
+            .perfil{
+                margin-top: -4px;
+            }
+            
            }
            .content-icons-nav div{
             display: flex;
@@ -89,15 +124,12 @@ $color-complementario: #f2efe1;
             span{
                 color: gray;
                 margin-top: 5px;
-                font-size: 7px;
+                font-size: 8px;
                 cursor: pointer;
                 &:hover{
                     color: black;
                     scale: 1.1;
                 }
-            }
-            .pedidos{
-                margin-bottom: -17px;
             }
            }
            
@@ -115,17 +147,90 @@ $color-complementario: #f2efe1;
             }
             .nav-link-custom{
                 padding: 15px 0;
-                color: #213C65;
-                font-size: 15px;
+                color: black;
+                font-size: 14px;
+                font-weight: 500;
                 transition: color 0.3s ease;
                 text-decoration: none;
                 transition: all 0.3s ease;
                 &:hover {
                   color: rgb(158, 158, 207);
-                  scale: 1.1;
                 }
                 
             }
+            .menu-container {
+                display: flex;
+                justify-content: center;
+                .menu-item {
+                  position: relative;
+                  margin-top: 14px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  &:hover .submenu {
+                    opacity: 1;
+                    margin-right: 0;
+                    pointer-events: auto;
+                  }
+                 
+              
+                  .submenu{
+                    opacity: 0;
+                    pointer-events: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0; 
+                    right: 0;
+                    width: 100vw;
+                    transform: translateX(-12vw);
+                    background-color: #fff;
+                    padding: 10px;
+                    justify-content: flex-start;
+                    padding-left: 14em;
+                    display: flex;
+                    transition: all 0.5s ease; 
+                    box-shadow: 2px 2px 4px rgba(107, 107, 107, 0.1);
+                    ul{
+                        list-style: none;
+                        li{
+                            margin-top: 10px;
+                        }
+                       a{
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-family: $contenido2;
+                       } 
+
+                    }
+                    .nav-link-item{
+                        font-size: 14px;
+                        color: black;
+                        font-weight: 500;
+                        &:hover{
+                            color: #213C65;
+                        }
+                    }
+                    
+                  }
+                  .submenu2{
+                    transform: translateX(-16.5vw);
+                    padding-left: 20em;
+                  }
+                  .submenu3{
+                    padding-left: 35em;
+                    transform: translateX(-21.5vw);
+                  }
+                  .submenu4{
+                    padding-left: 45em;
+                    transform: translateX(-34.5vw);
+                  }
+                }
+              
+            }
+              
+              
+           
+            
             
         }
        
@@ -159,6 +264,29 @@ $color-complementario: #f2efe1;
             display: none;
         }
     }
+    .nav-custom .header-nav .menu-navegacion .nav-list{
+        margin-left: 8em;
+        .menu-item{
+            .submenu{
+                transform: translateX(-13vw);  
+            }
+            .submenu2{
+                transform: translateX(-21vw);
+                padding-left: 20em;
+            }
+            .submenu3{
+                padding-left: 35em;
+                transform: translateX(-30vw);
+            }
+            .submenu4{
+                padding-left: 45em;
+                transform: translateX(-51.4vw);
+            }
+        }
+
+    }
+  
+    
 }
 
 @media (min-width: 500px) and (max-width: 780px) {
@@ -174,11 +302,13 @@ $color-complementario: #f2efe1;
             justify-content: center;
             align-items: center;
         }
+      
     }
     .nav-custom .header-nav .contenedor-header-nav .header-logo{
         width: 100%;
         justify-content: space-around;
         gap: 20px;
+        text-decoration: none;
     }
     .nav-custom .header-nav .contenedor-header-nav .header-logo .input-nav{
         display: none;
@@ -195,12 +325,20 @@ $color-complementario: #f2efe1;
     
 }
 
-@media (min-width: 320px) and (max-width: 490px) {
+@media (min-width: 300px) and (max-width: 490px) {
  
+    .carrusel{
+        .carousel-control-next-icon{
+            padding: 0;
+            .visually-hidden{
+                width: 20px;
+            }
+        }
+    }
     .nav-custom{
+       
         .header-nav{
-            
-           
+            display: flex;
             hr{
                 display: none;
             }
@@ -216,12 +354,12 @@ $color-complementario: #f2efe1;
             }
             .contenedor-header-nav{
                 .header-logo{
+                    display: flex;
+                    justify-content: space-around;
                     .logotipo{
                         width: 6em;
                         margin-left: 10px;
                     }
-                    display: flex;
-                    justify-content: space-around;
                     .input-nav{
                         display: none;
                     }
@@ -232,48 +370,10 @@ $color-complementario: #f2efe1;
                         justify-content: center;
                         align-items: center;
                     }
-                    .cont-icon{
-                        gap: -10px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        .box-pedidos{
-                            width: 25px;
-                            margin-top: -22px;    
-                        }
-                        .carshop{
-                            width: 33px;
-                            height: 35px;
-                        }
-                        .carrito{
-                            margin: 0 0 -10px 0;
-                        }
-                        .MuiAvatar-root{
-                            margin-top: -3px;
-                            width: 35px;
-                            height: 35px;
-                        }
-                        .MuiSvgIcon-fontSizeMedium{
-                            width: 25px;
-                            height: 25px;
-                        } 
-                        .contenedor-car {
-                            position: relative;
-                            width: 100px;
-                            .insignia-car {
-                                position: absolute;
-                                left: 50px;
-                                top: -15px;
-    
-                            }
-                        }
-                        
-                    }
-                    
-                    
                    
                     .car{
-                        width: 60px;
+                        width: 80px;
+                        margin-right: -5px;
                     }
                 }
             }

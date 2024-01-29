@@ -6,20 +6,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BtnGoogle } from "./Google/BtnGoogle";
 import EventEmitter from "../../../hook/EventEmitter";
+import { useUser } from "../../../hook/UserDataProvider";
 
-export const Login = ({
-  setIsLoggedIn,
-  handleCloseModal,
-  handleLoginSuccess,
-}) => {
+export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
   const emailRefLogin = useRef();
+  const navigate = useNavigate();
+
+  const { login, setUser, setIsLoggedIn } = useUser();
 
   useEffect(() => {
     const authChangeCallback = (isLoggedIn) => {
       if (isLoggedIn) {
-        //  podemos hacer una llamada para los datos del usuario
+        // Puedes hacer una llamada para obtener los datos del usuario si es necesario
       }
     };
     const unsubscribe = EventEmitter.subscribe(
@@ -33,9 +32,10 @@ export const Login = ({
   }, []);
 
   const recoveryRoute = () => {
-    navigate("/suministros/recovery-password");
     handleCloseModal();
+    navigate("/suministros/recovery-password");
   };
+
   const notifyAuthChange = (isLoggedIn) => {
     EventEmitter.emit("authChange", isLoggedIn);
   };
@@ -49,40 +49,32 @@ export const Login = ({
       try {
         const URL = "http://localhost:3000/login";
         const response = await axios.post(URL, { email, password });
-        const { role, name, token } = response.data;
-        const previousLocation = sessionStorage.getItem("previousLocation");
-
-        sessionStorage.setItem("userToken", token);
-        sessionStorage.setItem("role", role);
+        const { role, token } = response.data;
         if (response && response.status === 200) {
-          handleLoginSuccess("actulizado", true);
+          const userData = response.data;
+          login(userData);
           notifyAuthChange(true);
-          setMessage("¡ Inicio de sesión con éxito !");
-          handleCloseModal();
-          handleLoginSuccess("actulaizasdo", true);
-          setIsLoggedIn("si se actulizo", true);
-          setTimeout(() => {
-            setMessage(" ");
-          });
-          if (role === "admin") {
+          setMessage("¡Inicio de sesión exitoso!");
+          setTimeout(() => setMessage(""), 3000);
+          if (userData.role === "admin") {
+            localStorage.setItem("HttpOnlyAdmin", token);
             navigate("/admin");
           } else {
-            navigate(previousLocation || "/");
+            const previousLocation =
+              sessionStorage.getItem("previousLocation") || "/";
+            navigate(previousLocation);
           }
         } else {
-          setMessage("¡ Usuario o contraseña incorrectos !");
-          setTimeout(() => {
-            setMessage(" ");
-          }, 3000);
+          setMessage("¡Usuario o contraseña incorrectos!");
+          setTimeout(() => setMessage(""), 3000);
         }
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          setMessage("¡Usuario o contraseña incorrectos !");
-          setTimeout(() => {
-            setMessage("");
-          }, 3000);
+          setMessage("¡Usuario o contraseña incorrectos!");
+          setTimeout(() => setMessage(""), 3000);
         } else {
-          console.log("error inesperado", error);
+          console.log("Error inesperado", error);
+          setMessage("Error inesperado!");
         }
       }
     }

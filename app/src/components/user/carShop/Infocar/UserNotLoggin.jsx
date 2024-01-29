@@ -16,7 +16,7 @@ export const UserNotLoggin = ({setIsLoggedIn }) => {
         <div>
           <span>
             <strong> Si tienes cuenta, inicia sesión</strong> para ver tus
-            productos <br /> guardados o continua navegando por nuestro sitio.
+            productos guardados o continua navegando por nuestro sitio.
           </span>
         </div>
         <div className="contenedor-btn-custome">

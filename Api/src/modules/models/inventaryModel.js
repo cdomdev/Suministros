@@ -18,8 +18,17 @@ const Productos = sequelize.define(
         },
       },
     },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El nombre es requerido",
+        },
+      },
+    },
     valor: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(12, 2),
       allowNull: false,
       validate: {
         notNull: {
@@ -39,9 +48,10 @@ const Productos = sequelize.define(
           msg: "El campo descripcion es requerido",
         },
       },
+       len:[0, 1000]
     },
     referencia: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {
@@ -112,6 +122,40 @@ const Inventario = sequelize.define(
 );
 
 // Modelo de categorias
+
+const CategoriasPrincipales = sequelize.define(
+  "categorias_principales",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "La categoria es requerida",
+        },
+      },
+    },
+    codigo: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "El código de la categoría es requerido",
+        },
+      },
+    },
+  },
+  {
+    tableName: "categorias_pricipales",
+    timestamps: true,
+  }
+);
 
 const Categoria = sequelize.define(
   "Categoria",
@@ -248,6 +292,7 @@ Ofertas.belongsToMany(Productos, {
 module.exports = {
   Productos,
   Inventario,
+  CategoriasPrincipales,
   Categoria,
   Ofertas,
   OfertasProductos,

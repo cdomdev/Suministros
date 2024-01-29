@@ -21,8 +21,10 @@ export const ModalEntrega = ({
         backdrop="static"
         keyboard={false}>
         <div>
-          <Modal.Header style={{ border: "none" }} closeButton></Modal.Header>
-          {content}
+          <Modal.Header style={{ border: "none", padding: '10px 20px' }} closeButton></Modal.Header>
+          <div className="content-use">
+            {content}
+          </div>
         </div>
       </Modal>
     </>

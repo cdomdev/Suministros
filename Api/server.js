@@ -1,20 +1,42 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("./src/database/conecction");
-// const http = require('http');
-const app = express();
 const morgan = require("morgan");
+const app = express();
+
+
+// // configuracion de redis 
+// const session = require('express-session');
+// const redisClient = require('./redis/redisClient')
+// const connectRedis = require('connect-redis');
+// const RedisStore = connectRedis(session);
+// const secret = process.env.SECRET_REDIS
+
+
+const port = process.env.PORT || 3100;
+
 
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const port = process.env.PORT || 3100;
+// configuracion de midelware de redis 
+/**
+ app.use(session({
+  store: new RedisStore({ client: redisClient }),
+  secret: secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {secure: false}
+}))
+
+ */
+
 
 // rutas para usuarios
-const usersRoutes = require("./src/modules/routes/rutasUsers");
-app.use("/", usersRoutes);
+const userRoutes = require("./src/modules/routes/rutasUsers");
+app.use("/", userRoutes);
 // rutas para administradores
 
 const adminRoutes = require("./src/modules/routes/rutasAdmin");
@@ -30,8 +52,7 @@ app.use(
   "/src/modules/uploads/products",
   express.static("src/modules/uploads/products")
 );
-// para usare el protocolo http
-// const server = http.createServer(app)
+
 
 app.listen(port, () => {
   console.log(`El servidor se está ejecutando en el puerto ${port}`);

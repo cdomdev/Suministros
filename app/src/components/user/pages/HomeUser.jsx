@@ -37,17 +37,17 @@ export const Contenido = () => {
           <strong>¿ Buscas algo especial ?</strong>
         </h2>
         <div className="box-products-home">
-          <Link to="/categoria/pinturas" className="link">
+          <Link to="/suministros/categoria/pinturas" className="link">
             <div className="box-route  box1">
               <span className="text-box">Pinturas</span>
             </div>
           </Link>
-          <Link to="/categoria/limpiadores" className="link">
+          <Link to="/suministros/categoria/limpiadores" className="link">
             <div className="box-route  box2">
               <span className="text-box">Limpiadores</span>
             </div>
           </Link>
-          <Link to="/categoria/pegantes" className="link">
+          <Link to="/suministros/categoria/pegantes" className="link">
             <div className="box-route  box3">
               <span className="text-box">Pegantes</span>
             </div>

@@ -5,6 +5,7 @@ import { PiShoppingCartSimpleThin } from "react-icons/pi";
 
 export const CarShop = React.forwardRef(() => {
   const [cartItemCount, setCartItemCount] = useState(0);
+  localStorage.setItem('count', cartItemCount)
   const targetRef = useRef(null);
   const { cartItems } = useCarShop();
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export const CarShop = React.forwardRef(() => {
     <>
       <div ref={targetRef} className="contenedor-car">
         <PiShoppingCartSimpleThin onClick={navigateCar} className="carshop" />
+        <span className="carrito" style={{marginTop: '-1px'}} >CARRITO</span>
         {cartItemCount > 0 && (
           <div className="insignia-car">{cartItemCount}</div>
         )}

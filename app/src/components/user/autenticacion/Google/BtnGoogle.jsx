@@ -4,13 +4,17 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { DecodedJWT } from "../../../../utils/DecodedJWT";
 import { useNavigate } from "react-router-dom";
 import EventEmitter from "../../../../hook/EventEmitter";
+import {useUser} from '../../../../hook/UserDataProvider';
+
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 
-export const BtnGoogle = ({ handleCloseModal, setIsLoggedIn, handleLoginSuccess }) => {
+export const BtnGoogle = ({ handleCloseModal, handleLoginSuccess }) => {
   const [email, setEmail] = useState(null);
   const [message, setMesage] = useState("");
   const navigate = useNavigate();
+
+  const { login, setUser, setIsLoggedIn } = useUser();
 
   useEffect(() => {
     const authChangeCallback = (isLoggedIn) => {
@@ -52,8 +56,9 @@ export const BtnGoogle = ({ handleCloseModal, setIsLoggedIn, handleLoginSuccess 
         const previousLocation = sessionStorage.getItem("previousLocation");
 
         if (response.status === 200 || response.status === 201) {
+          console.log(response)
+          login(response.data)
           handleLoginSuccess("actualizado", true);
-          // setIsLoggedIn(true);
           notifyAuthChange(true);
           setMesage("Inicio de sesion exitoso");
           handleCloseModal();

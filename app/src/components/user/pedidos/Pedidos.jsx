@@ -11,6 +11,7 @@ export const Pedidos = () => {
   return (
     <div>
       <BsBoxSeam className="box-pedidos" onClick={navigatePage} />
+      <span>PEDIDOS</span>
     </div>
   );
 };

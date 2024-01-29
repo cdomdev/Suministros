@@ -2,7 +2,7 @@ import React from "react";
 import { NavAdmin } from "../Nav/NavAdmin";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Card} from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import { Editar } from "./Editar";
 import { Elminar } from "./Eliminar";
 import { Actualizar } from "./Actualizar";
@@ -16,7 +16,7 @@ export const GestionInventary = () => {
   // Solictud de productos a la base de datos
   useEffect(() => {
     // solicitud al servido
-    const fetchData = async () =>{
+    const fetchData = async () => {
       try {
         axios
           .get("http://localhost:3000/api/listar/productos")
@@ -32,8 +32,8 @@ export const GestionInventary = () => {
         // Manejar otros errores
         console.error("Error:", error);
       }
-    }
-    fetchData()
+    };
+    fetchData();
   }, []);
 
   // funcion para modificar la cantidad del producto en inventario
@@ -43,54 +43,76 @@ export const GestionInventary = () => {
     setShowModal(true);
   };
 
-
-
-
   return (
     <>
       <NavAdmin />
       <div className="body-components-inventary">
         <Container className="contenedor-inventario">
           {productos.map((producto) => (
-            <Card key={producto.id} className="card-products-inventario">
-              <Card.Img
-                variant="top"
-                src={producto.image}
-                alt="producto"
-                className="img-productos-inventario"
-              />
-              <Card.Body>
-                <Card.Title>{producto.title}</Card.Title>
-                <Card.Text>
-                  Descripción: {producto.description}
-                  <br />
-                  Precio: $: {producto.valor}
-                  <br />
-                  Referencia: {producto.referencia}
-                  <br />
-                  Cantidad en inventario:{" "}
-                  {producto.Inventarios.length > 0
-                    ? producto.Inventarios[0].cantidad
-                    : 0}
-                  <br />
-                  Categoria: {producto.Categorium?.nombre || "No disponible"}
-                </Card.Text>
-              </Card.Body>
-              <div className="container-btn-card-products-inventary">
-              <Actualizar productInfo={producto} productId={producto.id} setProductos={setProductos}/>
-                <Editar
-                  productId={producto.id}
-                  currentStock={
-                    producto.Inventarios.length > 0
-                      ? producto.Inventarios[0].cantidad
-                      : 0
-                  }
-                  onEditInventory={handleEditInventory}
-                  setProductos={setProductos}
-                />
-                <Elminar productInfo={producto} productId={producto.id} setProductos={setProductos}/>
-              </div>
-            </Card> 
+            <>
+              <Card key={producto.id} className="card-products-inventario">
+                <div className="contenedor-det-img">
+                  <div className="content-img">
+                    <Card.Img
+                      variant="top"
+                      src={producto.image}
+                      alt="producto"
+                      className="img-productos-inventario"
+                    />
+                    <span className="nombre">
+                      {producto.nombre}
+                    </span>
+                  </div>
+                  <div className="details">
+                    <strong>
+                      Marca: <span>{producto.title}</span>
+                    </strong>
+                    <strong>Descripción:</strong>
+                    <span>{producto.description}</span>
+                    <strong>
+                      Precio $: <span>{producto.valor}</span>
+                    </strong>
+                    <strong>Referencia: {producto.referencia}</strong>
+                    <strong>
+                      Cantidad en inventario:{" "}
+                      <span>
+                        {producto.Inventarios.length > 0
+                          ? producto.Inventarios[0].cantidad
+                          : 0}
+                      </span>
+                    </strong>
+                    <strong>
+                      Categoria:{" "}
+                      <span>
+                        {producto.Categorium?.nombre || "No disponible"}
+                      </span>
+                    </strong>
+                  </div>
+                </div>
+                <div className="container-btn">
+                  <Actualizar
+                    productInfo={producto}
+                    productId={producto.id}
+                    setProductos={setProductos}
+                  />
+                  <Editar
+                    productId={producto.id}
+                    currentStock={
+                      producto.Inventarios.length > 0
+                        ? producto.Inventarios[0].cantidad
+                        : 0
+                    }
+                    onEditInventory={handleEditInventory}
+                    setProductos={setProductos}
+                  />
+                  <Elminar
+                    productInfo={producto}
+                    productId={producto.id}
+                    setProductos={setProductos}
+                  />
+                </div>
+              </Card>
+            </>
           ))}
         </Container>
       </div>

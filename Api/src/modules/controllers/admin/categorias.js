@@ -1,7 +1,56 @@
-const { Categoria } = require("../../models/inventaryModel");
-
+const { Categoria, CategoriasPrincipales } = require("../../models/inventaryModel");
 const generateCodigo = require('../../middleware/generateCodigo')
-// Controlador para  categorias
+// Controlador para  categorias y subcategorias 
+
+
+
+
+const crearCategoriasPrincipales = async (req, res) => {
+  try {
+    // extraer elemntos
+    if (req) {
+      const { nombre } = req.body;
+      // genera codigo para categoria 
+
+      const codigo = generateCodigo(nombre)
+      // crear nueva categoria en la db
+      const nuevaCategoria = await CategoriasPrincipales.create({ nombre, codigo});
+
+      // retornar las categorias
+      const categoriasPrimary  = await CategoriasPrincipales.findAll({
+        attributes: ["id", "nombre"],
+      });
+      if (categoriasPrimary) {
+        res.status(201).json({
+          mensaje: "Categoria creada exitosamente",
+          categoriasPrincipales: categoriasPrimary,
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(400)
+      .json({
+        mensaje: "Huno un problema al crear la categoria",
+        error: error,
+      });
+  }
+};
+const listarCategoriasPrincipales = async (req, res) => {
+  try {
+    const categoriasPrincipales = await CategoriasPrincipales.findAll({
+      attributes: ["id", "nombre"],
+    });
+    res.json({ categoriasPrincipales: categoriasPrincipales });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: "Error al obtener las categorias" });
+  }
+};
+
+
+// subcategorias
 
 const crearCategorias = async (req, res) => {
   try {
@@ -78,4 +127,6 @@ module.exports = {
   listarCategorias,
   eliminarCategoria,
   crearCategorias,
+  crearCategoriasPrincipales,
+  listarCategoriasPrincipales,
 };

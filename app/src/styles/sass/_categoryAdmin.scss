@@ -35,112 +35,170 @@ $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
 
-.body-category-home{
-    height:100vh;
-    @include backgroundSectionAdmin();
-    .container-category{
-        padding-top: 4em;
-        .section-category{
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4em;
-            align-items: flex-start;
+
+  
+.section-category{
+    align-items: flex-start;
+    margin: 5em  2em 0 2em;
+    .categorias{
+        display: flex;
+        flex-direction: column;
+        aside{
+            display: grid;
+            gap: 2em;
+            grid-template-columns: 40% 60%;
             justify-content: flex-start;
-            .aside-categroy{
+            .body-category{
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);    
+                padding: 25px;
+                height: 250px;
+                border-radius: 10px;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                gap: 5em;
-                justify-content: flex-start;
-                .container-form-category{
-                    background-color: white;
-                    height: auto;
-                    .body-category{
-                        padding: 25px;
-                        height: 250px;
-                        border-radius: 10px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);     
-                        .input-category{
-                            width: 300px;
-                        }  
-                        .title-add-category{
-                            font-size: 20px;
-                            font-family: $tittlesFonts;
-                            color: #243a5e;
-                            align-self: flex-start;
-                            margin: 0 0 20px 0;
-                        }  
+                .title-a-category{
+                    font-size: 20px;
+                    font-family: $tittlesFonts;
+                    color: #243a5e;
+                    margin: 0 0 20px 0;
+                }  
+                .input-category{
+                    width: 300px;
+                }  
+                       
                         
-                        .contenedor-message-server{
-                            height: 10px;
-                            margin: 5px 0;
-                            padding:5px 0;
-                            text-align: center;
+                .contenedor-message-server{
+                    height: 10px;
+                    margin: 5px 0;
+                    padding:5px 0;
+                    text-align: center;
                         
-                        }  
+                }  
                             
-                    }
-                    
-                   
+            }
+            .lista-categrtorias{
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+                .title-table-category{
+                    color: #243a5e;
+                    font-family: $tittlesFonts;
+                    font-size: 20px;
+                    margin: 10px 0;
+                    text-align: center;
                 }
-                .delete{
-                    background-color: white;
-                    padding: 20px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);   
-                    border-radius: 10px; 
-                    .title-delete-category{
-                        color:$color-principal;
-                        font-family: $tittlesFonts;
-                        font-size: 20px;
-                    }
-                    .text{
-                        color: #213C65;
-                        font-family: $contenido2;
-                        margin: 10px 0;
-                    }
-                    .contenedor-message-server{
-                        height: 20px;
-                        margin-top: 10px;
-                        text-align: center;
-                    }
-                  
-
+                .thead-table{
+                    font-family: $tittlesFonts;
+                    color: #243a5e;
+                    font-weight: 600;
                 }
             }
-           
-            .container-list-category{
-                background-color: white;
-                width: 550px;
-                max-width: 600px;
-                height: auto;
-                .lista-categrtorias{
-                    padding: 20px;
-                    border-radius: 10px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-                    .title-table-category{
-                        color: #243a5e;
-                        font-family: $tittlesFonts;
-                        font-size: 20px;
-                        margin: 10px 0;
-                    }
-                    .thead-table{
-                        font-family: $tittlesFonts;
-                        color: #243a5e;
-                        font-weight: 600;
-                    }
-                }
-            }
-          
-           
         }
-      
+        article{
+            background-color: #213C65;
+            color: white;
+            p{
+                font-size: 30px;
+            }
+
+        }
        
     }
+    // subcategorias
+    .subcategorias{
+        display: grid;
+        grid-template-columns: 40% 60%;
+        flex-direction: column;
+        gap: 2em;
+        align-items: flex-start;
+        .body-category{
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);    
+            padding: 25px;
+            height: 250px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .title-add-category{
+                font-size: 20px;
+                font-family: $tittlesFonts;
+                color: #243a5e;
+                margin: 0 0 20px 0;
+            }  
+            .input-category{
+                width: 300px;
+            }  
+                    
+            .contenedor-message-server{
+                height: 10px;
+                margin: 5px 0;
+                padding:5px 0;
+                text-align: center;
+                    
+            }  
+                        
+        }
+        .contenedor-category-delete{
+            background-color: white;
+            padding: 20px;
+            height: 300px;
+            max-height: 350px;
+            margin-top: 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);   
+            border-radius: 10px; 
+            .title-delete-category{
+                color:$color-principal;
+                font-family: $tittlesFonts;
+                font-size: 20px;
+                text-align: center;
+            }
+            .text{
+                color: #213C65;
+                font-family: $contenido2;
+                margin: 10px 0;
+                line-height: 14px;
+                text-align: left;
+            }
+           select .form-select{
+            overflow: auto;
+            max-height: 200px;
+           }
+            .contenedor-message-server{
+                height: 20px;
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+        .lista-categrtorias{
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-wrap: break-word;
+            .title-table-category{
+                color: #243a5e;
+                font-family: $tittlesFonts;
+                font-size: 20px;
+                margin: 10px 0;
+                text-align: center;
+            }
+            .thead-table{
+                font-family: $tittlesFonts;
+                color: #243a5e;
+                font-weight: 600;
+        
+            }
+            
+        }  
+    }
+}
+      
+       
+    
     @media screen and (max-width: 1280px ){
         .container-category{
             display: flex;
@@ -194,4 +252,3 @@ $color-complementario: #f2efe1;
 
     }
       
-}

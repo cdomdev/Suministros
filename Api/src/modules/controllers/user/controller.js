@@ -2,7 +2,9 @@ const {
   Productos,
   Inventario,
   Categoria,
+  Ofertas,
 } = require("../../models/inventaryModel");
+const Sequelize = require('sequelize')
 
 const listarProductos = async (req, res) => {
   try {
@@ -10,6 +12,7 @@ const listarProductos = async (req, res) => {
       attributes: [
         "id",
         "title",
+        "nombre",
         "valor",
         "description",
         "image",
@@ -49,6 +52,7 @@ const listarCategoriaProducto = async (req, res) => {
           attributes: [
             "id",
             "title",
+            "nombre",
             "valor",
             "description",
             "image",
@@ -71,8 +75,49 @@ const listarCategoriaProducto = async (req, res) => {
   }
 };
 
+
+const listarOfertas = async(req, res) =>{
+  try {
+    const response = Ofertas.findAll()
+    if(response){
+      res.json({ categoria: response });
+    }
+  } catch (e) {
+    console.error(e);
+    res
+      .status(500)
+      .json({ error: "Error al obtener las ofertas" });
+  }
+}
+
+const buscarProductos = (req, res) => {
+  const { query } = req.body;
+
+  // Realizar la búsqueda
+  Productos.findAll({
+    where: {
+      nombre: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('nombre')), 'LIKE', `%${query.toLowerCase()}%`)
+    }
+  })
+  .then(resultados => {
+    if (resultados && resultados.length > 0) {
+      return res.status(200).json({ message: "Productos encontrados", resultados: resultados });
+    } else {
+      return res.status(404).json({ message: "No se encontraron productos para la búsqueda proporcionada" });
+    }
+  })
+  .catch(err => {
+    return res.status(500).json({ message: "Error en el servidor al buscar productos", error: err });
+  });
+};
+
+
+
+
+
 module.exports = {
   listarProductos,
   listarCategoriaProducto,
-
+  listarOfertas,
+  buscarProductos
 };

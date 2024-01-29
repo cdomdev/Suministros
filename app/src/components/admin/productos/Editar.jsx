@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
 export const Editar = ({ producto, getProductos, setEditar, setListadoState }) => {
-  const tituloComponente = "Editar Producto:";
   const [previewImage, setPreviewImage] = useState(producto.displayImages);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -20,10 +19,12 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
     const productosAlmacenados = getProductos();
     const indice = productosAlmacenados ? productosAlmacenados.findIndex((p) => p.id === id) : -1;
 
+   
     let productoActualizado = {
       id,
       title: target.titulo.value || producto.title,
-      valor: target.valor.value || producto.valor,
+      valor: parseInt(target.valor.value).toFixed(2) || producto.valor,
+      nombre: target.nombre.value || producto.nombre,
       description: target.descripcion.value || producto.description,
       cantidad: target.cantidad.value || producto.cantidad,
       image: selectedImage ? null : producto.image,
@@ -80,13 +81,19 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
 
   return (
     <div className="edit-form">
-      <h3>{tituloComponente}</h3>
+      <h3>Ediatar producto</h3>
       <Form onSubmit={(e) => guardarEdicion(e, producto.id)}>
         <Form.Control
           type="text"
           name="titulo"
           className="titulo-editado mt-1"
           defaultValue={producto.title}
+        />
+          <Form.Control
+          type="text"
+          name="nombre"
+          className="titulo-editado mt-1"
+          defaultValue={producto.nombre}
         />
         <Form.Control
           placeholder="Actualizar precio"

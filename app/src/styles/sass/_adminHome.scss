@@ -2,7 +2,12 @@
 @use 'fuentes';
 @use 'mixins';
 
-
+@mixin bordeBox{
+  border: solid 1px #ebebeb ;
+  box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+  box-sizing: border-box;
+  background-color: white;
+}
 
 @mixin parrafos-generales {
     font-size: 15px;
@@ -66,18 +71,19 @@ $color-complementario: #f2efe1;
   padding-top: 1em;
   .navbar-admin-section{
     border: solid 1px;
-    width: 99%;
+    width: 98%;
     margin-top: 3em;
     border: none;
-    padding: 8px 0;
-    box-shadow: 0 0 25px 8px rgb(217, 216, 216);
+    padding: 85x 0;
+    @include bordeBox();
     text-align: center;
     border-radius: 10px;
    
     .text-menu-admin{
       font-family: $tittlesFonts;
       color: #243a5e;
-      @include titulos-generales();
+      font-size: 28px;
+      padding: 5px 0;
     }
    
   }

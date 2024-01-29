@@ -4,18 +4,21 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { BtnGoogle } from "./Google/BtnGoogle";
+import { useUser } from "../../../hook/UserDataProvider";
 
-export const Register = ({ setIsLoggedIn, handleCloseModal }) => {
+export const Register = ({ handleCloseModal }) => {
   const [message, setMessage] = useState("");
   const nanvigate = useNavigate();
+  const { login, setUser, setIsLoggedIn } = useUser();
 
   const handleSubmit = async (values) => {
     try {
       const URL = "http://localhost:3000/api/register";
       const response = await axios.post(URL, values);
       const previousLocation = sessionStorage.getItem("previousLocation");
-      
+
       if (response.status === 201) {
+        login(response.data);
         setMessage("Registro exitoso");
         setIsLoggedIn(true);
         handleCloseModal();

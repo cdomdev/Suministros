@@ -46,6 +46,7 @@ const listarProductos = async (req, res) => {
     const productos = await Productos.findAll({
       attributes: [
         "id",
+        "nombre",
         "title",
         "valor",
         "description",
@@ -86,6 +87,7 @@ const actulizarInventario = async (req, res) => {
       const inventaryUpdate = await Productos.findAll({
         attributes: [
           "id",
+          "nombre",
           "title",
           "valor",
           "description",
@@ -125,18 +127,19 @@ const actulizarInventario = async (req, res) => {
 
 const actualizarProducto = async (req, res) => {
   const { producto_Id, newProduct } = req.body;
-  const { title, valor, description, referencia, categoria_Id } = newProduct;
+  const { nombre,title, valor, description, referencia, categoria_Id } = newProduct;
 
   try {
     const productos = await Productos.findOne({ where: { id: producto_Id } });
     if (productos) {
       await Productos.update(
-        { title, valor, description, referencia, categoria_Id },
+        { nombre, title, valor, description, referencia, categoria_Id },
         { where: { id: producto_Id } }
       );
       const productosUpdate = await Productos.findAll({
         attributes: [
           "id",
+          "nombre",
           "title",
           "valor",
           "description",
@@ -200,6 +203,7 @@ const eliminarProductos = async (req, res) => {
     const daleteUpdate = await Productos.findAll({
       attributes: [
         "id",
+        "nombre",
         "title",
         "valor",
         "description",

@@ -29,12 +29,14 @@ export const GuardarProductos = ({ listadoState, setListadoState}) => {
         image: producto.image,
       }));
 
+      console.log(updatedList)
       const response = await axios.post(
         "http://localhost:3000/api/guardarproductos",
         {
           productos: updatedList,
         }
-      );
+        );
+      
 
       if (response.status === 200 || response.status === 201) {
         setMessageSave("Productos guardados con éxito!");
@@ -47,8 +49,10 @@ export const GuardarProductos = ({ listadoState, setListadoState}) => {
         setMessageSave("Hubo un error al guardar los productos");
       }
     } catch (error) {
+      console.log(error)
       if(error.response.status === 500){
         setMessageSave('Hubo un error al guardar los productos')
+        setTimeout(() => setMessageSave(''), 2000)
       }
       console.error("Error al guardar el producto:", error);
     }

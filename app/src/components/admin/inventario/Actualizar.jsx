@@ -11,6 +11,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
   // referencias para los productos
 
   const tituloRef = useRef(null);
+  const nombreRef = useRef(null);
   const valorRef = useRef(null);
   const referenciaRef = useRef(null);
   const descripcionRef = useRef(null);
@@ -37,7 +38,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
         console.log(`Error al obtener las categorias ${error}`);
       });
   }, []);
-
+  console.log(productInfo)
 
   // funcion para ctulializare el producto
 
@@ -56,18 +57,20 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
 
     // Obtener los valores actuales de los campos o utilizar los valores por defecto del producto
 
+    const updatedNombre = nombreRef.current.value || productInfo.nombre;
     const updatedTitle = tituloRef.current.value || productInfo.title;
-    const updatedValor = valorRef.current.value || productInfo.valor;
+    const updatedValor =
+      parseInt(valorRef.current.value).to || productInfo.valor;
     const updatedDescripcion =
       descripcionRef.current.value || productInfo.description;
     const updatedReferencia =
       referenciaRef.current.value || productInfo.referencia;
-
     const selectedCategoryId = categoriaRef.current.value;
     const selectedCategoryName = categorias[selectedCategoryId];
 
     //  nuevo objeto con la informacion el producto
     const productosActulizado = {
+      nombre: updatedNombre,
       title: updatedTitle,
       valor: updatedValor,
       description: updatedDescripcion,
@@ -88,7 +91,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
         })
         .then((response) => {
           if (response.status === 200 || response.status === 201) {
-            setProductos(response.data.productosUpdate)
+            setProductos(response.data.productosUpdate);
             setMessageUpdate("Producto actualizado con exito");
             setTimeout(() => {
               setMessageUpdate("");
@@ -145,6 +148,13 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
             </Button>
           </span>
           <Form>
+            <Form.Control
+              type="text"
+              name="titulo"
+              className="titulo-editado mt-3"
+              defaultValue={productInfo.nombre}
+              ref={nombreRef}
+            />
             <Form.Control
               type="text"
               name="titulo"

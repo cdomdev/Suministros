@@ -16,7 +16,14 @@ router.post("/upload", upload.array("files"), controllerAdmin.saveImagenServer);
 router.get("/listar/usuarios", controllerAdmin.listarUsuarios);
 
 // categorias
+// principales
+router.post("/crear/categoria-primary", controllerCategorias.crearCategoriasPrincipales);
 
+router.get("/obtener/categorias-primary", controllerCategorias.listarCategoriasPrincipales);
+
+router.delete("/categorias/:id/eliminar", controllerCategorias.eliminarCategoria);
+
+// subcategorias
 router.post("/crear/categoria", controllerCategorias.crearCategorias);
 
 router.get("/obtener/categorias", controllerCategorias.listarCategorias);

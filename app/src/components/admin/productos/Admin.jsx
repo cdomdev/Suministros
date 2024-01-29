@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Crear } from "../Productos/Crear";
-import { Listado } from "../productos/Listado";
+import { Crear } from "./Crear";
+import { Listado } from "./Listado";
 import { GuardarProductos } from "../Guardar/GuardarProductos";
 import { NavAdmin } from "../Nav/NavAdmin";
 

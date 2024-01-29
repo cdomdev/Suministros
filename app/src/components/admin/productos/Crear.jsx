@@ -36,6 +36,7 @@ export const Crear = ({ setListadoState, listadoState }) => {
 
   const [productState, setProductState] = useState({
     title: "",
+    nombre: "",
     description: "",
     valor: "",
     displayImages: "",
@@ -62,15 +63,26 @@ export const Crear = ({ setListadoState, listadoState }) => {
   const getFormValues = async (e) => {
     e.preventDefault();
 
-    const { title, description, valor, cantidad, referencia, imagesToSend } =
-      productState;
+    const {
+      title,
+      description,
+      nombre,
+      valor,
+      cantidad,
+      referencia,
+      imagesToSend,
+    } = productState;
+
+    // formateo a valor real
+    const precio = parseInt(valor).toFixed(2);
 
     if (
       !title ||
       !description ||
-      !valor ||
+      !precio ||
       !cantidad ||
       !referencia ||
+      !nombre ||
       imagesToSend.length === 0
     ) {
       setMessage("¡Por favor, complete todos los campos!");
@@ -95,17 +107,16 @@ export const Crear = ({ setListadoState, listadoState }) => {
 
         const newProduct = {
           id: uuidv4(),
-          title: title,
+          title: title.toUpperCase(),
+          nombre: nombre,
           description: description,
-          valor: valor,
+          valor: precio,
           cantidad: cantidad,
           referencia: referencia,
           image: imageUrls[0],
           categoria: categorias[selectedCategoria],
           categoria_id: selectedCategoria,
         };
-        console.log(newProduct)
-        
 
         setListadoState((prevListado) => {
           const newListado = prevListado
@@ -118,15 +129,17 @@ export const Crear = ({ setListadoState, listadoState }) => {
         setProductState({
           title: "",
           description: "",
+          nombre: "",
           valor: "",
           cantidad: "",
           referencia: "",
           image: "",
         });
+
         setMessage("¡Producto creado con exito!");
         setTimeout(() => {
           setMessage("");
-        }, 3000);
+        }, 2000);
       }
     } catch (error) {
       if (
@@ -169,7 +182,18 @@ export const Crear = ({ setListadoState, listadoState }) => {
             setProductState({ ...productState, title: e.target.value })
           }
           minLength={1}
-          maxLength={20}
+          maxLength={50}
+        />
+        <Form.Control
+          className="mt-2"
+          type="text"
+          placeholder="Nombre del producto"
+          value={productState.nombre}
+          onChange={(e) =>
+            setProductState({ ...productState, nombre: e.target.value })
+          }
+          minLength={1}
+          maxLength={100}
         />
         <Form.Control
           type="number"
@@ -184,7 +208,7 @@ export const Crear = ({ setListadoState, listadoState }) => {
         />
 
         <Form.Control
-          type="number"
+          type="text"
           placeholder="Referencia del producto"
           value={productState.referencia}
           onChange={(e) => {

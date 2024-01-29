@@ -11,12 +11,12 @@ export const UserProfile = ({ setIsLoggedIn }) => {
 
   
   const userDataStorage = localStorage.getItem('userSesionToken');
-
-
-
   const logout = () => {
     localStorage.removeItem("userSesionToken");
     localStorage.removeItem('userRole');
+    localStorage.removeItem("selectedProduct");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("count");
     setIsLoggedIn(false);
     navigate("/suministros/home");
   };
@@ -44,7 +44,6 @@ export const UserProfile = ({ setIsLoggedIn }) => {
       </OverlayTrigger>
     );
   } else {
-    // En caso de que no haya datos de usuario, podrías manejarlo como desees
-    return null; // O podrías renderizar algo indicando que no hay usuario logueado
+    return null; 
   }
 };

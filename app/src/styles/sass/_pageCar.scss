@@ -4,6 +4,12 @@ $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
 $otro: 'Lato', sans-serif;
 
+@mixin bordeBox{
+  border: solid 1px #ebebeb ;
+  box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+  box-sizing: border-box;
+  background-color: white;
+}
 
 .insignia-car {
   position: absolute;
@@ -20,9 +26,7 @@ $otro: 'Lato', sans-serif;
   font-size: 12px;
 }
 
-.container-car{
-    height: 100vh;
-  
+.container-car{  
   .box-car{
     gap: 10px;
     display: grid;
@@ -32,16 +36,21 @@ $otro: 'Lato', sans-serif;
         display: flex;
         flex-direction: column;
         .box1{
-            background-color: white;
+          @include bordeBox();
             height: 40px ;
             display: flex;
             align-items: center;
-            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
             .carrito-text{
-                font-size: 20px;
+                font-size: 18px;
                 padding: 10px;
                 font-family: $tittlesFonts;
                 color: #213C65;
+            }
+            .count{
+              background-color: #243a5e;
+              color: white;
+              border-radius: 50%;
+              padding: 0 5px;
             }
            
            
@@ -52,14 +61,14 @@ $otro: 'Lato', sans-serif;
           overflow-wrap: break-word;
           font-family: $contenidoFonts;
           height: auto;
+          padding:  5px;
+          @include bordeBox();
           display: flex;
           flex-direction: column;
           gap: 15px;
-          padding: 10px 5px;
           .car-empty{
             font-family:$otro;
-            background-color: white;
-            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            @include bordeBox();
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -72,7 +81,7 @@ $otro: 'Lato', sans-serif;
           .add-product{
             box-shadow: 0 0 5px 1px rgb(217, 217, 217);
             width: 14em;
-            margin: auto;
+            margin: 1em auto;
             border: none;
             border-radius: 20px;
             padding: 5px;
@@ -84,98 +93,81 @@ $otro: 'Lato', sans-serif;
             }
           }
             .card-product{
-                background-color: white;
-                margin: 0;
-                padding: 0;
-                box-shadow: 0 0 5px rgb(172, 172, 172);
-                list-style: none;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              padding: 0 20px;
+              transition: all 0.3s;
+              @include bordeBox();
+              &:hover{
+                color: #213C65;
+              }
+              .item-sub{
                 display: flex;
-                align-items: center;
-                justify-content: space-evenly;
-                gap: 40px;
-                transition: all 0.3s;
-               &:hover{
-                box-shadow: 0 0 5px  rgb(251, 251, 251);
-               }
-               ul{
+                justify-content: end;
+                .total-value-productos{
+                  display: flex;
+                  gap: 20px;
+                  text-align: right;
+                }
+              } 
+            .cont-lis-delete{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .img-car-shop{
+                width: 9em;
+                padding: 10px;
+                transition: all ease 0.4s;
+                &:hover{
+                  scale: 1.1;
+                }
+              }
+              ul{
                 box-shadow: none;
                 flex-direction: column;
                 gap: 2px;
-               }
-               .total-value-productos{
-                flex-direction: column;
+              }
+              li{
+                padding: 0;
+                font-size: 13px;
                 display: flex;
-               }
-               .delete{
+                align-items: center;
+                max-width: 350px;
+              }
+              .delete{
+                margin-right: 2em;
                 color: red;
                 background-color: white;
                 border: none;
                 font-size: 16px;
+                .icon{
+                  &:hover{
+                    animation: junping 3s linear infinite;
+                    transform: rotate(10deg);
+                    @keyframes junping {
+                      0%, 20%, 50%, 80%, 100% {
+                        transform: translateY(0); 
+                      }
+                      40% {
+                        transform: translateY(-3px) rotate(10deg); 
+                      }
+                      60% {
+                        transform: translateY(-5px) rotate(-20deg); 
+                      }
+                    }
+                  }
+                }
+               
                 
-               }
-            }
-            li{
-                padding: 0;
-                display: flex;
-                align-items: center;
-                max-width: 350px;
-            }
-            .img-car-shop{
-                width: 10em;
-                padding: 10px;
-            }
-            .quantity {
-                border: 1px solid;
-                display: flex;
-                align-items: center;
-                width: fit-content;
-                border-radius: 5px;
-                padding: 5px;
-                gap: 5px;
-              
-              input[type="number"] {
-                border: 1px  solid;
-                border-top: none;
-                border-bottom: none;
-                width: 40px;
-                padding: 5px;
-                text-align: center;
-              
-                  &::-webkit-inner-spin-button,
-                  &::-webkit-outer-spin-button {
-                    -webkit-appearance: none;
-                    margin: 0; 
-                }
-              }
-            
-              .increment{
-                box-shadow: 0 0 3px 1px rgb(207, 207, 207);
-                background-color: white;
-                padding: 1px 7px;
-                border: none;
-                border-radius: 5px;
-                color: #243a5e;
-                transition: all ease 0.3s;
-                &:hover{
-                    box-shadow: 0 0 6px 1px rgb(237, 236, 236);
-                }
-              }
-              .decrement{
-                box-shadow: 0 0 3px 1px rgb(207, 207, 207);
-                background-color: white;
-                border: none;
-                padding: 1px 7px;
-                border-radius: 5px;
-                color: #243a5e;
-                transition: all ease 0.5s;
-                &:hover{
-                    box-shadow: 0 0 6px 1px rgb(237, 236, 236);
-                }
+                  
               }
             }
+          }
+           
             .loged-user-from-car{
-              box-shadow: 0 0 3px 1px rgb(207, 207, 207);
-              background-color: white;
+              @include bordeBox();
               padding: 2em 20px;
               .content-modal-for-loggin{
                 display: flex;
@@ -207,22 +199,20 @@ $otro: 'Lato', sans-serif;
               
         }
         .box-entrega{
-            background-color: white;
-            height: auto;
-            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
-            padding: 20px;
-            font-family: $contenidoFonts;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            .envio-programado {
-                cursor: pointer;
-                margin-bottom: 10px;
-                padding: 25px 5px;
-                background-color: white;
-                border: solid 1px rgb(172, 172, 172);
-                transition: all ease 0.5s;
-                border-radius: 5px;
+          height: auto;
+          @include bordeBox();
+          padding: 20px;
+          font-family: $contenidoFonts;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .envio-programado {
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 25px 5px;
+            @include bordeBox();
+            transition: all ease 0.5s;
+            border-radius: 5px;
                 .contenido {
                   display: none;
                   padding: 10px;
@@ -235,7 +225,9 @@ $otro: 'Lato', sans-serif;
                   display: flex;
                   margin-top: 1em;
                   justify-content: center;
+
                 }
+               
               
                 &.expanded .contenido {
                   display: block;
@@ -303,28 +295,30 @@ $otro: 'Lato', sans-serif;
                       }
                     }
                 }
-            }
+               
+          }
         }
+
+        
     }
     .contenedor-summary{
         gap: 4px ;
         display: flex;
         flex-direction: column;
         .box3{
-            background-color: white;
-            height: 40px ;
-            padding: 5px;
-            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
-            .summary-text{
-                color: #213C65;
-                font-size: 18px;
-                margin-left: 10px;
-                font-family: $tittlesFonts;
-            }
+         @include bordeBox();
+          height: 40px ;
+          padding: 5px;
+          .summary-text{
+            color: #213C65;
+            font-size: 18px;
+            margin-left: 10px;
+            font-family: $tittlesFonts;
+          }
+          
         }
         .box4{
-            background-color: white;
-            box-shadow: 0 0 5px 1px rgb(217, 217, 217);
+            @include bordeBox();
             font-family: $contenidoFonts;
             padding: 10px;
             .subtotal{
@@ -356,7 +350,11 @@ $otro: 'Lato', sans-serif;
                 font-weight: lighter;
                 color: gray;
             }   
+          
+           
+           
         }  
+       
     }
     .contenedor-box-text{
         margin: 0;
@@ -403,119 +401,113 @@ $otro: 'Lato', sans-serif;
     font-family: $contenidoFonts;
   }
 }
+.content-use{
+  height: auto;
+  padding: 20px 10px;
+  .txt-oaut{
+    font-size: 16px;
+    margin-bottom: 2em;
+    font-family: $otro;
+    color: #213C65;
+    text-align: center;
+  }
+  .oaut-modal-summary{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    gap: 20px;
+  }
+  .oaut-modal-summary div{
+    display: flex;
+    .btn{
+      color:black;
+      transition: all ease 0.3s;
+      font-size: 11px;
+      &:hover{
+        color: white;
+        background-color: #213C65;
+      }
 
+    }
+  }
+ 
+  .modal-envio{
+    font-family: $otro;
+    padding: 10px 20px;
+    h4{
+      font-size: 25px;
+      color: #213C65;
+    }
+    p{
+      margin: 1em 0;
+      text-align: left;
+    }
+    .icon{
+      font-size: 10px;
+      margin-left: 5px;
+    }
+    .btn{
+      margin: 20px 0;
+      float: right;
+    }
+    .error{
+      color: red;
+    }
+    span{
+      font-size: 15px;
+      line-height: 11px;
+    }
+   
+  }
+  
+  
+}
 
-@media screen and (max-width: 420px) {
-  .container-car{
+@media (min-width: 300px) and (max-width: 500px) {
+
+  section{
+    margin-top: 4em;
+    .steps{
+      span{
+        font-size: 10px;
+      }
+    }
+    
+    
+  }
+  .container-car {
     .box-car{
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
       .contendor-infor-car{
-        font-size: 12px;
-        .btn{
-          font-size: 10px;
-        }
-        .box1{
-          .carrito-text{
-            font-size: 13px;
-          }
-
-        }
         .box2{
           .loged-user-from-car{
-            font-size: 12px;
-            padding: 5px;
+            font-size: 11px;
+            text-align: left;
+            line-height: 13px;
             .content-modal-for-loggin{
-              span {font-size: 12px};
               .contenedor-btn-custome{
-                gap: 5px;
+                margin: 0 auto;
+                width: 100%;
                 .btn{
                   width: 100px;
-                  padding: 2px 25px;
+                  font-size: 8px;
                 }
+                
+                
               }
             }
            
-            ul{
-              display: flex;
-              gap: 12px;
-              li{
-                font-size: 10px;
-                .img-car-shop{
-                  width: 7em;
-                  padding: 0;
-                  
-                }
-              }
-              .total-value-productos{
-                font-size: 12px;
-                margin: 0;
-              }
-              hr{
-                width: 50px;
-                margin: 0 auto;
-              }
-              .quantity{
-                display: none;
-              }
-             
-            }
           }
-          .car-empty{
-            display: flex;
-            span{
-              text-align: center;
-            }
-          }
-        }
-      }
-      .contenedor-summary{
-        .box3{
-          .summary-text{
-            font-size: 13px;
-          }
-        }
-        .box4{
-          .subtotal{
-            font-size: 13px;
-          }
-          span{
-            font-size: 12px;
-          }
-          h3{
-            font-size: 13px;
-          }
-          .costo{
-            font-size: 9px;
-          }
-        }
-      }
-      .contenedor-box-text{
-        .box-text{
-          gap: 7px;
-          h5{
-            font-size: 13px;
-          }
-          p{
-            font-size: 11px;
-          }
-          .icon1{
-            font-size:90px;
-            margin-top: -10px;
-          }
-          .icon2{
-            font-size: 40px;
-          }
-          
+
         }
       }
     }
+    
   }
-  .steps{
-    span{
-      font-size: 11px;
-    }
-  }
+
   .contenedor-car {
       position: relative;
       width: 100px;
@@ -524,4 +516,6 @@ $otro: 'Lato', sans-serif;
            left: 39px;
          }
      }
+ 
 }
+

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { AddToCartProducts } from "./AddToCartProducts";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-export const CardPegantes = () => {
-  const [pegantes, setPegantes] = useState([]);
+export const CardPegantes  = () => {
+  const [productos, setProductos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/categorias/pegantes")
       .then((response) => {
         if (response.status === 200) {
-          setPegantes(response.data.categoria.Productos);
+          const dataProducto = response.data.categoria.Productos;
+          setProductos(dataProducto);
         }
       })
       .catch((error) => {
@@ -18,20 +21,42 @@ export const CardPegantes = () => {
       });
   }, []);
 
+  function navigateDetail(producto) {
+    localStorage.setItem("selectedProduct", JSON.stringify(producto));
+    localStorage.setItem("categroyselectedProduct", JSON.stringify(productos));
+    navigate(`/suministros/details/${producto.description}`);
+  }
+
   return (
-    <ul className="card-products">
-      {pegantes.map((producto) => (
-        <div key={producto.id} className="card">
-          <span className="ref-product">Ref: {producto.referencia}</span>
-          <div className="contenido-card">
-            <img src={producto.image} alt="img" className="img-pintura" />
-            <h4 className="title">{producto.title}</h4>
-            <li className="text">{producto.description}</li>
-            <li className="text"> valor: $ {producto.valor}</li>
-            <AddToCartProducts producto={producto}/>
-          </div>
-        </div>
-      ))}
-    </ul>
+    <div className="contenedor-card">
+      {productos.length === 0 ? (
+        <p>No hay productos disponibles...</p>
+      ) : (
+        <>
+          {productos.map((producto) => (
+            <ul key={producto.id} className="card-products">
+              <span className="text-ref">REF: {producto.referencia}</span>
+              <img
+                src={producto.image}
+                alt="not found"
+                className="img-products"
+              />
+              <div className="contenido-card">
+                <li className="title">{producto.title}</li>
+                <li className="text">{producto.nombre}</li>
+                <li className="valor">
+                  $ {producto.valor} <span className="unidad">* UN</span>
+                </li>
+              </div>
+              <Link to={`/suministros/details/${producto.nombre}`}>
+                <Button onClick={() => navigateDetail(producto)}>
+                  Ver producto
+                </Button>
+              </Link>
+            </ul>
+          ))}
+        </>
+      )}
+    </div>
   );
 };

@@ -1,20 +1,26 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { DashboardUser } from "./routes/DashboardUser";
+import { Route, Routes } from "react-router-dom";
+import { DashboardUser, DashboardAdmin } from "./routes";
 import { CarShopProvider } from "./hook/CarShopContext";
-import { NavCustome } from "./components/user/Nav/NavCustome";
+import { UserDataProvider } from "./hook/UserDataProvider";
 
 export const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <div className="App">
+      <div className="App">
+        <UserDataProvider>
           <CarShopProvider>
-            <NavCustome/>
-            <DashboardUser />
+            <Routes>
+              {/* Ruta para el dashboard del usuario normal */}
+              <Route path="/*" element={<DashboardUser />} />
+
+              {/* Ruta para el dashboard del administrador */}
+
+              <Route path="/admin/*" element={<DashboardAdmin />} />
+            </Routes>
           </CarShopProvider>
-        </div>
-      </BrowserRouter>
+        </UserDataProvider>
+      </div>
     </>
   );
 };

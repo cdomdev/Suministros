@@ -13,6 +13,7 @@ export const Summary = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
   const { cartItems, activeStep, setStep } = useCarShop();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [continueAsGuest, setContinueAsGuest] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,16 +31,12 @@ export const Summary = () => {
     );
   };
 
-  const handleContinueClick = async () => {
-    try {
-      if (isAuthenticated()) {
-        setStep(activeStep + 1);
-        await handleContinue();
-      } else {
-        setShowAuthModal(true);
-      }
-    } catch (e) {
-      console.log(e);
+  const handleContinueClick = () => {
+    if (!isAuthenticated() && !continueAsGuest) {
+      setShowAuthModal(true);
+    } else {
+      handleContinue();
+      setStep(activeStep + 1);
     }
   };
 
@@ -77,19 +74,23 @@ export const Summary = () => {
           <hr />
           <BoxText />
           {showAuthModal && (
-            <ModalEntrega
-              texto={"Inicio de sesión"}
-              variant="primary"
-              className="d-none"
-              show={showAuthModal}
-              handleShow={() => setShowAuthModal(true)}
-              handleClose={() => setShowAuthModal(false)}
-              content={content({
-                setIsLoggedIn,
-                setShowAuthModal,
-                handleContinue,
-              })}
-            />
+            <div>
+              <p>Modal</p>
+              <ModalEntrega
+                variant="primary"
+                className="d-none "
+                show={showAuthModal}
+                handleShow={() => setShowAuthModal(true)}
+                handleClose={() => setShowAuthModal(false)}
+                content={content({
+                  setIsLoggedIn,
+                  setShowAuthModal,
+                  handleContinue,
+                  setContinueAsGuest,
+                  setStep,
+                })}
+              />
+            </div>
           )}
         </div>
       )}
@@ -97,23 +98,49 @@ export const Summary = () => {
   );
 };
 
-function content({ setIsLoggedIn, setShowAuthModal, handleContinue }) {
+function content({
+  setIsLoggedIn,
+  setShowAuthModal,
+  handleContinue,
+  setContinueAsGuest,
+  setStep,
+}) {
+  const handleContinueAsGuest = () => {
+    setContinueAsGuest(true);
+    setShowAuthModal(false);
+    handleContinue();
+    setStep((prevStep) => prevStep + 1);
+  };
   return (
     <>
-      <LoginModal
-        setIsLoggedIn={(isLoggedIn) => {
-          setIsLoggedIn(isLoggedIn);
-          if (isLoggedIn) {
-            setShowAuthModal(false);
-            handleContinue();
-          }
-        }}
-        controlComponent={(handleShow) => (
-          <Button variant="primary" onClick={handleShow}>
-            Iniciar sesión
+      <h2 className="txt-oaut">
+        Puedes <strong> iniciar sesion</strong> <br /> y tener un regsitro de
+        tus compras
+      </h2>
+      <div className="oaut-modal-summary">
+        <div>
+          <LoginModal
+            setIsLoggedIn={(isLoggedIn) => {
+              setIsLoggedIn(isLoggedIn);
+              if (isLoggedIn) {
+                setShowAuthModal(false);
+                handleContinue();
+              }
+            }}
+            controlComponent={(handleShow) => (
+              <Button onClick={handleShow} className="btn">
+                quiero iniciar sesión
+              </Button>
+            )}
+          />
+        </div>
+        <div>
+          <Button className="btn" onClick={() => handleContinueAsGuest()}>
+            {" "}
+            quiero continuar como invitado
           </Button>
-        )}
-      />
+        </div>
+      </div>
     </>
   );
 }

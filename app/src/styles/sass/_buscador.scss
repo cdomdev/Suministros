@@ -1,0 +1,155 @@
+
+
+@mixin bordeBox{
+    border: solid 1px #ebebeb ;
+    box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+    box-sizing: border-box;
+    background-color: white;
+}
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+  
+section{
+    .total{
+        margin: 0 0 -1em 20px;
+    }
+    
+    .content-not-products{
+        font-family: $tittlesFonts;
+        display: grid;
+        justify-content: center;
+        gap: 20px;
+        grid-template-columns: 50% 50%;
+        height: 300px;
+        align-items: center;
+        .oops{
+            font-weight: 900;
+            opacity: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+                font-style: italic;
+                font-size: 70px;
+            }
+            .icon{
+                margin-left: 10px;
+                font-size: 50px;
+            }
+        }
+        .list{
+            h4{
+                font-size: 20px;
+            }
+            h5{
+                font-size: 15px;
+            }
+            ul{
+                list-style: square;
+                font-size: 13px;
+            }
+        }
+    }
+    .contanier-cards{
+        .total{
+            color:#243a5e;
+            margin: 0 0 30px 20px;
+            font-family: $contenido2;
+        }
+        .contenedor-card{
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            column-gap: 20px;
+            height: auto;
+            justify-content: center;
+            .card-products{
+                display: flex;
+                font-size: 14px;
+                padding: 6px;
+                flex-direction: column;
+                justify-content: space-between;
+                max-width: 18em;
+                width: 17em;
+                text-align: center;
+                align-items: center;
+                list-style: none;
+                cursor: pointer;
+                transition: all ease 0.3s;
+                @include bordeBox();
+                &:hover{
+                    box-shadow: 0 0 5px 1px rgb(201, 201, 201)  ;
+                }
+                .img-products{
+                    width: 10em
+                }
+                .text-ref{
+                    font-size: 10px;
+                    margin: 0;
+                    opacity: 70%;
+                    align-self: self-start;
+                    display: block;
+                }
+                .contenido-card{
+                    .title{
+                        font-weight: bold;
+                        font-size: 11px;
+                        opacity: 90%;
+                        margin: 3em 0 5px 0;
+                        color: rgb(63, 63, 63);
+                    }
+                    .text{
+                        line-height: 17px;
+                    }
+                    .valor{
+                        font-size: 15px;
+                        font-weight: 500;
+                        margin: 1em 0;
+                    }
+    
+                }
+                .icons{
+                    height: 40px;
+                    transition: all ease 0.5s;
+                    .icon{
+                        font-size: 40px;
+                        color: #243a5e;
+                        display: none;
+                        animation: junping;
+                    }
+                   
+                }
+                &:hover{
+                    .icon{
+                        display: block;
+                        animation: junping 3s linear infinite;
+                        &:hover{
+                            
+                            @keyframes junping {
+                              0%, 20%, 50%, 80%, 100% {
+                                transform: translateY(0); 
+                              }
+                              40% {
+                                transform: translateY(-7px) rotate(10deg); 
+                              }
+                              60% {
+                                transform: translateY(-4px) rotate(-20deg); 
+                              }
+                            }
+                          }
+                    }
+                }
+               
+              
+    
+            }
+    
+          
+        }   
+
+    }
+  
+}

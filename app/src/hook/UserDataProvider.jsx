@@ -1,30 +1,31 @@
-import { createContext, useState, useContext } from "react";
+// UserContext.js
 
-export const UserDataContext = createContext();
+import React, { createContext, useContext, useState } from "react";
 
-export const useUserData = () => {
-  return useContext(UserDataContext);
+const UserContext = createContext();
+
+export const useUser = () => {
+  return useContext(UserContext);
 };
 
 export const UserDataProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    role: "",
-    email: "",
-    picture: "",
-    name: "",
-  });
+  const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  const setUserData = (newUserData) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      ...newUserData,
-    }));
+  const login = (userData) => {
+    // Lógica de inicio de sesión
+    setUser(userData);
+    setIsAdmin(userData.role === "admin");
+  };
+
+  const logout = () => {
+    setUser(null);
+    setIsAdmin(false);
   };
 
   return (
-    <UserDataContext.Provider
-      value={{user, setUserData}}>
+    <UserContext.Provider value={{ user, isAdmin, login, logout }}>
       {children}
-    </UserDataContext.Provider>
+    </UserContext.Provider>
   );
 };

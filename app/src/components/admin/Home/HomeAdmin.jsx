@@ -84,6 +84,17 @@ export const HomeAdmin = () => {
                     </div>
                   </div>
                 </Link>
+                <Link className="link-box" to="/admin/gestionar/subcategorias">
+                  <div className="box-rutas-admin">
+                    <MdAssignmentAdd className="icon-box" />
+                    <div className="text-primiry-box-rutas">
+                      <p className="text-box-routes">Subcategorias</p>
+                      <span className="span-box-rutas">
+                        Ver/ añadir / eliminar Subcategorias
+                      </span>
+                    </div>
+                  </div>
+                </Link>
                 <Link className="link-box" to="/admin/ver/tienda">
                   <div className="box-rutas-admin">
                     <BiSolidStore className="icon-box" />

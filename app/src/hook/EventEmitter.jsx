@@ -1,5 +1,5 @@
 // EventEmitter.js
-class EventEmitter {
+ class EventEmitter {
     constructor() {
       this.events = {};
     }
@@ -24,5 +24,5 @@ class EventEmitter {
     }
   }
   
-  export default new EventEmitter();
+ export default new EventEmitter();
   
