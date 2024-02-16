@@ -1,22 +1,50 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Container } from "react-bootstrap";
 import { LavaplatosCard } from "../cards/LavaplatosCard";
+import { Breadcrumbs } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { Link } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
+import {useCarShop} from '../../../hook'
 
 export const Lavaplatos = () => {
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const { cartItems } = useCarShop();
+
+  useEffect(() => {
+    setCartItemCount(cartItems.length);
+  }, [cartItems]);
   return (
     <section>
       <Container>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb">
+          <Link to="/suministros/home">Home</Link>
+          <Link to="/suministros/lavaplatos">Lavaplatos</Link>
+        </Breadcrumbs>
         <div className="container-productos">
-          <h1>VARIEDAD DE PRODUCTOS PARA REMODELAR TUS ESPACIOS</h1>
+          <h1>
+            ENCUENTRA LA SOLUCION PERFECTA PARA MANTENER UTENCILIOS LIMPIOS Y
+            RELUCIENTES
+          </h1>
           <p>
-            Aqui encontraras los productos que necesitas para remodelar tus
-            espacios, de alta calidad, esteticos y funcionales.
+            Diseñados para ofrecer un rendimiento excepcional, nuestros
+            lavaplatos te ayudarán a mantener tu cocina impecable con facilidad
           </p>
-          <div className="contanier-cards">
+          <div className="contenedor-grid-products">
             <LavaplatosCard />
           </div>
         </div>
       </Container>
+      {cartItemCount > 0 && (
+        <Link to={"/suministros/car"}>
+          <div class="icon-container">
+            <div className="insignia">{cartItemCount}</div>
+            <TiShoppingCart className="icon-car" />
+          </div>
+        </Link>
+      )}
     </section>
   );
 };

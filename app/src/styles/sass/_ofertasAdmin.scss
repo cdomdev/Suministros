@@ -1,28 +1,5 @@
 
-
-@mixin parrafos-generales {
-    font-size: 15px;
-    font-family: $contenidoFonts;
-  }
-  
-  @mixin titulos-generales {
-    font-family: $tittlesFonts;
-    font-size: 30px;
-    color: #213C65;
-    font-weight: 600;
-  }
-  
-  @mixin subtitulos-generales {
-    font-size: 25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-  }
-  
-  @mixin backgroundSectionAdmin {
-    margin-top: 3em;
-    background-color: #f4f4f4;
-  }
-
+ 
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
@@ -32,25 +9,34 @@ $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
 .section-ofertas{
-    @include backgroundSectionAdmin();
+    .contenedor-rutas{
+        .aside-rutas{
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
     .title-ofertas{
         font-family: $tittlesFonts;
         color: #243a5e;
         text-align: center;
-        padding-top: 1em;
+        margin-top: 1em;
+        font-size: 25px;
+        font-weight: 600;
     }
    .container-section-ofertas{
+    display: grid;
     padding: 2em 0;
     display: grid;
-    grid-template-columns:70% 30% ;
+    grid-template-columns:2fr 1fr ;
     gap: 20px;
-
+    justify-content: center;
     .add-ofertas{
+        grid-area: content2;
         height: auto;
         max-width:400px;
         padding: 15px;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 3px;
         font-family: $contenidoFonts;
         background-color: white;
         box-shadow: 0 0 6px 2px rgb(207, 206, 206);
@@ -59,7 +45,6 @@ $color-complementario: #f2efe1;
             font-family: $tittlesFonts;
             color: #243a5e;
             margin-bottom: 20px;
-           
         }
         .label-date{
             font-size: 12px;
@@ -71,17 +56,19 @@ $color-complementario: #f2efe1;
             margin: 0;
             padding: 0;
             color: #243a5e;
-            text-align: left;
+            text-align: justify;
             margin-top: 2em;
+            line-height: 16px;
         }
        
     }
        
     .section-listado-ofertas{
+        grid-area: content1;
         background-color: white;
         width: 100%;
         box-shadow: 0 0 6px 2px rgb(207, 206, 206);
-        border-radius: 10px;
+        border-radius: 3px;
        .title-list-ofertas{
         font-family: $tittlesFonts;
         color: #243a5e;

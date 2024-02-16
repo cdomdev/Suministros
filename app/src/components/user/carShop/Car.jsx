@@ -1,13 +1,12 @@
 import React from "react";
-import { useCarShop } from "../../../hook/CarShopContext";
-import { InfoCar } from "./Infocar/InfoCar";
+import { useCarShop } from "../../../hook";
+import { InfoCar } from "./Infocar";
 import { Summary } from "./summary/Summary";
 
 export const Car = ({ handleContinue }) => {
-  const { cartItems } = useCarShop();
+  const { cartItems, setCartItems } = useCarShop();
 
-  const count = localStorage.getItem('count')
-
+  const count = localStorage.getItem("count");
 
   return (
     <>
@@ -15,18 +14,17 @@ export const Car = ({ handleContinue }) => {
         <div className="box-car">
           <div className="contendor-infor-car">
             <div className="box1">
-              <span className="carrito-text">Carrito de compras <span className="count">{count || 0}</span></span>
+              <span className="carrito-text">
+                Carrito de compras <span className="count">{count || 0}</span>
+              </span>
             </div>
-            <InfoCar cartItems={cartItems} />
+            <InfoCar cartItems={cartItems} setCartItems={setCartItems} />
           </div>
           <div className="contenedor-summary">
             <div className="box3">
               <span className="summary-text">Resumen de tu compra</span>
             </div>
-            <Summary
-              cartItems={cartItems}
-              handleContinue={handleContinue}
-            />
+            <Summary cartItems={cartItems} handleContinue={handleContinue} />
           </div>
         </div>
       </section>

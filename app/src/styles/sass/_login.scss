@@ -53,11 +53,11 @@ $contenido2: "Montserrat", sans-serif;
             font-weight: lighter;
         }
         .container-btn-login {
-            display: flex;
+            display:flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto; 
-            margin-left: -10px;      
+            margin:  auto; 
+          
         }
     
         .txt-form-login{
@@ -70,13 +70,14 @@ $contenido2: "Montserrat", sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px 0;
             .o{
                 color:#213C65 ;
+                font-size: 12px;
+                font-weight: bold;
             }
             .liner-separator{
                 border: 1px solid #213C65;
-                width: 9em;
+                width: 8.5em;
             }
         }
         .login-custome {
@@ -85,7 +86,7 @@ $contenido2: "Montserrat", sans-serif;
             margin: 0 auto;
         }
         .btn-recovery{
-            margin: .5em 0;
+            margin-bottom: 1em;           
         }
         .btn-submit{
             width: 80%;
@@ -99,23 +100,23 @@ $contenido2: "Montserrat", sans-serif;
             height: 15px;
             padding: 30px 0;
         }
+       
     
     }
     //  registro 
-        .form-register{
+    .form-register{
         margin: auto;
         font-family: $contenidoFonts;
         display: flex;
         flex-direction: column;
-        .text-form{
-            color: #213C65;
-            text-align: center;
-            margin: 0 0 1.5em 0;
-        }
+       .text-form{
+        margin: 2em auto;
+       }
         .container-btn-login {
             display: flex;
             justify-content: center;
             margin-left: -5px;
+           
         }
         .txt-form-login{
             margin-top: 10px;
@@ -129,10 +130,12 @@ $contenido2: "Montserrat", sans-serif;
             margin-bottom: 10px;
             .o{
                 color: #213C65;
+                font-size: 12px;
+                font-weight: bold;
             }
             .liner-separator{
                 border: 1px solid #213C65;
-                width: 9.3em;
+                width: 8.5em;
             }
         }
         .login-custome {
@@ -154,6 +157,10 @@ $contenido2: "Montserrat", sans-serif;
             border-radius: 20px;
             margin: 0 auto;
             margin-top: 1em;
+        }
+        .invalid-feedback{
+            text-align: left;
+            margin-left: 2em;
         }
     
     }
@@ -295,12 +302,18 @@ $contenido2: "Montserrat", sans-serif;
     
   }
 
-@media (min-width: 320px) and (max-width: 420px) {
+@media (min-width: 300px) and (max-width: 420px) {
     .modal-content{
         margin: auto;
         width: 95%;
         .login-form{
             margin: 0 auto;
+            .container-btn-login{
+                margin-left: -10px;
+            }
+            .form-login{
+                width: 100%;
+            }
             .container-btn-google{
                 width: 100%;
                 margin: 0 auto;
@@ -314,14 +327,14 @@ $contenido2: "Montserrat", sans-serif;
             }
             .login-custome {
                 margin: 0 auto;
-                width: 305px;
+                width: 100%;
             }
          
             .btn-recovery{
                 font-size: 14px;
             }
             .btn-submit{
-                width: 305px;
+                width: 100%;
             }
         
         }

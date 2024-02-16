@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { RiAddFill } from "react-icons/ri";
 import { TiMinus } from "react-icons/ti";
 import { Form, Button } from "react-bootstrap";
 import { useCarShop } from "../../../hook/CarShopContext";
 import { IoCartOutline } from "react-icons/io5";
+import { SaveStorage } from "../../../utils/SaveStorage";
+import { Link } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
 
 export const DetallesProducto = () => {
   const [relacionado, setRelacionado] = useState([]);
   const [producto, setProducto] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
-  const { addToCart } = useCarShop();
+  const { addToCart, cartItems } = useCarShop();
 
   useEffect(() => {
     const productoGuardado = localStorage.getItem("selectedProduct");
@@ -25,15 +28,18 @@ export const DetallesProducto = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setCartItemCount(cartItems.length);
+  }, [cartItems]);
+
   if (!producto) {
-    return <div>Cargando...</div>;
+    return <div style={{ textAlign: "center" }}>Cargando...</div>;
   }
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  // Funcion para decermento de los productos dentro del car, analizar para otro component
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
@@ -47,7 +53,9 @@ export const DetallesProducto = () => {
     const updatedCart = [{ ...producto, cantidad: quantity }];
 
     // Guardar el carrito actualizado en el localStorage
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+    SaveStorage("cartItems", JSON.stringify(updatedCart));
+    // localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+
     setQuantity(1);
   };
 
@@ -112,6 +120,14 @@ export const DetallesProducto = () => {
           </div>
         </div>
       </section>
+      {cartItemCount > 0 && (
+        <Link to="/suministros/car" className="link">
+          <div className="icon-container">
+            <div className="insignia">{cartItemCount}</div>
+            <TiShoppingCart className="icon-car" />
+          </div>
+        </Link>
+      )}
     </div>
   );
 };

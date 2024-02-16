@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useCarShop } from "../../../../hook/CarShopContext";
 import { useNavigate } from "react-router-dom";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
+import { useCarShop } from "../../../../hook";
 
 export const CarShop = React.forwardRef(() => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -22,7 +22,9 @@ export const CarShop = React.forwardRef(() => {
     <>
       <div ref={targetRef} className="contenedor-car">
         <PiShoppingCartSimpleThin onClick={navigateCar} className="carshop" />
-        <span className="carrito" style={{marginTop: '-1px'}} >CARRITO</span>
+        <span className="carrito">
+          CARRITO
+        </span>
         {cartItemCount > 0 && (
           <div className="insignia-car">{cartItemCount}</div>
         )}

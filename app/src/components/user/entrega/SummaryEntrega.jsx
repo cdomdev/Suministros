@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { BoxText } from "../carShop/summary/BoxText";
 import { Button } from "react-bootstrap";
+import { useCarShop } from "../../../hook";
+import { useNavigate } from "react-router";
 
-export const SummaryEntrega = ({ cartItems, handleContinue}) => {
+export const SummaryEntrega = ({ cartItems }) => {
+  const { activeStep, setStep } = useCarShop();
+  const [message, setMessage] = useState("");
+
+  const navigate = useNavigate()
+
   const calculateTotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.cantidad * item.valor,
@@ -10,6 +17,17 @@ export const SummaryEntrega = ({ cartItems, handleContinue}) => {
     );
   };
 
+   const handleContinueClick = () => {
+    const data = localStorage.getItem("DtUerForEnComp");
+    if (!data) {
+      setMessage("¡AGREGUE LOS DATOS DE ENVIO PARA CONTINUAR!");
+      setTimeout(() => setMessage(""), 4000);
+    } else {
+      navigate("/suministros/pago");
+      setStep(activeStep + 1);
+    }
+  };
+  
   return (
     <>
       <div className="box4">
@@ -30,7 +48,8 @@ export const SummaryEntrega = ({ cartItems, handleContinue}) => {
         <span className="costo">El costo de envio no esta incluido</span>
         <hr />
         <div className="cont-btn">
-          <Button className="btn-comtinue" onClick={handleContinue}>
+          <span className="message">{message}</span>
+          <Button className="btn-comtinue" onClick={handleContinueClick}>
             Continuar
           </Button>
         </div>

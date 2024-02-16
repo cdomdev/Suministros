@@ -21,7 +21,7 @@ export const RecoveryPage = () => {
     } catch (error) {
       if (error.response.status === 400) {
         setMessage(
-          "¡ El correo ingresado no existe, por favor valide o nuevamente !"
+          "¡El correo ingresado no existe, por favor valide o nuevamente!"
         );
       }
       console.log(error);
@@ -43,15 +43,15 @@ export const RecoveryPage = () => {
           validate={(values) => {
             const errors = {};
             if (!values.email) {
-              errors.email = "Este campo es requerido";
+              errors.email = "El correo es requerido";
             } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
               errors.email = "Ingrese un correo electrónico válido";
             }
             if (!values.password) {
-              errors.password = "Este campo es requerido";
+              errors.password = "Se requiere una contraseña";
             }
             if (!values.password2) {
-              errors.password2 = "Este campo es requerido";
+              errors.password2 = "Se requiere confirmar la contraseña";
             } else if (values.password !== values.password2) {
               errors.password2 = "Las contraseñas deben coincidir";
             }
@@ -65,7 +65,7 @@ export const RecoveryPage = () => {
   );
 };
 
-export const FormOnFormik = ({ formik, message }) => {
+const FormOnFormik = ({ formik, message }) => {
   return (
     <>
       <Form className="form-recovery" onSubmit={formik.handleSubmit}>
@@ -82,7 +82,9 @@ export const FormOnFormik = ({ formik, message }) => {
           <ErrorMessage name="email" component="div" className="text-danger" />
         </Form.Group>
         <Form.Group className="mb-3 form-login">
-          <Form.Label className="mt-2">Ingrese una nueva contraseña</Form.Label>
+          <Form.Label className="mt-2 pass">
+            Ingrese una nueva contraseña
+          </Form.Label>
           <Field
             type="password"
             name="password"
@@ -134,7 +136,7 @@ export const FormOnFormik = ({ formik, message }) => {
   );
 };
 
-export const Text = () => {
+ const Text = () => {
   return (
     <>
       <h2 className="text-page-recovery-password">
@@ -155,14 +157,15 @@ export const Text = () => {
         </li>
         <li>
           <CiCircleChevRight className="check" />
-          La contraseña debe contener al menos una mayúscula, una minúscula, un
-          número y tener un máximo de 8 caracteres
+          Confirme la contraseña
         </li>
         <li>
           <CiCircleChevRight className="check" />
-          Confirme la contraseña
+          La contraseña debe contener al menos una mayúscula, una minúscula, un
+          número y tener un máximo de 8 caracteres
         </li>
       </ul>
     </>
   );
 };
+

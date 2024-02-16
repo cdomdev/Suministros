@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { UserNotLoggin } from "./UserNotLoggin";
-import { isAuthenticated } from "../../../../auth/Auth";
-import { AddToCar } from "./AddCar";
-import { useCarShop } from "../../../../hook/CarShopContext";
-import { useNavigate } from "react-router";
-import { TiShoppingCart } from "react-icons/ti";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { TiShoppingCart } from "react-icons/ti";
+import { useNavigate } from "react-router";
+import { AddToCar } from "./AddCar";
+import { useCarShop } from "../../../../hook";
+import { isAuthenticated } from "../../../../auth";
 
-
-
-export const InfoCar = ({cartItems}) => {
-  const { deleFromCar } = useCarShop();
+export const InfoCar = ({ cartItems }) => {
+  const { deleFromCar} = useCarShop();
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
+  
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(isAuthenticated());
   }, [isLoggedIn]);
 
-
-
+  
   const handleDeleteProduct = (productId) => {
     deleFromCar(productId);
   };
@@ -66,14 +64,12 @@ export const InfoCar = ({cartItems}) => {
             )}
           </>
         )}
-        {cartItems.length !== 0 ? (
+        {cartItems.length !== 0 && (
           <button
             onClick={() => navigate("/suministros/productos")}
             className="add-product">
             Agregar mas productos <TiShoppingCart />
           </button>
-        ) : (
-          <></>
         )}
       </div>
     </>
@@ -88,7 +84,7 @@ export const DeleteOneProductCar = ({ IdCar, onDelete }) => {
   return (
     <>
       <button className="delete" onClick={handleDeleteProduct}>
-        Eliminar <RiDeleteBin5Line className="icon"/>
+        Eliminar <RiDeleteBin5Line className="icon" />
       </button>
     </>
   );

@@ -1,4 +1,4 @@
-const User = require("../../models/userRegister");
+const User = require("../../models/usersModels");
 const {
   Categoria,
   Productos,

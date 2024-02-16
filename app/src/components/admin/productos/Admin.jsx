@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Crear } from "./Crear";
 import { Listado } from "./Listado";
 import { GuardarProductos } from "../Guardar/GuardarProductos";
-import { NavAdmin } from "../Nav/NavAdmin";
+import { RutasAside } from "../aside";
 
 export const Admin = () => {
   const [listadoState, setListadoState] = useState([]);
@@ -10,7 +10,9 @@ export const Admin = () => {
     <>
       <div className="body-components-admin">
         <div className="layout-crear-productos">
-          <NavAdmin />
+          <div className="aside-rutas">
+            <RutasAside />
+          </div>
           <section>
             <div className="sidebar">
               <aside>
@@ -24,12 +26,12 @@ export const Admin = () => {
               </article>
             </div>
           </section>
-          <section >
+          <section>
             <div className="content">
-            <Listado
-              listadoState={listadoState}
-              setListadoState={setListadoState}
-            />
+              <Listado
+                listadoState={listadoState}
+                setListadoState={setListadoState}
+              />
             </div>
           </section>
         </div>
@@ -37,3 +39,4 @@ export const Admin = () => {
     </>
   );
 };
+

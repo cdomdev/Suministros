@@ -2,9 +2,8 @@ import { Form, Button } from "react-bootstrap";
 import { IoIosMedical } from "react-icons/io";
 import { Formik } from "formik";
 import React, { useState } from "react";
-import axios from "axios";
 
-export const LoguedDates = () => {
+export const UserDates = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
@@ -58,7 +57,7 @@ const FormFormik = ({ formik }) => {
     <>
       <div className="modal-envio">
         <h4>Datos de envío</h4>
-        <p>Los campos marcados con (*) son obligatorios</p>
+        <p>Los campos marcados con ( * ) son obligatorios</p>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
           </Form.Group>

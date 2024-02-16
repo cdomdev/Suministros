@@ -1,0 +1,2 @@
+
+export {Contenido} from './Contenido'

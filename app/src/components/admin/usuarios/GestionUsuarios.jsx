@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavAdmin } from "../Nav/NavAdmin";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
-import { Bar } from "../BarraNavegacion/Bar";
-
+import { RutasAside } from "../aside";
 export const GestionUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
 
@@ -26,15 +25,19 @@ export const GestionUsuarios = () => {
     }
   }, []);
 
+  console.log(usuarios)
+
   return (
     <>
-    <header>
-    <NavAdmin />
-    </header>
-   
+      <header>
+        <NavAdmin />
+      </header>
       <div className="body-components-admin">
+          <h1 className="title-user-layout"> Gestion de usuarios</h1>
         <div className="layout-admin-user">
-          <h1 className="title-user-layout"> Usuarios</h1>
+          <div className="aside-rutas">
+            <RutasAside />
+          </div>
           <div className="table-user-admin">
             <Table striped bordered hover size="sm" responsive>
               <thead>

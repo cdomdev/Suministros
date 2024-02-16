@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaTruck } from "react-icons/fa6";
 import { ModalEntrega } from "../Modal/ModalEntrega";
-import { Dates } from "./Dates";
+import { InvitadoDate } from "./InvitadoDate";
 
 export const EnvioInvitado = () => {
   const [check, setCheck] = useState(false);
@@ -40,7 +40,7 @@ export const EnvioInvitado = () => {
             </span>
           </div>
           <div>
-            <span className="value">$ 25.200</span>
+            <span className="value">$: {'Pendiente...'}</span>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ export const EnvioInvitado = () => {
               handleShow={handleShow}
               handleClose={handleClose}
               show={show}
-              content={<Dates handleClose={handleClose} />}
+              content={<InvitadoDate handleClose={handleClose} />}
               texto="Agregar Informacion"
             />
           </div>

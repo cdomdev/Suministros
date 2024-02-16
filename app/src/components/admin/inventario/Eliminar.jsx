@@ -47,20 +47,18 @@ export const Elminar = ({ productId, productInfo, setProductos }) => {
         className="modal-delete-inventary">
         <Modal.Header style={{ border: "none" }}>
           <Modal.Title className="title-delete-modal">
-            ¡Eliminar producto!
+            ¡Esta apunto de eliminar un producto!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-body-delete-inventary">
           <CiWarning className="icon-warning-modal-delete" />
-          <span className="warning">
-            Al eliminar este producto se eliminara la cantidad total en el
-            inventario, <br /> si solo desea eliminar cierta cantidad, esa
-            operacion la puede hacer modificando el stock en inventario. <br />
-            si desea continuar presione <strong> Eliminar producto </strong>
+          <span>
+            Se eliminara la cantidad total en el
+            inventario.
           </span>
-          <p className="text-modal-delete">
-            ! Esta seguro de quere eliminar {"  "}
-            <strong>{productInfo.description}</strong> con una cantidad en el
+          <p className="warning">
+            ! Esta seguro de querer eliminar  
+             <strong> {productInfo.nombre}</strong> con una cantidad en el
             inventario de
             <strong> {productInfo.Inventarios[0].cantidad} productos </strong> !
           </p>
@@ -87,7 +85,7 @@ export const Elminar = ({ productId, productInfo, setProductos }) => {
             Cancelar
           </Button>
           <Button variant="danger" className="mt-3" onClick={handleDelete}>
-            Elimininar productos
+            Elimininar producto
           </Button>
         </Modal.Footer>
       </Modal>

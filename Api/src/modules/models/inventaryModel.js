@@ -28,7 +28,7 @@ const Productos = sequelize.define(
       },
     },
     valor: {
-      type: DataTypes.DECIMAL(12, 2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
         notNull: {

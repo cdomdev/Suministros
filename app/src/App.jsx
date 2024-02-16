@@ -1,10 +1,19 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { DashboardUser, DashboardAdmin } from "./routes";
 import { CarShopProvider } from "./hook/CarShopContext";
 import { UserDataProvider } from "./hook/UserDataProvider";
+import { getTituloFromPath } from "./utils";
+
 
 export const App = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    document.title = getTituloFromPath(location.pathname);
+  }, [location.pathname]);
+
+
   return (
     <>
       <div className="App">

@@ -59,7 +59,7 @@ export const Editar = ({ productId, currentStock, onEditInventory, setProductos 
         onHide={() => setShowModal(false)}
         className="modal-edit-inventary">
         <Modal.Header closeButton style={{ border: "none" }}>
-          <Modal.Title>Editar stock:</Modal.Title>
+          <Modal.Title>Editar stock</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-body-editar-inventary">
           <p className="text-modal-inventary">

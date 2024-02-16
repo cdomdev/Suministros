@@ -1,35 +1,31 @@
-import React from "react";
-import { NavAdmin } from "../Nav/NavAdmin";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Card } from "react-bootstrap";
-import { Editar } from "./Editar";
-import { Elminar } from "./Eliminar";
-import { Actualizar } from "./Actualizar";
+import { NavAdmin } from "../Nav/NavAdmin";
+import { Editar, Actualizar, Elminar } from "./";
+import { RutasAside } from "../aside";
+import { Form } from "react-bootstrap";
 
 export const GestionInventary = () => {
   const [productos, setProductos] = useState([]);
+  const [productosOriginales, setProductosOriginales] = useState([]);
   const [showModal, setShowModal] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [newStock, setNewStock] = useState(0);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+  const [precioSeleccionado, setPrecioSeleccionado] = useState("");
 
-  // Solictud de productos a la base de datos
   useEffect(() => {
-    // solicitud al servido
     const fetchData = async () => {
       try {
         axios
           .get("http://localhost:3000/api/listar/productos")
           .then((response) => {
-            // Manejar la respuesta exitosa
             setProductos(response.data.productos);
           })
           .catch((error) => {
-            // Manejar errores en la solicitud
             console.error("Error al obtener productos:", error);
           });
       } catch (error) {
-        // Manejar otros errores
         console.error("Error:", error);
       }
     };
@@ -43,78 +39,135 @@ export const GestionInventary = () => {
     setShowModal(true);
   };
 
+
+  const handlePrecioChange = (e) => {
+    setPrecioSeleccionado(e.target.value);
+
+    if (e.target.value === "menor-mayor") {
+      // Ordenar de menor a mayor
+      const productosOrdenados = [...productos].sort(
+        (a, b) => parseFloat(a.valor) - parseFloat(b.valor)
+      );
+      setProductos(productosOrdenados);
+    } else if (e.target.value === "mayor-menor") {
+      // Ordenar de mayor a menor
+      const productosOrdenados = [...productos].sort(
+        (a, b) => parseFloat(b.valor) - parseFloat(a.valor)
+      );
+      setProductos(productosOrdenados);
+    }
+  };
+
+  const productosFiltrados = productos.filter((producto) => {
+    return (
+      !categoriaSeleccionada ||
+      producto.Categorium.nombre.trim() === categoriaSeleccionada
+    );
+  });
+
   return (
     <>
       <NavAdmin />
       <div className="body-components-inventary">
-        <Container className="contenedor-inventario">
-          {productos.map((producto) => (
-            <>
-              <Card key={producto.id} className="card-products-inventario">
-                <div className="contenedor-det-img">
-                  <div className="content-img">
-                    <Card.Img
-                      variant="top"
-                      src={producto.image}
-                      alt="producto"
-                      className="img-productos-inventario"
-                    />
-                    <span className="nombre">
-                      {producto.nombre}
-                    </span>
-                  </div>
-                  <div className="details">
-                    <strong>
-                      Marca: <span>{producto.title}</span>
-                    </strong>
-                    <strong>Descripción:</strong>
-                    <span>{producto.description}</span>
-                    <strong>
-                      Precio $: <span>{producto.valor}</span>
-                    </strong>
-                    <strong>Referencia: {producto.referencia}</strong>
-                    <strong>
-                      Cantidad en inventario:{" "}
-                      <span>
-                        {producto.Inventarios.length > 0
-                          ? producto.Inventarios[0].cantidad
-                          : 0}
-                      </span>
-                    </strong>
-                    <strong>
-                      Categoria:{" "}
-                      <span>
-                        {producto.Categorium?.nombre || "No disponible"}
-                      </span>
-                    </strong>
-                  </div>
-                </div>
-                <div className="container-btn">
-                  <Actualizar
-                    productInfo={producto}
-                    productId={producto.id}
-                    setProductos={setProductos}
+        <div className="filtros-content">
+          <div className="filtros">
+            <Form.Select
+              className="mt-3 f-select"
+              onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+              value={categoriaSeleccionada}>
+              <option value="">Categorias</option>
+              {[
+                ...new Set(
+                  productos.map((producto) => producto.Categorium.nombre)
+                ),
+              ].map((categoria, index) => (
+                <option key={index}>{categoria}</option>
+              ))}
+            </Form.Select>
+            <Form.Select
+              aria-label="Default select example"
+              value={precioSeleccionado}
+              onChange={handlePrecioChange}>
+              <option value="">Recomendado</option>
+              <option value="menor-mayor">
+                {" "}
+                De menor precio a mayor precio
+              </option>
+              <option value="mayor-menor">
+                {" "}
+                De mayor precio a menor precio
+              </option>
+            </Form.Select>
+          </div>
+        </div>
+        <div className="aside-rutas">
+          <RutasAside />
+        </div>
+        <div className="contenedor-inventario">
+          {productosFiltrados.map((producto) => (
+            <div key={producto.id} className="card-products-inventario">
+              <div className="contenedor-det-img">
+                <div className="content-img">
+                  <img
+                    variant="top"
+                    src={producto.image}
+                    alt="producto"
+                    className="img-productos-inventario"
                   />
-                  <Editar
-                    productId={producto.id}
-                    currentStock={
-                      producto.Inventarios.length > 0
+                  <span className="nombre">{producto.nombre}</span>
+                </div>
+                <div className="details">
+                  <strong>
+                    Marca: <span>{producto.title}</span>
+                  </strong>
+                  <strong>Descripción:</strong>
+                  <p>{producto.description}</p>
+                  <strong>
+                    Precio $:{" "}
+                    <span>{producto.valor.toLocaleString("es-CO")}</span>
+                  </strong>
+                  <strong>Referencia: {producto.referencia}</strong>
+                  <strong>
+                    Cantidad en inventario:{" "}
+                    <span>
+                      {producto.Inventarios.length > 0
                         ? producto.Inventarios[0].cantidad
-                        : 0
-                    }
-                    onEditInventory={handleEditInventory}
-                    setProductos={setProductos}
-                  />
-                  <Elminar
-                    productInfo={producto}
-                    productId={producto.id}
-                    setProductos={setProductos}
-                  />
+                        : 0}
+                    </span>
+                  </strong>
+                  <strong>
+                    Categoria:{" "}
+                    <span>
+                      {producto.Categorium?.nombre || "No disponible"}
+                    </span>
+                  </strong>
                 </div>
-              </Card>
-            </>
+              </div>
+              <div className="container-btn">
+                <Actualizar
+                  productInfo={producto}
+                  productId={producto.id}
+                  setProductos={setProductos}
+                />
+                <Editar
+                  productId={producto.id}
+                  currentStock={
+                    producto.Inventarios.length > 0
+                      ? producto.Inventarios[0].cantidad
+                      : 0
+                  }
+                  onEditInventory={handleEditInventory}
+                  setProductos={setProductos}
+                />
+                <Elminar
+                  productInfo={producto}
+                  productId={producto.id}
+                  setProductos={setProductos}
+                />
+              </div>
+            </div>
           ))}
-        </Container>
+        </div>
       </div>
     </>
   );

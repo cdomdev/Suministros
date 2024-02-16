@@ -1,19 +1,30 @@
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { IoIosMedical } from "react-icons/io";
-import { Formik } from "formik";
-import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Formik } from "formik";
+import { useCarShop } from "../../../hook";
 
-export const Dates = ({ handleClose }) => {
+
+export const InvitadoDate = ({ handleClose }) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { activeStep, setStep } = useCarShop();
+
+
+  const updateStep = () => {
+    setStep(activeStep + 1);
+  }; 
 
   const handleSubmit = async (values) => {
     console.log("datos del usuarios:", values);
     sessionStorage.setItem("DtUerForEnComp", JSON.stringify(values));
     handleClose();
+    updateStep()
     navigate("/suministros/pago");
   };
+  
+
 
   return (
     <>
@@ -24,7 +35,6 @@ export const Dates = ({ handleClose }) => {
           email: "",
           direccion: "",
           telefono: "",
-          detalles: "",
         }}
         validate={(values) => {
           const errors = {};
@@ -86,7 +96,9 @@ const FormFormik = ({ formik }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Correo</Form.Label>
+            <Form.Label>
+              Correo <IoIosMedical className="icon" />
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Ingrese su correo"

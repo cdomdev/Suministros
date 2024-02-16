@@ -21,7 +21,7 @@ export const ListarPrimary = ({setCategoriasPriMary, categoriasPriMary }) => {
   return (
     <>
       <div className="lista-categrtorias">
-        <h4 className="title-table-category">Lista de categorias:</h4>
+        <h2 className="title-table-category">Lista de categorias:</h2>
         <Table
           striped
           bordered

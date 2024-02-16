@@ -55,7 +55,9 @@ $contenido2: "Montserrat", sans-serif;
     .details{
         font-family: $contenido2;
         @include bordeBox();
+        text-wrap: wrap;
         display: flex;
+        max-width: 650px;
         align-items: flex-start;
         padding: 10px 20px;
         flex-direction: column;
@@ -68,6 +70,7 @@ $contenido2: "Montserrat", sans-serif;
         } 
         span{
             font-size: 15px;
+            text-wrap: wrap;
         }
         .ref{
             display: flex;
@@ -151,6 +154,20 @@ $contenido2: "Montserrat", sans-serif;
                    
                 }
             }
+            .car-item{
+                text-decoration: none;
+
+                .icon{
+                    font-size: 40px;
+                    color: black;
+                }
+                span{
+                    font-size: 15px;
+                    text-decoration: none;
+                    color: black
+                };
+            }
+           
         }
 
     }
@@ -296,10 +313,24 @@ h3{
     
 }
 
-@media (min-width: 500px) and (max-width: 780px) {
-   
-    
-   
+@media (min-width: 500px) and (max-width: 800px) {
+    section{
+        width: 100vw;
+    }
+    .container-details{
+      max-width:  100vw;
+      width: 95vw;
+      .details{
+        width: 100%;
+        .car-item{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+
+      }
+    } 
     
 }
 

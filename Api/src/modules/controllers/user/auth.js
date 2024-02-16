@@ -1,15 +1,11 @@
-const UserModel = require("../../models/userRegister");
-const AuthModel = require("../../models/authModel");
+const {User} = require("../../models/usersModels");
+const Auth = require("../../middleware/authValidate");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const claveSecreta = process.env.CLAVE_SECRETA;
-const { OAuth2Client } = require("google-auth-library");
-
-const CLIENT_ID = process.env.CLIENT_ID;
 const tiempoExpiracion = 3600;
 
-const client = new OAuth2Client(CLIENT_ID);
 
 // constrolador para el resgitro de usaurios
 
@@ -20,13 +16,13 @@ const registroController = async (req, res) => {
   try {
     if (googleToken) {
       // Registro con Google
-      const userData = await verifyGoogleToken(googleToken);
-      const user = await UserModel.findOne({
+      const userData = await Auth.verifyGoogleToken(googleToken);
+      const user = await User.findOne({
         where: { email: userData.email },
       });
 
       if (!user) {
-        user = await UserModel.create({
+        user = await User.create({
           name: userData.name,
           email: userData.email,
           picture: userData.picture,
@@ -46,14 +42,14 @@ const registroController = async (req, res) => {
       });
     } else {
       // Registro normal
-      const existingUser = await UserModel.findOne({ where: { email } });
+      const existingUser = await User.findOne({ where: { email } });
 
       if (existingUser) {
         return res.status(400).json({ error: "El correo ya está registrado" });
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = await UserModel.create({
+      const newUser = await User.create({
         name,
         email,
         password: hashedPassword,
@@ -79,11 +75,10 @@ const loginController = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const userFromDB = await AuthModel.userExisting(email);
-    console.log("este es el datos de userFrom", userFromDB);
+    const userFromDB = await Auth.userExisting(email);
 
     if (userFromDB) {
-      const passwordMatch = await AuthModel.passwordMatch(
+      const passwordMatch = await Auth.passwordMatch(
         password,
         userFromDB.password
       );
@@ -122,14 +117,7 @@ const loginController = async (req, res) => {
   }
 };
 
-async function verifyGoogleToken(token) {
-  const ticket = await client.verifyIdToken({
-    idToken: token,
-    audience: CLIENT_ID,
-  });
-  const payload = ticket.getPayload();
-  return payload;
-}
+
 
 const recoveryPassword = async (req, res) => {
   const { email, password } = req.body;

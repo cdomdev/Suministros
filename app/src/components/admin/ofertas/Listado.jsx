@@ -58,7 +58,7 @@ export const Listado = ({ ofertaListado, setOfertaListado }) => {
                     <ul>
                       {oferta.Productos.map((producto) => (
                         <li key={producto.id}>
-                          {producto.title} - {producto.description} - Ref:{" "}
+                          {producto.title} - {producto.nombre} - Ref:{" "}
                           {producto.referencia}
                         </li>
                       ))}

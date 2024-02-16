@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { NavAdmin } from "../Nav/NavAdmin";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { NuevaOferta } from "./NuevaOferta";
 import { Listado } from "./Listado";
+import { RutasAside } from "../aside";
 
 export const Ofertas = () => {
   const [ofertaListado, setOfertaListado] = useState([]);
   return (
     <>
-      <NavAdmin />
       <div className="section-ofertas">
+        <div className="contenedor-rutas">
+          <div className="aside-rutas">
+            <RutasAside />
+          </div>
+        </div>
         <h1 className="title-ofertas">Ofertas</h1>
         <Container className="container-section-ofertas">
           <section>

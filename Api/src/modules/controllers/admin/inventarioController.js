@@ -7,13 +7,6 @@ const guardarProducto = async (req, res) => {
   try {
     const { productos } = req.body;
     for (const producto of productos) {
-      console.log(producto)
-      console.log('este es el titulo',producto.title)
-      console.log('este es el valor',producto.valor)
-      console.log('este es el nombre',producto.nombre)
-      console.log('este es el descr',producto.description)
-      console.log('este es el ref',producto.referencia)
-      console.log('este es el categorias',producto.categoria_id)
       const nuevoProducto = await Productos.create({
         title: producto.title,
         nombre: producto.nombre,

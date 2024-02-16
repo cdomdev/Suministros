@@ -4,8 +4,8 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { DecodedJWT } from "../../../../utils/DecodedJWT";
 import { useNavigate } from "react-router-dom";
 import EventEmitter from "../../../../hook/EventEmitter";
-import {useUser} from '../../../../hook/UserDataProvider';
-
+import { useUser } from "../../../../hook/UserDataProvider";
+import { SaveStorage } from "../../../../utils";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 
@@ -31,7 +31,6 @@ export const BtnGoogle = ({ handleCloseModal, handleLoginSuccess }) => {
     };
   }, []);
 
-
   const notifyAuthChange = (isLoggedIn) => {
     EventEmitter.emit("authChange", isLoggedIn);
   };
@@ -52,12 +51,15 @@ export const BtnGoogle = ({ handleCloseModal, handleLoginSuccess }) => {
           email: email,
           picture: picture,
         };
-        localStorage.setItem("userSesionToken", JSON.stringify(dataUserSesion));
+
+        SaveStorage("userSesionToken", JSON.stringify(dataUserSesion));
+
+        // localStorage.setItem("userSesionToken", JSON.stringify(dataUserSesion));
         const previousLocation = sessionStorage.getItem("previousLocation");
 
         if (response.status === 200 || response.status === 201) {
-          console.log(response)
-          login(response.data)
+          console.log(response);
+          login(response.data);
           handleLoginSuccess("actualizado", true);
           notifyAuthChange(true);
           setMesage("Inicio de sesion exitoso");
@@ -82,25 +84,28 @@ export const BtnGoogle = ({ handleCloseModal, handleLoginSuccess }) => {
   }
 
   return (
-    <GoogleOAuthProvider clientId={CLIENT_ID}>
-      {email === null && (
-        <div className="container-btn-login">
-          <GoogleLogin
-            onError={handleError}
-            onSuccess={handleSuccess}
-            useOneTap
-            setIsLoggedIn={setIsLoggedIn}
-            handleCloseModal={handleCloseModal}
-            locale="es"
-            logo_alignment="center"
-            size="large"
-            theme="outline"
-            shape="circle"
-            width="330"
-          />
-        </div>
-      )}
-      {email && <p>Email de usuario {email} </p>}
-    </GoogleOAuthProvider>
+    <div className="container-btn-login">
+      <GoogleOAuthProvider clientId={CLIENT_ID}>
+        {email === null && (
+          <>
+            <GoogleLogin
+              onError={handleError}
+              onSuccess={handleSuccess}
+              useOneTap
+              setIsLoggedIn={setIsLoggedIn}
+              handleCloseModal={handleCloseModal}
+              locale="es"
+              logo_alignment="center"
+              size="large"
+              theme="outline"
+              shape="circle"
+              width="300"
+            />
+          </>
+        )}
+        {email && <p>Email de usuario {email} </p>}
+      </GoogleOAuthProvider>
+    </div>
   );
 };
+

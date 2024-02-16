@@ -61,7 +61,7 @@ export const Listado = ({
                 <div className="container-datail-product-edits">
                   <span className="title-cards">Marca: {producto.title}</span>
                   <span className="title-cards">Nombre: {producto.nombre}</span>
-                  <span className="valor-cards">valor: $ {producto.valor}</span>
+                  <span className="valor-cards">Valor: $ {producto.valor}</span>
                   <span className="cantidad">
                     Cantidad: {producto.cantidad}
                   </span>
@@ -108,9 +108,9 @@ export const Listado = ({
         })
       ) : (
         <div className="contendor-alter-products-card">
-          <h2 className="text-listar-products-admin">
+          <span className="text-shadow">
             Agregue nuevos productos para verlos aquí.
-          </h2>
+          </span>
         </div>
       )}
     </>

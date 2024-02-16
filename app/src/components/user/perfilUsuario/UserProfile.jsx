@@ -1,49 +1,44 @@
-import React, { useEffect } from "react";
-import { Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, OverlayTrigger, Popover } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Avatar from "@mui/material/Avatar";
 import { AiOutlinePoweroff } from "react-icons/ai";
+import Avatar from "@mui/material/Avatar";
 
 export const UserProfile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const [data, setData] = useState({});
 
-  
-  const userDataStorage = localStorage.getItem('userSesionToken');
+  useEffect(() => {
+    const userDataStorage = localStorage.getItem("userSesionToken");
+    if (userDataStorage) {
+      const userDataArray = JSON.parse(userDataStorage);
+      const userData = JSON.parse(userDataArray[0]);
+      setData(userData);
+    }
+  }, []);
+  console.log(data);
   const logout = () => {
-    localStorage.removeItem("userSesionToken");
-    localStorage.removeItem('userRole');
-    localStorage.removeItem("selectedProduct");
-    localStorage.removeItem("cartItems");
-    localStorage.removeItem("count");
+    localStorage.clear();
     setIsLoggedIn(false);
     navigate("/suministros/home");
   };
 
-  if (userDataStorage) {
-    const { name, picture } = JSON.parse(userDataStorage);
-
-    return (
-      <OverlayTrigger
-        trigger="click"
-        placement="bottom"
-        overlay={
-          <Popover id={`popover-positioned-bottom`} style={{ width: '270px' }}>
-            <Popover.Body className='popover-user-profile'>
-              <span className='name-user-profile'>{name}</span>
-              <Button className='btn-profile-users' onClick={logout}>
-                <AiOutlinePoweroff className='icon-btn-off' />
-                Cerrar sesión
-              </Button>
-            </Popover.Body>
-          </Popover>
-        }
-      >
-        <Avatar alt={name} src={picture} sx={{ cursor: 'pointer' }} />
-      </OverlayTrigger>
-    );
-  } else {
-    return null; 
-  }
+  return (
+    <OverlayTrigger
+      trigger="click"
+      placement="bottom"
+      overlay={
+        <Popover id={`popover-positioned-bottom`} style={{ width: "270px" }}>
+          <Popover.Body className="popover-user-profile">
+            <span className="name-user-profile">{data.name}</span>
+            <Button className="btn-profile-users" onClick={logout}>
+              <AiOutlinePoweroff className="icon-btn-off" />
+              Cerrar sesión
+            </Button>
+          </Popover.Body>
+        </Popover>
+      }>
+      <Avatar alt={data.name} src={data.picture} sx={{ cursor: "pointer" }} />
+    </OverlayTrigger>
+  );
 };

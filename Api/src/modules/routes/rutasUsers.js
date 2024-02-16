@@ -24,5 +24,10 @@ router.get("/listar/ofertas", controller.listarOfertas);
 
 router.post('/busqueda-productos', controller.buscarProductos)
 
+// compra 
+router.post('/finish/buy/invited', controller.finalizarCompraInvitado)
+
+router.post('/finish/buy/user', controller.finalizarCompraUsuario)
+
 
 module.exports = router;

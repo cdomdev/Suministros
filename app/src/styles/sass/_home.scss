@@ -1,31 +1,4 @@
 
-@use 'colors';
-@use 'fuentes';
-@use 'mixins';
-
-
-@mixin parrafos-generales {
-    font-size: 15px;
-    font-family: $contenidoFonts;
-}
-  
-@mixin titulos-generales {
-    font-family: $tittlesFonts;
-    font-size: 30px;
-    color: #213C65;
-    font-weight: 600;
-}
-  
-@mixin subtitulos-generales {
-    font-size: 25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-}
-  
-@mixin backgroundSectionAdmin {
-    margin-top: 3em;
-    background-color: #f4f4f4;
-}
 
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
@@ -40,25 +13,23 @@ body{
     padding: 0;
     background-color: #f4f4f4;
     overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 // carrusel 
 
-.content-carrusel{
-    margin-top: -1em;
     .carrusel{
+        justify-content: center;
         width: 100vw;
         margin: 0 auto;
         display: flex;
-        height: auto;
+        height: 550px;
+        max-height: 600px;
+        padding-top: 1em;
         .carousel-control-next-icon{
-            border: solid;
             border-radius: 50px;
             padding: 25px;
             background-color: black;
-            .visually-hidden{
-                color: white;
-            }
         }
         .carousel-control-prev-icon{
             background-color: #213C65;
@@ -67,7 +38,6 @@ body{
             background-color: black;
         }
     }
-}
 
 
 
@@ -104,7 +74,92 @@ body{
 // home 
 
 
-@keyframes moveTruck {
+
+
+.contenido{
+   
+    h1{
+        font-size: 25px;
+        margin: 2em 0 20px 0;
+        text-align: center;
+        font-weight: 600;
+    }
+    p{
+        font-size: 15px;
+        text-wrap: wrap;
+        text-align: center;
+        line-height: 20px;
+        font-family: $contenido2;
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .txt{
+        text-align: center;
+    }
+    h2{
+        font-size: 23px;
+        font-weight: 500;
+        color: #213C65;
+        text-align: left;
+        margin-top: 3em;
+    }
+
+    
+ .box-products-home{   
+   height: auto;
+   width: 100%;
+   margin: 1em 0 2em 0;
+   display: flex;
+   gap: 20px;
+   .link{
+    text-decoration: none;
+    color: black;
+   }
+   .contenedor{
+    padding: 10px;
+    width: 13em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all ease 0.5s;
+    img{
+        box-shadow: 0 0 5px rgb(162, 162, 162) ;
+        width: 12em;
+        border-radius: 10px;
+        height: 10em;
+    }
+    span{
+        position:absolute;
+        background-color:#3573e6;
+        color:#f4f4f4;
+        bottom: 0;
+        font-size: 17px;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+
+    &:hover{
+        scale: 1.1;
+    }
+   }
+  
+ }
+  .jumping-text{
+    font-size: 14px;
+    text-align: center;
+    color: #243a5e;
+    margin: 6em 0;
+    font-weight: bold;
+ }
+ 
+.animated-truck{
+    float: right;
+    width: 100px; 
+    animation: moveTruck 3s linear infinite;
+}
+ @keyframes moveTruck {
     0% {
       transform: translateX(0);
     }
@@ -115,104 +170,7 @@ body{
       transform: translateX(0);
     }
 }
-
-
-.contenido{
-   
-    h1{
-       @include titulos-generales();
-        margin: 1em  0 20px 0;
-        text-align: center;
-    }
-    p{
-        font-size: 15px;
-        text-align: center;
-        font-family: $contenido2;
-        margin: 0 auto;
-        text-align: justify;
-    }
-    .txt{
-        text-align: center;
-    }
-    h2{
-        font-family: $tittlesFonts;
-        font-size: 23px;
-        color: #213C65;
-        text-align: center;
-        margin-top: 3em;
-    }
-
-    
- .box-products-home{   
-    margin: 1em 0 2em 0;
-    display: flex;
-    gap: 40px;
-    padding: 20px;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    .link{
-        text-decoration: none;
-    }
-    .box-route{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f4f4f4;
-        width: 16em;
-        border: none;
-        height: 12em;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all ease 0.8s;
-        box-shadow:  0 0 5px 2px rgb(207, 206, 206);
-       
-        &:hover{
-            scale: 1.1;
-        }
-    }
-    .text-box{
-        color: white;
-        font-size: 25px;
-        font-family: $contenido2;
-        font-weight: bold;
-        margin-top: 5em;
-       
-    }
-    .box1{
-        background-image: url(https://www.publicdomainpictures.net/pictures/70000/velka/paint-explosion.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        
-    }
-    .box2{
-        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnpA6Cf7LAXJfHdVbJKIf8nTG2NR50rAh3XQ&usqp=CAU);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .box3{
-        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-ocYS8EDl-20UWCo3GaTHafZUc1-SYwDbWV946EL81duQvRzN);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
- }
-    .jumping-text{
-        @include parrafos-generales();
-        text-align: center;
-        color: #243a5e;
-        margin-top: 6em;
-    }
-
-    
-}
-
-.animated-truck{
-    float: right;
-    width: 100px; 
-    animation: moveTruck 3s linear infinite;
- }
-
-
+ 
 
  .svg-home{
     display: flex;
@@ -220,57 +178,98 @@ body{
  }
 
  .svg-store {
+    font-family: $contenido2;
     align-items: center;
     display: flex;
     flex-direction: column;
     .text-svg-store{
         font-size: 13px;
         font-weight: bold;
-        font-family: $contenido2;
         text-align: left;
     }
     .text-svg{
         font-size: 12px;
-        font-family: $contenido2;
     }
 
  }
  .svg-truck{
+    font-family: $contenido2;
     display: flex;
     flex-direction: column;
     align-items: center;
     .text-svg-truck{
         font-size: 13px;
         font-weight: bold;
-        font-family: $contenido2;
         text-align: left;
     }
     .text-svg{
         font-size: 12px;
-        font-family: $contenido2;
     }
  }
 
-@media screen and (max-width: 1024px) {
-    .contenedor-card{
-        display: flex;
-        justify-content: center;
+    
+}
+
+@media screen and (min-width: 1280px) {
+  
+   .contenido {
+    .box-products-home { 
+        width: 100%;  
+       .contenedor{
+        width: 10em;
+        img{
+            width: 10em;
+            height: 10em;
+        }
+        span{
+            font-size: 12px;
+        }
+
+       } 
+       
     }
+   }
+}
+
+@media screen and (max-width: 1024px )and (max-width: 1280px) {
+    .carrusel{
+        height: auto;
+        margin-top: -7em;
+    }
+
+   .contenido {
+    .box-products-home { 
+        width: 100%;  
+       .contenedor{
+        width: 8em;
+        img{
+            width: 8em;
+            height: 7em;
+        }
+        span{
+            font-size: 12px;
+        }
+
+       } 
+       
+    }
+   }
 }
 
 
-@media screen and (max-width: 769px) {
-    .content-carrusel{
+@media (min-width:  768px) and (max-width: 900px) {
+    .carrusel{
         margin-top: -7em;
+        height: auto;
         .carousel-caption{
             h5{
                 font-size: 13px;
-            
+                
             }
             p{
                 font-size: 10px;
             }
-          
+              
         }
         .carousel-indicators{
             button{
@@ -278,6 +277,7 @@ body{
             }
         }
     }
+       
     .container{
         margin: 0 auto;
         .title-productos{
@@ -287,15 +287,25 @@ body{
         .text{
             font-size: 13px;
         } 
-        .box-products-home{
-            .box-route{
-                width: 10em;
-                height: 10em;
-                background-size: cover;
-                background-repeat: no-repeat;
-
+        // revisar la dimencion de la pantalla
+        .box-products-home { 
+            width: 100%;  
+            background-color: #213C65;
+           .contenedor{
+            width: 8em;
+            img{
+                width: 8em;
+                height: 7em;
             }
+            span{
+                font-size: 12px;
+            }
+    
+           } 
+           
         }
+       
+       
     }
     .content-icons-nav{
        margin-top: 10px;
@@ -316,12 +326,14 @@ body{
 
 
 @media (min-width: 300px) and (max-width: 500px) {
-  
+    
+    .carrusel{
+     height: auto;
+     margin-top: -7em;
+    }
     .container{
-        margin-top: -6em;
         h1{
-            margin-top: 6em;
-          font-size: 20px;
+          font-size: 18px;
         }
         h2{
          font-size: 19px;
@@ -334,16 +346,25 @@ body{
          font-size: 12px;
         }
         .box-products-home{
-            gap: 20px;
-            .box-route{
-                width: 5em;
-                height: 5em;
-                background-size: cover;
-                background-repeat: no-repeat;
-                .text-box{
+           width: 100%;
+           overflow-x: auto;
+           gap: 5px;
+           div{
+            padding: 10px 0;
+            .contenedor{
+                width: 7em;
+                height: auto;
+                img{
+                    width: 6em;
+                    height: 5em;
+                }
+                span{
                     font-size: 12px;
                 }
-            }
+               }
+           }
+          
+           
         }
         .jumping-text{
             font-size: 12px;
@@ -371,15 +392,15 @@ body{
                     font-size: 9px;
                 }
              }
-         }
+        }
          
     
-       }
+    }
        
        
         .contenedor-car {
          position: relative;
-         width: 100px;
+         width: 100px;         
          margin-left: -7px;
           .insignia-car {
               position: absolute;

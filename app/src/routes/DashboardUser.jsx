@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
+
 import {
   HomeUser,
   Productos,
@@ -12,16 +13,17 @@ import {
   Entrega,
   Espejos,
   Griferias,
-  Lavamanos,
+  Lavaderos,
   Lavaplatos,
   Limpiadores,
   Paredes,
-  PedidosPage,
   Pegantes,
   Pisos,
   Sanitarios,
   BuscadorPage,
   PagoPage,
+  Pedidos,
+  FinnallyBuy
 } from "../components/user/pages";
 
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
@@ -32,9 +34,6 @@ export const DashboardUser = () => {
     <>
       <NavCustome />
       <Routes>
-        <Route index element={<HomeUser />} />
-        {/* pages de productos*/}
-        <Route path="/suministros/home" element={<HomeUser />} />
         <Route path="/suministros/productos" element={<Productos />} />
         <Route path="/suministros/ofertas" element={<Ofertas />} />
         <Route path="/suministros/nosotros" element={<Nosotros />} />
@@ -45,11 +44,19 @@ export const DashboardUser = () => {
         <Route path="/suministros/pegantes" element={<Pegantes />} />
         <Route path="/suministros/limpiadores" element={<Limpiadores />} />
         <Route path="/suministros/lavaplatos" element={<Lavaplatos />} />
-        <Route path="/suministros/lavamanos" element={<Lavamanos />} />
+        <Route path="/suministros/lavaderos" element={<Lavaderos />} />
         <Route path="/suministros/pisos" element={<Pisos />} />
         <Route path="/suministros/paredes" element={<Paredes />} />
         <Route path="/suministros/categoria/pinturas" element={<Pinturas />} />
         <Route path="/suministros/categoria/pegantes" element={<Pegantes />} />
+        <Route
+          path="/suministros/categoria/limpiadores"
+          element={<Limpiadores />}
+        />
+
+        {/* pages de productos*/}
+        <Route index element={<HomeUser />} />
+        <Route path="/suministros/home" element={<HomeUser />} />
         <Route
           path="/suministros/resultados-busqueda/:nombre"
           element={<BuscadorPage />}
@@ -61,7 +68,6 @@ export const DashboardUser = () => {
 
         {/* validacion */}
         <Route path="/suministros/login" element={<LoginModal />} />
-
         {/* recuperar contraseña */}
         <Route
           path="/suministros/recovery-password"
@@ -71,11 +77,13 @@ export const DashboardUser = () => {
         <Route path="/suministros/car" element={<CarShopInfo />} />
         <Route path="/suministros/entrega" element={<Entrega />} />
         <Route path="/suministros/pago" element={<PagoPage />} />
-        <Route path="/suministros/user/pedidos" element={<PedidosPage />} />
+        <Route path="/suministros/user/pedidos" element={<Pedidos />} />
         <Route
           path="/suministros/details/:descripcion"
           element={<DetallesProducto />}
         />
+
+        <Route path="/purchaseProcessCompleted/:detalles" element={<FinnallyBuy/>}/>
       </Routes>
     </>
   );

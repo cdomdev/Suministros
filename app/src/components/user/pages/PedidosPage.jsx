@@ -1,7 +1,17 @@
-import React from 'react'
+import React from "react";
+import { Container } from "react-bootstrap";
 
-export const PedidosPage = () => {
+export const Pedidos = () => {
+
   return (
-    <div>Pedidos</div>
-  )
-}
+    <div>
+     <Container className="container-car">
+        <section>
+        <p>pagina de pedidos</p>
+        </section>
+      </Container>
+    </div>
+  );
+};
+
+

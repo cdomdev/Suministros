@@ -1,38 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Cards } from "../cards/Card";
+import { Breadcrumbs } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { Link } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
+import { useCarShop } from "../../../hook";
 
 export const Productos = () => {
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const { cartItems } = useCarShop();
 
-  const filtrarPorCategoria = (categoria) => {
-    setCategoriaSeleccionada(categoria);
-  };
-
-  console.log(categoriaSeleccionada)
+  useEffect(() => {
+    setCartItemCount(cartItems.length);
+  }, [cartItems]);
   return (
     <>
-      <section>
-        <Container>
-          <div className="container-productos">
-            <h1>VARIEDAD DE PRODUCTOS PARA REMODELAR TUS ESPACIOS</h1>
-            <p>
-              Aqui encontraras los productos que necesitas para remodelar tus
-              espacios, de alta calidad, esteticos y funcionales.
-            </p>
-            <div className="filtro-categorias">
-              <button onClick={() => filtrarPorCategoria("sanitarios")}>espejos</button>
-              <button onClick={() => filtrarPorCategoria("espejos")}>espejos</button>
-              <button onClick={() => filtrarPorCategoria("pisos")}>piso</button>
-              {/* Agrega botones para otras categorías */}
-              <button onClick={() => filtrarPorCategoria(null)}>Mostrar Todos</button>
-            </div>
-            <div className="contanier-cards">
-              <Cards categoriaSeleccionada={categoriaSeleccionada} />
-            </div>
+      <Container>
+        <div>
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="small" />}
+            aria-label="breadcrumb">
+            <Link to="/suministros/home">Home</Link>
+            <Link to="/suministros/productos">Productos</Link>
+          </Breadcrumbs>
+        </div>
+        <div className="container-productos">
+          <h1>VARIEDAD DE PRODUCTOS PARA REMODELAR TUS ESPACIOS</h1>
+          <p>
+            Con una amplia variedad de productos de alta calidad, estamos aquí
+            para ayudarte a hacer realidad tus proyectos de decoración y
+            renovación.
+          </p>
+          <div className="contenedor-grid-products">
+            <Cards />
           </div>
-        </Container>
-      </section>
+        </div>
+      </Container>
+      {cartItemCount > 0 && (
+        <Link to={"/suministros/car"}>
+          <div class="icon-container">
+            <div className="insignia">{cartItemCount}</div>
+            <TiShoppingCart className="icon-car" />
+          </div>
+        </Link>
+      )}
     </>
   );
 };

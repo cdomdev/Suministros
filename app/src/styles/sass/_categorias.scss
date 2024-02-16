@@ -1,98 +1,108 @@
 
 
-@mixin parrafos-generales {
-    font-size: 15px;
-    font-family: $contenidoFonts;
-}
+// @mixin parrafos-generales {
+//     font-size: 15px;
+//     font-family: $contenidoFonts;
+// }
   
-@mixin titulos-generales {
-    font-family: $tittlesFonts;
-    font-size: 30px;
-    color: #213C65;
-    font-weight: 600;
-}
+// @mixin titulos-generales {
+//     font-family: $tittlesFonts;
+//     font-size: 30px;
+//     color: #213C65;
+//     font-weight: 600;
+// }
   
-@mixin subtitulos-generales {
-    font-size: 25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-}
+// @mixin subtitulos-generales {
+//     font-size: 25px;
+//     font-family: $tittlesFonts;
+//     color: #213C65;
+// }
   
-@mixin backgroundSectionAdmin {
-    margin-top: 3em;
-    background-color: #f4f4f4;
-}
+// @mixin backgroundSectionAdmin {
+//     margin-top: 3em;
+//     background-color: #f4f4f4;
+// }
 
-$tittlesFonts: "Roboto Condensed", sans-serif;
-$contenidoFonts: "Roboto", sans-serif;
-$contenido2: "Montserrat", sans-serif;
+// $tittlesFonts: "Roboto Condensed", sans-serif;
+// $contenidoFonts: "Roboto", sans-serif;
+// $contenido2: "Montserrat", sans-serif;
 
 
-$color-principal: #243a5e;
-$color-complementario: #f2efe1;
-h1{
-    font-size: 32px;
-    text-align: center;
-    color: #213C65;
-    margin-top: 3em;
-    .title-pinturas{
-        @include titulos-generales();
-    }
-}
-p{
-    font-size: 15px;
-    font-family: $contenidoFonts;
-    text-align: center;
+// $color-principal: #243a5e;
+// $color-complementario: #f2efe1;
+// h1{
+//     font-size: 32px;
+//     text-align: center;
+//     color: #213C65;
+//     margin-top: 3em;
+//     .title-pinturas{
+//         @include titulos-generales();
+//     }
+// }
+// p{
+//     font-size: 15px;
+//     font-family: $contenidoFonts;
+//     text-align: center;
 
-}
-.categorias{
-    font-family: $contenidoFonts;
-    height: 100vh;
-    background-color: #f4f4f4;
-  
-  .contanier-section-categorias{
-    margin-top: 3em;
-    padding: 20px 10px;
-    display: flex;
-    justify-content: center;
-    ul{
-        padding: 0;
-    }
-    .card-products{
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        margin: 0;
-        .card{
-            padding: 10px;
-            font-family: $contenidoFonts;
-            list-style: none;
-            width: 18em;
-            border: none;
-            box-shadow: 0 0 6px 3px rgb(240, 239, 239);
-            .ref-product{
-                font-size: 15px;
-                opacity: 70%;
-            }
-            .contenido-card{
-                text-align: center;
-                font-size: 14px;
-                .img-pintura{
-                    width: 12em;
-                }
-                .title{
-                    font-size: 17px;
-                    font-weight: bold;
-                }
-                .text{
-                    font-size: 15px;
-                }
+// }
+// .section-category{
+
+//     .body-category{
+//         .categorias{
+//             font-family: $contenidoFonts;
+//             background-color: #f4f4f4;
+//             width: 90vw;
+//             margin: auto;
+//             .title-add-category{
+//                 font-size: 20px;
+//             }
+//           .contanier-section-categorias{
+//             margin-top: 3em;
+//             padding: 20px 10px;
+//             display: flex;
+//             justify-content: center;
+//             ul{
+//                 padding: 0;
+//             }
+//             .card-products{
+//                 display: flex;
+//                 justify-content: center;
+//                 gap: 30px;
+//                 flex-wrap: wrap;
+//                 margin: 0;
+//                 .card{
+//                     padding: 10px;
+//                     font-family: $contenidoFonts;
+//                     list-style: none;
+//                     width: 18em;
+//                     border: none;
+//                     box-shadow: 0 0 6px 3px rgb(240, 239, 239);
+//                     .ref-product{
+//                         font-size: 15px;
+//                         opacity: 70%;
+//                     }
+//                     .contenido-card{
+//                         text-align: center;
+//                         font-size: 14px;
+//                         .img-pintura{
+//                             width: 12em;
+//                         }
+//                         .title{
+//                             font-size: 17px;
+//                             font-weight: bold;
+//                         }
+//                         .text{
+//                             font-size: 15px;
+//                         }
+                        
+//                     }
+//                 }
+//             }
+           
                 
-            }
-        }
-    }
-   
-        
-  }
-}
+//           }
+//         }
+//     }
+    
+    
+// }

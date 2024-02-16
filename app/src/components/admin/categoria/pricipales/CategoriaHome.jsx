@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { CrearPrimary } from "./CrearPrimary";
 import { ListarPrimary } from "./ListarPrimary";
 import { NavAdmin } from "../../Nav/NavAdmin";
+import { RutasAside } from "../../aside";
 
 export const CategoriaHome = () => {
   const [categoriasPriMary, setCategoriasPriMary] = useState([]);
 
   return (
     <>
-      <NavAdmin />
       <section className="section-category">
+        <div className="contenedor-rutas">
+          <div className="aside-rutas">
+            <RutasAside />
+          </div>
+        </div>
         <div className="categorias">
           <aside>
             <div>

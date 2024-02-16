@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { BtnGoogle } from "./Google/BtnGoogle";
-import { useUser } from "../../../hook/UserDataProvider";
+import { useUser } from "../../../hook";
 
 export const Register = ({ handleCloseModal }) => {
   const [message, setMessage] = useState("");
@@ -85,7 +85,7 @@ export const Register = ({ handleCloseModal }) => {
             </div>
             <div className="contenedor-liner">
               <hr className="liner-separator" />
-              <span className="m-1">O</span>
+              <span className="m-1 o">O</span>
               <hr className="liner-separator" />
             </div>
             <Form.Group className="mb-1" controlId="formBasicName">

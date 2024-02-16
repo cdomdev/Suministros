@@ -31,7 +31,6 @@ export const CarShopProvider = ({ children }) => {
   };
 
   const deleFromCar = (productId) => {
-    console.log(productId);
     const updatedCarItems = cartItems.filter((item) => item.id !== productId);
     setCartItems(updatedCarItems);
   };
@@ -42,7 +41,7 @@ export const CarShopProvider = ({ children }) => {
   };
 
   return (
-    <CarShopContext.Provider value={{ cartItems, addToCart, activeStep, setStep, deleFromCar}}>
+    <CarShopContext.Provider value={{ cartItems, addToCart, activeStep, setStep, deleFromCar, setCartItems}}>
       {children}
     </CarShopContext.Provider>
   );

@@ -38,7 +38,6 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
         console.log(`Error al obtener las categorias ${error}`);
       });
   }, []);
-  console.log(productInfo)
 
   // funcion para ctulializare el producto
 
@@ -60,7 +59,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
     const updatedNombre = nombreRef.current.value || productInfo.nombre;
     const updatedTitle = tituloRef.current.value || productInfo.title;
     const updatedValor =
-      parseInt(valorRef.current.value).to || productInfo.valor;
+      parseFloat(valorRef.current.value) || productInfo.valor;
     const updatedDescripcion =
       descripcionRef.current.value || productInfo.description;
     const updatedReferencia =
@@ -68,6 +67,8 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
     const selectedCategoryId = categoriaRef.current.value;
     const selectedCategoryName = categorias[selectedCategoryId];
 
+
+    
     //  nuevo objeto con la informacion el producto
     const productosActulizado = {
       nombre: updatedNombre,
@@ -126,7 +127,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
         className="modal-update-inventory-products">
         <Modal.Header closeButton style={{ border: "none" }}>
           <Modal.Title className="title-modal-update">
-            Actulizar informacion del producto:
+            Actulizar informacion del producto
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-body-update-inventory">
@@ -138,14 +139,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
           <span className="text-update">
             <strong>Recuerde, </strong>
             para elimiar o modificar la cantida o el producto de inventario
-            usar. {""}
-            <Button variant="outline-primary" disabled>
-              Actulizar stock
-            </Button>
-            <span style={{ margin: "0 3px" }}>o</span>
-            <Button variant="outline-danger" disabled>
-              Eliminar
-            </Button>
+            usar. <strong>Actulizar stock</strong> o <strong>Eliminar</strong>
           </span>
           <Form>
             <Form.Control

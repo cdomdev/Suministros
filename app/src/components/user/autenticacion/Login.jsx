@@ -1,7 +1,7 @@
 // import "../styles/App.css";
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import imgFav from "../../../../public/favicon.png";
+import imgFav from "../../../assets/img/favicon.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BtnGoogle } from "./Google/BtnGoogle";
@@ -18,7 +18,6 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
   useEffect(() => {
     const authChangeCallback = (isLoggedIn) => {
       if (isLoggedIn) {
-        // Puedes hacer una llamada para obtener los datos del usuario si es necesario
       }
     };
     const unsubscribe = EventEmitter.subscribe(
@@ -84,13 +83,11 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
     <Form className="login-form" onSubmit={handleSubmit}>
       <img src={imgFav} className="fav-login" alt="Favicon" />
       <h3 className="text-form">Bienvenido a suministros</h3>
-      <div className="container-btn-google">
-        <BtnGoogle
-          handleCloseModal={handleCloseModal}
-          setIsLoggedIn={setIsLoggedIn}
-          handleLoginSuccess={handleLoginSuccess}
-        />
-      </div>
+      <BtnGoogle
+        handleCloseModal={handleCloseModal}
+        setIsLoggedIn={setIsLoggedIn}
+        handleLoginSuccess={handleLoginSuccess}
+      />
       <div className="contenedor-liner">
         <hr className="liner-separator" />
         <span className="m-1 o">O</span>
@@ -116,9 +113,11 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
       <span className="btn-recovery" onClick={recoveryRoute}>
         ¿ Has olvidado tu contraseña ?
       </span>
+
       <Button variant="primary" type="submit" className="mt-3 btn-submit">
         Iniciar sesión
       </Button>
+
       <span>
         {setMessage && (
           <p

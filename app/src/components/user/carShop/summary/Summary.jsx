@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { LoginModal } from "../../autenticacion/LoginModal";
+import { ModalEntrega } from "../../Modal/ModalEntrega";
+import { useCarShop } from "../../../../hook";
+import { isAuthenticated } from "../../../../auth";
+import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
 import { BoxText } from "./BoxText";
-import { useNavigate } from "react-router";
-import { useCarShop } from "../../../../hook/CarShopContext";
-import { isAuthenticated } from "../../../../auth/Auth";
-import { ModalEntrega } from "../../Modal/ModalEntrega";
-import { LoginModal } from "../../autenticacion/LoginModal";
 
 // Componente resumen de compra
 
@@ -114,7 +114,7 @@ function content({
   return (
     <>
       <h2 className="txt-oaut">
-        Puedes <strong> iniciar sesion</strong> <br /> y tener un regsitro de
+        Puedes iniciar sesion y guardar un registro de
         tus compras
       </h2>
       <div className="oaut-modal-summary">
@@ -129,7 +129,7 @@ function content({
             }}
             controlComponent={(handleShow) => (
               <Button onClick={handleShow} className="btn">
-                quiero iniciar sesión
+                 iniciar sesión
               </Button>
             )}
           />
@@ -137,7 +137,7 @@ function content({
         <div>
           <Button className="btn" onClick={() => handleContinueAsGuest()}>
             {" "}
-            quiero continuar como invitado
+             continuar como invitado
           </Button>
         </div>
       </div>

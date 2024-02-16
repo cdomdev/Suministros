@@ -3,6 +3,8 @@ import { NavAdmin } from "../Nav/NavAdmin";
 import { Listar } from "./Listar";
 import { Crear } from "./Crear";
 import { Eliminar } from "./Eliminar";
+import { RutasAside } from "../aside";
+
 
 export const Subcategorias = () => {
   const [categorias, setCategoria] = useState([]);
@@ -11,6 +13,11 @@ export const Subcategorias = () => {
     <>
       <NavAdmin />
       <section className="section-category">
+      <div className="contenedor-rutas">
+          <div className="aside-rutas">
+            <RutasAside />
+          </div>
+        </div>
         <aside>
           <div className="subcategorias">
             <div>

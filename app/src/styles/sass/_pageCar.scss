@@ -10,11 +10,19 @@ $otro: 'Lato', sans-serif;
   box-sizing: border-box;
   background-color: white;
 }
+.contenedor-car{
+  position: relative;
+  .carshop{
+      width: 49px;
+      height: 49px;
+      cursor: pointer;  
+  }
 
+}
 .insignia-car {
   position: absolute;
-  top: -5px;
-  right: -1px;
+  top: -7px;
+  right: 5px ;
   background-color: red;
   color: white;
   border-radius: 50%;
@@ -333,8 +341,17 @@ $otro: 'Lato', sans-serif;
             }
             .cont-btn{
                 display: flex;
+                flex-direction: column;
                 width: 80%;
                 margin: 0 auto;
+                .message{
+                  color: red;
+                  height: 20px;
+                  font-size: 11px;
+                  text-align: center;
+                  margin: 0 0 15px 0;
+                  font-weight: bold;
+                }
                 .btn-comtinue{
                     width: 90%;
                     margin: auto;
@@ -402,11 +419,10 @@ $otro: 'Lato', sans-serif;
   }
 }
 .content-use{
-  height: auto;
   padding: 20px 10px;
   .txt-oaut{
     font-size: 16px;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     font-family: $otro;
     color: #213C65;
     text-align: center;
@@ -509,13 +525,13 @@ $otro: 'Lato', sans-serif;
   }
 
   .contenedor-car {
-      position: relative;
-      width: 100px;
-       .insignia-car {
-           position: absolute;
-           left: 39px;
-         }
-     }
+    position: relative;
+    width: 100px;
+    .insignia-car {
+      position: absolute;
+      left: 39px;
+    }
+  }
  
 }
 

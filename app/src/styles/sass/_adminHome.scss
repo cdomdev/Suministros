@@ -67,26 +67,15 @@ $color-complementario: #f2efe1;
     }
 }
 
-.layout-admin-home{
-  padding-top: 1em;
-  .navbar-admin-section{
-    border: solid 1px;
-    width: 98%;
-    margin-top: 3em;
-    border: none;
-    padding: 85x 0;
-    @include bordeBox();
-    text-align: center;
-    border-radius: 10px;
-   
+.layout-admin-home{ 
     .text-menu-admin{
-      font-family: $tittlesFonts;
       color: #243a5e;
-      font-size: 28px;
-      padding: 5px 0;
+      font-family: $tittlesFonts;
+      font-size: 23px;
+      padding: 8px 0;
+      font-weight: bold;
+      text-align: center;
     }
-   
-  }
  
   .container-cards-home-admin{
     margin-top: 2em;

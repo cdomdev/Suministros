@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { FaTruck } from "react-icons/fa6";
 import { ModalEntrega } from "../Modal/ModalEntrega";
-import { LoguedDates } from "./LoguedDates";
+import { UserDates } from "./UserDates";
 
 export const EnvioUser = () => {
   const [check, setCheck] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [show, setshow] = useState(false);
-
 
   const handleShow = () => setshow(true);
   const handleClose = () => setshow(false);
@@ -16,10 +15,6 @@ export const EnvioUser = () => {
     setCheck(!check);
     setExpanded(!expanded);
   };
-
-  function content() {
-    return <LoguedDates />;
-  }
 
   return (
     <div className={`envio-programado ${expanded ? "expanded" : ""}`}>
@@ -57,7 +52,7 @@ export const EnvioUser = () => {
               handleShow={handleShow}
               handleClose={handleClose}
               show={show}
-              content={content()}
+              content={<UserDates />}
               texto="Agregar Informacion"
             />
           </div>

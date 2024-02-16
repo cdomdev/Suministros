@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import React, {  useState } from "react";
+import {  Modal } from "react-bootstrap";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { useLocation } from "react-router-dom";
-import { isAuthenticated } from "../../../auth/Auth";
 
 export const LoginModal = ({ setIsLoggedIn, controlComponent }) => {
   const [showModal, setShowModal] = useState(false);

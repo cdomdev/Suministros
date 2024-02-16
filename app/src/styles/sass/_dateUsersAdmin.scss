@@ -36,13 +36,24 @@ $color-complementario: #f2efe1;
 
 
 .body-components-admin{
-    @include backgroundSectionAdmin();
-     height: 100vh;
+  h1{
+    text-align: center;
+    color: #213C65;
+    font-size: 25px;
+    font-family: $tittlesFonts;
+  }
      .layout-admin-user{
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
+      display: grid;
+      grid-template-columns: 0.2fr 3fr;
+      grid-template-areas:
+      'aside content content content'
+      'aside content content content'
+      'aside content content content'
+      'aside content content content';
+      gap: 10px;
+      justify-content: flex-start;
+      align-items: flex-start;
+
          .title-user-layout{
              align-self: flex-start;
              margin: 1em 0 0 5em;
@@ -51,8 +62,9 @@ $color-complementario: #f2efe1;
         }
          .table-user-admin{
              box-shadow: 0 0 6px rgb(183, 182, 182);
-             width: 80%;
+             width: 90%;
              margin-top: 2em;
+             grid-area: content;
              .thead-table-users{
                  background-color: #0c5dd6;
                  color: $color-complementario;
