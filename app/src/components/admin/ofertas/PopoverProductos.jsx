@@ -46,7 +46,7 @@ export const PopoverProductos = ({
                   <Form.Check
                     type="checkbox"
                     id={`producto-${producto.id}`}
-                    label={`${producto.title} - ${producto.description} - ${producto.Inventarios[0].cantidad} Unidades`}
+                    label={`${producto.title} - ${producto.nombre} - ${producto.Inventarios[0].cantidad} Unidades`}
                     onChange={(e) => handleProductSelection(e, producto.id)}
                   />
                 </div>
