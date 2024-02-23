@@ -1,6 +1,3 @@
-@use 'colors';
-@use 'fuentes';
-@use 'mixins';
 
 
 @mixin bordeBox{
@@ -24,11 +21,12 @@ $color-complementario: #f2efe1;
 .body-components-inventary{
     display: flex;
     width: 95vw;
+    padding: 20px;
+    @include bordeBox();
     margin: auto;
-    margin-top: 7em;
     justify-content: center;
     display: grid;
-    grid-template-columns: 0.3fr 3fr;
+    grid-template-columns: 0.2fr 3fr;
     grid-template-areas: 
     'filtros filtros filtros filtros'
     'aside contenido contenido contenido'
@@ -37,15 +35,25 @@ $color-complementario: #f2efe1;
     grid-row: auto auto auto;
     .filtros-content{
         grid-area: filtros;
-        width: 90vw;
-        justify-content: end;
+        width: 95vw;
+        justify-content: space-between;
         margin: auto;
         display: flex;
+        div{
+            h1{
+                font-size: 25px;
+                padding-left: 6em;
+                color: #243a5e;
+                font-family: $tittlesFonts;
+                font-weight: 600;
+            }
+        }
         .filtros {
             display: flex;
             flex-direction: row;
             gap: 20px;
             margin-bottom: 1em;
+            padding-right: 6em;
             .f-select {
                 height: 40px;
                 width: 200px;
@@ -65,23 +73,25 @@ $color-complementario: #f2efe1;
 
     .contenedor-inventario{
         grid-area: contenido;
-        display:flex;
-        justify-content: center;
-        gap: 1em;
+        justify-content: flex-start;
+        row-gap: 10px;
+        column-gap: 10px;
         flex-wrap: wrap;
+        padding: 20px ;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(620px, 600px ));
         .contenedor-det-img{
             display: flex;   
             justify-content: space-between; 
             gap: 30px;
         }
         .card-products-inventario{
-            max-width: 620px;
+            max-width: 650px;
             width: 620px;
             @include bordeBox();
             font-family: $contenido2;
             display: flex;
             align-items: center;
-            gap: 1em;
             padding: 20px;
             flex-direction: column;
             .content-img{
@@ -119,26 +129,30 @@ $color-complementario: #f2efe1;
         .container-btn{
             display: flex;
             gap: 20px;
+            background-color: #f4f4f4 !important;
+            margin: 1em 0;
+            @include bordeBox();
+            padding: 10px;
         }
        
         
          
        
-        @media screen and (max-width: 1280px){
-            .card-products-inventario{
-                display: flex;
-                width: 18em;
-            }
+        // @media screen and (max-width: 1280px){
+        //     .card-products-inventario{
+        //         display: flex;
+        //         width: 18em;
+        //     }
            
-        }
+        // }
     
     }
-    @media screen and (max-width: 1280px) {
-        .contenedor-inventario{
-            display: flex;
-            justify-content: center;
-        }
-    } 
+    // @media screen and (max-width: 1280px) {
+    //     .contenedor-inventario{
+    //         display: flex;
+    //         justify-content: center;
+    //     }
+    // } 
    
 }
 

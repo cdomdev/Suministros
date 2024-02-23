@@ -74,10 +74,6 @@ export const Editar = ({ producto, getProductos, setEditar, setListadoState }) =
     }
   };
 
-  // const handleImagenChange = (e) => {
-  //   setSelectedImage(e.target.files[0]);
-  //   setPreviewImage(URL.createObjectURL(e.target.files[0]));
-  // };
 
   return (
     <div className="edit-form">

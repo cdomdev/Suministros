@@ -9,9 +9,9 @@ export const AddToCar = () => {
   };
   return (
     <div className="car-empty">
-      <span>Tu carrito esta vacio 😔</span>
+      <span>Tu carrito esta vacio.</span>
       <span>
-        Visita la seccion de productos y agregalos para verlos aqui 😁
+        Visita la seccion de productos y añade uno nuevo a tu carrito.
       </span>
       <div>
         <Button className="mt-4" onClick={navegateStore}>

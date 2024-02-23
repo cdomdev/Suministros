@@ -11,7 +11,7 @@ $otro: 'Lato', sans-serif;
 
 section{
     .details{
-        width: 80vw;
+        width: 90vw;
         margin: 0 auto;
         margin-top: 3em;
         display: grid;
@@ -249,12 +249,13 @@ section{
             padding: 10px 0;
         }
         .buttons-content{
+            width: 70%;
+            float: right;
             display: flex;
-            gap: 5px;
             justify-content: space-between;
             .btn{
                 font-size: 13px;
-                width: 50%;
+                width: 48%;
             }
         }
 
@@ -263,7 +264,8 @@ section{
    
 }
 
-@media (min-width: 900px) and (max-width: 1240px) {
+
+@media (min-width: 800px) and (max-width: 1400px) {
     section{
         .details{
           width: 95vw;
@@ -274,6 +276,9 @@ section{
                       .user{
                          display: flex;
                          justify-content: center;
+                         .card-user{
+                            width: 300px;
+                         }
                          .adrres-user{
                             width: 300px;
                          }
@@ -298,9 +303,46 @@ section{
              
             }
         }
-      }
-    
+      }  
 }
+// @media (min-width: 900px) and (max-width: 1240px) {
+//     section{
+//         .details{
+//           width: 95vw;
+//           grid-template-columns: 50% 50%;
+//           .info{
+//               .box2{
+//                   .info{
+//                       .user{
+//                          display: flex;
+//                          justify-content: center;
+//                          .adrres-user{
+//                             width: 300px;
+//                          }
+//                          .total{
+//                             width: 300px;
+//                          }
+//                       } 
+//                   }
+//               }   
+//           }
+//             .summary{
+//               .box4{
+//                   .card-product{
+//                       .img-car-shop{
+//                           width: 4em;
+//                       }
+//                       .data-products{
+//                           padding-left: 5px;
+//                       }
+//                   }
+//               }
+             
+//             }
+//         }
+//       }
+    
+// }
 
 
 @media (min-width:  768px) and (max-width: 900px) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import {
   HomeUser,
@@ -23,11 +23,13 @@ import {
   BuscadorPage,
   PagoPage,
   Pedidos,
-  FinnallyBuy
+  FinnallyBuy,
 } from "../components/user/pages";
 
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
 import { NavCustome } from "../components/user/Nav/NavCustome";
+import { Profile, DetailPedidos, DataUser } from "../components/user/pedidos/RutasPedido";
+import { NotExisting } from "../components/admin/routeNotExisting/NotExisting";
 
 export const DashboardUser = () => {
   return (
@@ -77,13 +79,23 @@ export const DashboardUser = () => {
         <Route path="/suministros/car" element={<CarShopInfo />} />
         <Route path="/suministros/entrega" element={<Entrega />} />
         <Route path="/suministros/pago" element={<PagoPage />} />
-        <Route path="/suministros/user/pedidos" element={<Pedidos />} />
+
         <Route
           path="/suministros/details/:descripcion"
           element={<DetallesProducto />}
         />
+        <Route
+          path="/purchaseProcessCompleted/:detalles"
+          element={<FinnallyBuy />}
+        />
 
-        <Route path="/purchaseProcessCompleted/:detalles" element={<FinnallyBuy/>}/>
+        {/* rutas anidadas */}
+        <Route path="/suministros/user/" element={<Pedidos />}>
+          <Route  path="profile" index element={<Profile />} />
+          <Route path="details" element={<DetailPedidos />} />
+          <Route path="data" element={<DataUser />} />
+        </Route>
+        <Route path="*" element={<NotExisting/>}/>
       </Routes>
     </>
   );

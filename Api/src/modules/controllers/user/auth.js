@@ -1,23 +1,35 @@
-const {User} = require("../../models/usersModels");
+const { User } = require("../../models/usersModels");
 const Auth = require("../../middleware/authValidate");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
-
+const axios = require("axios");
+const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
+const CLIENT_ID = process.env.CLIENT_ID;
 const claveSecreta = process.env.CLAVE_SECRETA;
 const tiempoExpiracion = 3600;
+const { sendEmailWithTemplate } = require("../../middleware/Mails");
 
+// plantillas
+const registroTemplatePath = "../../templates/registro.html";
 
-// constrolador para el resgitro de usaurios
-
-const registroController = async (req, res) => {
-  const { name, email, password, googleToken } = req.body;
+// inciio con google
+const googleLogin = async (req, res) => {
+  const { token } = req.body;
   const defaultPassword = process.env.PASSWORD_DEFAULT;
-
   try {
-    if (googleToken) {
-      // Registro con Google
-      const userData = await Auth.verifyGoogleToken(googleToken);
-      const user = await User.findOne({
+    // Verificar el token de acceso con Google
+    const googleResponse = await axios.get(
+      `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${token}`
+    );
+
+    // Verifica que el token sea válido y que pertenezca a tu cliente de Google
+    if (googleResponse.data.audience === CLIENT_ID) {
+      // Por ejemplo, puedes guardar el usuario en tu base de datos y generar un token JWT
+      const userData = await getUserDataFromGoogle(token);
+
+      // validar existencia de datos en db
+      let user = await User.findOne({
         where: { email: userData.email },
       });
 
@@ -29,10 +41,14 @@ const registroController = async (req, res) => {
           password: defaultPassword,
           role: "user",
         });
+        await sendEmailWithTemplate(
+          user.email,
+          "Registro exitoso",
+          registroTemplatePath
+        );
       }
 
-      const token = jwt.sign({ user }, claveSecreta, { expiresIn: 3600 });
-      return res.status(201).json({
+      return res.status(200).json({
         message: "Inicio de sesion exitoso",
         token,
         role: user.role,
@@ -41,28 +57,52 @@ const registroController = async (req, res) => {
         email: user.email,
       });
     } else {
-      // Registro normal
-      const existingUser = await User.findOne({ where: { email } });
-
-      if (existingUser) {
-        return res.status(400).json({ error: "El correo ya está registrado" });
-      }
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = await User.create({
-        name,
-        email,
-        password: hashedPassword,
-        role: "user",
-      });
-
-      const token = jwt.sign({ user: newUser }, claveSecreta, {
-        expiresIn: 3600,
-      });
-      return res
-        .status(201)
-        .json({ message: "Registro exitoso", token, role: newUser.role });
+      // El token no es válido para tu cliente de Google
+      res.status(401).json({ error: "Token de acceso no válido" });
     }
+  } catch (error) {
+    console.error("Error al verificar el token de acceso:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
+// constrolador para el resgitro de usaurios
+
+const registroController = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "El correo ya está registrado" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role: "user",
+    });
+
+
+    await sendEmailWithTemplate(
+      newUser.email,
+      "Registro exitoso",
+      registroTemplatePath
+    );
+
+    const token = jwt.sign({ user: newUser }, claveSecreta, {
+      expiresIn: 3600,
+    });
+    return res.status(201).json({
+      message: "Registro exitoso",
+      token,
+      role: newUser.role,
+      name: newUser.name,
+      picture: newUser.picture,
+      email: newUser.email,
+    });
   } catch (error) {
     console.error("Error en el registro:", error);
     return res.status(500).json({ error: "Error en el registro" });
@@ -72,18 +112,16 @@ const registroController = async (req, res) => {
 // constrolador para el login de usuarios
 
 const loginController = async (req, res) => {
-  const { email, password } = req.body;
+  const { email1, password } = req.body;
 
   try {
-    const userFromDB = await Auth.userExisting(email);
+    const userFromDB = await Auth.userExisting(email1);
 
     if (userFromDB) {
       const passwordMatch = await Auth.passwordMatch(
         password,
         userFromDB.password
       );
-      console.log("que paso en la contraseña", passwordMatch);
-
       if (passwordMatch) {
         const { id, role, email, name } = userFromDB;
 
@@ -116,8 +154,6 @@ const loginController = async (req, res) => {
     res.status(500).json({ success: false, message: "Error en el servidor" });
   }
 };
-
-
 
 const recoveryPassword = async (req, res) => {
   const { email, password } = req.body;
@@ -155,4 +191,5 @@ module.exports = {
   registroController,
   loginController,
   recoveryPassword,
+  googleLogin,
 };

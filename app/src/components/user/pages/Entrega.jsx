@@ -14,12 +14,12 @@ export const Entrega = () => {
 
   return (
     <>
-      <Container className="container-car">
+      <div className="container-car">
         <section>
           <Steps activeStep={activeStep} />
           <EntregaCar cartItems={cartItems} handleContinue={handleContinue} />
         </section>
-      </Container>
+      </div>
     </>
   );
 };

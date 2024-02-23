@@ -33,6 +33,18 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: "user",
     },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    detalles: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     tableName: "usuarios",
@@ -69,7 +81,7 @@ const Pedido = sequelize.define(
     },
     invitado_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
@@ -145,8 +157,8 @@ const Invitado = sequelize.define(
     },
     detalles: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     tableName: "invitado",
@@ -157,12 +169,14 @@ const Invitado = sequelize.define(
 // deficion de relaciones entre modelos
 
 // realcion usuario - pedidos
-Pedido.belongsTo(User, {foreignKey: 'usuario_id'})
+Pedido.belongsTo(User, { foreignKey: "usuario_id" });
 //  relacion invitado - pedidos
-Pedido.belongsTo(Invitado, {foreignKey: 'invitado_id'})
+Pedido.belongsTo(Invitado, { foreignKey: "invitado_id" });
 
 // relacion pedidos - detalles de pedido
-DetallesPedido.belongsTo(Pedido, {foreignKey: 'pedido_id'})
+DetallesPedido.belongsTo(Pedido, { foreignKey: "pedido_id" });
+
+Pedido.hasMany(DetallesPedido, { foreignKey: "pedido_id" });
 
 module.exports = {
   User,

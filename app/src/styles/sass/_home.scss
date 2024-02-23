@@ -14,7 +14,10 @@ body{
     background-color: #f4f4f4;
     overflow-x: hidden;
     scrollbar-width: none;
+    overflow-y: none;
+   
 }
+
 
 // carrusel 
 
@@ -23,9 +26,14 @@ body{
         width: 100vw;
         margin: 0 auto;
         display: flex;
-        height: 550px;
-        max-height: 600px;
-        padding-top: 1em;
+        max-height: 400px;
+        margin-top: -17px;
+        .carousel-image {
+            object-fit: unset; 
+            object-position:center; 
+            overflow: hidden; 
+            height: 450px;
+        }
         .carousel-control-next-icon{
             border-radius: 50px;
             padding: 25px;
@@ -74,15 +82,18 @@ body{
 // home 
 
 
-
-
 .contenido{
-   
+    width: 80vw;
+    margin: auto;
+    font-family: $contenidoFonts;
+
     h1{
         font-size: 25px;
         margin: 2em 0 20px 0;
         text-align: center;
         font-weight: 600;
+        font-family: $tittlesFonts;
+        color: #213C65;
     }
     p{
         font-size: 15px;
@@ -206,61 +217,94 @@ body{
         font-size: 12px;
     }
  }
-
-    
 }
 
-@media screen and (min-width: 1280px) {
-  
+
+
+@media screen and (min-width: 1024px )and (max-width: 1280px) {
+    .carrusel{
+        height: auto;
+        .carousel-image {
+            object-fit: unset; 
+            object-position:center; 
+            overflow: hidden; 
+            height: 450px;
+        }
+    }
    .contenido {
     .box-products-home { 
-        width: 100%;  
-       .contenedor{
-        width: 10em;
-        img{
+        width: 100%;
+        gap: 10px;
+        height: auto;
+        div{
             width: 10em;
-            height: 10em;
+            .contenedor{
+                width: 10em;
+                height: 10em;
+                img{
+                    width: 10em;
+                    height: 9em;
+                }
+                span{
+                    font-size: 12px;
+                }
+        
+            }   
         }
-        span{
-            font-size: 12px;
-        }
-
-       } 
+      
        
     }
    }
 }
 
-@media screen and (max-width: 1024px )and (max-width: 1280px) {
+@media (min-width: 800px) and (max-width: 1400px){
     .carrusel{
         height: auto;
-        margin-top: -7em;
+        margin-top: -4em;
+        .carousel-image {
+            object-fit: unset; 
+            object-position:center; 
+            overflow: hidden; 
+            height: 350px;
+        }
     }
 
    .contenido {
+    width: 95vw;
+    margin: auto ;
     .box-products-home { 
-        width: 100%;  
-       .contenedor{
-        width: 8em;
-        img{
-            width: 8em;
-            height: 7em;
+        width: 100%;
+        div{
+            .contenedor{
+                width: 7em;
+                img{
+                    width: 7em;
+                    height: 6em;
+                }
+                span{
+                    font-size: 12px;
+                }
+        
+            }   
         }
-        span{
-            font-size: 12px;
-        }
-
-       } 
+      
        
     }
    }
+
 }
 
-
-@media (min-width:  768px) and (max-width: 900px) {
+      
+@media  screen and (min-width: 500px) and (max-width: 800px) {
     .carrusel{
-        margin-top: -7em;
+        margin-top: -4em;
         height: auto;
+        .carousel-image {
+            object-fit: unset; 
+            object-position:center; 
+            overflow: hidden; 
+            height: 250px;
+        }
         .carousel-caption{
             h5{
                 font-size: 13px;
@@ -276,10 +320,12 @@ body{
                 width: 18px;
             }
         }
+        
     }
        
     .container{
         margin: 0 auto;
+        width: 95vw;
         .title-productos{
             margin-top: 6em;
             font-size: 22px;
@@ -289,22 +335,25 @@ body{
         } 
         // revisar la dimencion de la pantalla
         .box-products-home { 
-            width: 100%;  
-            background-color: #213C65;
-           .contenedor{
-            width: 8em;
-            img{
-                width: 8em;
-                height: 7em;
+            background-color: #f4f4f4;
+            width: 100%;
+            gap: 5px;
+            div{
+                .contenedor{
+                    width: 7em;
+                    img{
+                        width: 6em;
+                        height: 5em;
+                    }
+                    span{
+                        font-size: 12px;
+                    }
+            
+                   }   
             }
-            span{
-                font-size: 12px;
-            }
-    
-           } 
+          
            
         }
-       
        
     }
     .content-icons-nav{
@@ -321,17 +370,27 @@ body{
             left: 38px;
         }
     }
+        
 }
-      
 
 
 @media (min-width: 300px) and (max-width: 500px) {
     
     .carrusel{
      height: auto;
-     margin-top: -7em;
+     margin-top: -6em;
+        .carousel-image {
+            object-fit: unset; 
+            object-position:center; 
+            overflow: hidden; 
+            height: 150px;
+        }
+     .carousel-control-prev-icon{
+        padding: 0;
+     }
     }
-    .container{
+    .contenido{
+        width: 95vw;
         h1{
           font-size: 18px;
         }
@@ -375,7 +434,7 @@ body{
             padding: 4px;
             margin-left: -15px;
             .svg-truck{
-                .svg-truck{
+                .text-svg-truck{
                     margin: -3px 0 -2px 0  ;
                     font-size: 13px;
                 }
@@ -385,8 +444,8 @@ body{
              }
              .svg-store{
                 .text-svg-store{
-                    font-size: 12px;
-                    margin-bottom: -2px;
+                    margin: -3px 0 -2px 0  ;
+                    font-size: 13px;
                 }
                 .text-svg{
                     font-size: 9px;
@@ -413,3 +472,27 @@ body{
         } 
     
 }
+// /* Estilos para dispositivos de 300px a 499px */
+// @media (min-width: 300px) and (max-width: 499px) {
+//     /* Estilos para dispositivos pequeños */
+// }
+
+// /* Estilos para dispositivos de 500px a 767px */
+// @media (min-width: 500px) and (max-width: 767px) {
+//     /* Estilos para dispositivos medianos */
+// }
+
+// /* Estilos para dispositivos de 768px a 1023px */
+// @media (min-width: 768px) and (max-width: 1023px) {
+//     /* Estilos para tablets y dispositivos similares */
+// }
+
+// /* Estilos para dispositivos de 1024px a 1199px */
+// @media (min-width: 1024px) and (max-width: 1199px) {
+//     /* Estilos para dispositivos de tamaño medio */
+// }
+
+// /* Estilos para dispositivos de 1200px en adelante */
+// @media (min-width: 1200px) {
+//     /* Estilos para pantallas grandes o de alta resolución */
+// }

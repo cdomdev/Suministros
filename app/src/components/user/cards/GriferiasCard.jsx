@@ -120,7 +120,12 @@ export const GriferiasCard = () => {
             <option value="mayor-menor"> De mayor precio a menor precio</option>
           </Form.Select>
         </div>
-        <span>Pisos({productos.length} productos)</span>
+        <div className="count-products">
+          <div className="count">
+            <span>{productos.length}</span>
+          </div>
+          <p>Productos</p>
+        </div>
       </div>
       <div className="contenedor-card">
         {productos.length === 0 ? (
@@ -145,10 +150,8 @@ export const GriferiasCard = () => {
                   <li className="title">{producto.title}</li>
                   <li className="text">{producto.nombre}</li>
                   <li className="valor">
-                    $ {producto.valor} 
-                     <span className="unidad">
-                       * UN 
-                    </span>
+                    $ {producto.valor}
+                    <span className="unidad">* UN</span>
                   </li>
                 </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>

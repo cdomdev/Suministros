@@ -1,33 +1,46 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const authUsers = require('../controllers/user/auth');
-const controller = require('../controllers/user/controller')
-
-
+const {
+  googleLogin,
+  loginController,
+  recoveryPassword,
+  registroController,
+} = require("../controllers/user/auth");
+const {
+  buscarProductos,
+  finalizarCompraInvitado,
+  finalizarCompraUsuario,
+  listarCategoriaProducto,
+  listarOfertas,
+  listarProductos,
+  obtenerOfertasConProductos
+} = require("../controllers/user/controller");
 
 // autenticacion  y registro
-router.post('/login', authUsers.loginController);
+router.post("/login", loginController);
 
-router.post('/registro',  authUsers.registroController);
+router.post("/registro", registroController);
 
-router.post('/update/password',authUsers.recoveryPassword)
+router.post("/oauth-google", googleLogin);
 
+router.post("/update/password", recoveryPassword);
 
-// listar productos 
-router.get('/listar/productos', controller.listarProductos )
+// listar productos
+router.get("/listar/productos", listarProductos);
 
-router.get('/categorias/:codigoProducto', controller.listarCategoriaProducto);
+router.get("/categorias/:codigoProducto", listarCategoriaProducto);
 
-router.get("/listar/ofertas", controller.listarOfertas);
+router.get("/listar/ofertas", listarOfertas);
 
-// busqueda de prodcutos 
+// busqueda de prodcutos
 
-router.post('/busqueda-productos', controller.buscarProductos)
+router.post("/busqueda-productos", buscarProductos);
 
-// compra 
-router.post('/finish/buy/invited', controller.finalizarCompraInvitado)
+// compra
+router.post("/finish/buy/invited", finalizarCompraInvitado);
 
-router.post('/finish/buy/user', controller.finalizarCompraUsuario)
+router.post("/finish/buy/user", finalizarCompraUsuario);
 
+router.get("/obtener/ofertas", obtenerOfertasConProductos);
 
 module.exports = router;

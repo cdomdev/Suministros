@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoBagAddSharp } from "react-icons/io5";
 import { MdOutlineInventory, MdAssignmentAdd } from "react-icons/md";
-import { BiSolidOffer} from "react-icons/bi";
+import { BiSolidOffer } from "react-icons/bi";
+import { BsBoxSeam } from "react-icons/bs";
 
 export const RutasBox = () => {
   return (
@@ -69,6 +70,17 @@ export const RutasBox = () => {
           <MdAssignmentAdd className="icon-box" />
           <div className="text-primiry-box-rutas">
             <p className="text-box-routes">Subcategorias</p>
+            <span className="span-box-rutas">
+              Ver/ añadir / eliminar Subcategorias
+            </span>
+          </div>
+        </div>
+      </Link>
+      <Link className="link-box" to="/admin/gestionar/pedidos">
+        <div className="box-rutas-admin">
+          <BsBoxSeam className="icon-box" />
+          <div className="text-primiry-box-rutas">
+            <p className="text-box-routes">Pedidos</p>
             <span className="span-box-rutas">
               Ver/ añadir / eliminar Subcategorias
             </span>

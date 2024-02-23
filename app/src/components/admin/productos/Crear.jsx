@@ -160,7 +160,7 @@ export const Crear = ({ setListadoState, listadoState }) => {
 
   return (
     <div className="add">
-      <h3 className="text-titles-admin">Añadir productos: </h3>
+      <h3 className="text-titles-admin">Añadir productos </h3>
       {message && (
         <span
           style={{
@@ -168,6 +168,7 @@ export const Crear = ({ setListadoState, listadoState }) => {
             fontWeight: "340",
             fontSize: "18px",
             margin: "10px",
+            height: '30px'
           }}>
           {message}
         </span>

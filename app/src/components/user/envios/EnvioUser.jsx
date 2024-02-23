@@ -52,7 +52,7 @@ export const EnvioUser = () => {
               handleShow={handleShow}
               handleClose={handleClose}
               show={show}
-              content={<UserDates />}
+              content={<UserDates  handleClose={handleClose} />}
               texto="Agregar Informacion"
             />
           </div>

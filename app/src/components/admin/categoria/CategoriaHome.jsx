@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { CrearPrimary } from "./CrearPrimary";
-import { ListarPrimary } from "./ListarPrimary";
-import { NavAdmin } from "../../Nav/NavAdmin";
-import { RutasAside } from "../../aside";
+import { CrearPrimary,  Eliminar, ListarPrimary } from "./";
+import { RutasAside } from "../aside";
 
 export const CategoriaHome = () => {
   const [categoriasPriMary, setCategoriasPriMary] = useState([]);
@@ -15,27 +13,27 @@ export const CategoriaHome = () => {
             <RutasAside />
           </div>
         </div>
-        <div className="categorias">
-          <aside>
+        <aside>
+          <h1>Agrega nuevas categorias</h1>
+          <div className="categorias">
             <div>
               <CrearPrimary
                 setCategoriasPriMary={setCategoriasPriMary}
                 categoriasPriMary={categoriasPriMary}
               />
+              <Eliminar
+                setCategoriasPriMary={setCategoriasPriMary}
+                categoriasPriMary={categoriasPriMary}
+              />
             </div>
-            <div className="primary">
+            <div>
               <ListarPrimary
                 setCategoriasPriMary={setCategoriasPriMary}
                 categoriasPriMary={categoriasPriMary}
               />
             </div>
-          </aside>
-          <article>
-            <div className="delete">
-              <p>eliminar</p>
-            </div>
-          </article>
-        </div>
+          </div>
+        </aside>
       </section>
     </>
   );

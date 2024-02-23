@@ -1,27 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { BtnGoogle } from "./Google/BtnGoogle";
 import { useUser } from "../../../hook";
+import { GoogleLogin } from "./Google/GoogleLogin";
+import EventEmitter from "../../../hook/EventEmitter";
 
-export const Register = ({ handleCloseModal }) => {
+export const Register = ({ handleCloseModal, handleLoginSuccess, setIsLoggedIn }) => {
   const [message, setMessage] = useState("");
   const nanvigate = useNavigate();
-  const { login, setUser, setIsLoggedIn } = useUser();
+  const { login } = useUser();
+
+  useEffect(() => {
+    const authChangeCallback = (isLoggedIn) => {
+      if (isLoggedIn) {
+      }
+    };
+    const unsubscribe = EventEmitter.subscribe(
+      "authChange",
+      authChangeCallback
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const notifyAuthChange = (isLoggedIn) => {
+    EventEmitter.emit("authChange", isLoggedIn);
+  };
 
   const handleSubmit = async (values) => {
     try {
-      const URL = "http://localhost:3000/api/register";
+      const URL = "http://localhost:3000/registro";
       const response = await axios.post(URL, values);
       const previousLocation = sessionStorage.getItem("previousLocation");
 
+      console.log(response)
+      const { name, email, picture } = response.data;
+      const dataUserSesion = {
+        name: name,
+        email: email,
+        picture: picture || null,
+      };
+
+      localStorage.setItem(
+        "userOnValidateScesOnline",
+        JSON.stringify(dataUserSesion)
+      );
+      console.log(response);
       if (response.status === 201) {
         login(response.data);
-        setMessage("Registro exitoso");
-        setIsLoggedIn(true);
+        setMessage("Registrado con exito");
         handleCloseModal();
+        notifyAuthChange(true)
+        setIsLoggedIn(true)
+        handleLoginSuccess("actualizado", true);
         nanvigate(previousLocation || "/");
       } else {
         setMessage("El correo ya está registrado");
@@ -34,6 +69,7 @@ export const Register = ({ handleCloseModal }) => {
       ) {
         setMessage(error.response.data.error);
       } else {
+        console.log(error)
         setMessage("¡ Error en el registro, intentelo de nuevo !");
       }
     }
@@ -77,12 +113,12 @@ export const Register = ({ handleCloseModal }) => {
         }) => (
           <Form className="form-register" onSubmit={handleSubmit}>
             <h3 className="text-form">Formulario de registro</h3>
-            <div className="container-btn-login">
-              <BtnGoogle
-                handleCloseModal={handleCloseModal}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            </div>
+            <GoogleLogin
+              handleCloseModal={handleCloseModal}
+              setIsLoggedIn={setIsLoggedIn}
+              handleLoginSuccess={handleLoginSuccess}
+              texto={"Registrarme con google"}
+            />
             <div className="contenedor-liner">
               <hr className="liner-separator" />
               <span className="m-1 o">O</span>
@@ -146,11 +182,12 @@ export const Register = ({ handleCloseModal }) => {
             <span>
               {setMessage && (
                 <p
-                  className={`message-response-server ${
-                    message === "Inicio de sesión exitoso"
-                      ? "success-message"
-                      : "error-message"
-                  }`}>
+                  style={{
+                    color: message.includes("exito") ? "green" : "red",
+                    fontSize: "14px",
+                    margin: "20px 0",
+                    textAlign: 'center'
+                  }}>
                   {message}
                 </p>
               )}
@@ -161,3 +198,4 @@ export const Register = ({ handleCloseModal }) => {
     </div>
   );
 };
+

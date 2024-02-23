@@ -1,19 +1,19 @@
 // import "../styles/App.css";
 import React, { useState, useRef, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
-import imgFav from "../../../assets/img/favicon.png";
 import axios from "axios";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { BtnGoogle } from "./Google/BtnGoogle";
+import imgFav from "../../../assets/img/favicon.png";
 import EventEmitter from "../../../hook/EventEmitter";
-import { useUser } from "../../../hook/UserDataProvider";
+import { useUser } from "../../../hook";
+import { GoogleLogin } from "./Google/GoogleLogin";
 
 export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
   const [message, setMessage] = useState("");
   const emailRefLogin = useRef();
   const navigate = useNavigate();
 
-  const { login, setUser, setIsLoggedIn } = useUser();
+  const { login, setIsLoggedIn } = useUser();
 
   useEffect(() => {
     const authChangeCallback = (isLoggedIn) => {
@@ -41,20 +41,34 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const email = emailRefLogin.current?.value;
+    const email1 = emailRefLogin.current?.value;
     const password = event.target.password.value;
 
-    if (email && password) {
+    if (email1 && password) {
       try {
         const URL = "http://localhost:3000/login";
-        const response = await axios.post(URL, { email, password });
-        const { role, token } = response.data;
-        if (response && response.status === 200) {
+        const response = await axios.post(URL, { email1, password });
+        const { token } = response.data;
+
+        const { name, email, picture } = response.data;
+        const dataUserSesion = {
+          name: name,
+          email: email,
+          picture: picture || null,
+        };
+
+        localStorage.setItem(
+          "userOnValidateScesOnline",
+          JSON.stringify(dataUserSesion)
+        );
+
+        if (response.status === 200) {
           const userData = response.data;
           login(userData);
           notifyAuthChange(true);
+          handleLoginSuccess(true);
           setMessage("¡Inicio de sesión exitoso!");
-          setTimeout(() => setMessage(""), 3000);
+          setTimeout(() => setMessage(""), 2000);
           if (userData.role === "admin") {
             localStorage.setItem("HttpOnlyAdmin", token);
             navigate("/admin");
@@ -83,10 +97,11 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
     <Form className="login-form" onSubmit={handleSubmit}>
       <img src={imgFav} className="fav-login" alt="Favicon" />
       <h3 className="text-form">Bienvenido a suministros</h3>
-      <BtnGoogle
+      <GoogleLogin
         handleCloseModal={handleCloseModal}
         setIsLoggedIn={setIsLoggedIn}
         handleLoginSuccess={handleLoginSuccess}
+        texto={"Inicar sesion con google"}
       />
       <div className="contenedor-liner">
         <hr className="liner-separator" />

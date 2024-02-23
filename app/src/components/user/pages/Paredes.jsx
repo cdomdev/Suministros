@@ -6,6 +6,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
+import { BiHomeAlt2 } from "react-icons/bi";
 
 export const Paredes = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -17,24 +18,27 @@ export const Paredes = () => {
   return (
     <>
       <section>
-        <Container>
+        <div className="migajas">
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="medium" />}
             aria-label="breadcrumb">
-            <Link to="/suministros/home">Home</Link>
+            <Link to="/suministros/home">
+              <BiHomeAlt2 className="icon" />
+            </Link>
             <Link to="/suministros/peredes">Paredes</Link>
           </Breadcrumbs>
-          <div className="container-productos">
-            <h1>PERSONALIZA TUS ESPACIOS CON NUESTRO PORTAFOLIO DE PAREDES</h1>
-            <p>
-              Nuestras opciones transformarán cualquier ambiente en un espacio
-              único y acogedor
-            </p>
-            <div className="contenedor-grid-products">
-              <CardParedes />
-            </div>
+        </div>
+        <div className="container-productos">
+          <h1>PERSONALIZA TUS ESPACIOS CON NUESTRO PORTAFOLIO DE PAREDES</h1>
+          <p>
+            Nuestras opciones transformarán cualquier ambiente en un espacio
+            único y acogedor
+          </p>
+          <div className="contenedor-grid-products">
+            <CardParedes />
           </div>
-        </Container>
+        </div>
+
         {cartItemCount > 0 && (
           <Link to={"/suministros/car"}>
             <div class="icon-container">

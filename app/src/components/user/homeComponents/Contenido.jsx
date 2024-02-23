@@ -16,7 +16,7 @@ export const Contenido = () => {
 
   return (
     <>
-      <Container className="contenido">
+      <div className="contenido">
         <div>
           <h1>
             Haz de tu hogar un espacio unico, nos especializamos en acabados
@@ -64,14 +64,14 @@ export const Contenido = () => {
             </div>
             <div className="svg-truck">
               <MdiTruckFast />
-              <h6 className="svg-truck">Envio a domicilio</h6>
+              <h5 className="text-svg-truck">Envio a domicilio</h5>
               <span className="text-svg">
                 Tu pedido hasta la puerta de tu casa
               </span>
             </div>
           </div>
         </div>
-      </Container>
+      </div>
       {cartItemCount > 0 && (
         <Link to="/suministros/car" className="link">
           <div class="icon-container">

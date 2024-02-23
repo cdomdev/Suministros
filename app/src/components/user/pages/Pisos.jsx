@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
+import { BiHomeAlt2 } from "react-icons/bi";
 
 export const Pisos = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -16,28 +17,30 @@ export const Pisos = () => {
   }, [cartItems]);
   return (
     <section>
-      <Container>
+      <div className="migajas">
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="medium" />}
           aria-label="breadcrumb">
-          <Link to="/suministros/home">Home</Link>
+          <Link to="/suministros/home">
+            <BiHomeAlt2 className="icon" />
+          </Link>
           <Link to="/suministros/pisos">Pisos</Link>
         </Breadcrumbs>
-        <div className="container-productos">
-          <h1>
-            DESCUBRE NUESTRAS PROPUESTAS INNOVADORAS PARA RENOVAR TUS SUELOS CON
-            ELEGANCIA
-          </h1>
-          <p>
-            Encuentra el piso perfecto para tu hogar entre nuestra amplia
-            selección, nuestros pisos combinan belleza y resistencia para
-            satisfacer tus necesidades
-          </p>
-          <div className="contenedor-grid-products">
-            <CardPisos />
-          </div>
+      </div>
+      <div className="container-productos">
+        <h1>
+          DESCUBRE NUESTRAS PROPUESTAS INNOVADORAS PARA RENOVAR TUS SUELOS CON
+          ELEGANCIA
+        </h1>
+        <p>
+          Encuentra el piso perfecto para tu hogar entre nuestra amplia
+          selección, nuestros pisos combinan belleza y resistencia para
+          satisfacer tus necesidades
+        </p>
+        <div className="contenedor-grid-products">
+          <CardPisos />
         </div>
-      </Container>
+      </div>
       {cartItemCount > 0 && (
         <Link to={"/suministros/car"}>
           <div class="icon-container">

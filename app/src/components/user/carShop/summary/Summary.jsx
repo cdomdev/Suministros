@@ -114,8 +114,7 @@ function content({
   return (
     <>
       <h2 className="txt-oaut">
-        Puedes iniciar sesion y guardar un registro de
-        tus compras
+       Inicar sesion y guarda el registro de tus compras
       </h2>
       <div className="oaut-modal-summary">
         <div>

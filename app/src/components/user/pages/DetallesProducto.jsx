@@ -36,6 +36,7 @@ export const DetallesProducto = () => {
     return <div style={{ textAlign: "center" }}>Cargando...</div>;
   }
 
+
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
@@ -114,7 +115,7 @@ export const DetallesProducto = () => {
         </div>
         <hr />
         <div>
-          <h3 className="text-center mt-5">Productos relacionados</h3>
+          <h3 className="text-center mt-3">Productos relacionados</h3>
           <div className="sideProducts-relacionados">
             <CarProductsRelationados relacionado={relacionado} />
           </div>

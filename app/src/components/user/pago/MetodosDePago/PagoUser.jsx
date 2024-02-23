@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ModalEntrega } from "../../Modal/ModalEntrega";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useCarShop } from "../../../../hook";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export const PagoContraEntrega = () => {
+export const PagoUser = () => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -19,64 +19,70 @@ export const PagoContraEntrega = () => {
         handleClose={handleClose}
         show={show}
         content={<Informacion handleClose={handleClose} />}
-        texto={'Pagar al recibir'}
+        texto={"Pagar al recibir"}
       />
     </>
   );
 };
 
 const Informacion = ({ handleClose }) => {
-  const [data, setData] = useState([]);
-  // const [succes, setSucess] = useState(false)
   const navigate = useNavigate();
   const { activeStep, setStep, cartItems, setCartItems } = useCarShop();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const dataUser = sessionStorage.getItem("DtUerForEnComp");
-    if (dataUser) {
-      const data = JSON.parse(dataUser);
-      setData(data);
-    }
-  }, []);
+  const sessionData = JSON.parse(sessionStorage.getItem("DtUerForEnComp"));
+  const localStorageData = JSON.parse(
+    localStorage.getItem("userOnValidateScesOnline")
+  );
+
+  const combinedData = { ...sessionData, email: localStorageData.email };
 
   const finnalyBuy = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/finish/buy/invited",
+        "http://localhost:3000/finish/buy/user",
         {
-          dataUser: data,
+          dataUser: combinedData,
           dataProducts: cartItems,
           metodoPago: "contraEntrega",
         }
       );
 
       if (response.status === 200) {
-        // setSucess(true)
         setStep(activeStep + 1);
         handleClose(false);
         navigate(`/purchaseProcessCompleted/${response.data.message}`);
-        localStorage.setItem("dataUForFact", JSON.stringify(data));
+        localStorage.setItem("dataUForFact", JSON.stringify(combinedData));
         localStorage.setItem("itemsUForFact", JSON.stringify(cartItems));
         setCartItems([]);
       }
     } catch (error) {
       console.log("Se produjo un error en el servidor", error);
+    } finally {
+      setLoading(false);
     }
   };
-
+ 
   return (
     <>
       <h4>Tenga en cuenta lo siguiente</h4>
       <ul>
         <li>
-          En caso de no poder recibir la compra, por favor deje a
-          alguien encargado para que la reciba.
+          En caso de no poder recibir la compra, por favor deje a alguien
+          encargado para que la reciba por usted.
         </li>
       </ul>
       <div className="buttons-content">
-        <Button variant="secondary" onClick={handleClose}>Cambiar el metodo de pago</Button>
-        <Button variant="primary" onClick={finnalyBuy}>
-          Continuar
+        <Button variant="secondary" onClick={handleClose}>
+          Cancelar
+        </Button>
+        <Button variant="success" onClick={finnalyBuy} disabled={loading}>
+          {loading ? (
+            <Spinner animation="border" role="status" size="sm" />
+          ) : (
+            "Continuar"
+          )}
         </Button>
       </div>
     </>

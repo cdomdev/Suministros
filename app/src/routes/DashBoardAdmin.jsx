@@ -1,30 +1,33 @@
 // DashboardAdmin.jsx
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { HomeAdmin } from "../components/admin/Home/HomeAdmin";
-import { GestionUsuarios } from "../components/admin/usuarios/GestionUsuarios";
-import { GestionInventary } from "../components/admin/inventario/GestionInventary";
-import { HomeUser } from "../components/user/pages/HomeUser";
-import { Ofertas } from "../components/admin/ofertas/Ofertas";
-import { CategoriaHome } from "../components/admin/categoria/pricipales/CategoriaHome";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { useUser } from "../hook";
-import { Subcategorias } from "../components/admin/subCategorias/SubCategoria";
-import { NavAdmin } from "../components/admin/Nav/NavAdmin";
-import { Admin } from "../components/admin/productos";
+import {
+  GestionUsuarios,
+  Admin,
+  CategoriaHome,
+  GestionInventary,
+  NavAdmin,
+  Ofertas,
+  Subcategorias,
+  HomeAdmin,
+  NotExisting,
+  Pedidos,
+} from "../components/admin";
 
 export const DashboardAdmin = () => {
-  const { isAdmin } = useUser();
+  const { isAdmin, setIsAdmin } = useUser();
 
+  useEffect(() => {
+    const adminOnly = localStorage.getItem("HttpOnlyAdmin");
+    if (adminOnly) {
+      setIsAdmin(true);
+    }
+  }, [isAdmin]);
   return (
     <>
-      <NavAdmin />
+      {isAdmin && <NavAdmin />}
       <Routes>
-        <Route
-          path="/*"
-          element={
-            isAdmin ? <HomeAdmin /> : <Navigate to="/suministros/home" />
-          }
-        />
         {isAdmin && (
           <>
             <Route index element={<HomeAdmin />} />
@@ -32,15 +35,15 @@ export const DashboardAdmin = () => {
             <Route path="/añadir/productos" element={<Admin />} />
             <Route path="/gestion/inventario" element={<GestionInventary />} />
             <Route path="/crear/ofertas" element={<Ofertas />} />
-            <Route path="/ver/tienda" element={<HomeUser />} />
             <Route path="/gestionar/categorias" element={<CategoriaHome />} />
             <Route
               path="/gestionar/subcategorias"
               element={<Subcategorias />}
             />
+            <Route path="/gestionar/pedidos" element={<Pedidos />} />
           </>
         )}
-        {!isAdmin && <Route path="/*" element={<h1> PAGE NOT FOUND</h1>} />}
+        {!isAdmin && <Route path="/*" element={<NotExisting />} />}
       </Routes>
     </>
   );

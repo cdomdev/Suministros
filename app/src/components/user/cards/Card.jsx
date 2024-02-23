@@ -59,11 +59,11 @@ export const Cards = () => {
           className="mt-3 f-select"
           onChange={(e) => setCategoriaSeleccionada(e.target.value)}
           value={categoriaSeleccionada}>
-          <option value=''>Categorias</option>
+          <option value="">Categorias</option>
           {[
             ...new Set(productos.map((producto) => producto.Categorium.nombre)),
           ].map((categoria, index) => (
-            <option key={index} >{categoria}</option>
+            <option key={index}>{categoria}</option>
           ))}
         </Form.Select>
         <Form.Select
@@ -76,7 +76,12 @@ export const Cards = () => {
         </Form.Select>
       </div>
       <div className="header">
-        <span>{productos.length} Productos</span>
+        <div className="count-products">
+          <div className="count">
+            <span>{productos.length}</span>
+          </div>
+          <p>Productos</p>
+        </div>
       </div>
       <div className="contenedor-card">
         {productosFiltrados.map((producto) => (

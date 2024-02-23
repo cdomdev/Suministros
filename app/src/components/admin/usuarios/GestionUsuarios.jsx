@@ -25,7 +25,6 @@ export const GestionUsuarios = () => {
     }
   }, []);
 
-  console.log(usuarios)
 
   return (
     <>

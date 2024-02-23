@@ -17,7 +17,6 @@ export const PopoverProductos = ({
 
   const handleListoClick = () => {
     setShow(false);
-    
   };
 
   return (
@@ -34,11 +33,17 @@ export const PopoverProductos = ({
       <Overlay
         show={show}
         target={target}
-        placement="bottom"
+        placement="left"
         container={ref}
         containerPadding={20}>
         <Popover id="popover-contained">
-          <Popover.Header as="h3">Productos</Popover.Header>
+          <Popover.Header as="h3">
+            Productos
+            {/* <div className="content-filters">
+              <Button>Marca</Button>
+              <Button>Categoria</Button>
+            </div>{" "} */}
+          </Popover.Header>
           <Popover.Body>
             {Array.isArray(listaProductos) &&
               listaProductos.map((producto) => (
@@ -46,7 +51,7 @@ export const PopoverProductos = ({
                   <Form.Check
                     type="checkbox"
                     id={`producto-${producto.id}`}
-                    label={`${producto.title} - ${producto.description} - ${producto.Inventarios[0].cantidad} Unidades`}
+                    label={`${producto.title} - ${producto.nombre} - ${producto.Inventarios[0].cantidad} Unidades`}
                     onChange={(e) => handleProductSelection(e, producto.id)}
                   />
                 </div>

@@ -17,7 +17,6 @@ export const InvitadoDate = ({ handleClose }) => {
   }; 
 
   const handleSubmit = async (values) => {
-    console.log("datos del usuarios:", values);
     sessionStorage.setItem("DtUerForEnComp", JSON.stringify(values));
     handleClose();
     updateStep()

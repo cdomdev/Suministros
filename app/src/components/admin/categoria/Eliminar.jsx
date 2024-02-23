@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
-export const Eliminar = ({ categorias, setCategoria }) => {
+export const Eliminar = ({ setCategoriasPriMary, categoriasPriMary  }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [deleteMessage, setDeleteMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -11,7 +11,6 @@ export const Eliminar = ({ categorias, setCategoria }) => {
     const categoryId = e.target.value;
     setSelectedCategoryId(categoryId);
   };
-  
   const handleCategoryDelete = async () => {
     try {
       if (!selectedCategoryId) {
@@ -23,18 +22,17 @@ export const Eliminar = ({ categorias, setCategoria }) => {
         }, 1000);
         return;
       }
-
       const categoriaId = parseInt(selectedCategoryId);
 
       const response = await axios.delete(
-        `http://localhost:3000/api/categorias/${categoriaId}/eliminar`,
+        `http://localhost:3000/api/delete/${categoriaId}/categorias-primary`,
         {
-          data: { id: categoriaId },
+          data: { categoriaId },
         }
       );
       if (response.status === 200 || response.status === 201) {
         setDeleteMessage("¡Categoria eliminada con éxito!");
-        setCategoria(response.data.categorias)
+        setCategoriasPriMary(response.data.categorias)
         setTimeout(() => {
           setDeleteMessage("");
         }, 2000);
@@ -72,7 +70,7 @@ export const Eliminar = ({ categorias, setCategoria }) => {
         <p className="text">Selecione la categoria a eliminar:</p>
         <Form.Select className="mt-3" onChange={(e) => handleCategoryChange(e)}>
           <option>Seleccionar categoría</option>
-          {categorias.map((categoria) => (
+          {categoriasPriMary.map((categoria) => (
             <option key={categoria.id} value={categoria.id}>
               {categoria.nombre}
             </option>

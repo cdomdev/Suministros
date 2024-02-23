@@ -23,17 +23,15 @@ export const BuscadorPage = () => {
   return (
     <>
       <section>
-        <Container>
-          <div className="container-productos">
-            <h1>Resultados de tu busqueda</h1>
-            <div className="contanier-cards">
-              {busqueda.length > 0 && (
-                <span className="total">{busqueda.length} Productos</span>
-              )}
-              <Resulatdos busqueda={busqueda} />
-            </div>
+        <div className="container-productos">
+          <h1>Resultados de tu busqueda</h1>
+          <div className="contanier-cards">
+            {busqueda.length > 0 && (
+              <span className="total">{busqueda.length} Productos</span>
+            )}
+            <Resulatdos busqueda={busqueda} />
           </div>
-        </Container>
+        </div>
       </section>
     </>
   );

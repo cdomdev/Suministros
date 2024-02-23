@@ -12,12 +12,12 @@ export const CarShopInfo = () => {
 
   return (
     <>
-      <Container className="container-car">
+      <div className="container-car">
         <section>
           <Steps activeStep={activeStep} />
           <Car cartItems={cartItems}  />
         </section>
-      </Container>
+      </div>
     </>
   );
 };

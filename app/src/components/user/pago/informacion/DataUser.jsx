@@ -5,6 +5,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 export const DataUser = () => {
   const [date, setDate] = useState([]);
+  const [sesionData, setSesionData] = useState([])
   const { cartItems } = useCarShop();
 
   useEffect(() => {
@@ -20,7 +21,15 @@ export const DataUser = () => {
       0
     );
   };
+  useEffect(() =>{
+    const dataStorage = localStorage.getItem('userOnValidateScesOnline')
+    if(dataStorage){
+      const storageInfo = JSON.parse(dataStorage)
+      setSesionData(storageInfo)
+    }
+  }, [])
 
+  // 
   return (
     <>
       <div className="user">
@@ -31,9 +40,9 @@ export const DataUser = () => {
           <div>
             <ul>
               <li>
-                {date.nombre} {date.apellidos}
+                {date.nombre || sesionData.name } {date.apellidos || sesionData.apellido}
               </li>
-              <li>{date.email}</li>
+              <li>{date.email || sesionData.email}</li>
               <li>{date.telefono}</li>
             </ul>
           </div>

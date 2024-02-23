@@ -120,7 +120,12 @@ export const CardPegantes = () => {
             <option value="mayor-menor"> De mayor precio a menor precio</option>
           </Form.Select>
         </div>
-        <span>Pisos({productos.length} productos)</span>
+        <div className="count-products">
+          <div className="count">
+            <span>{productos.length}</span>
+          </div>
+          <p>Productos</p>
+        </div>
       </div>
       <div className="contenedor-card">
         {productos.length === 0 ? (

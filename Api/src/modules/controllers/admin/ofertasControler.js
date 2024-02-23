@@ -60,7 +60,7 @@ const crearOfetas = async (req, res) => {
 const obtenerProductos = async (req, res) => {
   try {
     const productos = await Productos.findAll({
-      attributes: ["id", "title", "description"],
+      attributes: ["id", "title", "nombre"],
       include: [
         {
           model: Inventario,
@@ -79,13 +79,14 @@ const obtenerProductos = async (req, res) => {
     });
   }
 };
+
 // listar ofertas con productos relacionados
 const obtenerOfertasConProductos = async (req, res) => {
   try {
     const ofertas = await Ofertas.findAll({
       include: {
         model: Productos,
-        attributes: ["title", "description", "referencia"],
+        attributes: ["title", "nombre", "referencia"],
         through: "productos_ofertas",
       },
     });

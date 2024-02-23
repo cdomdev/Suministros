@@ -1,2 +1,3 @@
 export {MercadoPago} from './MercadoPago'
-export {PagoContraEntrega} from './PagoContraEntrega'
+export {PagoInvitado} from './PagoInvitado'
+export {PagoUser} from './PagoUser'

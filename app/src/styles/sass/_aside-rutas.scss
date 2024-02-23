@@ -1,6 +1,8 @@
+
 .aside-rutas{
     grid-area: aside;
     max-width: 100px;
+    padding: 10px 5px;
     margin: 0 auto;
     gap: 15px;
     display: flex;
@@ -11,6 +13,7 @@
         color: #243a5e;
     }
     .box-rutas-admin{
+        background-color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;

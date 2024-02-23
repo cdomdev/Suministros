@@ -1,31 +1,5 @@
-@use 'colors';
-@use 'fuentes';
-@use 'mixins';
 
 
-
-@mixin parrafos-generales {
-    font-size: 15px;
-    font-family: $contenidoFonts;
-  }
-  
-  @mixin titulos-generales {
-    font-family: $tittlesFonts;
-    font-size: 30px;
-    color: #213C65;
-    font-weight: 600;
-  }
-  
-  @mixin subtitulos-generales {
-    font-size: 25px;
-    font-family: $tittlesFonts;
-    color: #213C65;
-  }
-  
-  @mixin backgroundSectionAdmin {
-    margin-top: 3em;
-    background-color: #f4f4f4;
-  }
 
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
@@ -52,12 +26,29 @@ $contenido2: "Montserrat", sans-serif;
             text-align: center;
             font-weight: lighter;
         }
-        .container-btn-login {
-            display:flex;
+        .btn-custome-goolgle{
+            background-color:white;
+            cursor: pointer;
+            border-radius: 20px;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            border: solid 1px #e3e6e8;
+            height: 40px;
             justify-content: center;
             align-items: center;
-            margin:  auto; 
-          
+            gap: 5px;
+            transition: all 0.4s;
+            color: black;
+            font-size: 14px;
+            .icon-google{
+                .icon{
+                   width: 30px;
+                }
+            }
+            &:hover{
+                background-color:#99b8e7;
+            }
         }
     
         .txt-form-login{
@@ -77,11 +68,11 @@ $contenido2: "Montserrat", sans-serif;
             }
             .liner-separator{
                 border: 1px solid #213C65;
-                width: 8.5em;
+                width: 10em;
             }
         }
         .login-custome {
-            width:80%;
+            width:90%;
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -89,7 +80,7 @@ $contenido2: "Montserrat", sans-serif;
             margin-bottom: 1em;           
         }
         .btn-submit{
-            width: 80%;
+            width: 90%;
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -112,12 +103,29 @@ $contenido2: "Montserrat", sans-serif;
        .text-form{
         margin: 2em auto;
        }
-        .container-btn-login {
-            display: flex;
-            justify-content: center;
-            margin-left: -5px;
-           
+       .btn-custome-goolgle{
+        background-color:white;
+        cursor: pointer;
+        border-radius: 20px;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        border: solid 1px #e3e6e8;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.4s;
+        font-size: 14px;
+        .icon-google{
+            .icon{
+               width: 30px;
+            }
         }
+        &:hover{
+            background-color:#99b8e7;
+        }
+       }
         .txt-form-login{
             margin-top: 10px;
             text-align: center;
@@ -135,11 +143,11 @@ $contenido2: "Montserrat", sans-serif;
             }
             .liner-separator{
                 border: 1px solid #213C65;
-                width: 8.5em;
+                width: 10em;
             }
         }
         .login-custome {
-            width: 80%;
+            width: 90%;
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -153,14 +161,14 @@ $contenido2: "Montserrat", sans-serif;
             font-family: $contenido2;
         }
         .btn-submit{
-            width: 80%;
+            width: 90%;
             border-radius: 20px;
             margin: 0 auto;
             margin-top: 1em;
         }
         .invalid-feedback{
-            text-align: left;
-            margin-left: 2em;
+            text-align: center;
+            margin: auto;
         }
     
     }
@@ -197,55 +205,7 @@ $contenido2: "Montserrat", sans-serif;
 
 
 
-@media screen and (max-width: 1024px) {
-    .login-form{
-        .container-btn-google{
-            display: grid;
-            place-content: center;
-            margin-right: -35px;
-        }
-        .contenedor-liner{
-            display: flex;
-            .liner-separator{
-                width: 8em;
-            }
-        }
 
-    }
-   
-    .form-register{
-        .container-btn-google{
-            display: grid;
-            place-content: center;
-            margin-right: -35px;
-        }
-    }
-}
-
-@media (min-width: 900px) and (max-width: 1400px) {
-    .login-form{
-        .container-btn-google{
-            display: grid;
-            place-content: center;
-            margin-right: -35px;
-        }
-        .contenedor-liner{
-            display: flex;
-            .liner-separator{
-                width: 8em;
-            }
-        }
-
-    }
-   
-    .form-register{
-        .container-btn-google{
-            display: grid;
-            place-content: center;
-            margin-right: -35px;
-        }
-    }
-}
 
 @media (min-width: 600px) and (max-width: 768px) {
 
@@ -254,47 +214,38 @@ $contenido2: "Montserrat", sans-serif;
         width: 95%;
         .login-form{
             margin: 0 auto;
-            .container-btn-google{
-                width: 100%;
-                margin: 0 auto;
-                margin-right: -20px;
-            }
             .contenedor-liner{
                 display: flex;
                 .liner-separator{
-                    width: 8.3em;
+                    width: 9em;
                 }
             }
             .login-custome {
                 margin: 0 auto;
-                width: 305px;
+                width: 80%;
             }
          
             .btn-recovery{
                 font-size: 14px;
             }
             .btn-submit{
-                width: 305px;
+                width: 80%;
             }
         
         }
         .form-register{
-            .container-btn-login{
-                width: 100%;
-                margin: 0 auto;
-                margin-right: -20px;
-            }
+          
             .contenedor-liner{
                 display: flex;
                 .liner-separator{
-                    width: 8.2em;
+                    width: 9em;
                 }
             }
             .login-custome {
-                width: 305px;
+                width: 80%;
             }
             .btn-submit{
-                width: 305px;
+                width: 80%;
             }
             
         }
@@ -308,21 +259,16 @@ $contenido2: "Montserrat", sans-serif;
         width: 95%;
         .login-form{
             margin: 0 auto;
-            .container-btn-login{
-                margin-left: -10px;
+            .btn-custome-goolgle{
+                width: 100%;
             }
             .form-login{
                 width: 100%;
             }
-            .container-btn-google{
-                width: 100%;
-                margin: 0 auto;
-                margin-right: -20px;
-            }
             .contenedor-liner{
                 display: flex;
                 .liner-separator{
-                    width: 8.3em;
+                    width: 7.5em;
                 }
             }
             .login-custome {
@@ -339,22 +285,28 @@ $contenido2: "Montserrat", sans-serif;
         
         }
         .form-register{
-            .container-btn-login{
+            .form-login{
                 width: 100%;
-                margin: 0 auto;
-                margin-right: -20px;
+            }
+            .btn-custome-goolgle{
+                width: 100%;
             }
             .contenedor-liner{
                 display: flex;
                 .liner-separator{
-                    width: 8.2em;
+                    width: 7em;
                 }
             }
             .login-custome {
-                width: 305px;
+                margin: 0 auto;
+                width: 100%;
+            }
+         
+            .btn-recovery{
+                font-size: 14px;
             }
             .btn-submit{
-                width: 305px;
+                width: 100%;
             }
             
         }

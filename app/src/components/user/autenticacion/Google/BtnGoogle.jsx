@@ -38,7 +38,7 @@ export const BtnGoogle = ({ handleCloseModal, handleLoginSuccess }) => {
   async function handleSuccess(credentialResponse) {
     if (credentialResponse.credential) {
       const { payload } = DecodedJWT(credentialResponse.credential);
-
+      console.log(credentialResponse)
       try {
         const URL = "http://localhost:3000/registro";
         const response = await axios.post(URL, {

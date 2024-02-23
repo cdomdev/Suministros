@@ -1,10 +1,14 @@
-const User = require("../../models/usersModels");
+const {
+  User,
+  Pedido,
+  DetallesPedido,
+  Invitado,
+} = require("../../models/usersModels");
 const {
   Categoria,
   Productos,
   Inventario,
 } = require("../../models/inventaryModel");
-
 
 const listarUsuarios = async (req, res) => {
   try {
@@ -127,7 +131,8 @@ const actulizarInventario = async (req, res) => {
 
 const actualizarProducto = async (req, res) => {
   const { producto_Id, newProduct } = req.body;
-  const { nombre,title, valor, description, referencia, categoria_Id } = newProduct;
+  const { nombre, title, valor, description, referencia, categoria_Id } =
+    newProduct;
 
   try {
     const productos = await Productos.findOne({ where: { id: producto_Id } });
@@ -237,6 +242,51 @@ const eliminarProductos = async (req, res) => {
   }
 };
 
+// pedidos
+
+const listarPedidos = async (req, res) => {
+  try {
+    const pedidosUsuarios = await Pedido.findAll({
+      include: [
+        {
+          model: DetallesPedido,
+        },
+        {
+          model: User,
+          as: "usuario",
+          attributes: ["id", "name", "email", "telefono", 'detalles', 'direccion'],
+        },
+        {
+          model: Invitado,
+        },
+      ],
+    });
+
+    const pedidosInvitados = await Pedido.findAll({
+      include: [
+        {
+          model: DetallesPedido,
+        },
+        {
+          model: Invitado,
+          as: "invitado",
+        },
+      ],
+    });
+
+    const pedidos = {
+      usuarios: pedidosUsuarios,
+      invitador: pedidosInvitados,
+    };
+    if (!pedidos || pedidos.length === 0) {
+      return res.status(400).json({ message: "No se encontraron pedidos" });
+    }
+    res.status(200).json({ pedidos: pedidos });
+  } catch (e) {
+    console.log("Error al listar pedidos", e);
+    res.status(500).json({ message: "Error interno en el servidor" });
+  }
+};
 
 module.exports = {
   listarUsuarios,
@@ -245,4 +295,5 @@ module.exports = {
   actulizarInventario,
   actualizarProducto,
   eliminarProductos,
+  listarPedidos,
 };

@@ -14,7 +14,7 @@ export const Ofertas = () => {
             <RutasAside />
           </div>
         </div>
-        <h1 className="title-ofertas">Ofertas</h1>
+        <h1 className="title-ofertas"> Añade nuevas ofertas</h1>
         <Container className="container-section-ofertas">
           <section>
             <Listado

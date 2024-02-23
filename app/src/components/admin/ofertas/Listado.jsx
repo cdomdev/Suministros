@@ -18,11 +18,7 @@ export const Listado = ({ ofertaListado, setOfertaListado }) => {
         console.log(error);
       });
   }, []); 
-  
-  // const updateOfertaListado = (ofertaId) => {
-  //   const updatedList = ofertaListado.filter((oferta) => oferta.id !== ofertaId);
-  //   setOfertaListado(updatedList);
-  // };
+
 
   return (
     <div className="section-listado-ofertas">

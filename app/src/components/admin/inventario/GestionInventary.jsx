@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { NavAdmin } from "../Nav/NavAdmin";
 import { Editar, Actualizar, Elminar } from "./";
 import { RutasAside } from "../aside";
 import { Form } from "react-bootstrap";
 
 export const GestionInventary = () => {
   const [productos, setProductos] = useState([]);
-  const [productosOriginales, setProductosOriginales] = useState([]);
+  // const [productosOriginales, setProductosOriginales] = useState([]);
   const [showModal, setShowModal] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [newStock, setNewStock] = useState(0);
@@ -39,7 +38,6 @@ export const GestionInventary = () => {
     setShowModal(true);
   };
 
-
   const handlePrecioChange = (e) => {
     setPrecioSeleccionado(e.target.value);
 
@@ -67,9 +65,11 @@ export const GestionInventary = () => {
 
   return (
     <>
-      <NavAdmin />
       <div className="body-components-inventary">
         <div className="filtros-content">
+          <div>
+            <h1>Gestion de inventario</h1>
+          </div>
           <div className="filtros">
             <Form.Select
               className="mt-3 f-select"

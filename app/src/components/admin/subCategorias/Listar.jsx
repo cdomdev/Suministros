@@ -21,7 +21,7 @@ export const Listar = ({ setCategoria, categorias }) => {
   return (
     <>
       <div className="lista-categrtorias">
-        <h4 className="title-table-category">Lista de Subcategorias:</h4>
+        <h4 className="title-table-category">Lista de subcategorias:</h4>
         <Table
           striped
           bordered
@@ -31,7 +31,7 @@ export const Listar = ({ setCategoria, categorias }) => {
           className="table-category">
           <thead>
             <tr>
-              <th className="thead-table">Categorias:</th>
+              <th className="thead-table"> Categorias:</th>
             </tr>
           </thead>
           <tbody className="tbody-table-category">

@@ -10,9 +10,11 @@ export const Admin = () => {
     <>
       <div className="body-components-admin">
         <div className="layout-crear-productos">
+        <div className="contenedor-rutas">
           <div className="aside-rutas">
             <RutasAside />
           </div>
+        </div>
           <section>
             <div className="sidebar">
               <aside>

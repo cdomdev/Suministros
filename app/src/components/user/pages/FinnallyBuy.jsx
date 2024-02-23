@@ -6,18 +6,19 @@ import { useNavigate } from "react-router";
 export const FinnallyBuy = () => {
   const [data, setData] = useState([]);
   const [item, setItem] = useState([]);
-  const navigate = useNavigate()
-
+  const [storge, setStorage] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-
+    const localStora = localStorage.getItem("userOnValidateScesOnline");
+    setStorage(JSON.parse(localStora));
     const dataUser = localStorage.getItem("dataUForFact");
-    const date = JSON.parse(dataUser);
-    setData(date);
-    if(item){
-        const items = localStorage.getItem("itemsUForFact");
-        const itemsProducts = JSON.parse(items);
-        setItem(itemsProducts);
+    const datos = JSON.parse(dataUser);
+    setData(datos);
+    if (item) {
+      const items = localStorage.getItem("itemsUForFact");
+      const itemsProducts = JSON.parse(items);
+      setItem(itemsProducts);
     }
   }, []);
 
@@ -25,10 +26,10 @@ export const FinnallyBuy = () => {
     return item.reduce((total, item) => total + item.cantidad * item.valor, 0);
   };
 
-  const handleDeleteLocal = () =>{
-    navigate('/suministros/home')
-    localStorage.clear()
-  }
+  const handleDeleteLocal = () => {
+    navigate("/suministros/home");
+    localStorage.clear();
+  };
 
   return (
     <div class="ticket">
@@ -38,28 +39,27 @@ export const FinnallyBuy = () => {
       </div>
       <div className="body">
         <h2>Este es un resumen de tu pedido</h2>
-        {item  && (
-             <div className="productos">
-             { item && item.map((producto) => (
-               <>
-                 <div className="unidad">
-                   <div>
-                     <span>Productos:</span>
-                     <ul key={producto.id}>
-                       <li>{producto.nombre}</li>
-                       <li>Catidad: {producto.cantidad}</li>
-                     </ul>
-                   </div>
-                   <div>
-                     <span>Precio</span>
-                     <ul>
-                       <li>{producto.valor}</li>
-                     </ul>
-                   </div>
-                 </div>
-               </>
-             ))}
-           </div>
+        {item && (
+          <div className="productos">
+            {item &&
+              item.map((producto) => (
+                <div className="unidad">
+                  <div>
+                    <span>Productos:</span>
+                    <ul key={producto.id}>
+                      <li>{producto.nombre}</li>
+                      <li>Catidad: {producto.cantidad}</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span>Precio</span>
+                    <ul>
+                      <li>{producto.valor}</li>
+                    </ul>
+                  </div>
+                </div>
+              ))}
+          </div>
         )}
         <hr />
         <div className="total">
@@ -75,10 +75,10 @@ export const FinnallyBuy = () => {
           <div>
             <span>Datos del comprador</span>
             <p>
-              {data.nombre} {data.apellidos}
+              {data.nombre || storge.name} {data.apellidos || storge.apellido}
             </p>
             <p>{data.telefono}</p>
-            <p>{data.email}</p>
+            <p>{data.email || storge.email}</p>
           </div>
         </div>
         <hr />
@@ -91,7 +91,9 @@ export const FinnallyBuy = () => {
         </div>
       </div>
       <div className="btn-content">
-      <Button variant="secondary" onClick={handleDeleteLocal}>Volver al incio</Button>
+        <Button variant="secondary" onClick={handleDeleteLocal}>
+          Volver al incio
+        </Button>
       </div>
     </div>
   );

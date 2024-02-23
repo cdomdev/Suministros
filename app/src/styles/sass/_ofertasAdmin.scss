@@ -5,10 +5,21 @@ $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
 
 
+  
+
 $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
+@mixin bordeBox{
+    border: solid 1px #ebebeb ;
+    box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+    box-sizing: border-box;
+    background-color: white;
+}
 .section-ofertas{
+    // @include bordeBox();
+    padding: 20px;
+    margin: auto;
     .contenedor-rutas{
         .aside-rutas{
             flex-direction: row;
@@ -36,10 +47,10 @@ $color-complementario: #f2efe1;
         max-width:400px;
         padding: 15px;
         text-align: center;
-        border-radius: 3px;
+        border-radius: 1px;
         font-family: $contenidoFonts;
         background-color: white;
-        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
+        box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);
         .title-add-ofertas{
             font-size: 20px;
             font-family: $tittlesFonts;
@@ -61,14 +72,23 @@ $color-complementario: #f2efe1;
             line-height: 16px;
         }
        
+       
     }
        
     .section-listado-ofertas{
         grid-area: content1;
         background-color: white;
         width: 100%;
-        box-shadow: 0 0 6px 2px rgb(207, 206, 206);
-        border-radius: 3px;
+        padding: 5px;
+        box-shadow: 0 0 5px 1px rgba(90, 90, 90, 0.2);
+        border-radius: 1px;
+        .accordion{
+            .accordion-button{
+                border-radius: 1px;
+                text-transform: uppercase;
+                color: #243a5e;
+            }
+        }
        .title-list-ofertas{
         font-family: $tittlesFonts;
         color: #243a5e;
@@ -84,8 +104,8 @@ $color-complementario: #f2efe1;
        }
        .body-ofertas-acordeon{
         display: flex;
-        gap: 5em;
-
+        gap: 3em;
+        max-height: 300px;
         .content-buttons-section{
             display: flex;
             flex-direction: column;
@@ -103,17 +123,20 @@ $color-complementario: #f2efe1;
         font-family: $tittlesFonts;
        }
        ul {
-        padding: 0;
+        max-height: 150px;
+        overflow: auto;
        }
        li{
-        list-style: none;
+        list-style: disc;
+        font-size: 14px;
         color: #243a5e;
         font-family: $contenido2;
        }
        
     }
    }
-  
+
+   
 
     @media screen and (max-width: 1280px) {
         .container-section-ofertas {
@@ -131,6 +154,19 @@ $color-complementario: #f2efe1;
     }
   
    
+}
+.popover{
+    border-radius: 1px;
+    .popover-header{
+        margin-top: 1px;
+        border-radius: 1px;
+        background-color: #06409d;
+        color: white;
+    }
+    .popover-body{
+        max-height: 300px;
+        overflow-y: auto;
+    }
 }
 .modal-ofertas-delete{
     .title-modal-delete{

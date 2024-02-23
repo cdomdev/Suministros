@@ -13,16 +13,17 @@ $contenido2: "Montserrat", sans-serif;
 
 
 .container-details{
-    width: 90vw;
+    width: 95vw;
     margin: 0 auto;
-    max-width: 80vw;
     height: auto;
     padding: 10px 20px;
     display: grid;
-    grid-template-columns:50% 50%;
+    justify-content: center;
+    grid-template-columns:1fr 1fr;
     gap: 10px;
     .detail-img{
         @include bordeBox();
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -56,8 +57,8 @@ $contenido2: "Montserrat", sans-serif;
         font-family: $contenido2;
         @include bordeBox();
         text-wrap: wrap;
+        width: 100%;
         display: flex;
-        max-width: 650px;
         align-items: flex-start;
         padding: 10px 20px;
         flex-direction: column;
@@ -65,7 +66,7 @@ $contenido2: "Montserrat", sans-serif;
         margin: 0;
         h1{
             font-size: 25px;
-            margin: 1em 0;
+            margin: 10px 0;
             font-weight: bold;
         } 
         span{
@@ -84,7 +85,7 @@ $contenido2: "Montserrat", sans-serif;
                 color: gray;
             }
             .r{
-                margin-right: 4em;
+                margin-right: 2em;
                 opacity: 70%;
                 font-size: 12px;
                 color: gray;
@@ -120,14 +121,12 @@ $contenido2: "Montserrat", sans-serif;
                 display: flex;
                 align-items: center;
                 width: fit-content;
-                border-radius: 5px;
                 gap: 5px;
                 border: solid 1px rgb(149, 149, 149);
             
                 input[type="number"] {
                     width: 40px;
                     padding: 5px;
-                    border-radius: 5px;
                     text-align: center;
                     border-top: none;
                     border-bottom: none;
@@ -174,19 +173,20 @@ $contenido2: "Montserrat", sans-serif;
    
 }
 h3{
-    font-size: 25px;
+    font-size: 21px;
     font-family: $tittlesFonts;
     color: #243a5e;
     margin-top: 2em;
 }
 .sideProducts-relacionados{
-    max-width: 80vw;
-    margin: 0 auto;
+    max-width: 95vw;
+    @include bordeBox();
+    margin: 2em auto;
     display: flex;
     padding: 20px 0;
-    margin-top: 4em;
     justify-content: center;
     .contenedor-card{
+        font-family: $contenido2;
         display: flex;
         flex-wrap: wrap;
         row-gap: 10px;
@@ -279,38 +279,12 @@ h3{
 }
 
 
-@media (min-width: 800px) and (max-width: 1400px) {
-  
-    .nav-custom .header-nav .contenedor-header-nav .header-logo{
-        justify-content: space-around;
-        gap: 20px;
-        hr{
-            display: none;
-        }
-    }
-    .nav-custom .header-nav .menu-navegacion .nav-list{
-        margin-left: 8em;
-        .menu-item{
-            .submenu{
-                transform: translateX(-13vw);  
-            }
-            .submenu2{
-                transform: translateX(-21vw);
-                padding-left: 20em;
-            }
-            .submenu3{
-                padding-left: 35em;
-                transform: translateX(-30vw);
-            }
-            .submenu4{
-                padding-left: 45em;
-                transform: translateX(-51.4vw);
-            }
-        }
 
+@media (min-width: 800px) and (max-width: 1400px) {
+    .container-details{
+        margin-top: -3em;
     }
-  
-    
+   
 }
 
 @media (min-width: 500px) and (max-width: 800px) {

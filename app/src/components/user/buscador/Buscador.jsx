@@ -7,14 +7,14 @@ import { BsSearch } from "react-icons/bs";
 export const Buscador = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
       if (!searchTerm) {
-        setIsLoading(false); 
+        setIsLoading(false);
         return;
       }
       const response = await axios.post(
@@ -29,20 +29,19 @@ export const Buscador = () => {
         );
         // Navegar a la página de resultados de búsqueda
         navigate(`/suministros/resultados-busqueda/${searchTerm}`);
-        setTimeout(() => {
-          setSearchTerm("");
-          setIsLoading(false); 
-        }, 1000);
+
+        setSearchTerm("");
+        setIsLoading(false);
       } else {
         setSearchResults([]);
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     } catch (error) {
       navigate(`/suministros/resultados-busqueda/${searchTerm}`);
-      setTimeout(() => {
-        setSearchTerm("");
-        setIsLoading(false); 
-      }, 1000);
+
+      setSearchTerm("");
+      setIsLoading(false);
+
       console.log("Error al buscar productos:", error);
       setSearchResults([]);
     }
@@ -53,17 +52,21 @@ export const Buscador = () => {
       <Form className="input-nav">
         <Form.Control
           type="search"
-          placeholder="¿Buscas algo especial? "
+          placeholder="¿Buscas algo en especial? "
           aria-label="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </Form>
-      <div className="btn-icon" >
+      <div className="btn-icon" onClick={handleSearch}>
         {isLoading ? (
-          <Spinner animation="border" variant="primary" style={{width: '25px', height: '25px'}}/>
+          <Spinner
+            animation="border"
+            variant="primary"
+            style={{ width: "25px", height: "25px" }}
+          />
         ) : (
-          <BsSearch className="icon" onClick={handleSearch} />
+          <BsSearch className="icon" />
         )}
       </div>
     </>

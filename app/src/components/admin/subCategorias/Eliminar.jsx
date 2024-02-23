@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
@@ -29,7 +29,7 @@ export const Eliminar = ({ categorias, setCategoria }) => {
       const response = await axios.delete(
         `http://localhost:3000/api/categorias/${categoriaId}/eliminar`,
         {
-          data: { id: categoriaId },
+          data: { categoriaId },
         }
       );
       if (response.status === 200 || response.status === 201) {
@@ -63,13 +63,12 @@ export const Eliminar = ({ categorias, setCategoria }) => {
   return (
     <>
       <div className="contenedor-category-delete">
-        <h4 className="title-delete-category">Eliminar categoria</h4>
+        <h4 className="title-delete-category">Eliminar subcategoria</h4>
         <p className="text">
           Antes de eliminar una categoria, asegurece que esta no tenga productos
           asociados.
-          <br />
         </p>
-        <p className="text">Selecione la categoria a eliminar:</p>
+        <p className="text">Selecione la categoria a eliminar</p>
         <Form.Select className="mt-3" onChange={(e) => handleCategoryChange(e)}>
           <option>Seleccionar categoría</option>
           {categorias.map((categoria) => (

@@ -1,0 +1,32 @@
+
+
+
+$tittlesFonts: "Roboto Condensed", sans-serif;
+$contenidoFonts: "Roboto", sans-serif;
+$contenido2: "Montserrat", sans-serif;
+$otro: 'Lato', sans-serif;
+
+.not-fount{
+    display: flex;
+    font-family: $otro;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        font-size: 40px;
+        color: rgb(142, 136, 136);
+        opacity: 50%;
+        margin: 0;
+    }
+    .svg-not-fount{
+        fill:#767575;
+    }
+    p{
+        font-size: 15px;
+        color: #525252;
+        margin: 0;
+    }
+    a{
+        text-decoration: none;
+    }
+}

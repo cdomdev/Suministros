@@ -50,6 +50,7 @@ export const LoginModal = ({ setIsLoggedIn, controlComponent }) => {
           <Register
             setIsLoggedIn={setIsLoggedIn}
             handleCloseModal={handleCloseModal}
+            handleLoginSuccess={handleLoginSuccess}
           />
           <span className="btn-alter-modal" onClick={handleShowLoginModal}>
             Ya tengo una cuenta

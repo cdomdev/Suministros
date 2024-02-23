@@ -48,6 +48,32 @@ const listarCategoriasPrincipales = async (req, res) => {
     res.status(500).json({ error: "Error al obtener las categorias" });
   }
 };
+const eliminarCategoriaPrincipal = async (req, res) => {
+  const { categoriaId } = req.body;
+
+  console.log(categoriaId)
+  try {
+    const categoria = await CategoriasPrincipales.destroy({ where: { id: categoriaId } });
+
+    if (categoria) {
+      const categorias = await CategoriasPrincipales.findAll({
+        attributes: ["id", "nombre"],
+      });
+      return res
+        .status(200)
+        .json({ message: "Categoría eliminada exitosamente", categorias });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "No se encontró la categoría a eliminar" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: "Error al intentar eliminar la categoría" });
+  }
+};
 
 
 // subcategorias
@@ -98,10 +124,11 @@ const listarCategorias = async (req, res) => {
 };
 
 const eliminarCategoria = async (req, res) => {
-  const { id } = req.body;
+  const { categoriaId } = req.body;
 
+  console.log(categoriaId)
   try {
-    const categoriaEliminada = await Categoria.destroy({ where: { id: id } });
+    const categoriaEliminada = await Categoria.destroy({ where: { id: categoriaId } });
 
     if (categoriaEliminada) {
       const categorias = await Categoria.findAll({
@@ -129,4 +156,5 @@ module.exports = {
   crearCategorias,
   crearCategoriasPrincipales,
   listarCategoriasPrincipales,
+  eliminarCategoriaPrincipal
 };

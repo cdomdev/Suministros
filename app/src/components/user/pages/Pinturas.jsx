@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { CardPinturas } from "../cards";
 import { Container } from "react-bootstrap";
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
-import {useCarShop} from '../../../hook'
-
+import { useCarShop } from "../../../hook";
+import { BiHomeAlt2 } from "react-icons/bi";
 
 export const Pinturas = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -18,35 +18,37 @@ export const Pinturas = () => {
   return (
     <>
       <section>
-        <Container>
+        <div className="migajas">
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="medium" />}
             aria-label="breadcrumb">
-            <Link to="/suministros/home">Home</Link>
+            <Link to="/suministros/home">
+              <BiHomeAlt2 className="icon" />
+            </Link>
             <Link to="/suministros/pinturas">Pinturas</Link>
           </Breadcrumbs>
-          <div className="container-productos">
-            <h1>
-              DESCUBRE COLORES VIBRATES Y ACABADOS PERFECTOS PARA CADA PROYECTO
-              EN NUESTRO CATALOGO
-            </h1>
-            <p>
-              Nuestra gama de colores vibrantes y acabados duraderos te permite
-              crear ambientes que reflejen tu estilo y personalidad
-            </p>
-            <div className="contenedor-grid-products">
-              <CardPinturas />
-            </div>
+        </div>
+        <div className="container-productos">
+          <h1>
+            DESCUBRE COLORES VIBRATES Y ACABADOS PERFECTOS PARA CADA PROYECTO EN
+            NUESTRO CATALOGO
+          </h1>
+          <p>
+            Nuestra gama de colores vibrantes y acabados duraderos te permite
+            crear ambientes que reflejen tu estilo y personalidad
+          </p>
+          <div className="contenedor-grid-products">
+            <CardPinturas />
           </div>
-        </Container>
+        </div>
         {cartItemCount > 0 && (
-        <Link to={"/suministros/car"}>
-          <div class="icon-container">
-            <div className="insignia">{cartItemCount}</div>
-            <TiShoppingCart className="icon-car" />
-          </div>
-        </Link>
-      )}
+          <Link to={"/suministros/car"}>
+            <div class="icon-container">
+              <div className="insignia">{cartItemCount}</div>
+              <TiShoppingCart className="icon-car" />
+            </div>
+          </Link>
+        )}
       </section>
     </>
   );

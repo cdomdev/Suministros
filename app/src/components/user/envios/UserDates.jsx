@@ -1,30 +1,24 @@
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { IoIosMedical } from "react-icons/io";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import { useCarShop } from "../../../hook";
+import { useNavigate } from "react-router";
 
-export const UserDates = () => {
+export const UserDates = ({ handleClose }) => {
   const [message, setMessage] = useState("");
+  const { activeStep, setStep } = useCarShop();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
-    console.log("datos del usuarios:", values);
-    try {
-      // const URL = ""; // Agrega la URL de tu endpoint aquí
-      // const response = await axios.post(URL, values);
-      // if (response.status === 200) {
-      //   setMessage("¡Contraseña actualizada con éxito!");
-      //   setTimeout(() => {
-      //     setMessage("");
-      //   }, 2000);
-      // }
-    } catch (error) {
-      if (error.response.status === 400) {
-        setMessage("¡Hubo un error al guardar los datos!");
-      }
-      console.log(error);
-    } finally {
-      setSubmitting(false);
-    }
+  const updateStep = () => {
+    setStep(activeStep + 1);
+  };
+
+  const handleSubmit = async (values) => {
+    sessionStorage.setItem("DtUerForEnComp", JSON.stringify(values));
+    handleClose();
+    updateStep();
+    navigate("/suministros/pago");
   };
 
   return (
@@ -59,8 +53,7 @@ const FormFormik = ({ formik }) => {
         <h4>Datos de envío</h4>
         <p>Los campos marcados con ( * ) son obligatorios</p>
         <Form onSubmit={formik.handleSubmit}>
-          <Form.Group className="mb-3">
-          </Form.Group>
+          <Form.Group className="mb-3"></Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>
               Dirección <IoIosMedical className="icon" />
@@ -95,8 +88,9 @@ const FormFormik = ({ formik }) => {
           </Form.Group>
           <div className="add">
             <span>
-              Ingrese detalles adicionales, como conjunto (Torre, Apto), barrio
-              (Nombre del barrio), localidad (Nombre de la localidad)
+              Por favor ingrese detalles adicionales para esta entrega, como
+              conjunto ( Torre, Apto ) barrio ( Nombre del barrio ) localidad
+              (Nombre de la localidad).
             </span>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Control

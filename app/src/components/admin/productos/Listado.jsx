@@ -107,8 +107,8 @@ export const Listado = ({
           );
         })
       ) : (
-        <div className="contendor-alter-products-card">
-          <span className="text-shadow">
+        <div className="contendor-alter-products-card d-flex" >
+          <span className="text-shadow"style={{margin: 'auto'}}>
             Agregue nuevos productos para verlos aquí.
           </span>
         </div>

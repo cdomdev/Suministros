@@ -282,6 +282,7 @@ Productos.belongsToMany(Ofertas, {
   onDelete: 'CASCADE'
 });
 
+
 // tabla intermedia con relacion entre productos y ofertas
 Ofertas.belongsToMany(Productos, {
   through: "productos_ofertas",
