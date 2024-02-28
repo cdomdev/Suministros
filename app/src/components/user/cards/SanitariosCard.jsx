@@ -47,6 +47,23 @@ export const SanitariosCard = () => {
     }
   };
 
+  // Función para manejar cambios en la marca seleccionada en moile
+  const handleMarcaChangeMobile = (e) => {
+    // Obtenemos el valor de la marca seleccionada del evento
+    const marcaSeleccionada = e.target.value;
+
+    // Verificar si la marca ya está seleccionada
+    if (marcasSeleccionadas.includes(marcaSeleccionada)) {
+      // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
+      setMarcasSeleccionadas(
+        marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
+      );
+    } else {
+      // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
+      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+    }
+  };
+
   function navigateDetail(producto) {
     localStorage.setItem("selectedProduct", JSON.stringify(producto));
     localStorage.setItem("categroyselectedProduct", JSON.stringify(productos));
@@ -158,7 +175,6 @@ export const SanitariosCard = () => {
                 No hay productos
               </span>
             )}
-
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
                 <span className="text-ref">REF: {producto.referencia}</span>

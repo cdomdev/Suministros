@@ -84,7 +84,7 @@ $contenido2: "Montserrat", sans-serif;
         font-size: 14px;
     }
     .contenedor-grid-products{
-        grid-template-columns: 0.5fr 3.3fr;
+        grid-template-columns: 0.7fr 3.3fr;
         grid-template-areas: 
         'filter header header'
         'filter cards cards'
@@ -118,8 +118,9 @@ $contenido2: "Montserrat", sans-serif;
            
         }
         .header{
+            display: none;
             grid-area: header;
-            height: 55px;
+            height: 45px;
             @include bordeBox();
             background-color: white;
             display: flex;
@@ -132,6 +133,16 @@ $contenido2: "Montserrat", sans-serif;
                 border-radius: 1px;
                 cursor: pointer;
                 font-size: 14px;
+            }
+            .mobile-select{
+                display: none;
+                background-color: #213C65;
+               select{
+                height: 35px;
+                border-radius: 1px;
+                cursor: pointer;
+                font-size: 14px;
+               }
             }
             .count-products{
                 display: flex;
@@ -169,7 +180,7 @@ $contenido2: "Montserrat", sans-serif;
             height: auto;
             width: 100%;
             justify-content: start ;
-            gap: 11px;
+            gap: 10px;
             font-family: $contenidoFonts;
             p{
                 text-align: center;
@@ -198,7 +209,7 @@ $contenido2: "Montserrat", sans-serif;
                 flex-direction: column;
                 justify-content: space-between;
                 max-width: 17em;
-                width: 16.4em ;
+                width: 15.6em ;
                 height: auto;
                 text-align: center;
                 align-items: center;
@@ -272,20 +283,10 @@ $contenido2: "Montserrat", sans-serif;
 }
 
 
-@media (min-width: 300px) and (max-width: 499px) {
-
-       .migajas{
-        padding-left: 1em;
-       }
+@media (min-width: 300px) and (max-width: 500px) {
         .container-productos{
             h1{
                 font-size: 20px;
-            }
-            p{
-                line-height: 18px;
-                font-size: 14px;
-                text-wrap: wrap;
-                text-align: left;
             }
             .contenedor-grid-products{
                 grid-template-columns: 1fr ;
@@ -300,34 +301,18 @@ $contenido2: "Montserrat", sans-serif;
                 }
                 .header{
                     font-size: 10px;
-                    height: auto;
-                    padding: 5px;
-                    width: 100%;
+                    height: 50px;
+                    width: 85%;
                     margin: auto;
-                    gap: 5px;
                     justify-content: center;
-                    display: grid;
-                    grid-template-columns: 50% 50%;
-                    .select {
-                        width: 100%;
-                        font-size: 11px;
+                    select{
+                        width:200px;
+                        font-size: 12px;
                     }
                     
                     span{
                         display: none;
                     }
-                    .mobile-select{
-                        display: block;
-                        .select-mobile{
-                            width: 100%;
-                            border-radius:1px ;
-                            font-size: 11px;
-                        }
-                    }
-                    p{
-                        display: none;
-                    }
-
                 }
                 .header-hidden{
                     display:block ;
@@ -338,7 +323,7 @@ $contenido2: "Montserrat", sans-serif;
                     padding: 5px;
                     justify-content: center;
                     .card-products{
-                        width: 10.5em;
+                        width: 11em !important;
                         height: auto;
                         margin: 0;
                         padding: 5px 10px;

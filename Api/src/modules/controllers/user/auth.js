@@ -8,10 +8,7 @@ const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
 const CLIENT_ID = process.env.CLIENT_ID;
 const claveSecreta = process.env.CLAVE_SECRETA;
 const tiempoExpiracion = 3600;
-const { sendEmailWithTemplate } = require("../../middleware/Mails");
 
-// plantillas
-const registroTemplatePath = "../../templates/registro.html";
 
 // inciio con google
 const googleLogin = async (req, res) => {
@@ -85,12 +82,9 @@ const registroController = async (req, res) => {
       role: "user",
     });
 
+    const emailHTML = EmailTemplate(name);
 
-    await sendEmailWithTemplate(
-      newUser.email,
-      "Registro exitoso",
-      registroTemplatePath
-    );
+    await sendMails(newUser.email, "Registro exitoso", emailHTML);
 
     const token = jwt.sign({ user: newUser }, claveSecreta, {
       expiresIn: 3600,
