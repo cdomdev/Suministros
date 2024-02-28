@@ -4004,7 +4004,7 @@ section .details .summary .box4 .card-product .img-car-shop {
   padding: 10px 0;
 }
 .modal-content .content-use .buttons-content {
-  width: 70%;
+  width: 100%;
   float: right;
   display: flex;
   justify-content: space-between;
