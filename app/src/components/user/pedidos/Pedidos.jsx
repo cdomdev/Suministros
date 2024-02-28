@@ -42,17 +42,7 @@ export const Pedidos = () => {
               style={{ border: "none", padding: "0 10px" }}
             />
             <Modal.Body>
-              <h1>Aqui puedes</h1>
-              <ul>
-                <li>
-                  {" "}
-                  <TfiPackage className="icon" /> Ver tus pedidos
-                </li>
-                <li>
-                  {" "}
-                  <IoPersonSharp className="icon" /> Ver tu perfil
-                </li>
-              </ul>
+              <h1>Debes inicar sesion par ver tus pedidos</h1>
               <LoginModal
                 setIsLoggedIn={setIsLoggedIn}
                 controlComponent={(handleShow) => (

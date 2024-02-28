@@ -135,6 +135,12 @@
   font-size: 14px;
   padding: 2px 5px;
 }
+.container-productos .contenedor-grid-products .header .mobile-select {
+  display: none;
+}
+.container-productos .contenedor-grid-products .header .mobile-select .select-mobile {
+  height: 35px;
+}
 .container-productos .contenedor-grid-products .header-hidden {
   display: none;
 }
@@ -234,9 +240,18 @@
     width: 93vw;
   }
 }
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 300px) and (max-width: 499px) {
+  .migajas {
+    padding-left: 1em;
+  }
   .container-productos h1 {
     font-size: 20px;
+  }
+  .container-productos p {
+    line-height: 18px;
+    font-size: 14px;
+    text-wrap: wrap;
+    text-align: left;
   }
   .container-productos .contenedor-grid-products {
     grid-template-columns: 1fr;
@@ -247,16 +262,31 @@
   }
   .container-productos .contenedor-grid-products .header {
     font-size: 10px;
-    height: 50px;
-    width: 85%;
+    height: auto;
+    padding: 5px;
+    width: 100%;
     margin: auto;
+    gap: 5px;
     justify-content: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
   }
-  .container-productos .contenedor-grid-products .header select {
-    width: 200px;
-    font-size: 12px;
+  .container-productos .contenedor-grid-products .header .select {
+    width: 100%;
+    font-size: 11px;
   }
   .container-productos .contenedor-grid-products .header span {
+    display: none;
+  }
+  .container-productos .contenedor-grid-products .header .mobile-select {
+    display: block;
+  }
+  .container-productos .contenedor-grid-products .header .mobile-select .select-mobile {
+    width: 100%;
+    border-radius: 1px;
+    font-size: 11px;
+  }
+  .container-productos .contenedor-grid-products .header p {
     display: none;
   }
   .container-productos .contenedor-grid-products .header-hidden {
@@ -267,7 +297,7 @@
     justify-content: center;
   }
   .container-productos .contenedor-grid-products .contenedor-card .card-products {
-    width: 11em !important;
+    width: 10.5em;
     height: auto;
     margin: 0;
     padding: 5px 10px;
@@ -713,6 +743,7 @@
 .nav-custome-admin {
   box-shadow: 2px 2px 4px rgba(166, 166, 166, 0.4), -2px -2px 4px rgba(255, 0, 0, 0.4);
   justify-content: space-between;
+  background-color: white !important;
 }
 .nav-custome-admin .navbar-collapse {
   display: flex;
@@ -751,12 +782,9 @@
   color: white;
 }
 .nav-custome-admin .logotipo {
-  margin: 0 0 -5px 0;
   transition: all ease 0.4s;
   cursor: pointer;
-}
-.nav-custome-admin .logotipo:hover {
-  scale: 1.1;
+  width: 10em;
 }
 .nav-custome-admin .nav-link-custome {
   font-weight: 400;
@@ -1847,7 +1875,7 @@ body {
 }
 .contenido .animated-truck {
   float: right;
-  width: 100px;
+  font-size: 80px;
   animation: moveTruck 3s linear infinite;
 }
 @keyframes moveTruck {
@@ -2043,6 +2071,7 @@ body {
   }
   .contenido p {
     font-size: 12px;
+    line-height: 16px;
   }
   .contenido .box-products-home {
     width: 100%;
@@ -2890,6 +2919,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  font-family: "Montserrat", sans-serif;
 }
 .nav-custom .header-nav .menu-navegacion .nav-list {
   justify-content: flex-start;
@@ -2921,8 +2951,8 @@ body {
   position: relative;
   margin-top: 14px;
   font-size: 13px;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 500;
 }
 .nav-custom .header-nav .menu-navegacion .menu-container .menu-item:hover .submenu {
   opacity: 1;
@@ -2954,13 +2984,13 @@ body {
 }
 .nav-custom .header-nav .menu-navegacion .menu-container .menu-item .submenu ul a {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-family: "Montserrat", sans-serif;
 }
 .nav-custom .header-nav .menu-navegacion .menu-container .menu-item .submenu .nav-link-item {
-  font-size: 14px;
-  color: black;
+  font-size: 13px;
   font-weight: 500;
+  color: #1c1c1c;
 }
 .nav-custom .header-nav .menu-navegacion .menu-container .menu-item .submenu .nav-link-item:hover {
   color: #213C65;
@@ -2978,11 +3008,8 @@ body {
   transform: translateX(-37vw);
 }
 .nav-custom .logotipo {
-  fill: #243a5e;
-  width: 10em;
+  width: 9em;
   cursor: pointer;
-  transition: all 0.5s ease;
-  margin: 0 -10px -3px 0;
 }
 .nav-custom .btn-custom-movil {
   color: white;
@@ -3180,7 +3207,6 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .modal-pedido .modal-content {
-  border-radius: 1px;
   padding: 10px;
 }
 .modal-pedido .modal-content .modal-body {
@@ -3190,7 +3216,8 @@ body {
   line-height: 18px;
 }
 .modal-pedido .modal-content .modal-body h1 {
-  font-size: 18px;
+  font-size: 17px;
+  text-align: center;
 }
 .modal-pedido .modal-content .modal-body ul {
   margin: 0;
@@ -3207,7 +3234,6 @@ body {
 .modal-pedido .modal-content .modal-body .btn {
   margin: 1em 0 0 0;
   width: 100%;
-  border-radius: 3px;
 }
 
 .main-pedidos {
@@ -3364,13 +3390,14 @@ body {
   margin: 0;
 }
 .container-details .details h1 {
-  font-size: 25px;
+  font-size: 23px;
   margin: 10px 0;
   font-weight: bold;
 }
 .container-details .details span {
-  font-size: 15px;
+  font-size: 12px;
   text-wrap: wrap;
+  line-height: 14px;
 }
 .container-details .details .ref {
   display: flex;
@@ -3401,11 +3428,12 @@ body {
 }
 .container-details .details .valor strong {
   font-size: 14px;
+  margin: 10px 0;
   opacity: 90%;
   font-weight: bold;
 }
 .container-details .details .valor span {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
 }
 .container-details .details .text {
@@ -3423,6 +3451,7 @@ body {
   width: fit-content;
   gap: 5px;
   border: solid 1px rgb(149, 149, 149);
+  border-radius: 5px;
 }
 .container-details .details .contendor-quantity .quantity input[type=number] {
   width: 40px;

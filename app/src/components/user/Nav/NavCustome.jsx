@@ -2,11 +2,11 @@ import { Outlet, NavLink, Link } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { ContenidoSubmenus } from "../nav/ContenidoSubmenus";
 import { Buscador } from "../buscador/Buscador";
-import { Logo } from "../Logo/Logo";
 import { CarShop } from "../carShop";
 import { Pedidos } from "../pedidos/Pedidos";
 import { useUser } from "../../../hook";
 import { Perfil } from "../nav/Perfil";
+import LogoImg from '../../../../public/logo.webp'
 
 export const NavCustome = () => {
   const { isAdmin } = useUser();
@@ -28,7 +28,7 @@ export const NavCustome = () => {
                 />
                 <Navbar.Brand>
                   <Link to="/suministros/home">
-                    <Logo />
+                    <img src={LogoImg} alt="img-logo" className="logotipo" />
                   </Link>
                 </Navbar.Brand>
                 <div className="contenedor-search">
@@ -62,7 +62,7 @@ export const NavCustome = () => {
                   <Nav className=" flex-grow-1 pe-3 nav-list  align-items-center;">
                     <ContenidoSubmenus />
                     <NavLink
-                      style={{ color: "blue" }}
+                      style={{ color: "#1ca1db", fontWeight: 'bold'}}
                       to="/suministros/ofertas"
                       className="nav-link-custom">
                       OFERTAS

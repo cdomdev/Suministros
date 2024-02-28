@@ -150,6 +150,13 @@ $contenido2: "Montserrat", sans-serif;
                     }
                 }
             }
+            .mobile-select{
+                display: none;
+                .select-mobile{
+                    height:35px;
+                   
+                }
+            }
         }
         .header-hidden{
             display:none ;
@@ -265,10 +272,20 @@ $contenido2: "Montserrat", sans-serif;
 }
 
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 300px) and (max-width: 499px) {
+
+       .migajas{
+        padding-left: 1em;
+       }
         .container-productos{
             h1{
                 font-size: 20px;
+            }
+            p{
+                line-height: 18px;
+                font-size: 14px;
+                text-wrap: wrap;
+                text-align: left;
             }
             .contenedor-grid-products{
                 grid-template-columns: 1fr ;
@@ -283,18 +300,34 @@ $contenido2: "Montserrat", sans-serif;
                 }
                 .header{
                     font-size: 10px;
-                    height: 50px;
-                    width: 85%;
+                    height: auto;
+                    padding: 5px;
+                    width: 100%;
                     margin: auto;
+                    gap: 5px;
                     justify-content: center;
-                    select{
-                        width:200px;
-                        font-size: 12px;
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    .select {
+                        width: 100%;
+                        font-size: 11px;
                     }
                     
                     span{
                         display: none;
                     }
+                    .mobile-select{
+                        display: block;
+                        .select-mobile{
+                            width: 100%;
+                            border-radius:1px ;
+                            font-size: 11px;
+                        }
+                    }
+                    p{
+                        display: none;
+                    }
+
                 }
                 .header-hidden{
                     display:block ;
@@ -305,7 +338,7 @@ $contenido2: "Montserrat", sans-serif;
                     padding: 5px;
                     justify-content: center;
                     .card-products{
-                        width: 11em !important;
+                        width: 10.5em;
                         height: auto;
                         margin: 0;
                         padding: 5px 10px;

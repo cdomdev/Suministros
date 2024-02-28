@@ -120,6 +120,20 @@ export const CardPegantes = () => {
             <option value="mayor-menor"> De mayor precio a menor precio</option>
           </Form.Select>
         </div>
+        <div className="mobile-select">
+          <Form.Select
+            aria-label="Default select example"
+            value={categoriaSeleccionada}
+            onChange={handleSelectChange}
+            className="select-mobile">
+            <option value="">Todas las marcas</option>
+            {marcasDisponibles.map((marca, index) => (
+              <option key={index} value={marca}>
+                {marca}
+              </option>
+            ))}
+          </Form.Select>
+        </div>
         <div className="count-products">
           <div className="count">
             <span>{productos.length}</span>

@@ -164,12 +164,11 @@ body{
     margin: 6em 0;
     font-weight: bold;
  }
- 
-.animated-truck{
+  .animated-truck{
     float: right;
-    width: 100px; 
+    font-size: 80px;
     animation: moveTruck 3s linear infinite;
-}
+ }
  @keyframes moveTruck {
     0% {
       transform: translateX(0);
@@ -403,6 +402,7 @@ body{
         }
         p{
          font-size: 12px;
+         line-height: 16px;
         }
         .box-products-home{
            width: 100%;

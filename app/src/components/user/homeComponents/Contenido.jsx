@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { Container } from "react-bootstrap";
-import MdiTruckFast from "../../../assets/animation/trck";
 import { CategoriasItems } from "./CategoriasItems";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { Link } from "react-router-dom";
+import { TbTruckDelivery } from "react-icons/tb";
 
 export const Contenido = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -63,7 +62,7 @@ export const Contenido = () => {
               </span>
             </div>
             <div className="svg-truck">
-              <MdiTruckFast />
+            <TbTruckDelivery className="animated-truck" />
               <h5 className="text-svg-truck">Envio a domicilio</h5>
               <span className="text-svg">
                 Tu pedido hasta la puerta de tu casa

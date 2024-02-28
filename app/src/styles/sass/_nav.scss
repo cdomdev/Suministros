@@ -120,6 +120,7 @@ $color-complementario: #f2efe1;
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
+            font-family: $contenido2;
             .nav-list{
                 justify-content: flex-start;
                 align-items: start;
@@ -150,8 +151,8 @@ $color-complementario: #f2efe1;
                   position: relative;
                   margin-top: 14px;
                   font-size: 13px;
-                  font-weight: 600;
                   cursor: pointer;
+                  font-weight: 500;
                   &:hover .submenu {
                     opacity: 1;
                     margin-right: 0;
@@ -182,15 +183,15 @@ $color-complementario: #f2efe1;
                         }
                        a{
                         text-decoration: none;
-                        font-size: 14px;
+                        font-size: 13px;
                         font-family: $contenido2;
                        } 
 
                     }
                     .nav-link-item{
-                        font-size: 14px;
-                        color: black;
+                        font-size: 13px;
                         font-weight: 500;
+                        color: #1c1c1c;
                         &:hover{
                             color: #213C65;
                         }
@@ -224,11 +225,8 @@ $color-complementario: #f2efe1;
     }
    
     .logotipo{
-        fill:$color-principal;
-        width: 10em;
+        width: 9em;
         cursor: pointer;
-        transition: all 0.5s ease;
-        margin: 0 -10px -3px  0 ;
     }
  
    

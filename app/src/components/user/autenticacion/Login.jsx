@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import imgFav from "../../../assets/img/favicon.png";
+import imgFav from "../../../assets/img/favicon.webp";
 import EventEmitter from "../../../hook/EventEmitter";
 import { useUser } from "../../../hook";
 import { GoogleLogin } from "./Google/GoogleLogin";

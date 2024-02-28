@@ -42,7 +42,7 @@ export const Productos = () => {
       </div>
       {cartItemCount > 0 && (
         <Link to={"/suministros/car"}>
-          <div class="icon-container">
+          <div className="icon-container">
             <div className="insignia">{cartItemCount}</div>
             <TiShoppingCart className="icon-car" />
           </div>

@@ -1,10 +1,11 @@
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
 import { Outlet, useNavigate, Link } from "react-router-dom";
-import { Logo } from "../../user/Logo/Logo";
 import { useUser } from "../../../hook";
 import { IoIosPerson } from "react-icons/io";
 import { AiOutlinePoweroff } from "react-icons/ai";
+import LogoImg from "../img/logo.webp";
+
 export const NavAdmin = () => {
   const { logout } = useUser();
 
@@ -30,7 +31,7 @@ export const NavAdmin = () => {
         fixed="top">
         <Container className="custom-navbar nav-layout-admin">
           <Link to="/admin" onClick={redirectToHome}>
-            <Logo fillColor="#213C65" />
+            <img src={LogoImg} alt="img-logo" className="logotipo" />
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

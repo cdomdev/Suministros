@@ -71,6 +71,12 @@ export const CardPisos = () => {
     }
   };
 
+  
+  const handleSelectChange = (e) => {
+    setCategoriaSeleccionada(e.target.value);
+  };
+
+
   const productosFiltrados = productos.filter((producto) => {
     const categoriaPass =
       !categoriaSeleccionada || producto.title === categoriaSeleccionada;
@@ -118,6 +124,20 @@ export const CardPisos = () => {
             <option value="">Recomendado</option>
             <option value="menor-mayor"> De menor precio a mayor precio</option>
             <option value="mayor-menor"> De mayor precio a menor precio</option>
+          </Form.Select>
+        </div>
+        <div className="mobile-select">
+          <Form.Select
+            aria-label="Default select example"
+            value={categoriaSeleccionada}
+            onChange={handleSelectChange}
+            className="select-mobile">
+            <option value="">Todas las marcas</option>
+            {marcasDisponibles.map((marca, index) => (
+              <option key={index} value={marca}>
+                {marca}
+              </option>
+            ))}
           </Form.Select>
         </div>
         <div className="count-products">
