@@ -35,7 +35,10 @@ export const CardLimpiadores = () => {
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-  // Función para manejar cambios en las marcas seleccionadas
+  const handleMarcaChangeMobile = (event) => {
+    setMarcasSeleccionadas(event.target.value);
+  };
+
   const handleMarcaChange = (marca) => {
     // Verificar si la marca ya está seleccionada
     if (marcasSeleccionadas.includes(marca)) {
@@ -80,6 +83,7 @@ export const CardLimpiadores = () => {
     return categoriaPass && marcaPass;
   });
 
+
   return (
     <>
       <div className="filtros">
@@ -118,6 +122,20 @@ export const CardLimpiadores = () => {
             <option value="">Recomendado</option>
             <option value="menor-mayor"> De menor precio a mayor precio</option>
             <option value="mayor-menor"> De mayor precio a menor precio</option>
+          </Form.Select>
+        </div>
+        <div className="mobile-select">
+          <Form.Select
+            aria-label="Default select example"
+            value={marcasDisponibles}
+            onChange={handleMarcaChangeMobile}
+            className="select-mobile">
+            <option value="">Filtrar por marca</option>
+            {marcasDisponibles.map((marca, index) => (
+              <option key={index} value={marca}>
+                {marca}
+              </option>
+            ))}
           </Form.Select>
         </div>
         <div className="count-products">

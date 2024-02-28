@@ -35,6 +35,24 @@ export const CardPisos = () => {
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
+
+  
+  // Función para manejar cambios en la marca seleccionada en moile
+  const handleMarcaChangeMobile = (e) => {
+    // Obtenemos el valor de la marca seleccionada del evento
+    const marcaSeleccionada = e.target.value;
+
+    // Verificar si la marca ya está seleccionada
+    if (marcasSeleccionadas.includes(marcaSeleccionada)) {
+      // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
+      setMarcasSeleccionadas(
+        marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
+      );
+    } else {
+      // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
+      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+    }
+  };
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
     // Verificar si la marca ya está seleccionada
@@ -118,6 +136,28 @@ export const CardPisos = () => {
             <option value="">Recomendado</option>
             <option value="menor-mayor"> De menor precio a mayor precio</option>
             <option value="mayor-menor"> De mayor precio a menor precio</option>
+          </Form.Select>
+        </div>
+        <div className="mobile-select">
+          <Form.Select
+            aria-label="Default select example"
+            value={marcasDisponibles}
+            onChange={handleMarcaChangeMobile}
+            className="select-mobile">
+            {marcasDisponibles.length === 0 ? (
+              <option value="" disabled>
+                No hay disponibles
+              </option>
+            ) : (
+              <>
+                <option value="">Selecciona una marca</option>
+                {marcasDisponibles.map((marca, index) => (
+                  <option key={index} value={marca}>
+                    {marca}
+                  </option>
+                ))}
+              </>
+            )}
           </Form.Select>
         </div>
         <div className="count-products">

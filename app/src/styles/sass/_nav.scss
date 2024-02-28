@@ -15,6 +15,7 @@ $color-complementario: #f2efe1;
 .nav-custom{
     background-color: white;
     box-shadow: 2px 2px 4px rgba(84, 84, 84, 0.4), -2px -2px 1px rgba(255, 0, 0, 0.4);
+    font-family: $contenido2;
     .header-nav{
         width: 100%;
         display: flex;
@@ -25,7 +26,7 @@ $color-complementario: #f2efe1;
             gap: 2px;
            .header-logo{
             width: 100%;
-            justify-content: space-around;
+            justify-content: space-between;
             display: flex;
             align-items: center;
             .contenedor-search{
@@ -62,14 +63,19 @@ $color-complementario: #f2efe1;
                     align-self: center;
                 }
             }
+            .navbar-brand{
+                padding-left: 1em;
+            }
            
            }
            .content-icons-nav{
-            width: 10em;
+            width: auto;
             padding: 0 5px;
+            margin-right: 2em;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 5px;
             span{
                 font-size: 8px;
                 transition: all ease 0.3s;
@@ -85,6 +91,9 @@ $color-complementario: #f2efe1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                .carshop{
+                    margin-bottom: -3px;
+                }
             }
            
             .pedidos div{
@@ -92,11 +101,11 @@ $color-complementario: #f2efe1;
                 flex-direction: column;
                 align-items: center;
                 display: flex;
-                gap: 6px;
+                gap: 3px;
                 margin-bottom: -7px;
                 .box-pedidos{
-                    width: 35px;
-                    height: 35px;
+                    width: 32px;
+                    height: 32px;
                     cursor: pointer;
                    
                 }
@@ -106,9 +115,11 @@ $color-complementario: #f2efe1;
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: -4px;
-                gap: 8px;
+                gap: 7px;
                 .MuiAvatar-circular{
-                    background-color:#243a5e;
+                    background-color:#214277;
+                    width: 37px;
+                    height:  37px;
                 }
             }
             
@@ -126,6 +137,8 @@ $color-complementario: #f2efe1;
                 margin-left: 12em;
                 display: flex;
                 gap: 20px;
+                font-size: 13px;
+                color:#4e4e51;
             }
             .nav-link-custom{
                 padding: 15px 0;
@@ -150,7 +163,6 @@ $color-complementario: #f2efe1;
                   position: relative;
                   margin-top: 14px;
                   font-size: 13px;
-                  font-weight: 600;
                   cursor: pointer;
                   &:hover .submenu {
                     opacity: 1;
@@ -167,7 +179,7 @@ $color-complementario: #f2efe1;
                     left: 0; 
                     right: 0;
                     width: 100vw;
-                    transform: translateX(-14vw);
+                    transform: translateX(-12vw);
                     background-color: #fff;
                     padding: 10px;
                     justify-content: flex-start;
@@ -179,18 +191,19 @@ $color-complementario: #f2efe1;
                         list-style: none;
                         li{
                             margin-top: 10px;
+                           
                         }
                        a{
                         text-decoration: none;
                         font-size: 14px;
-                        font-family: $contenido2;
+                        font-size: 13px;
+                        color:#4e4e51;
                        } 
 
                     }
                     .nav-link-item{
-                        font-size: 14px;
-                        color: black;
-                        font-weight: 500;
+                        font-size: 13px;
+                        color:#4e4e51;
                         &:hover{
                             color: #213C65;
                         }
@@ -198,16 +211,16 @@ $color-complementario: #f2efe1;
                     
                   }
                   .submenu2{
-                    transform: translateX(-19vw);
-                    padding-left: 22em;
+                    transform: translateX(-16vw);
+                    padding-left: 19em;
                   }
                   .submenu3{
-                    padding-left: 35em;
-                    transform: translateX(-24vw);
+                    padding-left: 34em;
+                    transform: translateX(-22vw);
                   }
                   .submenu4{
-                    padding-left: 46em;
-                    transform: translateX(-37vw);
+                    padding-left: 44em;
+                    transform: translateX(-35vw);
                   }
                  
                 }
@@ -390,40 +403,47 @@ $color-complementario: #f2efe1;
         
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+// @media (min-width: 300px) and (max-width: 500px) {
  
-    .carrusel{
-        .carousel-control-next-icon{
-            padding: 0;
-            .visually-hidden{
-                width: 20px;
-            }
-        }
-    }
+   
+// }
+
+
+
+/* Estilos para dispositivos de 300px a 499px */
+@media (min-width: 300px) and (max-width: 499px) {
     .nav-custom{
         .header-nav{
             display: flex;
             hr{
                 display: none;
             }
-            .navbar-toggler{
-                width: 35px;
-                height: 35px;
-                .navbar-toggler-icon{
-                    width: 20px;
-                    height: 20px;
-                    margin: -5px 0 0 -5px;
-                   
-                }
-            }  
+         
             .contenedor-header-nav{
                 .header-logo{
+                    width: 100%;
                     display: flex;
-                    justify-content: space-around;
+                    padding: 0;
+                    margin: 0;
+                    justify-content: space-between;
+                    .navbar-brand{
+                        padding: 0;
+                        margin: 0;
+                    }
                     .logotipo{
                         width: 6em;
                         margin-left: 10px;
                     }
+                    .navbar-toggler{
+                        width: 45px;
+                        height: 35px;
+                        .navbar-toggler-icon{
+                            width: 20px;
+                            height: 20px;
+                           
+                        }
+                    } 
+                   
                     .contenedor-search{
                         display: none;
                     }
@@ -433,6 +453,7 @@ $color-complementario: #f2efe1;
                         flex-direction: row;
                         gap:0;
                         align-items: center;
+                        margin: 0;
                         span{
                             font-size: 8px;
                         }
@@ -455,12 +476,14 @@ $color-complementario: #f2efe1;
                 width: 70%;
                 .form-control{
                     border-radius: 1px;
+                    background-color:#eeeeee;
                     font-size: 10px;
                 }
             }
             .btn-icon{
                 border: solid 1px rgb(217, 216, 216) ;
                 padding: 0 10px;
+                background-color: #909193;
             }
         }
         .offcanvas-body{
@@ -472,8 +495,25 @@ $color-complementario: #f2efe1;
 
             }
         }
-    }
-   
+    } 
 }
 
+// /* Estilos para dispositivos de 500px a 767px */
+// @media (min-width: 500px) and (max-width: 767px) {
+//     /* Estilos para dispositivos medianos */
+// }
 
+// /* Estilos para dispositivos de 768px a 1023px */
+// @media (min-width: 768px) and (max-width: 1023px) {
+//     /* Estilos para tablets y dispositivos similares */
+// }
+
+// /* Estilos para dispositivos de 1024px a 1199px */
+// @media (min-width: 1024px) and (max-width: 1199px) {
+//     /* Estilos para dispositivos de tamaño medio */
+// }
+
+// /* Estilos para dispositivos de 1200px en adelante */
+// @media (min-width: 1200px) {
+//     /* Estilos para pantallas grandes o de alta resolución */
+// }

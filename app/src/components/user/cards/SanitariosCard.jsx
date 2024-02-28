@@ -47,6 +47,23 @@ export const SanitariosCard = () => {
     }
   };
 
+  // Función para manejar cambios en la marca seleccionada en moile
+  const handleMarcaChangeMobile = (e) => {
+    // Obtenemos el valor de la marca seleccionada del evento
+    const marcaSeleccionada = e.target.value;
+
+    // Verificar si la marca ya está seleccionada
+    if (marcasSeleccionadas.includes(marcaSeleccionada)) {
+      // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
+      setMarcasSeleccionadas(
+        marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
+      );
+    } else {
+      // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
+      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+    }
+  };
+
   function navigateDetail(producto) {
     localStorage.setItem("selectedProduct", JSON.stringify(producto));
     localStorage.setItem("categroyselectedProduct", JSON.stringify(productos));
@@ -120,6 +137,29 @@ export const SanitariosCard = () => {
             <option value="mayor-menor"> De mayor precio a menor precio</option>
           </Form.Select>
         </div>
+        {/* select habilitado solo para vistas moviles */}
+        <div className="mobile-select">
+          <Form.Select
+            aria-label="Default select example"
+            value={marcasDisponibles}
+            onChange={handleMarcaChangeMobile}
+            className="select-mobile">
+            {marcasDisponibles.length === 0 ? (
+              <option value="" disabled>
+                No hay disponibles
+              </option>
+            ) : (
+              <>
+                <option value="">Selecciona una marca</option>
+                {marcasDisponibles.map((marca, index) => (
+                  <option key={index} value={marca}>
+                    {marca}
+                  </option>
+                ))}
+              </>
+            )}
+          </Form.Select>
+        </div>
         <div className="count-products">
           <div className="count">
             <span>{productos.length}</span>
@@ -138,7 +178,6 @@ export const SanitariosCard = () => {
                 No hay productos
               </span>
             )}
-
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
                 <span className="text-ref">REF: {producto.referencia}</span>

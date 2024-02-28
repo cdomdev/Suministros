@@ -84,7 +84,7 @@ $contenido2: "Montserrat", sans-serif;
         font-size: 14px;
     }
     .contenedor-grid-products{
-        grid-template-columns: 0.5fr 3.3fr;
+        grid-template-columns: 0.7fr 3.3fr;
         grid-template-areas: 
         'filter header header'
         'filter cards cards'
@@ -118,8 +118,9 @@ $contenido2: "Montserrat", sans-serif;
            
         }
         .header{
+            display: none;
             grid-area: header;
-            height: 55px;
+            height: 45px;
             @include bordeBox();
             background-color: white;
             display: flex;
@@ -132,6 +133,16 @@ $contenido2: "Montserrat", sans-serif;
                 border-radius: 1px;
                 cursor: pointer;
                 font-size: 14px;
+            }
+            .mobile-select{
+                display: none;
+                background-color: #213C65;
+               select{
+                height: 35px;
+                border-radius: 1px;
+                cursor: pointer;
+                font-size: 14px;
+               }
             }
             .count-products{
                 display: flex;
@@ -162,7 +173,7 @@ $contenido2: "Montserrat", sans-serif;
             height: auto;
             width: 100%;
             justify-content: start ;
-            gap: 11px;
+            gap: 10px;
             font-family: $contenidoFonts;
             p{
                 text-align: center;
@@ -191,7 +202,7 @@ $contenido2: "Montserrat", sans-serif;
                 flex-direction: column;
                 justify-content: space-between;
                 max-width: 17em;
-                width: 16.4em ;
+                width: 15.6em ;
                 height: auto;
                 text-align: center;
                 align-items: center;
@@ -265,104 +276,125 @@ $contenido2: "Montserrat", sans-serif;
 }
 
 
-@media (min-width: 300px) and (max-width: 500px) {
-        .container-productos{
-            h1{
-                font-size: 20px;
+@media (min-width: 300px) and (max-width: 499px) {
+    .migajas{
+        padding-left:1em ;
+    }
+    .container-productos{
+        h1{
+            font-size: 18px;
+        }
+        p{
+            line-height: 16px;
+            font-size: 13px;
+        }
+        .contenedor-grid-products{
+            grid-template-columns: 1fr ;
+            grid-template-areas: 
+            'header header header header'
+            'cards cards  cards cards'
+            'cards cards  cards cards'
+            'cards cards  cards cards'
+            ;
+            .filtros{
+             display: none;
             }
-            .contenedor-grid-products{
-                grid-template-columns: 1fr ;
-                grid-template-areas: 
-                'header header header header'
-                'cards cards  cards cards'
-                'cards cards  cards cards'
-                'cards cards  cards cards'
-                ;
-                .filtros{
-                 display: none;
+            .header{
+                font-size: 10px;
+                height: 50px;
+                width: 100%;
+                margin: auto;
+                justify-content: center;
+                gap: 10px;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 5px;
+                margin: auto;
+                select{
+                    width:140px;
+                    font-size: 11px;
                 }
-                .header{
-                    font-size: 10px;
-                    height: 50px;
-                    width: 85%;
-                    margin: auto;
-                    justify-content: center;
-                    select{
-                        width:200px;
-                        font-size: 12px;
-                    }
-                    
-                    span{
-                        display: none;
-                    }
+                .mobile-select{
+                    display: block;
+                    font-size: 11px;
+                   select{
+                    width:165px;
+                   }
                 }
-                .header-hidden{
-                    display:block ;
+                span{
+                    display: none;
                 }
-                
-                
-                .contenedor-card{
-                    padding: 5px;
-                    justify-content: center;
-                    .card-products{
-                        width: 11em !important;
-                        height: auto;
-                        margin: 0;
-                        padding: 5px 10px;
-                        .text-ref{
-                            font-size: 10px;
-                        }
-                        
-                        .img-products{
-                            width: 4rem;
-                        }
-                        .contenido-card{
-                            .title{
-                                font-size: 12px;
-                            }
-                            .text{
-                                font-size: 10px;
-                            }
-                            .unidad{
-                                font-size: 12px;
-                            }
-    
-                            
-                        }
-                        .btn-primary{
-                            width: 100%;
-                            font-size: 10px;
-                            margin: -12px 0 10px 0 ;
-                            padding: 5px 10px;
-        
-                        }
-                    }
+                p{
+                    display: none;
                 }
-              
+             
+            }
+            .header-hidden{
+                display:block ;
             }
             
-        }
-       
-    
-    .offcanvas-body{
-        .menu-container{
-            .menu-item{
-                .submenu{
-                    ul a{
-                        list-style: none;
-                        text-decoration: none;
-                        color: black;
+            
+            .contenedor-card{
+                padding: 5px;
+                justify-content: center;
+                .card-products{
+                    width: 11em !important;
+                    height: auto;
+                    margin: 0;
+                    padding: 5px 10px;
+                    .text-ref{
+                        font-size: 10px;
                     }
-                    li{
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                       
+                    
+                    .img-products{
+                        width: 4rem;
+                    }
+                    .contenido-card{
+                        .title{
+                            font-size: 12px;
+                        }
+                        .text{
+                            font-size: 10px;
+                        }
+                        .unidad{
+                            font-size: 12px;
+                        }
+
+                        
+                    }
+                    .btn-primary{
+                        width: 100%;
+                        font-size: 10px;
+                        margin: -12px 0 10px 0 ;
+                        padding: 5px 10px;
+    
                     }
                 }
             }
+          
         }
-       
+        
     }
-    
-  }
+   
+
+.offcanvas-body{
+    .menu-container{
+        .menu-item{
+            .submenu{
+                ul a{
+                    list-style: none;
+                    text-decoration: none;
+                    color: black;
+                }
+                li{
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                   
+                }
+            }
+        }
+    }
+   
+}
+}

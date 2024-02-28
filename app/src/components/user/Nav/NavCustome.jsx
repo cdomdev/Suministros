@@ -62,7 +62,7 @@ export const NavCustome = () => {
                   <Nav className=" flex-grow-1 pe-3 nav-list  align-items-center;">
                     <ContenidoSubmenus />
                     <NavLink
-                      style={{ color: "blue" }}
+                      style={{ color: "#0096d7", fontWeight:'600' }}
                       to="/suministros/ofertas"
                       className="nav-link-custom">
                       OFERTAS
