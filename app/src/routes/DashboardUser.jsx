@@ -91,7 +91,7 @@ export const DashboardUser = () => {
 
         {/* rutas anidadas */}
         <Route path="/suministros/user/" element={<Pedidos />}>
-          <Route  path="profile" index element={<Profile />} />
+          <Route index element={<Profile />} />
           <Route path="details" element={<DetailPedidos />} />
           <Route path="data" element={<DataUser />} />
         </Route>

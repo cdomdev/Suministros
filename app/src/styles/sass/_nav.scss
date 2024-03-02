@@ -57,7 +57,7 @@ $color-complementario: #f2efe1;
                 }
                 .input-nav{
                     justify-content: center;
-                    height: 40px;
+                    height: 38px;
                     display: flex;
                     width: 90%;
                     align-self: center;
@@ -104,8 +104,8 @@ $color-complementario: #f2efe1;
                 gap: 3px;
                 margin-bottom: -7px;
                 .box-pedidos{
-                    width: 32px;
-                    height: 32px;
+                    width: 35px;
+                    height: 35px;
                     cursor: pointer;
                    
                 }
@@ -115,11 +115,11 @@ $color-complementario: #f2efe1;
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: -4px;
-                gap: 7px;
+                gap: 6px;
                 .MuiAvatar-circular{
                     background-color:#214277;
-                    width: 37px;
-                    height:  37px;
+                    width: 39px;
+                    height:  39px;
                 }
             }
             
@@ -458,8 +458,11 @@ $color-complementario: #f2efe1;
                         }
                         .car{
                             width: 70px;
-                            margin-left: -15px;
+                            margin-left: -17px;
                         }
+                    }
+                    .logotipo{
+                        margin-left: 1px;
                     }
                 
                 }

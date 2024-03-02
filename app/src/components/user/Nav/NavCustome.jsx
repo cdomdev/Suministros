@@ -6,7 +6,7 @@ import { CarShop } from "../carShop";
 import { Pedidos } from "../pedidos/Pedidos";
 import { useUser } from "../../../hook";
 import { Perfil } from "../nav/Perfil";
-import LogoImg from '../../../../public/logo.webp'
+import LogoImg from '../../../assets/img/logo.webp'
 
 export const NavCustome = () => {
   const { isAdmin } = useUser();

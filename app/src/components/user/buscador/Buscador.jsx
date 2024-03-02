@@ -52,7 +52,7 @@ export const Buscador = () => {
       <Form className="input-nav">
         <Form.Control
           type="search"
-          placeholder="¿Buscas algo en especial? "
+          placeholder="¿ Buscas algo en especial ? "
           aria-label="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
