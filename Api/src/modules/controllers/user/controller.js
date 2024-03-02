@@ -6,12 +6,13 @@ const {
   Categoria,
   Ofertas,
 } = require("../../models/inventaryModel");
-const { User } = require("../../models/usersModels");
+// const { User } = require("../../models/usersModels");
 const Sequelize = require("sequelize");
 const {
   Pedido,
   Invitado,
   DetallesPedido,
+  User
 } = require("../../models/usersModels");
 const {
   calcularCantidad,
@@ -214,9 +215,10 @@ const finalizarCompraUsuario = async (req, res) => {
     if (!dataProducts || !dataUser || !metodoPago) {
       return res.status(400).json({ message: "Faltan datos de la compra" });
     }
-
+  
     // Validar el usuario en base de datos
     let user = await User.findOne({ where: { email: dataUser.email } });
+    console.log(user)
 
     if (!user) {
       await t.rollback();
@@ -336,6 +338,23 @@ const obtenerOfertasConProductos = async (req, res) => {
   }
 };
 
+const obtenerDatosUsuario = async (req, res) => {
+  const { email } = req.body; 
+
+  try {
+    console.log(email);
+    console.log(req.body)
+    const dataUser = await User.findAll({ where: { email } });
+    if (!dataUser || dataUser.length === 0) {
+      return res.status(400).json({ message: 'No existen datos del usuario' });
+    }
+    res.status(200).json({dataUser});
+
+  } catch (error) {
+    console.log('Error interno del servidor', error);
+    res.status(500).json({ message: 'Error interno en el servidor' });
+  }
+};
 
 module.exports = {
   listarProductos,
@@ -344,5 +363,6 @@ module.exports = {
   buscarProductos,
   finalizarCompraInvitado,
   finalizarCompraUsuario,
-  obtenerOfertasConProductos
+  obtenerOfertasConProductos,
+  obtenerDatosUsuario
 };

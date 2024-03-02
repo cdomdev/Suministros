@@ -1,5 +1,5 @@
 const { User } = require("../../models/usersModels");
-const Auth = require("../../middleware/authValidate");
+const {passwordValidate, userExisting, verifyGoogleToken} = require("../../middleware/authValidate");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
@@ -82,9 +82,9 @@ const registroController = async (req, res) => {
       role: "user",
     });
 
-    const emailHTML = EmailTemplate(name);
+    // const emailHTML = EmailTemplate(name);
 
-    await sendMails(newUser.email, "Registro exitoso", emailHTML);
+    // await sendMails(newUser.email, "Registro exitoso", emailHTML);
 
     const token = jwt.sign({ user: newUser }, claveSecreta, {
       expiresIn: 3600,
@@ -109,10 +109,10 @@ const loginController = async (req, res) => {
   const { email1, password } = req.body;
 
   try {
-    const userFromDB = await Auth.userExisting(email1);
+    const userFromDB = await userExisting(email1);
 
     if (userFromDB) {
-      const passwordMatch = await Auth.passwordMatch(
+      const passwordMatch = await passwordValidate(
         password,
         userFromDB.password
       );
@@ -132,6 +132,7 @@ const loginController = async (req, res) => {
           name: name,
           role: role,
           token: token,
+          email: email
         });
       } else {
         res
@@ -153,7 +154,7 @@ const recoveryPassword = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await AuthModel.userExisting(email);
+    const user = await userExisting(email);
 
     if (!user) {
       return res.status(400).json({ message: "Usuario no encontrado" });

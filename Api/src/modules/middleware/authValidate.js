@@ -14,7 +14,7 @@ async function userExisting(email) {
 }
 
 // Función para verificar si la contraseña coincide
-async function passwordMatch(inputPassword, storedPassword) {
+async function passwordValidate(inputPassword, storedPassword) {
   return bcrypt.compare(inputPassword, storedPassword);
 }
 
@@ -29,6 +29,6 @@ async function verifyGoogleToken(token) {
 
 module.exports = {
   userExisting,
-  passwordMatch,
+  passwordValidate,
   verifyGoogleToken
 };

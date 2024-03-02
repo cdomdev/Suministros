@@ -11,6 +11,7 @@ const {
   finalizarCompraInvitado,
   finalizarCompraUsuario,
   listarCategoriaProducto,
+  obtenerDatosUsuario,
   listarOfertas,
   listarProductos,
   obtenerOfertasConProductos
@@ -24,6 +25,9 @@ router.post("/registro", registroController);
 router.post("/oauth-google", googleLogin);
 
 router.post("/update/password", recoveryPassword);
+
+// datos de usuario 
+router.post('/user/profile', obtenerDatosUsuario)
 
 // listar productos
 router.get("/listar/productos", listarProductos);
