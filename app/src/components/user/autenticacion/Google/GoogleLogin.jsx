@@ -57,22 +57,22 @@ const LoginButton = ({
 
   const loginInit = useGoogleLogin({
     onSuccess: async (response) => {
-      console.log(response)
       try {
         // Envía el token de acceso al servidor para validar
         const serverResponse = await axios.post(
-          "http://localhost:3000/oauth-google",
+          "http://localhost:3000/user/oauth-google",
           {
             token: response.access_token,
           }
         );
-        console.log(response)
-        const { role, name, email, picture } = serverResponse.data;
+        const { role, name, email, picture, telefono, direccion } = serverResponse.data;
         const dataUserSesion = {
           role: role,
           name: name,
           email: email,
           picture: picture,
+          direccion: direccion,
+          telefono: telefono
         };
         localStorage.setItem(
           "userOnValidateScesOnline",
@@ -84,7 +84,6 @@ const LoginButton = ({
           handleLoginSuccess("actualizado", true);
           notifyAuthChange(true);
           handleCloseModal();
-          setIsLoggedIn(true);
           if (role === "admin") {
             navigate("/admin");
           } else {

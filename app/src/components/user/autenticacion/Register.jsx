@@ -33,11 +33,10 @@ export const Register = ({ handleCloseModal, handleLoginSuccess, setIsLoggedIn }
 
   const handleSubmit = async (values) => {
     try {
-      const URL = "http://localhost:3000/registro";
+      const URL = "http://localhost:3000/user/registro";
       const response = await axios.post(URL, values);
       const previousLocation = sessionStorage.getItem("previousLocation");
 
-      console.log(response)
       const { name, email, picture } = response.data;
       const dataUserSesion = {
         name: name,
@@ -49,7 +48,6 @@ export const Register = ({ handleCloseModal, handleLoginSuccess, setIsLoggedIn }
         "userOnValidateScesOnline",
         JSON.stringify(dataUserSesion)
       );
-      console.log(response);
       if (response.status === 201) {
         login(response.data);
         setMessage("Registrado con exito");

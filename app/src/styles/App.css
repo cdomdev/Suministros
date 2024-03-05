@@ -1755,6 +1755,7 @@ body {
   margin: 0 auto;
   display: flex;
   height: auto;
+  margin-top: -2.3em;
 }
 .carrusel .carousel-image {
   object-fit: unset;
@@ -2840,7 +2841,7 @@ body {
   border-radius: 1px;
   color: black;
   padding: 14px 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 .nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .btn {
   border-radius: 1px;
@@ -2871,7 +2872,7 @@ body {
 .nav-custom .header-nav .contenedor-header-nav .content-icons-nav {
   width: auto;
   padding: 0 5px;
-  margin-right: 2em;
+  padding-right: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3180,6 +3181,7 @@ body {
     gap: 0;
     align-items: center;
     margin: 0;
+    padding-right: 5px;
   }
   .nav-custom .header-nav .contenedor-header-nav .header-logo .content-icons-nav span {
     font-size: 8px;
@@ -3254,19 +3256,15 @@ body {
 .main-pedidos {
   padding-top: 2em;
   display: grid;
-  width: 95vw;
+  width: 90vw;
   margin: auto;
   grid-template-areas: "sidebar body body body" "sidebar body body body" "sidebar body body body" "sidebar body body body";
   grid-template-columns: 1fr 3fr;
-  gap: 5px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .main-pedidos .sidebar {
   font-family: "Lato", sans-serif;
-  border: solid 1px #ebebeb;
-  box-shadow: 0 0 5px rgba(84, 84, 84, 0);
-  box-sizing: border-box;
-  background-color: white;
   grid-area: sidebar;
   max-height: 300px;
   position: relative;
@@ -3279,8 +3277,8 @@ body {
 .main-pedidos .sidebar .avatar {
   position: absolute;
   z-index: 2;
+  width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   top: -45px;
@@ -3291,37 +3289,77 @@ body {
   box-shadow: 0 0 20px 1px rgb(193, 193, 193);
 }
 .main-pedidos .sidebar .data {
+  padding: 3em 0 0 0;
   width: 100%;
-  padding-top: 3.5em;
-  justify-content: center;
+  justify-content: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .main-pedidos .sidebar .data h1 {
   font-size: 25px;
   color: #243a5e;
   font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
 }
-.main-pedidos .sidebar .data span {
-  font-size: 15px;
+.main-pedidos .sidebar .data h2 {
+  font-size: 17px;
+  text-align: center;
+  font-weight: bold;
 }
 .main-pedidos .sidebar .data a {
   text-decoration: none;
-  font-size: 14px;
   text-align: left;
-  margin: 1em 0 1em 0;
+  margin: 10px 0 3px 0;
   color: black;
 }
 .main-pedidos .sidebar .data .flex-column {
-  width: 80%;
+  width: 95%;
+  transition: all ease 10s;
+}
+.main-pedidos .sidebar .data .flex-column a {
+  border: solid 1px;
+  border-radius: 2px;
+  padding: 10px 3px;
+  text-align: center;
+}
+.main-pedidos .sidebar .data .flex-column .box-link .icon {
+  margin-right: 5px;
+  width: 18px;
+  height: 20px;
+  margin: -2px 5px 0 0;
+}
+.main-pedidos .sidebar .data .flex-column .box-link:hover {
+  background-color: #446599;
+  color: white;
+}
+.main-pedidos .sidebar .data .flex-column .logout .icon {
+  width: 20px;
+  height: 20px;
+  margin: -2px 2px 0 0;
+}
+.main-pedidos .sidebar .data .flex-column .logout:hover {
+  color: white;
+  background-color: red;
+}
+.main-pedidos .sidebar .data .box {
+  max-width: 95%;
+  background-color: #e0e0e0;
+  font-style: italic;
+  font-size: 10px;
+  padding: 5px;
+}
+.main-pedidos .sidebar .data .box p {
+  margin: 0;
+  padding: 0;
+  line-height: 13px;
+  color: #243a5e;
 }
 .main-pedidos .body {
   grid-area: body;
   height: auto;
   font-family: "Roboto", sans-serif;
   padding: 20px;
-  max-width: 70%;
+  border: solid 1px #a3a1a1;
 }
 .main-pedidos .body h1 {
   font-size: 25px;
@@ -3345,8 +3383,54 @@ body {
   color: #a3a1a1;
   padding-left: 5px;
 }
+.main-pedidos .body .body-profile .data-info .box-message {
+  height: 20px;
+}
+.main-pedidos .body .body-profile .data-info .box-message p {
+  font-size: 14px;
+  color: red;
+  text-align: center;
+  margin: 0;
+}
+.main-pedidos .body .body-profile .data-info .btn {
+  background-color: #243a5e;
+  float: right;
+  width: 200px;
+  margin-top: 1em;
+}
 .main-pedidos .body .body-deatils {
   padding: 2em 0 0 1em;
+}
+.main-pedidos .body .body-deatils .table-pedidos {
+  margin-top: 1em;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  height: 400px;
+  overflow-x: auto;
+  max-height: 400px;
+}
+.main-pedidos .body .body-deatils .table-pedidos .pedido-contenedor {
+  padding: 5px 10px;
+  background-color: white;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(84, 84, 84, 0);
+}
+.main-pedidos .body .body-deatils .table-pedidos .pedido-contenedor .body-pedido {
+  display: flex;
+  gap: 20px;
+}
+.main-pedidos .body .body-deatils .table-pedidos .pedido-contenedor .body-pedido img {
+  width: 5em;
+}
+.main-pedidos .body .body-deatils .table-pedidos .pedido-contenedor .body-pedido .text-body p {
+  font-size: 14px;
+  margin: 0;
+}
+.main-pedidos .body .body-deatils .table-pedidos .pedido-contenedor .footer-table {
+  font-size: 14px;
+  padding-left: 7em;
+  margin-top: 1em;
 }
 
 .container-details {

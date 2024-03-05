@@ -46,13 +46,15 @@ export const Login = ({ handleCloseModal, handleLoginSuccess }) => {
 
     if (email1 && password) {
       try {
-        const URL = "http://localhost:3000/login";
+        const URL = "http://localhost:3000/user/login";
         const response = await axios.post(URL, { email1, password });
         const { token } = response.data;
 
-        const { name, email, picture } = response.data;
+        const { name, email, picture, telefono, direccion } = response.data;
         const dataUserSesion = {
           name: name,
+          telefono: telefono,
+          direccion: direccion,
           email: email,
           picture: picture || null,
         };

@@ -28,7 +28,7 @@ import {
 
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
 import { NavCustome } from "../components/user/Nav/NavCustome";
-import { Profile, DetailPedidos, DataUser } from "../components/user/pedidos/RutasPedido";
+import { Profile, PedidosUser, DataUserUpdate } from "../components/user/pedidos/RutasPedido";
 import { NotExisting } from "../components/admin/routeNotExisting/NotExisting";
 
 export const DashboardUser = () => {
@@ -91,9 +91,9 @@ export const DashboardUser = () => {
 
         {/* rutas anidadas */}
         <Route path="/suministros/user/" element={<Pedidos />}>
-          <Route index element={<Profile />} />
-          <Route path="details" element={<DetailPedidos />} />
-          <Route path="data" element={<DataUser />} />
+          <Route index element={<Profile />}/>
+          <Route path="details" element={<PedidosUser />} />
+          <Route path="data" element={<DataUserUpdate />} />
         </Route>
         <Route path="*" element={<NotExisting/>}/>
       </Routes>

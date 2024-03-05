@@ -4,8 +4,6 @@ import { useNavigate } from "react-router";
 import { isAuthenticated } from "../../../auth";
 import { Modal, Button } from "react-bootstrap";
 import { LoginModal } from "../autenticacion/LoginModal";
-import { IoPersonSharp } from "react-icons/io5";
-import { TfiPackage } from "react-icons/tfi";
 
 export const Pedidos = () => {
   const navigate = useNavigate();

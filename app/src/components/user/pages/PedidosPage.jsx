@@ -3,15 +3,16 @@ import { Sidebar } from "../pedidos/sidebar/Sidebar";
 import { Outlet } from "react-router";
 
 export const Pedidos = () => {
+  
   return (
     <div>
       <section>
         <div className="main-pedidos">
           <div className="sidebar">
-            <Sidebar />
+            <Sidebar  />
           </div>
           <div className="body">
-            <Outlet/>
+            <Outlet  />
           </div>
         </div>
       </section>

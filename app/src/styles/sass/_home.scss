@@ -20,20 +20,21 @@ body{
 
 // carrusel 
 
-    .carrusel{
-        justify-content: center;
-        width: 100vw;
-        margin: 0 auto;
-        display: flex;
-        height: auto;
-        .carousel-image {
-            object-fit: unset; 
-            background-size:cover ;
-            object-position:center; 
-            overflow: hidden; 
-            height: 450px;
-        }
+ .carrusel{
+    justify-content: center;
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    height: auto;
+    margin-top: -2.3em;
+    .carousel-image {
+        object-fit: unset; 
+        background-size:cover ;
+        object-position:center; 
+        overflow: hidden; 
+        height: 450px;
     }
+ }
 
 
 
@@ -74,7 +75,6 @@ body{
     width: 80vw;
     margin: auto;
     font-family: $contenidoFonts;
-
     h1{
         font-size: 25px;
         margin: 2em 0 20px 0;

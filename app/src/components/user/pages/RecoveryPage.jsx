@@ -8,9 +8,9 @@ export const RecoveryPage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
+  const handleSubmit = async (values, { setSubmitting}) => {
     try {
-      const URL = "http://localhost:3000/update/password";
+      const URL = "http://localhost:3000/user/password/update";
       const response = await axios.post(URL, values);
       if (response.status === 200) {
         setMessage("¡Contraseña actulizada con éxito!");

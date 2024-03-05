@@ -1,3 +1,3 @@
-export {DetailPedidos} from './DetailPedidos'
+export {PedidosUser} from './PedidosUser'
 export {Profile} from './Profile'
-export {DataUser} from './DataUser'
+export {DataUserUpdate} from './DataUserUpdate'
