@@ -1,13 +1,13 @@
 const {
   User,
-  Pedido,
-  DetallesPedido,
-  Invitado,
+  Invitado
 } = require("../../models/usersModels");
 const {
   Categoria,
   Productos,
   Inventario,
+  Pedido, 
+  DetallesPedido
 } = require("../../models/inventaryModel");
 
 const listarUsuarios = async (req, res) => {
@@ -247,25 +247,40 @@ const eliminarProductos = async (req, res) => {
 const listarPedidos = async (req, res) => {
   try {
     const pedidosUsuarios = await Pedido.findAll({
+      attributes: ["id", "cantidad", "metodo_pago", "total"], 
       include: [
         {
           model: DetallesPedido,
+          attributes: ["id", "precio_unitario", "sub_total","descuento", "createdAt" ], 
+          include: [
+            {
+              model: Productos, 
+              attributes: ['id',"title", "image", "referencia", "valor"]
+            },
+          ],
         },
         {
           model: User,
           as: "usuario",
-          attributes: ["id", "name", "email", "telefono", 'detalles', 'direccion'],
+          attributes: ["id", "name", "email", "telefono", "detalles", "direccion"],
         },
         {
           model: Invitado,
         },
       ],
     });
-
     const pedidosInvitados = await Pedido.findAll({
+      attributes: ["id", "cantidad", "metodo_pago", "total"], 
       include: [
         {
           model: DetallesPedido,
+          attributes: ["id", "precio_unitario", "sub_total","descuento", "createdAt" ], 
+          include: [
+            {
+              model: Productos, 
+              attributes: ['id',"title", "image", "referencia", "valor", "createdAt"]
+            },
+          ],
         },
         {
           model: Invitado,
@@ -273,7 +288,6 @@ const listarPedidos = async (req, res) => {
         },
       ],
     });
-
     const pedidos = {
       usuarios: pedidosUsuarios,
       invitador: pedidosInvitados,

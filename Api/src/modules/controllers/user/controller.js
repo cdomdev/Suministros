@@ -1,19 +1,15 @@
 const path = require("path");
 const fs = require("fs");
+const Sequelize = require("sequelize");
 const {
   Productos,
   Inventario,
   Categoria,
   Ofertas,
-} = require("../../models/inventaryModel");
-// const { User } = require("../../models/usersModels");
-const Sequelize = require("sequelize");
-const {
   Pedido,
-  Invitado,
   DetallesPedido,
-  User
-} = require("../../models/usersModels");
+} = require("../../models/inventaryModel");
+const { User, Invitado } = require("../../models/usersModels");
 const {
   calcularCantidad,
   calcularTotal,
@@ -21,6 +17,7 @@ const {
 } = require("../../utils/valoresDeProductos");
 const { sendEmailCompra } = require("../../middleware/Mails");
 const sequelize = require("../../../database/conecction");
+const { userExisting } = require("../../middleware/authValidate");
 
 const listarProductos = async (req, res) => {
   try {
@@ -207,18 +204,16 @@ const finalizarCompraInvitado = async (req, res) => {
 };
 
 const finalizarCompraUsuario = async (req, res) => {
-
-  const t = await sequelize.transaction(); 
+  const t = await sequelize.transaction();
   try {
     const { dataProducts, dataUser, metodoPago } = req.body;
     // Validación de datos
     if (!dataProducts || !dataUser || !metodoPago) {
       return res.status(400).json({ message: "Faltan datos de la compra" });
     }
-  
+
     // Validar el usuario en base de datos
     let user = await User.findOne({ where: { email: dataUser.email } });
-    console.log(user)
 
     if (!user) {
       await t.rollback();
@@ -244,7 +239,7 @@ const finalizarCompraUsuario = async (req, res) => {
       metodo_pago: metodoPago,
       invitado_id: null,
       usuario_id: user.id,
-      transaction: t
+      transaction: t,
     });
 
     // Validar creación del pedido
@@ -261,11 +256,9 @@ const finalizarCompraUsuario = async (req, res) => {
         precio_unitario: producto.valor,
         sub_total: producto.valor * producto.cantidad,
         descuento: 0,
-        transaction: t
+        transaction: t,
       });
     }
-
-    await t.commit();
 
     // Construir contenido del correo electrónico
     const contenidoCorreo = construirContenidoCorreo(user, dataProducts);
@@ -273,9 +266,11 @@ const finalizarCompraUsuario = async (req, res) => {
     // Enviar correo electrónico
     await sendEmailCompra(user.email, "Gracias por tu compra", contenidoCorreo);
 
+    await t.commit();
+
     return res.status(200).json({ message: "Compra realizada con éxito" });
   } catch (error) {
-    await t.rollback()
+    await t.rollback();
     console.error("Error al finalizar la compra", error);
     return res.status(500).json({ message: "Error interno en el servidor" });
   }
@@ -287,10 +282,10 @@ const construirContenidoCorreo = (user, dataProducts) => {
   const contenidoPlantilla = fs.readFileSync(plantillaPath, "utf-8");
 
   // Inicializar el contenido del correo con la plantilla base
-  let contenidoCorreo = contenidoPlantilla.replace(
-    "{{nombre_usuario}}",
-    user.nombre
-  );
+  const contenidoCorreo = contenidoPlantilla
+    .replace("{{nombre_usuario}}", user.nombre)
+    .replace("{{detalles_productos}}", productosHTML)
+    .replace("{{precio_total}}", precioTotal);
 
   // Inicializar variables para contener los detalles de la compra
   let productosHTML = "";
@@ -302,7 +297,7 @@ const construirContenidoCorreo = (user, dataProducts) => {
     <li>Producto: ${producto.nombre}</li>
     <li>Precio: ${producto.valor}</li>
   `;
-    precioTotal += parseFloat(producto.valor * producto.cantidad); // Sumar al precio total
+    precioTotal += parseFloat(producto.valor * producto.cantidad);
   }
 
   // Reemplazar la sección de productos en la plantilla con los detalles de la compra
@@ -317,42 +312,108 @@ const construirContenidoCorreo = (user, dataProducts) => {
   return contenidoCorreo;
 };
 
+const obtenerDatosUsuario = async (req, res) => {
+  const { email } = req.query;
 
-const obtenerOfertasConProductos = async (req, res) => {
+  console.log(email);
   try {
-    const ofertas = await Ofertas.findAll({
-      include: {
-        model: Productos,
-        through: "productos_ofertas",
-      },
-      attributes: ['descuento', 'id']
-    });
-
-    if (!ofertas) {
-      return res.status(404).json({ message: "No hay ofertas disponibles" });
+    const dataUser = await User.findAll({ where: { email } });
+    if (!dataUser || dataUser.length === 0) {
+      return res.status(400).json({ message: "No existen datos del usuario" });
     }
-    return res.status(200).json({ ofertas });
+
+    const { name, picture } = dataUser[0];
+    res.status(200).json({ name, picture });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Error al obetenr la oferta" });
+    console.log("Error interno del servidor", error);
+    res.status(500).json({ message: "Error interno en el servidor" });
   }
 };
 
-const obtenerDatosUsuario = async (req, res) => {
-  const { email } = req.body; 
+const actulizarDatosDeUsuario = async (req, res) => {
+  const { email, dataUpdate } = req.body;
 
   try {
-    console.log(email);
-    console.log(req.body)
-    const dataUser = await User.findAll({ where: { email } });
-    if (!dataUser || dataUser.length === 0) {
-      return res.status(400).json({ message: 'No existen datos del usuario' });
-    }
-    res.status(200).json({dataUser});
+    // Validar la existencia del usuario en la base de datos
+    const existingUser = await userExisting(email);
 
+    if (!existingUser) {
+      return res.status(400).json({ message: "El usuario no existe" });
+    }
+
+    // Actualizar los datos del usuario
+    const { name, apellidos, telefono, direccion } = dataUpdate;
+
+    const updatedUser = await User.update(
+      { name, apellidos, telefono, direccion },
+      { where: { email: email } }
+    );
+
+    // Verificar si la actualización fue exitosa
+    if (updatedUser[0] === 1) {
+      // La actualización fue exitosa
+      // Obtener los nuevos datos del usuario actualizado
+      const newUser = await User.findOne({ where: { email: email } });
+      const {
+        name,
+        role,
+        telefono,
+        email: userEmail,
+        token,
+        direccion,
+        picture,
+      } = newUser;
+      return res.status(200).json({
+        message: "Datos actualizados correctamente",
+        name: name,
+        role: role,
+        token: token,
+        email: userEmail,
+        telefono: telefono,
+        direccion: direccion,
+        picture: picture,
+      });
+    } else {
+      // No se pudo actualizar el usuario
+      return res
+        .status(500)
+        .json({ message: "No se pudo actualizar el usuario" });
+    }
   } catch (error) {
-    console.log('Error interno del servidor', error);
-    res.status(500).json({ message: 'Error interno en el servidor' });
+    console.log("Error en la actualización de datos", error);
+    res.status(500).json({ message: "Error en la actualización de datos" });
+  }
+};
+
+const listarPedidos = async (req, res) => {
+  const { email } = req.params;
+  console.log(email);
+  try {
+    const pedidos = await Pedido.findAll({
+      include: [
+        {
+          model: DetallesPedido,
+          attributes: ["id"],
+          include: [
+            {
+              model: Productos,
+              attributes: ["id", "nombre", "image", "referencia", "valor"],
+            },
+          ],
+        },
+        {
+          model: User,
+          attributes: [],
+          where: { email: email },
+        },
+      ],
+      attributes: ["id", "cantidad", "total"],
+    });
+
+    res.status(200).json({ pedidos: pedidos });
+  } catch (e) {
+    console.log("Error al listar pedidos", e);
+    res.status(500).json({ message: "Error interno en el servidor" });
   }
 };
 
@@ -363,6 +424,7 @@ module.exports = {
   buscarProductos,
   finalizarCompraInvitado,
   finalizarCompraUsuario,
-  obtenerOfertasConProductos,
-  obtenerDatosUsuario
+  obtenerDatosUsuario,
+  actulizarDatosDeUsuario,
+  listarPedidos,
 };

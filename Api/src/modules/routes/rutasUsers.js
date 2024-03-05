@@ -14,37 +14,49 @@ const {
   obtenerDatosUsuario,
   listarOfertas,
   listarProductos,
-  obtenerOfertasConProductos
+  actulizarDatosDeUsuario,
+  listarPedidos
 } = require("../controllers/user/controller");
 
-// autenticacion  y registro
-router.post("/login", loginController);
+// autenticacion 
+router.post("/user/login", loginController);
+// resgistro
+router.post("/user/registro", registroController);
+// autenticacion y regsitro con google
+router.post("/user/oauth-google", googleLogin);
+// restablecer contraseña
+router.post("/user/password/update", recoveryPassword);
 
-router.post("/registro", registroController);
-
-router.post("/oauth-google", googleLogin);
-
-router.post("/update/password", recoveryPassword);
 
 // datos de usuario 
-router.post('/user/profile', obtenerDatosUsuario)
+// perfil
+router.get('/user/profile', obtenerDatosUsuario)
+// actualizar perfil
+router.post('/user/profile/update', actulizarDatosDeUsuario)
+
 
 // listar productos
 router.get("/listar/productos", listarProductos);
-
+// lisatar productos por categorias
 router.get("/categorias/:codigoProducto", listarCategoriaProducto);
-
+// ofertas
 router.get("/listar/ofertas", listarOfertas);
+// router.get("/obtener/ofertas", obtenerOfertasConProductos);
 
 // busqueda de prodcutos
-
 router.post("/busqueda-productos", buscarProductos);
 
 // compra
-router.post("/finish/buy/invited", finalizarCompraInvitado);
 
+// Finalizar compra invitado
+router.post("/finish/buy/invited", finalizarCompraInvitado);
+// finalizar compra usuario
 router.post("/finish/buy/user", finalizarCompraUsuario);
 
-router.get("/obtener/ofertas", obtenerOfertasConProductos);
+
+// ver pedidos
+router.get('/user/listar/pedidos/:email', listarPedidos)
+
+
 
 module.exports = router;

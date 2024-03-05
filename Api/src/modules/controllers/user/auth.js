@@ -1,13 +1,16 @@
 const { User } = require("../../models/usersModels");
-const {passwordValidate, userExisting, verifyGoogleToken} = require("../../middleware/authValidate");
+const {
+  passwordValidate,
+  userExisting,
+} = require("../../middleware/authValidate");
 const bcrypt = require("bcrypt");
-const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
 const CLIENT_ID = process.env.CLIENT_ID;
 const claveSecreta = process.env.CLAVE_SECRETA;
 const tiempoExpiracion = 3600;
+const sendMail = require('../../../../templates/sendMails')
 
 
 // inciio con google
@@ -38,11 +41,7 @@ const googleLogin = async (req, res) => {
           password: defaultPassword,
           role: "user",
         });
-        await sendEmailWithTemplate(
-          user.email,
-          "Registro exitoso",
-          registroTemplatePath
-        );
+        sendMail(0, userData.name, userData.email)
       }
 
       return res.status(200).json({
@@ -52,6 +51,8 @@ const googleLogin = async (req, res) => {
         name: user.name,
         picture: user.picture,
         email: user.email,
+        telefono: user.telefono,
+        direccion: user.direccion,
       });
     } else {
       // El token no es válido para tu cliente de Google
@@ -82,9 +83,7 @@ const registroController = async (req, res) => {
       role: "user",
     });
 
-    // const emailHTML = EmailTemplate(name);
-
-    // await sendMails(newUser.email, "Registro exitoso", emailHTML);
+    sendMail(0, newUser.name, newUser.email, )
 
     const token = jwt.sign({ user: newUser }, claveSecreta, {
       expiresIn: 3600,
@@ -96,13 +95,14 @@ const registroController = async (req, res) => {
       name: newUser.name,
       picture: newUser.picture,
       email: newUser.email,
+      direccion: newUser.direccion,
+      telefono: newUser.telefono 
     });
   } catch (error) {
     console.error("Error en el registro:", error);
     return res.status(500).json({ error: "Error en el registro" });
   }
 };
-
 // constrolador para el login de usuarios
 
 const loginController = async (req, res) => {
@@ -117,7 +117,7 @@ const loginController = async (req, res) => {
         userFromDB.password
       );
       if (passwordMatch) {
-        const { id, role, email, name } = userFromDB;
+        const { role, email, name, telefono, direccion } = userFromDB;
 
         const token = jwt.sign(
           { userId: id, email, role, name },
@@ -132,7 +132,9 @@ const loginController = async (req, res) => {
           name: name,
           role: role,
           token: token,
-          email: email
+          email: email,
+          telefono: telefono,
+          direccion: direccion,
         });
       } else {
         res

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../database/conecction");
+const {Pedido} = require("./inventaryModel");
 
 const User = sequelize.define(
   "usuarios",
@@ -52,80 +53,6 @@ const User = sequelize.define(
   }
 );
 
-// modelos de la compra usuario
-
-const Pedido = sequelize.define(
-  "pedido",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
-    total: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    cantidad: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    metodo_pago: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    usuario_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    invitado_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-  },
-  {
-    tableName: "pedido",
-    timestamps: false,
-  }
-);
-
-const DetallesPedido = sequelize.define(
-  "detalles_pedido",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
-    pedido_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    producto_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    precio_unitario: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    sub_total: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    descuento: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  },
-  {
-    tableName: "detalles_pedido",
-    timestamps: true,
-  }
-);
-
 const Invitado = sequelize.define(
   "invitado",
   {
@@ -166,21 +93,16 @@ const Invitado = sequelize.define(
   }
 );
 
-// deficion de relaciones entre modelos
 
-// realcion usuario - pedidos
+// // deficion de relaciones entre modelos
+// // realcion usuario - pedidos
 Pedido.belongsTo(User, { foreignKey: "usuario_id" });
-//  relacion invitado - pedidos
+// //  relacion invitado - pedidos
 Pedido.belongsTo(Invitado, { foreignKey: "invitado_id" });
 
-// relacion pedidos - detalles de pedido
-DetallesPedido.belongsTo(Pedido, { foreignKey: "pedido_id" });
 
-Pedido.hasMany(DetallesPedido, { foreignKey: "pedido_id" });
 
 module.exports = {
   User,
-  Pedido,
-  DetallesPedido,
   Invitado,
 };
