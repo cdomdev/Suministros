@@ -54,19 +54,23 @@ export const PedidosUser = () => {
                     alt={detalle.Producto.nombre}
                   />
                   <div className="d-flex flex-column text-body">
-                    <p>{detalle.Producto.nombre}</p>
                     <p>
-                      <strong>REF:</strong>
-                      {detalle.Producto.referencia}
+                      {" "}
+                      <strong>Producto:</strong> {detalle.Producto.nombre}
                     </p>
                     <p>
                       <strong>Valor unidad:</strong> {detalle.Producto.valor}
+                    </p>
+                    <p>
+                      <strong>Ref: </strong>
+                      {detalle.Producto.referencia}
                     </p>
                   </div>
                 </div>
               ))}
               <div className="footer-table">
-                <strong> Cantidad compradas:</strong> {pedido.cantidad} -   <strong>Valor total:</strong>
+                <strong> Cantidad compradas:</strong> {pedido.cantidad} -{" "}
+                <strong>Valor total:</strong>
                 {pedido.total}
               </div>
             </div>

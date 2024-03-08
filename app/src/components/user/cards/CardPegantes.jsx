@@ -50,7 +50,7 @@ export const CardPegantes = () => {
       );
     } else {
       // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
-      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada])
     }
   };
   
@@ -90,6 +90,9 @@ export const CardPegantes = () => {
     }
   };
 
+  const handleSelectChange = (e) => {
+    setCategoriaSeleccionada(e.target.value);
+  };
   const productosFiltrados = productos.filter((producto) => {
     const categoriaPass =
       !categoriaSeleccionada || producto.title === categoriaSeleccionada;

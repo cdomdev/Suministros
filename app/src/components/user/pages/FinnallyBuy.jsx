@@ -28,7 +28,9 @@ export const FinnallyBuy = () => {
 
   const handleDeleteLocal = () => {
     navigate("/suministros/home");
-    localStorage.clear();
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("selectedProduct");
+    sessionStorage.removeItem("DtUerForEnComp");
   };
 
   return (

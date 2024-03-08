@@ -10,7 +10,7 @@ const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
 const CLIENT_ID = process.env.CLIENT_ID;
 const claveSecreta = process.env.CLAVE_SECRETA;
 const tiempoExpiracion = 3600;
-const sendMail = require('../../../../templates/sendMails')
+const sendMailsRegistro = require('../../../../templates/sendMailsRegistro')
 
 
 // inciio con google
@@ -41,7 +41,7 @@ const googleLogin = async (req, res) => {
           password: defaultPassword,
           role: "user",
         });
-        sendMail(0, userData.name, userData.email)
+        sendMailsRegistro(0, userData.name, userData.email)
       }
 
       return res.status(200).json({
@@ -83,7 +83,7 @@ const registroController = async (req, res) => {
       role: "user",
     });
 
-    sendMail(0, newUser.name, newUser.email, )
+    sendMailsRegistro(0, newUser.name, newUser.email, )
 
     const token = jwt.sign({ user: newUser }, claveSecreta, {
       expiresIn: 3600,

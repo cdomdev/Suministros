@@ -29,7 +29,7 @@ import {
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
 import { NavCustome } from "../components/user/Nav/NavCustome";
 import { Profile, PedidosUser, DataUserUpdate } from "../components/user/pedidos/RutasPedido";
-import { NotExisting } from "../components/admin/routeNotExisting/NotExisting";
+import { NotExisting } from "../components/admin/404-page/404";
 
 export const DashboardUser = () => {
   return (

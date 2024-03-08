@@ -19,6 +19,9 @@ const { sendEmailCompra } = require("../../middleware/Mails");
 const sequelize = require("../../../database/conecction");
 const { userExisting } = require("../../middleware/authValidate");
 
+const sendMailsCompra = require('../../../../templates/sendMailsCompra')
+
+
 const listarProductos = async (req, res) => {
   try {
     const productos = await Productos.findAll({
@@ -194,6 +197,9 @@ const finalizarCompraInvitado = async (req, res) => {
       });
     }
 
+    // Enviar email invitado
+    sendMailsCompra(0, usuarioInvitado.nombre, usuarioInvitado.email)
+
     // enviar respuesta de la solcitud
 
     return res.status(200).json({ message: "Compra realzida con exito" });
@@ -260,11 +266,9 @@ const finalizarCompraUsuario = async (req, res) => {
       });
     }
 
-    // Construir contenido del correo electrónico
-    const contenidoCorreo = construirContenidoCorreo(user, dataProducts);
-
-    // Enviar correo electrónico
-    await sendEmailCompra(user.email, "Gracias por tu compra", contenidoCorreo);
+    console.log(nuevoPedido)
+    // Enviar correo electrónico usuario
+    sendMailsCompra(0, user.name, user.email, nuevoPedido.nombre)
 
     await t.commit();
 
