@@ -29,15 +29,18 @@ export const Griferias = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          TRANSFORMA TU COCINA Y BAÑO CON NUESTRAS GRIFERIAS DE ULTIMA
-          GENERACION
-        </h1>
-        <p>
-          Con una variedad de estilos y acabados, nuestras griferías no solo son
-          elegantes, sino también duraderas y funcionales
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Griferias</h1>
+            <h2>
+              Transforma tu cocina y baño con nuestras griferias de ultima
+              generacion.
+            </h2>
+            <p>
+              Con una variedad de estilos y acabados, nuestras griferías no solo
+              son elegantes, sino también duraderas y funcionales.
+            </p>
+          </div>
           <GriferiasCard />
         </div>
       </div>

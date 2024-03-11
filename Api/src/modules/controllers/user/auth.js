@@ -1,8 +1,5 @@
 const { User } = require("../../models/usersModels");
-const {
-  passwordValidate,
-  userExisting,
-} = require("../../middleware/authValidate");
+const middlewares = require('../../middleware/authValidate')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
@@ -10,7 +7,7 @@ const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
 const CLIENT_ID = process.env.CLIENT_ID;
 const claveSecreta = process.env.CLAVE_SECRETA;
 const tiempoExpiracion = 3600;
-const sendMailsRegistro = require('../../../../templates/sendMailsRegistro')
+const sendMailsRegistro = require('../../../../functions/sendMailsRegistro')
 
 
 // inciio con google
@@ -70,7 +67,7 @@ const registroController = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await middlewares.userExisting(email);
     if (existingUser) {
       return res.status(400).json({ error: "El correo ya está registrado" });
     }
@@ -109,15 +106,15 @@ const loginController = async (req, res) => {
   const { email1, password } = req.body;
 
   try {
-    const userFromDB = await userExisting(email1);
+    const userFromDB = await middlewares.userExisting(email1);
 
     if (userFromDB) {
-      const passwordMatch = await passwordValidate(
+      const passwordMatch = await middlewares.passwordValidate(
         password,
         userFromDB.password
       );
       if (passwordMatch) {
-        const { role, email, name, telefono, direccion } = userFromDB;
+        const { role, email, name, telefono, direccion, id} = userFromDB;
 
         const token = jwt.sign(
           { userId: id, email, role, name },
@@ -152,6 +149,7 @@ const loginController = async (req, res) => {
   }
 };
 
+// controlador para restablecer contraseñas
 const recoveryPassword = async (req, res) => {
   const { email, password } = req.body;
 

@@ -16,7 +16,7 @@ export const CardsOfertas = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/obtener/ofertas")
+      .get("http://localhost:3000/listar/ofertas")
       .then((response) => {
         if (response.status === 200) {
           setOfertas(response.data.ofertas || []);
@@ -39,36 +39,33 @@ export const CardsOfertas = () => {
           <p>Productos</p>
         </div>
       </div>
-      {
-        ofertas.length === 0 ? (
-          <p>No hay ofertas disponibles</p>
-        ):(
-          <div className="contenedor-card">
-        {ofertas.map((oferta) => (
-          <div key={oferta.id} className="productos-container">
-            {oferta.Productos.map((producto) => (
-              <ul key={producto.id} className="card-products">
-                <div className="header-car">
-                  <li className="descuento">{oferta.descuento}%</li>
-                  <li className="ref">REF: {producto.referencia}</li>
-                </div>
-                <img src={producto.image} alt="img" className="image" />
-                <li className="name">{producto.title}</li>
-                <li>{producto.nombre}</li>
-                <li className="valor">$: {producto.valor}</li>
-                <Link to={`/suministros/details/${producto.nombre}`}>
-                  <Button onClick={() => navigateDetail(producto)}>
-                    Ver producto
-                  </Button>
-                </Link>
-              </ul>
-            ))}
-          </div>
-        ))}
-      </div>
-        )
-      }
-      
+      {ofertas.length === 0 ? (
+        <p>No hay ofertas disponibles</p>
+      ) : (
+        <div className="contenedor-card">
+          {ofertas.map((oferta) => (
+            <div key={oferta.id} className="productos-container">
+              {oferta.Productos.map((producto) => (
+                <ul key={producto.id} className="card-products">
+                  <div className="header-car">
+                    <li className="descuento">{oferta.descuento}%</li>
+                    <li className="ref">REF: {producto.referencia}</li>
+                  </div>
+                  <img src={producto.image} alt="img" className="image" />
+                  <li className="name">{producto.title}</li>
+                  <li>{producto.nombre}</li>
+                  <li className="valor">$: {producto.valor}</li>
+                  <Link to={`/suministros/details/${producto.nombre}`}>
+                    <Button onClick={() => navigateDetail(producto)}>
+                      Ver producto
+                    </Button>
+                  </Link>
+                </ul>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

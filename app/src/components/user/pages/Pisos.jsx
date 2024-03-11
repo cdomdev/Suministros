@@ -28,16 +28,18 @@ export const Pisos = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          DESCUBRE NUESTRAS PROPUESTAS INNOVADORAS PARA RENOVAR TUS SUELOS CON
-          ELEGANCIA
-        </h1>
-        <p>
-          Encuentra el piso perfecto para tu hogar entre nuestra amplia
-          selección, nuestros pisos combinan belleza y resistencia para
-          satisfacer tus necesidades
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Pisos</h1>
+            <h2>
+              Propuestas innovadoras para renovar tus suelos con elegancia
+            </h2>
+            <p>
+              Encuentra el piso perfecto para tu hogar entre nuestra amplia
+              selección, nuestros pisos combinan belleza y resistencia para
+              satisfacer tus necesidades
+            </p>
+          </div>
           <CardPisos />
         </div>
       </div>

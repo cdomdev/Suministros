@@ -30,13 +30,18 @@ export const Productos = () => {
         </div>
       </div>
       <div className="container-productos">
-        <h1>VARIEDAD DE PRODUCTOS PARA REMODELAR TUS ESPACIOS</h1>
-        <p>
-          Con una amplia variedad de productos de alta calidad, estamos aquí
-          para ayudarte a hacer realidad tus proyectos de decoración y
-          renovación.
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Todo lo necesario para tu proxima compra</h1>
+            <h2>
+              Varidad de productos para remodelar tus espacios.
+            </h2>
+            <p>
+              Con una amplia variedad de productos de alta calidad, estamos aquí
+              para ayudarte a hacer realidad tus proyectos de decoración y
+              renovación.
+            </p>
+          </div>
           <Cards />
         </div>
       </div>

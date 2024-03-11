@@ -75,7 +75,7 @@ const Informacion = ({ handleClose }) => {
       </ul>
       <div className="buttons-content">
         <Button variant="secondary" onClick={handleClose}>Cambiar el metodo de pago</Button>
-        <Button variant="primary" onClick={finnalyBuy}>
+        <Button variant="success" onClick={finnalyBuy}>
           Continuar
         </Button>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
 import { EspejosCard } from "../cards/EspejosCard";
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -7,6 +6,7 @@ import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { BiHomeAlt2 } from "react-icons/bi";
+
 export const Espejos = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const { cartItems } = useCarShop();
@@ -28,15 +28,18 @@ export const Espejos = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          AMPLIA TUS ESPACIOS CON NUESTROS ESPEJOS DE DISEÑO PARA CADA RINCON
-          DEL HOGAR
-        </h1>
-        <p>
-          Desde espejos decorativos hasta espejos de aumento, encontrarás la
-          pieza perfecta para añadir profundidad y elegancia a tus espacios
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Espejos</h1>
+            <h2>
+              Amplia rus espacios con nuestros espejos de diseño para cada
+              rincon del hogar.
+            </h2>
+            <p>
+              Desde espejos decorativos hasta espejos de aumento, encontrarás la
+              pieza perfecta para añadir profundidad y elegancia a tus espacios.
+            </p>
+          </div>
           <EspejosCard />
         </div>
       </div>

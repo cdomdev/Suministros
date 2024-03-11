@@ -77,7 +77,7 @@ export const NavCustome = () => {
           </div>
         </Container>
       </Navbar>
-      <section style={{ marginTop: "12em" }}>
+      <section style={{ marginTop: "10em" }}>
         <Outlet />
       </section>
     </>

@@ -1,82 +1,71 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../utils/imageUpload");
+const adminController = require("../controllers/admin/adminController");
+const ofertasController = require("../controllers/admin/ofertasControler");
+const categoriasController = require("../controllers/admin/categorias");
 const {
   guardarProducto,
 } = require("../controllers/admin/inventarioController");
-const upload = require("../utils/imageUpload");
-const {
-  actualizarProducto,
-  actulizarInventario,
-  eliminarProductos,
-  listarProductos,
-  listarUsuarios,
-  saveImagenServer,
-  listarPedidos
-} = require("../controllers/admin/adminController");
-const {
-  actulizarOfertas,
-  crearOfetas,
-  eliminarOferta,
-  obtenerOfertasConProductos,
-  obtenerProductos,
-} = require("../controllers/admin/ofertasControler");
-const {
-  crearCategoriasPrincipales,
-  crearCategorias,
-  eliminarCategoria,
-  eliminarCategoriaPrincipal,
-  listarCategorias,
-  listarCategoriasPrincipales,
-} = require("../controllers/admin/categorias");
 
 // productos
 
 router.post("/guardarproductos", guardarProducto);
 
-router.post("/upload", upload.array("files"), saveImagenServer);
+router.post("/upload", upload.array("files"), adminController.saveImagenServer);
 
 // usuarios
-router.get("/listar/usuarios", listarUsuarios);
+router.get("/listar/usuarios", adminController.listarUsuarios);
 
 // categorias
-router.post("/crear/categoria-primary", crearCategoriasPrincipales);
+router.post(
+  "/crear/categoria-primary",
+  categoriasController.crearCategoriasPrincipales
+);
 
-router.get("/obtener/categorias-primary", listarCategoriasPrincipales);
+router.get(
+  "/obtener/categorias-primary",
+  categoriasController.crearCategoriasPrincipales
+);
 
-router.delete("/delete/:id/categorias-primary", eliminarCategoriaPrincipal);
+router.delete(
+  "/delete/:id/categorias-primary",
+  categoriasController.eliminarCategoriaPrincipal
+);
 
 // subcategorias
-router.post("/crear/categoria", crearCategorias);
+router.post("/crear/categoria", categoriasController.crearCategorias);
 
-router.get("/obtener/categorias", listarCategorias);
+router.get("/obtener/categorias", categoriasController.listarCategorias);
 
-router.delete("/categorias/:id/eliminar", eliminarCategoria);
+router.delete(
+  "/categorias/:id/eliminar",
+  categoriasController.eliminarCategoria
+);
 
 // inventario
-router.get("/listar/productos", listarProductos);
+router.get("/listar/productos", adminController.listarProductos);
 
-router.put("/productos/:id/inventario", actulizarInventario);
+router.put("/productos/:id/inventario", adminController.actulizarInventario);
 
-router.put("/productos/:id/actualizar", actualizarProducto);
+router.put("/productos/:id/actualizar", adminController.actualizarProducto);
 
-router.delete("/productos/:id/eliminar", eliminarProductos);
+router.delete("/productos/:id/eliminar", adminController.eliminarProductos);
 
 // ofertas
 
-router.get("/productos", obtenerProductos);
+router.get("/productos", ofertasController.obtenerProductos);
 
-router.post("/crear/ofertas", crearOfetas);
+router.post("/crear/ofertas", ofertasController.crearOfetas);
 
-router.get("/listar/ofertas", obtenerOfertasConProductos);
+router.get("/listar/ofertas", ofertasController.obtenerOfertasConProductos);
 
-router.delete("/oferta/:id/eliminar", eliminarOferta);
+router.delete("/oferta/:id/eliminar", ofertasController.eliminarOferta);
 
-router.put("/oferta/:id/actualizar", actulizarOfertas);
-
+router.put("/oferta/:id/actualizar", ofertasController.actulizarOfertas);
 
 // listar pedido
 
-router.get('/listar/pedidos', listarPedidos)
-
+router.get("/listar/pedidos", adminController.listarPedidos);
 
 module.exports = router;

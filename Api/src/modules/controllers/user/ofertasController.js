@@ -1,0 +1,26 @@
+const { Ofertas, Productos } = require("../../models/inventaryModel");
+
+// listar ofertas con productos relacionados
+const listarOfertasConProductos = async (req, res) => {
+  try {
+    const ofertas = await Ofertas.findAll({
+      include: {
+        model: Productos,
+        attributes: ["title", "nombre", "referencia", "image", "valor"],
+        through: "productos_ofertas",
+      },
+    });
+
+    if (!ofertas) {
+      return res.status(400).json({ message: "Oferta no encontrada" });
+    }
+    return res.status(200).json({ ofertas });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error al obetenr la oferta" });
+  }
+};
+
+module.exports = {
+  listarOfertasConProductos,
+};

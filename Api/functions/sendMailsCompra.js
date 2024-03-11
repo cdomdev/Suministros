@@ -177,6 +177,7 @@ function enviarCorreo(cualNotificacion, nombre, email, pedido, dataProducts) {
   </html>
   `;
 
+
   // Configuración del correo
   const mailOptions = {
     from: '"Suministros" <youremail@gmail.com>',
@@ -185,13 +186,15 @@ function enviarCorreo(cualNotificacion, nombre, email, pedido, dataProducts) {
     text: notificaciones[cualNotificacion].notificacion,
     html: mensajeHtml,
     attachments: [
-      { filename: "fb.png", path: "./public/images/fb.png", cid: "fb" },
+      { filename: "fb.png", path: "./public/images//fb.png", cid: "fb" },
       { filename: "ig.png", path: "./public/images/ig.png", cid: "ig" },
-      { filename: "wapp.png", path: "./public/images/wapp.png", cid: "wapp" },
+      { filename: "wapp.png", path: "./public/images//wapp.png", cid: "wapp" },
       { filename: "em.png", path: "./public/images/em.png", cid: "em" },
       { filename: "logo.webp", path: "./public/images/logo.webp", cid: "logo" },
     ],
   };
+
+//   const r = require('./../../public/images/')
 
   // Verificar conexión y enviar correo
   transporter

@@ -8,7 +8,7 @@ $otro: 'Lato', sans-serif;
   border: solid 1px #ebebeb ;
   box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
   box-sizing: border-box;
-  background-color: white;
+  // background-color: white;
 }
 .contenedor-car{
   position: relative;
@@ -35,6 +35,7 @@ $otro: 'Lato', sans-serif;
 }
 
 .container-car{  
+  padding-top: 1em;
   .box-car{
     width: 90vw;
     margin: auto;
@@ -47,6 +48,7 @@ $otro: 'Lato', sans-serif;
         flex-direction: column;
         .box1{
           @include bordeBox();
+          background-color: #f4f4f4;
             height: 40px ;
             display: flex;
             align-items: center;
@@ -320,6 +322,7 @@ $otro: 'Lato', sans-serif;
         display: flex;
         flex-direction: column;
         .box3{
+          background-color: #f4f4f4;
          @include bordeBox();
           height: 40px ;
           padding: 5px;
@@ -333,6 +336,7 @@ $otro: 'Lato', sans-serif;
         }
         .box4{
             @include bordeBox();
+            background-color: #f4f4f4;
             font-family: $contenidoFonts;
             padding: 10px;
             .subtotal{

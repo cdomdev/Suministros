@@ -17,6 +17,7 @@ export const CrearPrimary = ({setCategoriasPriMary}) => {
         return;
       }
 
+      console.log(messageCategory)
       const data = { nombre: categoryName };
       const response = await axios.post(
         "http://localhost:3000/api/crear/categoria-primary",
@@ -67,7 +68,7 @@ export const CrearPrimary = ({setCategoriasPriMary}) => {
         </Button>
       </div>
       <div className="contenedor-message-server">
-      {messageCategory && (
+      {messageCategory !== null && (
         <p
           style={{
             color: messageCategory.includes("éxito") ? "green" : "red",

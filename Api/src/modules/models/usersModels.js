@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../database/conecction");
-const {Pedido} = require("./inventaryModel");
+const { Pedido } = require("./inventaryModel");
 
 const User = sequelize.define(
   "usuarios",
@@ -95,6 +95,7 @@ const Invitado = sequelize.define(
 
 
 // // deficion de relaciones entre modelos
+
 // // realcion usuario - pedidos
 Pedido.belongsTo(User, { foreignKey: "usuario_id" });
 // //  relacion invitado - pedidos

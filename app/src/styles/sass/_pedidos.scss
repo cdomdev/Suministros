@@ -43,7 +43,7 @@ $otro: 'Lato', sans-serif;
     }
 }
 .main-pedidos{
-    padding-top: 2em;
+    padding-top: 4em;
     display: grid;
     width: 90vw;
     margin: auto;
@@ -211,12 +211,13 @@ $otro: 'Lato', sans-serif;
                 height: 400px;
                 overflow-x: auto;
                 max-height: 400px;
+                padding: 5px 10px;
                 .pedido-contenedor{
-                    // max-width: 500px;
                     padding: 5px 10px ;
-                    background-color: white;
+                    background-color: white;                    
                     box-sizing: border-box;
-                    box-shadow: 0 0 5px  rgba(84, 84, 84, 0); ;
+                    box-shadow: 0 0 5px 1px rgb(227, 227, 227);
+                    // box-shadow: 0 0 5px  rgba(84, 84, 84, 0); ;
                     .body-pedido{
                         display: flex;
                         gap: 20px;

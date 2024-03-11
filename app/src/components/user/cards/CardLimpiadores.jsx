@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Accordion, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { BsDatabaseX } from "react-icons/bs";
 
@@ -74,7 +74,6 @@ export const CardLimpiadores = () => {
     }
   };
 
-
   const handleSelectChange = (e) => {
     setCategoriaSeleccionada(e.target.value);
   };
@@ -88,46 +87,58 @@ export const CardLimpiadores = () => {
     return categoriaPass && marcaPass;
   });
 
-
   return (
     <>
       <div className="filtros">
-        <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Marca</Accordion.Header>
-            {marcasDisponibles === 0 ? (
-              <p>No hay marcas disponibles</p>
-            ) : (
-              <Accordion.Body>
-                {marcasDisponibles.map((marca) => (
-                  <div key={marca}>
-                    <input
-                      className="m-2"
-                      type="checkbox"
-                      id={marca}
-                      value={marca}
-                      checked={marcasSeleccionadas.includes(marca)}
-                      onChange={(e) => handleMarcaChange(e.target.value)}
-                    />
-                    <label htmlFor={marca}>{marca}</label>
-                  </div>
-                ))}
-              </Accordion.Body>
-            )}
-          </Accordion.Item>
-        </Accordion>
+        <h2>Limpiadores</h2>
+        <span>Filtros*</span>
+        <h3>Marca</h3>
+        {marcasDisponibles.length === 0 ? (
+          <p>No hay marcas para filtrar</p>
+        ) : (
+          <>
+            {marcasDisponibles.map((marca) => (
+              <ul key={marca}>
+                <li>
+                  <input
+                    className="m-2"
+                    type="checkbox"
+                    id={marca}
+                    value={marca}
+                    checked={marcasSeleccionadas.includes(marca)}
+                    onChange={(e) => handleMarcaChange(e.target.value)}
+                  />
+                  <label htmlFor={marca}>{marca}</label>
+                </li>
+              </ul>
+            ))}
+          </>
+        )}
       </div>
       <div className="header">
-        <div>
-          <Form.Select
-            aria-label="Default select example"
-            value={precioSeleccionado}
-            onChange={handlePrecioChange}
-            className="select">
-            <option value="">Recomendado</option>
-            <option value="menor-mayor"> De menor precio a mayor precio</option>
-            <option value="mayor-menor"> De mayor precio a menor precio</option>
-          </Form.Select>
+        <div className="count-products">
+          <div className="count">
+            <span>{productos.length}</span>
+          </div>
+          <p>Productos</p>
+        </div>
+        <div className="filter-form">
+          <p>Filtro por:</p>
+          <div>
+            <Form.Select
+              aria-label="Default select example"
+              value={precioSeleccionado}
+              onChange={handlePrecioChange}
+              className="select">
+              <option value="">Seleccione</option>
+              <option value="menor-mayor">
+                De menor precio a mayor precio
+              </option>
+              <option value="mayor-menor">
+                De mayor precio a menor precio
+              </option>
+            </Form.Select>
+          </div>
         </div>
         <div className="mobile-select">
           <Form.Select
@@ -157,12 +168,6 @@ export const CardLimpiadores = () => {
             ))}
           </Form.Select>
         </div>
-        <div className="count-products">
-          <div className="count">
-            <span>{productos.length}</span>
-          </div>
-          <p>Productos</p>
-        </div>
       </div>
       <div className="contenedor-card">
         {productos.length === 0 ? (
@@ -177,6 +182,7 @@ export const CardLimpiadores = () => {
             )}
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
+                <Link to={`/suministros/details/${producto.nombre}`}>
                 <span className="text-ref">REF: {producto.referencia}</span>
                 <img
                   src={producto.image}
@@ -193,7 +199,6 @@ export const CardLimpiadores = () => {
                     </span>
                   </li>
                 </div>
-                <Link to={`/suministros/details/${producto.nombre}`}>
                   <Button onClick={() => navigateDetail(producto)}>
                     Ver producto
                   </Button>

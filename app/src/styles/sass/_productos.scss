@@ -66,47 +66,61 @@ $contenido2: "Montserrat", sans-serif;
     .icon{
         font-size: 25px;
     }
+    a{
+        font-size: 13px;
+        font-weight: bold;
+    }
 }
 .container-productos{
     font-family: $contenidoFonts;
     width: 90vw;
     margin:auto;
     h1{
-        margin-top: 1em;
-        font-size: 25px;
-        text-align: center; 
+        margin-bottom: 10px;
         font-family: $tittlesFonts;
-        color: #213C65;;
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: bold;
+    }
+    h2{
+        font-weight: bold;
+        margin:10px 0  1em 0;
     }
     p{
-        text-align: center;
+        text-align: left;
+        line-height: 17px;
+        font-size: 16px;
         margin: 0;
-        font-size: 14px;
     }
     .contenedor-grid-products{
-        grid-template-columns: 0.7fr 3.3fr;
+        grid-template-columns: 0.8fr 3fr;
         grid-template-areas: 
+        'filter text text'
         'filter header header'
-        'filter cards cards'
         'filter cards cards'
         'filter cards cards';
         display: grid;
         gap: 10px;
         margin-top: 2em;
+        .content-tex{
+            grid-area: text;
+        }
         .filtros{
             grid-area: filter;
-            display: flex;
-            gap: 10px;
-            flex-direction: column;
-            justify-content: right;
-            @include bordeBox();
-            background-color: white;
-            padding: 10px;
-            height: auto;
-            max-height: 500px;
-            .accordion-button{
-                border-radius: 1px;
+            h3{
+                padding: 10px 5px;
+                background-color: #f4f4f4;
+                width: 90%;
+            }
+            span{
                 font-size: 14px;
+                color: #626262;
+            };
+            ul{
+                margin: 0;
+            }
+            li{
+                list-style: none;
             }
             select{
                 border-radius: 1px;
@@ -121,13 +135,16 @@ $contenido2: "Montserrat", sans-serif;
             display: none;
             grid-area: header;
             height: 45px;
-            @include bordeBox();
-            background-color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-           
+            padding: 0px 0px 20px 0px;
+            margin-top: 1.5em;
+            .filter-form{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
             .select{
                 height: 35px;
                 border-radius: 1px;
@@ -180,7 +197,7 @@ $contenido2: "Montserrat", sans-serif;
             height: auto;
             width: 100%;
             justify-content: start ;
-            gap: 10px;
+            gap: 25px;
             font-family: $contenidoFonts;
             p{
                 text-align: center;
@@ -208,8 +225,7 @@ $contenido2: "Montserrat", sans-serif;
                 padding: 6px;
                 flex-direction: column;
                 justify-content: space-between;
-                max-width: 17em;
-                width: 15.6em ;
+                width: 18em ;
                 height: auto;
                 text-align: center;
                 align-items: center;
@@ -256,7 +272,10 @@ $contenido2: "Montserrat", sans-serif;
     
                 }
                 .btn{
-                        margin: 10px 0;
+                    margin: 10px 0;
+                    border-radius: 2px;
+                    font-size: 12px;
+
                 }
                 &:hover{
                     box-shadow: 0 0 5px 1px rgb(201, 201, 201)  ;

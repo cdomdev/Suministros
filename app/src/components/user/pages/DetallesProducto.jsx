@@ -87,7 +87,7 @@ export const DetallesProducto = () => {
               <span>$ {producto.valor}</span>
             </div>
             <div className="text">
-              <span>{producto.description}</span>
+              <p>{producto.description}</p>
             </div>
 
             <div className="contendor-quantity">

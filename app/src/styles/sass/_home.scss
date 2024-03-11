@@ -11,10 +11,27 @@ $color-complementario: #f2efe1;
 body{
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
     overflow-x: hidden;
     scrollbar-width: none;
     overflow-y: none;
+}
+
+h1{
+    font-size: 22px !important;
+}
+h2{
+    font-size: 20px !important;
+}
+h3{
+    font-size: 18px !important;
+}
+a{
+    text-decoration: none !important;
+    color: black;
+}
+p{
+    font-family: $contenido2;
+    font-weight: lighter !important;
 }
 
 
@@ -26,7 +43,7 @@ body{
     margin: 0 auto;
     display: flex;
     height: auto;
-    margin-top: -2.3em;
+    margin-top: -10px;
     .carousel-image {
         object-fit: unset; 
         background-size:cover ;
@@ -76,7 +93,6 @@ body{
     margin: auto;
     font-family: $contenidoFonts;
     h1{
-        font-size: 25px;
         margin: 2em 0 20px 0;
         text-align: center;
         font-weight: 600;
@@ -84,7 +100,7 @@ body{
         color: #213C65;
     }
     p{
-        font-size: 15px;
+        font-size: 17px;
         text-wrap: wrap;
         text-align: center;
         line-height: 20px;
@@ -96,7 +112,6 @@ body{
         text-align: center;
     }
     h2{
-        font-size: 23px;
         font-weight: 500;
         color: #213C65;
         text-align: left;

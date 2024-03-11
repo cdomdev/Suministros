@@ -1,45 +1,49 @@
-const { Categoria, CategoriasPrincipales } = require("../../models/inventaryModel");
-const generateCodigo = require('../../middleware/generateCodigo')
-// Controlador para  categorias y subcategorias 
+const {
+  Categoria,
+  CategoriaPadre
+} = require("../../models/inventaryModel");
+const generateCodigo = require("../../middleware/generateCodigo");
 
 
-
+// Controlador para  categorias y subcategorias
 
 const crearCategoriasPrincipales = async (req, res) => {
+  const { nombre } = req.body;
   try {
     // extraer elemntos
-    if (req) {
-      const { nombre } = req.body;
-      // genera codigo para categoria 
+    if (nombre) {
+      // genera codigo para categoria
+      console.log(nombre);
 
-      const codigo = generateCodigo(nombre)
+      const codigo = generateCodigo(nombre);
       // crear nueva categoria en la db
-      const nuevaCategoria = await CategoriasPrincipales.create({ nombre, codigo});
-
-      // retornar las categorias
-      const categoriasPrimary  = await CategoriasPrincipales.findAll({
-        attributes: ["id", "nombre"],
+      const nuevaCategoria = await CategoriaPadre.create({
+        nombre,
+        codigo,
       });
-      if (categoriasPrimary) {
+      if (nuevaCategoria) {
+        // procede la busqueda de toda las cotegorias
+        const categoriasPrimary = await CategoriaPadre.findAll({
+          attributes: ["id", "nombre"],
+        });
         res.status(201).json({
           mensaje: "Categoria creada exitosamente",
           categoriasPrincipales: categoriasPrimary,
         });
       }
+
     }
   } catch (error) {
     console.log(error);
-    res
-      .status(400)
-      .json({
-        mensaje: "Huno un problema al crear la categoria",
-        error: error,
-      });
+    res.status(500).json({
+      mensaje: "Huno un problema al crear la categoria",
+      error: error,
+    });
   }
 };
 const listarCategoriasPrincipales = async (req, res) => {
   try {
-    const categoriasPrincipales = await CategoriasPrincipales.findAll({
+    const categoriasPrincipales = await CategoriaPadre.findAll({
       attributes: ["id", "nombre"],
     });
     res.json({ categoriasPrincipales: categoriasPrincipales });
@@ -51,12 +55,14 @@ const listarCategoriasPrincipales = async (req, res) => {
 const eliminarCategoriaPrincipal = async (req, res) => {
   const { categoriaId } = req.body;
 
-  console.log(categoriaId)
+  console.log(categoriaId);
   try {
-    const categoria = await CategoriasPrincipales.destroy({ where: { id: categoriaId } });
+    const categoria = await CategoriaPadre.destroy({
+      where: { id: categoriaId },
+    });
 
     if (categoria) {
-      const categorias = await CategoriasPrincipales.findAll({
+      const categorias = await CategoriaPadre.findAll({
         attributes: ["id", "nombre"],
       });
       return res
@@ -75,7 +81,6 @@ const eliminarCategoriaPrincipal = async (req, res) => {
   }
 };
 
-
 // subcategorias
 
 const crearCategorias = async (req, res) => {
@@ -83,11 +88,11 @@ const crearCategorias = async (req, res) => {
     // extraer elemntos
     if (req) {
       const { nombre } = req.body;
-      // genera codigo para categoria 
+      // genera codigo para categoria
 
-      const codigo = generateCodigo(nombre)
+      const codigo = generateCodigo(nombre);
       // crear nueva categoria en la db
-      const nuevaCategoria = await Categoria.create({ nombre, codigo});
+      const nuevaCategoria = await Categoria.create({ nombre, codigo });
 
       // retornar las categorias
       const categorias = await Categoria.findAll({
@@ -102,12 +107,10 @@ const crearCategorias = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res
-      .status(400)
-      .json({
-        mensaje: "Huno un problema al crear la categoria",
-        error: error,
-      });
+    res.status(400).json({
+      mensaje: "Huno un problema al crear la categoria",
+      error: error,
+    });
   }
 };
 
@@ -126,9 +129,11 @@ const listarCategorias = async (req, res) => {
 const eliminarCategoria = async (req, res) => {
   const { categoriaId } = req.body;
 
-  console.log(categoriaId)
+  console.log(categoriaId);
   try {
-    const categoriaEliminada = await Categoria.destroy({ where: { id: categoriaId } });
+    const categoriaEliminada = await Categoria.destroy({
+      where: { id: categoriaId },
+    });
 
     if (categoriaEliminada) {
       const categorias = await Categoria.findAll({
@@ -156,5 +161,5 @@ module.exports = {
   crearCategorias,
   crearCategoriasPrincipales,
   listarCategoriasPrincipales,
-  eliminarCategoriaPrincipal
+  eliminarCategoriaPrincipal,
 };

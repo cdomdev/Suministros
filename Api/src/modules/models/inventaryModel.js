@@ -1,6 +1,5 @@
 const { DataTypes, } = require("sequelize");
 const sequelize = require("../../database/conecction");
-const User = require('./usersModels')
 
 
 const Productos = sequelize.define(
@@ -125,8 +124,8 @@ const Inventario = sequelize.define(
 
 // Modelo de categorias
 
-const CategoriasPrincipales = sequelize.define(
-  "categorias_principales",
+const CategoriaPadre = sequelize.define(
+  "categoria_padre",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -154,11 +153,12 @@ const CategoriasPrincipales = sequelize.define(
     },
   },
   {
-    tableName: "categorias_pricipales",
+    tableName: "categoria_padre",
     timestamps: true,
   }
 );
 
+// modelo de las subcategorias
 const Categoria = sequelize.define(
   "Categoria",
   {
@@ -359,7 +359,7 @@ Productos.belongsToMany(Ofertas, {
   onDelete: 'CASCADE'
 });
 
-
+// relacion pedido - detalles pedido
 Pedido.hasMany(DetallesPedido, { foreignKey: 'pedido_id' });
 
 DetallesPedido.belongsTo(Pedido, { foreignKey: 'pedido_id' });
@@ -390,7 +390,7 @@ Ofertas.belongsToMany(Productos, {
 module.exports = {
   Productos,
   Inventario,
-  CategoriasPrincipales,
+  CategoriaPadre,
   Categoria,
   Ofertas,
   OfertasProductos,

@@ -29,15 +29,18 @@ export const Pinturas = () => {
           </Breadcrumbs>
         </div>
         <div className="container-productos">
-          <h1>
-            DESCUBRE COLORES VIBRATES Y ACABADOS PERFECTOS PARA CADA PROYECTO EN
-            NUESTRO CATALOGO
-          </h1>
-          <p>
-            Nuestra gama de colores vibrantes y acabados duraderos te permite
-            crear ambientes que reflejen tu estilo y personalidad
-          </p>
           <div className="contenedor-grid-products">
+            <div className="content-text">
+              <h1>Pinturas</h1>
+              <h2>
+                Descubre colores bibrantes y acabados perfectos para cada uno de
+                tus proyectos
+              </h2>
+              <p>
+                Nuestra gama de colores vibrantes y acabados duraderos te
+                permite crear ambientes que reflejen tu estilo y personalidad
+              </p>
+            </div>
             <CardPinturas />
           </div>
         </div>

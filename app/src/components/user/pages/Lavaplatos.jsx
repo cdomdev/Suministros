@@ -27,15 +27,19 @@ export const Lavaplatos = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          ENCUENTRA LA SOLUCION PERFECTA PARA MANTENER UTENCILIOS LIMPIOS Y
-          RELUCIENTES
-        </h1>
-        <p>
-          Diseñados para ofrecer un rendimiento excepcional, nuestros lavaplatos
-          te ayudarán a mantener tu cocina impecable con facilidad
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Lavaplatos</h1>
+            <h2>
+              Encuantra la solucion perfectra para mantener utencilios limpios y
+              reluciones.
+            </h2>
+            <p>
+              Diseñados para ofrecer un rendimiento excepcional, nuestros
+              lavaplatos te ayudarán a mantener tu cocina impecable con
+              facilidad
+            </p>
+          </div>
           <LavaplatosCard />
         </div>
       </div>

@@ -163,11 +163,11 @@ function enviarCorreo(cualNotificacion, nombre, email) {
     text: notificaciones[cualNotificacion].notificacion,
     html: mensajeHtml,
     attachments: [
-      { filename: "fb.png", path: "./public/images/fb.png", cid: "fb" },
-      { filename: "ig.png", path: "./public/images/ig.png", cid: "ig" },
-      { filename: "wapp.png", path: "./public/images/wapp.png", cid: "wapp" },
-      { filename: "em.png", path: "./public/images/em.png", cid: "em" },
-      { filename: "logo.webp", path: "./public/images/logo.webp", cid: "logo" },
+      { filename: "fb.png", path: "../../public/images/fb.png", cid: "fb" },
+      { filename: "ig.png", path: "../../public/images/ig.png", cid: "ig" },
+      { filename: "wapp.png", path: "../../public/images/wapp.png", cid: "wapp" },
+      { filename: "em.png", path: "../../public/images/em.png", cid: "em" },
+      { filename: "logo.webp", path: "../../public/images/logo.webp", cid: "logo" },
     ],
   };
 

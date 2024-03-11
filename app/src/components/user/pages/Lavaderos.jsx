@@ -27,15 +27,19 @@ export const Lavaderos = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          DESCUBRE SOLUCIONES PRATICAS PARA HACER DEL LAVADO UNA TAREA MAS
-          COMODA Y EFICIENTE
-        </h1>
-        <p>
-          esde lavaderos de acero inoxidable hasta modelos de resina,
-          encontrarás la solución perfecta para tus necesidades de lavandería
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Lavaderos</h1>
+            <h2>
+              Descubre soluciones practicas para hacer del lavado una tarea mas
+              comoda y eficiente.
+            </h2>
+            <p>
+              esde lavaderos de acero inoxidable hasta modelos de resina,
+              encontrarás la solución perfecta para tus necesidades de
+              lavandería.
+            </p>
+          </div>
           <LavaderosCard />
         </div>
       </div>

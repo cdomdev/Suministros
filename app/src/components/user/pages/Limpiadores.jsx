@@ -29,15 +29,19 @@ export const Limpiadores = () => {
           </Breadcrumbs>
         </div>
         <div className="container-productos">
-          <h1>
-            ENCUENTRA SOLUCIONES EFIACES PARA DES TUS ESPACION IMPECABLES
-            DESPUES DE LA CONTRUCCION
-          </h1>
-          <p>
-            Diseñados para eliminar residuos de obra de manera eficaz, nuestros
-            productos te ayudarán a destacar la calidad de tu trabajo.
-          </p>
           <div className="contenedor-grid-products">
+            <div className="content-text">
+              <h1>limpidores final obra</h1>
+              <h2>
+                Encuantra soluciones eficaces para dejar tus espacios
+                implecables despues de la contruccion.
+              </h2>
+              <p>
+                Diseñados para eliminar residuos de obra de manera eficaz,
+                nuestros productos te ayudarán a destacar la calidad de tu
+                trabajo.
+              </p>
+            </div>
             <CardLimpiadores />
           </div>
         </div>

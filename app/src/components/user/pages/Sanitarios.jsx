@@ -22,22 +22,22 @@ export const Sanitarios = () => {
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="medium" />}
           aria-label="breadcrumb">
-           <Link to="/suministros/home">
-              <BiHomeAlt2 className="icon" />
-            </Link>
+          <Link to="/suministros/home">
+            <BiHomeAlt2 className="icon" />
+          </Link>
           <Link to="/suministros/sanitarios">Sanitarios</Link>
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          EXPLORA NUESTRA VARIEDAD DE SANITARIOS QUE COMBINAN ESTILO Y
-          FUNCIONALIDAD
-        </h1>
-        <p>
-          Desde inodoros elegantes hasta bidés prácticos, nuestra colección
-          ofrece opciones para todo tipo de baños
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Sanitarios</h1>
+            <h2>Sanitarios que combinan estilo y funcionalidad.</h2>
+            <p>
+              Desde inodoros elegantes hasta bidés prácticos, nuestra colección
+              ofrece opciones para todo tipo de baños.
+            </p>
+          </div>
           <SanitariosCard />
         </div>
       </div>

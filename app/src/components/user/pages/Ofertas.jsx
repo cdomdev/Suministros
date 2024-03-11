@@ -29,16 +29,19 @@ export const Ofertas = () => {
         </Breadcrumbs>
       </div>
       <div className="container-productos">
-        <h1>
-          APROVECHA NUESTRAS OFERTAS ESPECIALES Y ENCUENTRA PRODUCTOS DE CALIDAD
-          A PRECIOS IRRESISTIBLES
-        </h1>
-        <p>
-          Aprovecha nuestras ofertas especiales y encuentra productos de calidad
-          a precios unicos. nuestras ofertas te permitirán ahorrar en tus
-          proyectos de renovación
-        </p>
         <div className="contenedor-grid-products">
+          <div className="content-text">
+            <h1>Ofertas</h1>
+            <h2>
+              Aprovecha nuestras ofertas especiales y encuentra prodcutos de
+              calida a precios irresistibles
+            </h2>
+            <p>
+              Aprovecha nuestras ofertas especiales y encuentra productos de
+              calidad a precios unicos. nuestras ofertas te permitirán ahorrar
+              en tus proyectos de renovación
+            </p>
+          </div>
           <CardsOfertas />
         </div>
       </div>

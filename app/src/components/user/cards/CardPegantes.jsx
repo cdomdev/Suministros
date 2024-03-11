@@ -35,8 +35,6 @@ export const CardPegantes = () => {
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-
-  
   // Función para manejar cambios en la marca seleccionada en moile
   const handleMarcaChangeMobile = (e) => {
     // Obtenemos el valor de la marca seleccionada del evento
@@ -50,10 +48,10 @@ export const CardPegantes = () => {
       );
     } else {
       // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
-      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada])
+      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
     }
   };
-  
+
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
     // Verificar si la marca ya está seleccionada
@@ -105,42 +103,55 @@ export const CardPegantes = () => {
   return (
     <>
       <div className="filtros">
-        <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Marca</Accordion.Header>
-            {marcasDisponibles === 0 ? (
-              <p>No hay marcas disponibles</p>
-            ) : (
-              <Accordion.Body>
-                {marcasDisponibles.map((marca) => (
-                  <div key={marca}>
-                    <input
-                      className="m-2"
-                      type="checkbox"
-                      id={marca}
-                      value={marca}
-                      checked={marcasSeleccionadas.includes(marca)}
-                      onChange={(e) => handleMarcaChange(e.target.value)}
-                    />
-                    <label htmlFor={marca}>{marca}</label>
-                  </div>
-                ))}
-              </Accordion.Body>
-            )}
-          </Accordion.Item>
-        </Accordion>
+        <h2>Pegantes ceramicos</h2>
+        <span>Filtros*</span>
+        <h3>Marca</h3>
+        {marcasDisponibles.length === 0 ? (
+          <p>No hay marcas para filtrar</p>
+        ) : (
+          <>
+            {marcasDisponibles.map((marca) => (
+              <ul key={marca}>
+                <li>
+                  <input
+                    className="m-2"
+                    type="checkbox"
+                    id={marca}
+                    value={marca}
+                    checked={marcasSeleccionadas.includes(marca)}
+                    onChange={(e) => handleMarcaChange(e.target.value)}
+                  />
+                  <label htmlFor={marca}>{marca}</label>
+                </li>
+              </ul>
+            ))}
+          </>
+        )}
       </div>
       <div className="header">
-        <div>
-          <Form.Select
-            aria-label="Default select example"
-            value={precioSeleccionado}
-            onChange={handlePrecioChange}
-            className="select">
-            <option value="">Recomendado</option>
-            <option value="menor-mayor"> De menor precio a mayor precio</option>
-            <option value="mayor-menor"> De mayor precio a menor precio</option>
-          </Form.Select>
+        <div className="count-products">
+          <div className="count">
+            <span>{productos.length}</span>
+          </div>
+          <p>Productos</p>
+        </div>
+        <div className="filter-form">
+          <p>Filtro por:</p>
+          <div>
+            <Form.Select
+              aria-label="Default select example"
+              value={precioSeleccionado}
+              onChange={handlePrecioChange}
+              className="select">
+              <option value="">Seleccione</option>
+              <option value="menor-mayor">
+                De menor precio a mayor precio
+              </option>
+              <option value="mayor-menor">
+                De mayor precio a menor precio
+              </option>
+            </Form.Select>
+          </div>
         </div>
         <div className="mobile-select">
           <Form.Select
@@ -156,12 +167,6 @@ export const CardPegantes = () => {
             ))}
           </Form.Select>
         </div>
-        <div className="count-products">
-          <div className="count">
-            <span>{productos.length}</span>
-          </div>
-          <p>Productos</p>
-        </div>
       </div>
       <div className="contenedor-card">
         {productos.length === 0 ? (
@@ -176,23 +181,23 @@ export const CardPegantes = () => {
             )}
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
-                <span className="text-ref">REF: {producto.referencia}</span>
-                <img
-                  src={producto.image}
-                  alt="not found"
-                  className="img-products"
-                />
-                <div className="contenido-card">
-                  <li className="title">{producto.title}</li>
-                  <li className="text">{producto.nombre}</li>
-                  <li className="valor">
-                    $ {producto.valor}
-                    <span className="unidad">
-                      * M <span className="number">2</span>
-                    </span>
-                  </li>
-                </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>
+                  <span className="text-ref">REF: {producto.referencia}</span>
+                  <img
+                    src={producto.image}
+                    alt="not found"
+                    className="img-products"
+                  />
+                  <div className="contenido-card">
+                    <li className="title">{producto.title}</li>
+                    <li className="text">{producto.nombre}</li>
+                    <li className="valor">
+                      $ {producto.valor}
+                      <span className="unidad">
+                        * M <span className="number">2</span>
+                      </span>
+                    </li>
+                  </div>
                   <Button onClick={() => navigateDetail(producto)}>
                     Ver producto
                   </Button>
