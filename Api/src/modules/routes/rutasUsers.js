@@ -26,8 +26,15 @@ router.post('/user/profile/update', dataUserController.actulizarDatosDeUsuario)
 
 // listar productos
 router.get("/listar/productos", productsController.listarProductos);
-// lisatar productos por categorias
+
+
+// Listar categoria padre con subcategorias 
+router.get('/categoria-padre/:codigo', productsController.listarCategoriaPadre)
+
+// listar productos por categorias
 router.get("/categorias/:codigoProducto", productsController.listarCategoriaProducto);
+
+
 // ofertas
 router.get("/listar/ofertas", ofertasControler.listarOfertasConProductos);
 // router.get("/obtener/ofertas", obtenerOfertasConProductos);

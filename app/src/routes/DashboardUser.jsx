@@ -24,11 +24,19 @@ import {
   PagoPage,
   Pedidos,
   FinnallyBuy,
+  BañosCategoryPrimary,
+  CocinasCategoryPrimary,
+  ConstruccionCategoryPrimary,
+  PisosParedesCategoriPrimary,
 } from "../components/user/pages";
 
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
 import { NavCustome } from "../components/user/Nav/NavCustome";
-import { Profile, PedidosUser, DataUserUpdate } from "../components/user/pedidos/RutasPedido";
+import {
+  Profile,
+  PedidosUser,
+  DataUserUpdate,
+} from "../components/user/pedidos/RutasPedido";
 import { NotExisting } from "../components/admin/404-page/404";
 
 export const DashboardUser = () => {
@@ -36,6 +44,19 @@ export const DashboardUser = () => {
     <>
       <NavCustome />
       <Routes>
+        <Route path="/suministros/baños/" element={<BañosCategoryPrimary />} />
+        <Route
+          path="/suministros/cocinas"
+          element={<CocinasCategoryPrimary />}
+        />
+        <Route
+          path="/suministros/construccion-remodelacion"
+          element={<ConstruccionCategoryPrimary />}
+        />
+        <Route
+          path="/suministros/pisos-paredes"
+          element={<PisosParedesCategoriPrimary />}
+        />
         <Route path="/suministros/productos" element={<Productos />} />
         <Route path="/suministros/ofertas" element={<Ofertas />} />
         <Route path="/suministros/nosotros" element={<Nosotros />} />
@@ -91,11 +112,11 @@ export const DashboardUser = () => {
 
         {/* rutas anidadas */}
         <Route path="/suministros/user/" element={<Pedidos />}>
-          <Route index element={<Profile />}/>
+          <Route index element={<Profile />} />
           <Route path="details" element={<PedidosUser />} />
           <Route path="data" element={<DataUserUpdate />} />
         </Route>
-        <Route path="*" element={<NotExisting/>}/>
+        <Route path="*" element={<NotExisting />} />
       </Routes>
     </>
   );

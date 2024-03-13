@@ -3,6 +3,7 @@ const {
   Productos,
   Inventario,
   Categoria,
+  CategoriaPadre
 } = require("../../models/inventaryModel");
 
 
@@ -37,6 +38,7 @@ const listarProductos = async (req, res) => {
   }
 };
 
+// Modulo para busqueda de productos
 const buscarProductos = (req, res) => {
   const { query } = req.body;
 
@@ -69,6 +71,7 @@ const buscarProductos = (req, res) => {
     });
 };
 
+// Modulo de subcategorias
 const listarCategoriaProducto = async (req, res) => {
   try {
     const { codigoProducto } = req.params;
@@ -107,9 +110,49 @@ const listarCategoriaProducto = async (req, res) => {
 
 
 
+// Categoria padre con subcategorias y productos asociados
+const listarCategoriaPadre = async (req, res) => {
+  try {
+    const { codigo } = req.params;
+
+    // Buscar la categoría padre por su código
+    const categoriaPadre = await CategoriaPadre.findOne({
+      where: { codigo },
+      attributes: ["id", "nombre"],
+    });
+
+    if (!categoriaPadre) {
+      return res.status(404).json({ error: "Categoría principal no encontrada" });
+    }
+
+    // Buscar los productos asociados a la categoría padre
+    const productos = await Productos.findAll({
+      where: { categoria_padre_id: categoriaPadre.id }, 
+      attributes: [
+        "id",
+        "title",
+        "nombre",
+        "valor",
+        "description",
+        "image",
+        "referencia",
+      ],
+    });
+
+    res.json({ categoriaPadre, productos });
+  } catch (error) {
+    console.error("Error al obtener la categoría principal y sus productos asociados:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
+
+
+
 
 module.exports = {
   listarProductos,
+  listarCategoriaPadre,
   listarCategoriaProducto,
   buscarProductos,
 };

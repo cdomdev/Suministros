@@ -1,11 +1,12 @@
 import React from "react";
-import {SubMenu} from './Submenu'
+import { SubMenu } from "./Submenu";
 
 export const ContenidoSubmenus = () => {
   return (
     <>
       <div>
         <SubMenu
+          link={"/suministros/baños"}
           className="submenu"
           label={"Baños"}
           items={[
@@ -20,6 +21,7 @@ export const ContenidoSubmenus = () => {
       </div>
       <div>
         <SubMenu
+          link={"/suministros/cocinas"}
           className="submenu submenu2"
           label={"Cocinas"}
           items={[
@@ -33,6 +35,7 @@ export const ContenidoSubmenus = () => {
       </div>
       <div>
         <SubMenu
+          link={"/suministros/construccion-remodelacion"}
           className="submenu submenu3"
           label={"Construccion y remodelacion"}
           items={[
@@ -47,6 +50,7 @@ export const ContenidoSubmenus = () => {
       </div>
       <div>
         <SubMenu
+          link={"/suministros/pisos-paredes"}
           className="submenu submenu4"
           label={"Pisos y paredes"}
           items={[

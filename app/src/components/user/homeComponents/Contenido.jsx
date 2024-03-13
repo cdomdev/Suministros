@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { CategoriasItems } from "./CategoriasItems";
+import { CategoriasCards } from "./CategoriasItems";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { Link } from "react-router-dom";
@@ -18,19 +18,12 @@ export const Contenido = () => {
       <div className="contenido">
         <div>
           <h1>
-            Haz de tu hogar un espacio unico, nos especializamos en acabados
-            para la remodelacion: Sanitarios, lavamanos, pinturas y griferias.
+            Haz de tu hogar un espacio unico, aqui encontraras Sanitarios, pinturas y mas productos para remodelar tus esapcios.
           </h1>
-          <p className="txt">
-            Suministro es una empresa especializada en acabados para la
-            remodelación de baños, cocinas y otras áreas de tu hogar u oficina.
-            Encuentra eso que necesitas en nuestro portafollio de productos
-            nacionales eh importados.
-          </p>
         </div>
         <h2>Visita nuestras categorias</h2>
         <div className="box-products-home">
-          <CategoriasItems/>
+          <CategoriasCards/>
         </div>
         <div>
           <p>

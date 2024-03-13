@@ -6,7 +6,6 @@ import { Form } from "react-bootstrap";
 
 export const GestionInventary = () => {
   const [productos, setProductos] = useState([]);
-  // const [productosOriginales, setProductosOriginales] = useState([]);
   const [showModal, setShowModal] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [newStock, setNewStock] = useState(0);
@@ -117,30 +116,33 @@ export const GestionInventary = () => {
                   <span className="nombre">{producto.nombre}</span>
                 </div>
                 <div className="details">
-                  <strong>
-                    Marca: <span>{producto.title}</span>
-                  </strong>
+                  <span>
+                    <strong>Marca:</strong>
+                    {producto.title}
+                  </span>
                   <strong>Descripción:</strong>
                   <p>{producto.description}</p>
-                  <strong>
-                    Precio $:{" "}
-                    <span>{producto.valor.toLocaleString("es-CO")}</span>
-                  </strong>
-                  <strong>Referencia: {producto.referencia}</strong>
-                  <strong>
-                    Cantidad en inventario:{" "}
-                    <span>
-                      {producto.Inventarios.length > 0
-                        ? producto.Inventarios[0].cantidad
-                        : 0}
-                    </span>
-                  </strong>
-                  <strong>
-                    Categoria:{" "}
-                    <span>
-                      {producto.Categorium?.nombre || "No disponible"}
-                    </span>
-                  </strong>
+                  <span>
+                    <strong>Precio $: </strong>
+                    {producto.valor.toLocaleString("es-CO")}
+                  </span>
+                  <span>
+                    <strong>Referencia:  </strong> {producto.referencia}
+                  </span>
+                  <span>
+                    <strong>Cantidad en inventario: </strong>
+                    {producto.Inventarios.length > 0
+                      ? producto.Inventarios[0].cantidad
+                      : 0}
+                  </span>
+                  <span>
+                    <strong>Categoria: </strong>
+                    {producto.categoria_padre.nombre || "No disponible"}
+                  </span>
+                  <span>
+                    <strong>Subcategoria: </strong>
+                    {producto.Categorium?.nombre || "No disponible"}
+                  </span>
                 </div>
               </div>
               <div className="container-btn">

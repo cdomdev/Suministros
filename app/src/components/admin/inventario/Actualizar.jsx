@@ -5,6 +5,7 @@ import axios from "axios";
 export const Actualizar = ({ productId, productInfo, setProductos }) => {
   const [showModal, setShowModal] = useState(false);
   const [categorias, setCategoria] = useState({});
+  const [categoriPadre, setcategoriaPadre] = useState([]);
   const [updateProduct, setUpdatedProduct] = useState({ ...productInfo });
   const [messageUpdate, setMessageUpdate] = useState("");
 
@@ -16,7 +17,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
   const referenciaRef = useRef(null);
   const descripcionRef = useRef(null);
   const categoriaRef = useRef(null);
-
+  const categoriaPadreRef = useRef(null);
   // listar categorias en el modal
   useEffect(() => {
     // Peticion de la categoria
@@ -37,6 +38,30 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
         }
         console.log(`Error al obtener las categorias ${error}`);
       });
+  }, []);
+
+  // listar categorias padre en el modal (con espera de 1 segundo)
+  useEffect(() => {
+    // Peticion de la categoria
+    const timeout = setTimeout(() => {
+      axios
+        .get("http://localhost:3000/api/obtener/categorias-primary")
+        .then((response) => {
+          if (response.status === 200 || response.status === 201) {
+            const dataResonse = response.data.categoriasPrincipales;
+            setcategoriaPadre(dataResonse);
+          }
+        })
+        .catch((error) => {
+          if (response.status === 400 || response.status === 500) {
+            console.error("Error interno del servidor");
+          }
+          console.log(`Error al obtener las categorias ${error}`);
+        });
+    }, 1000); // Espera de 1 segundo antes de realizar la solicitud
+
+    // Limpieza del timeout para evitar fugas de memoria
+    return () => clearTimeout(timeout);
   }, []);
 
   // funcion para ctulializare el producto
@@ -66,9 +91,11 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
       referenciaRef.current.value || productInfo.referencia;
     const selectedCategoryId = categoriaRef.current.value;
     const selectedCategoryName = categorias[selectedCategoryId];
+    const selecIdCategoriaPadre = categoriaPadreRef.current.value;
 
+    console.log(selecIdCategoriaPadre);
+    console.log(selectedCategoryId);
 
-    
     //  nuevo objeto con la informacion el producto
     const productosActulizado = {
       nombre: updatedNombre,
@@ -78,6 +105,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
       referencia: updatedReferencia,
       categoria: selectedCategoryName || productInfo.Categorium.nombre,
       categoria_Id: parseInt(selectedCategoryId) || productInfo.categoria_id,
+      categoria_padre_id: parseInt(selecIdCategoriaPadre),
     };
     // Actualizar el estado del producto
     setUpdatedProduct(productosActulizado);
@@ -180,6 +208,19 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
                   {categorias[categoriaId]}
                 </option>
               ))}
+            </Form.Select>
+            <Form.Select
+              className="mt-3"
+              ref={categoriaPadreRef}
+              onChange={(e) => handleCategoryChange(e)}>
+              <option>{productInfo.categoria_padre.nombre}</option>
+              {categoriPadre.map((categoria) => {
+                return (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.nombre}
+                  </option>
+                );
+              })}
             </Form.Select>
             <Form.Control
               as="textarea"

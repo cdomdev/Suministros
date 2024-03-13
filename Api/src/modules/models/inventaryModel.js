@@ -68,6 +68,10 @@ const Productos = sequelize.define(
         key: "id",
       },
     },
+    categoria_padre_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     image: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -346,6 +350,12 @@ const DetallesPedido = sequelize.define(
 
 // productos - categorias
 Productos.belongsTo(Categoria, { foreignKey: "categoria_id" });
+
+
+// Establecer la relación entre productos y categoría padre
+Productos.belongsTo(CategoriaPadre, { foreignKey: 'categoria_padre_id' });
+
+
 // categoria - productos 
 Categoria.hasMany(Productos, {foreignKey: 'categoria_id'})
 
@@ -386,6 +396,10 @@ Ofertas.belongsToMany(Productos, {
   foreignKey: "id_ofertas",
   onDelete: 'CASCADE'
 });
+
+
+
+
 
 module.exports = {
   Productos,

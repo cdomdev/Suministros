@@ -2,15 +2,12 @@ const express = require("express");
 const router = express.Router();
 const upload = require("../utils/imageUpload");
 const adminController = require("../controllers/admin/adminController");
+const inventarioController = require('../controllers/admin/inventarioController')
 const ofertasController = require("../controllers/admin/ofertasControler");
 const categoriasController = require("../controllers/admin/categorias");
-const {
-  guardarProducto,
-} = require("../controllers/admin/inventarioController");
 
-// productos
-
-router.post("/guardarproductos", guardarProducto);
+// productos guardar
+router.post("/guardarproductos", adminController.guardarProducto);
 
 router.post("/upload", upload.array("files"), adminController.saveImagenServer);
 
@@ -25,7 +22,7 @@ router.post(
 
 router.get(
   "/obtener/categorias-primary",
-  categoriasController.crearCategoriasPrincipales
+  categoriasController.listarCategoriasPrincipales
 );
 
 router.delete(
@@ -43,14 +40,17 @@ router.delete(
   categoriasController.eliminarCategoria
 );
 
+
+
 // inventario
-router.get("/listar/productos", adminController.listarProductos);
 
-router.put("/productos/:id/inventario", adminController.actulizarInventario);
+router.get("/listar/productos", inventarioController.listarProductos);
 
-router.put("/productos/:id/actualizar", adminController.actualizarProducto);
+router.put("/productos/:id/inventario", inventarioController.actulizarInventario);
 
-router.delete("/productos/:id/eliminar", adminController.eliminarProductos);
+router.put("/productos/:id/actualizar", inventarioController.actualizarProducto);
+
+router.delete("/productos/:id/eliminar", inventarioController.eliminarProductos);
 
 // ofertas
 

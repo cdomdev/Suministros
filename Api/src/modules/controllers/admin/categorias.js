@@ -13,7 +13,6 @@ const crearCategoriasPrincipales = async (req, res) => {
     // extraer elemntos
     if (nombre) {
       // genera codigo para categoria
-      console.log(nombre);
 
       const codigo = generateCodigo(nombre);
       // crear nueva categoria en la db
