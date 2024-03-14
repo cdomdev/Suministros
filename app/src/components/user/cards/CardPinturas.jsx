@@ -35,23 +35,23 @@ export const CardPinturas = () => {
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-  // Función para manejar cambios en la marca seleccionada en moile
-  const handleMarcaChangeMobile = (e) => {
-    // Obtenemos el valor de la marca seleccionada del evento
-    const marcaSeleccionada = e.target.value;
+  // // Función para manejar cambios en la marca seleccionada en moile
+  // const handleMarcaChangeMobile = (e) => {
+  //   // Obtenemos el valor de la marca seleccionada del evento
+  //   const marcaSeleccionada = e.target.value;
 
-    console.log(marcaSeleccionada);
-    // Verificar si la marca ya está seleccionada
-    if (marcasSeleccionadas.includes(marcaSeleccionada)) {
-      // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
-      setMarcasSeleccionadas(
-        marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
-      );
-    } else {
-      // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
-      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
-    }
-  };
+  //   console.log(marcaSeleccionada);
+  //   // Verificar si la marca ya está seleccionada
+  //   if (marcasSeleccionadas.includes(marcaSeleccionada)) {
+  //     // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
+  //     setMarcasSeleccionadas(
+  //       marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
+  //     );
+  //   } else {
+  //     // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
+  //     setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+  //   }
+  // };
 
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
@@ -138,7 +138,7 @@ export const CardPinturas = () => {
           <p>Productos</p>
         </div>
         <div className="filter-form">
-          <p>Filtro por:</p>
+          <p>Ordenar por:</p>
           <div>
             <Form.Select
               aria-label="Default select example"

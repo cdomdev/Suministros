@@ -137,6 +137,12 @@ const listarCategoriaPadre = async (req, res) => {
         "image",
         "referencia",
       ],
+      include: [
+        {
+          model: Categoria,
+          attributes: ['id', 'nombre']
+        }
+      ]
     });
 
     res.json({ categoriaPadre, productos });
