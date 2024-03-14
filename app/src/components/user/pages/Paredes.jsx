@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CardParedes } from "../cards";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import { Migajas } from "../migajas/Migajas";
 
 export const Paredes = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -18,14 +16,7 @@ export const Paredes = () => {
     <>
       <section>
         <div className="migajas">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="medium" />}
-            aria-label="breadcrumb">
-            <Link to="/suministros/home">
-              <BiHomeAlt2 className="icon" />
-            </Link>
-            <Link to="/suministros/paredes">Paredes</Link>
-          </Breadcrumbs>
+         <Migajas categoriaRuta={'Pisos y paredes'} subcategoriaRuta={'Paredes'}/>
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">

@@ -66,7 +66,7 @@ export const CardParedes = () => {
   function navigateDetail(producto) {
     localStorage.setItem("selectedProduct", JSON.stringify(producto));
     localStorage.setItem("categroyselectedProduct", JSON.stringify(productos));
-    navigate(`/suministros/details/${producto.description}`);
+    navigate(`/suministros/details/${producto.title}`);
   }
 
   const handlePrecioChange = (e) => {
@@ -181,23 +181,23 @@ export const CardParedes = () => {
             )}
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
+                <span className="text-ref">REF: {producto.referencia}</span>
+                <img
+                  src={producto.image}
+                  alt="not found"
+                  className="img-products"
+                />
+                <div className="contenido-card">
+                  <li className="title">{producto.title}</li>
+                  <li className="text">{producto.nombre}</li>
+                  <li className="valor">
+                    $ {producto.valor}
+                    <span className="unidad">
+                      * M <span className="number">2</span>
+                    </span>
+                  </li>
+                </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>
-                  <span className="text-ref">REF: {producto.referencia}</span>
-                  <img
-                    src={producto.image}
-                    alt="not found"
-                    className="img-products"
-                  />
-                  <div className="contenido-card">
-                    <li className="title">{producto.title}</li>
-                    <li className="text">{producto.nombre}</li>
-                    <li className="valor">
-                      $ {producto.valor}
-                      <span className="unidad">
-                        * M <span className="number">2</span>
-                      </span>
-                    </li>
-                  </div>
                   <Button onClick={() => navigateDetail(producto)}>
                     Ver producto
                   </Button>

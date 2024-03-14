@@ -35,7 +35,7 @@ export const ContenidoSubmenus = () => {
       </div>
       <div>
         <SubMenu
-          link={"/suministros/construccion-remodelacion"}
+          link={"/suministros/construccionyremodelacion"}
           className="submenu submenu3"
           label={"Construccion y remodelacion"}
           items={[
@@ -50,7 +50,7 @@ export const ContenidoSubmenus = () => {
       </div>
       <div>
         <SubMenu
-          link={"/suministros/pisos-paredes"}
+          link={"/suministros/pisosyparedes"}
           className="submenu submenu4"
           label={"Pisos y paredes"}
           items={[

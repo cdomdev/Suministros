@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { BiHomeAlt2 } from "react-icons/bi";
-import { Baños } from "../categorias";
-
-export const BañosCategoryPrimary = () => {
+import {CardCategorias} from '../cards'
+export const BañosCategoria = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const { cartItems } = useCarShop();
 
@@ -31,7 +30,7 @@ export const BañosCategoryPrimary = () => {
         <div className="contenedor-grid-products">
           <div className="content-text">
           </div>
-          <Baños/>
+          <CardCategorias rutaCategoria={'baños'} nombreCategoria={'Baños'}/>
         </div>
       </div>
       {cartItemCount > 0 && (

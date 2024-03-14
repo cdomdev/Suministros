@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { GriferiasCard } from "../cards";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { CardSubcategorias} from "../cards";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import {Migajas} from '../migajas/Migajas'
 
 export const Griferias = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -19,14 +16,7 @@ export const Griferias = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="medium" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/griferias">Griferias</Link>
-        </Breadcrumbs>
+       <Migajas categoriaRuta={'Baños'} subcategoriaRuta={'Griferias'}/>
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">
@@ -41,7 +31,7 @@ export const Griferias = () => {
               son elegantes, sino también duraderas y funcionales.
             </p>
           </div>
-          <GriferiasCard />
+          <CardSubcategorias RutaSubCategoria={'griferias'} nombreSubcategoria={'Griferias'} />
         </div>
       </div>
       {cartItemCount > 0 && (

@@ -148,7 +148,6 @@ export const Cards = () => {
       <div className="contenedor-card">
         {productosFiltrados.map((producto) => (
           <ul key={producto.id} className="card-products">
-            <Link to={`/suministros/details/${producto.nombre}`}>
               <span className="text-ref">REF: {producto.referencia}</span>
               <img
                 src={producto.image}
@@ -162,6 +161,7 @@ export const Cards = () => {
                   $ {producto.valor} <span className="unidad">* UN</span>
                 </li>
               </div>
+            <Link to={`/suministros/details/${producto.nombre}`}>
               <Button onClick={() => navigateDetail(producto)}>
                 Ver producto
               </Button>

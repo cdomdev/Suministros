@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { BsDatabaseX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-export const Cocinas = () => {
+export const CardCategorias = ({rutaCategoria, nombreCategoria}) => {
   const [categorias, setCategorias] = useState([]);
   const [subCategorias, setSubCategorias] = useState([]);
   const [marcasUnicas, setMarcasUnicas] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [marcaSeleccionada, setMarcasSeleccionada] = useState("");
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   // Solcicitud de lar categorias
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categoria-padre/cocinas")
+      .get(`http://localhost:3000/categoria-padre/${rutaCategoria}`)
       .then((response) => {
         if (response.status === 200) {
           setCategorias(response.data.productos);
         }
+      })
+      .catch((e) => {
+        console.log("Se presento un errer en la solicitud", e);
       });
   }, []);
 
@@ -42,9 +45,8 @@ export const Cocinas = () => {
   function navigateDetail(producto) {
     localStorage.setItem("selectedProduct", JSON.stringify(producto));
     localStorage.setItem("categroyselectedProduct", JSON.stringify(categorias));
-    navigate(`/suministros/details/${categorias.productos.title}`);
+    navigate(`/suministros/details/${producto.title}`);
   }
-
   // Función para manejar cambios de acuerdo a las subcategorias
   const handleCategoriaChange = (subcategoria) => {
     // Verificar si la subcategoría ya está seleccionada
@@ -83,7 +85,7 @@ export const Cocinas = () => {
   return (
     <>
       <div className="filtros">
-        <h2>Cocinas</h2>
+        <h2>{nombreCategoria}</h2>
         <span>Filtros*</span>
         <h3>Categorias</h3>
         {subCategorias &&
@@ -121,15 +123,14 @@ export const Cocinas = () => {
             </ul>
           ))}
       </div>
-      <div className="header" style={{marginTop: '-2em'}}>
+      <div className="header" style={{ marginTop: "-2em" }}>
         <div className="count-products">
           <div className="count">
             <p>{categorias.length}</p>
           </div>
           <p>Productos</p>
         </div>
-        <div className="filter-form">
-        </div>
+        <div className="filter-form"></div>
       </div>
       <div className="contenedor-card">
         {categorias.length === 0 ? (
@@ -144,21 +145,21 @@ export const Cocinas = () => {
             )}
             {productosFiltro.map((producto) => (
               <ul key={producto.id} className="card-products">
+                <span className="text-ref">REF: {producto.referencia}</span>
+                <img
+                  src={producto.image}
+                  alt="not found"
+                  className="img-products"
+                />
+                <div className="contenido-card">
+                  <li className="title">{producto.title}</li>
+                  <li className="text">{producto.nombre}</li>
+                  <li className="valor">
+                    $ {producto.valor}
+                    <span className="unidad"> * UN</span>
+                  </li>
+                </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>
-                  <span className="text-ref">REF: {producto.referencia}</span>
-                  <img
-                    src={producto.image}
-                    alt="not found"
-                    className="img-products"
-                  />
-                  <div className="contenido-card">
-                    <li className="title">{producto.title}</li>
-                    <li className="text">{producto.nombre}</li>
-                    <li className="valor">
-                      $ {producto.valor}
-                      <span className="unidad"> * UN</span>
-                    </li>
-                  </div>
                   <Button onClick={() => navigateDetail(producto)}>
                     Ver producto
                   </Button>

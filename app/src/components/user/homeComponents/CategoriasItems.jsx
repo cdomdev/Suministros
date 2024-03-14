@@ -21,13 +21,13 @@ export const CategoriasCards = () => {
           </Link>
         </div>
         <div>
-          <Link to={"/suministros/construccion-remodelacion"}>
+          <Link to={"/suministros/construccionyremodelacion"}>
             <img src={constr} alt="const" />
             <span>construccion y remodelacion</span>
           </Link>
         </div>
         <div>
-          <Link to={"/suministros/pisos-paredes"}>
+          <Link to={"/suministros/pisosyparedes"}>
             <img src={pisos} alt="psiso" />
             <span>Pisos y paredes</span>
           </Link>

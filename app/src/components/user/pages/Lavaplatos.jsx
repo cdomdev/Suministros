@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import { LavaplatosCard } from "../cards/LavaplatosCard";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import {  CardSubcategorias } from "../cards";
+import {Migajas} from '../migajas/Migajas'
+
+
 export const Lavaplatos = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const { cartItems } = useCarShop();
@@ -17,14 +16,7 @@ export const Lavaplatos = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/lavaplatos">Lavaplatos</Link>
-        </Breadcrumbs>
+        <Migajas categoriaRuta={'Cocinas'} subcategoriaRuta={'Lavaplatos'}/>
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">
@@ -40,7 +32,7 @@ export const Lavaplatos = () => {
               facilidad
             </p>
           </div>
-          <LavaplatosCard />
+          <CardSubcategorias RutaSubCategoria={'lavaplatos'} nombreSubcategoria={'Lavaplatos '} />
         </div>
       </div>
       {cartItemCount > 0 && (

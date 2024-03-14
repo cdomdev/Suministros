@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { CardLimpiadores } from "../cards";
-import { Container } from "react-bootstrap";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import {  CardSubcategorias} from "../cards";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import {Migajas} from '../migajas/Migajas'
+
 
 export const Limpiadores = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -19,14 +17,7 @@ export const Limpiadores = () => {
     <>
       <section>
         <div className="migajas">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="medium" />}
-            aria-label="breadcrumb">
-            <Link to="/suministros/home">
-              <BiHomeAlt2 className="icon" />
-            </Link>
-            <Link to="/suministros/limpiadores">Limpiadores</Link>
-          </Breadcrumbs>
+         <Migajas categoriaRuta={'Construccion y remodelacion'} subcategoriaRuta={'Limpiadores'} />
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">
@@ -42,7 +33,7 @@ export const Limpiadores = () => {
                 trabajo.
               </p>
             </div>
-            <CardLimpiadores />
+            <CardSubcategorias RutaSubCategoria={'limpiadores'} nombreSubcategoria={'Limpiadores'} />
           </div>
         </div>
 

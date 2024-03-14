@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { Cards } from "../cards/Card";
+import { Cards } from "../cards/ProductosCard";
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
@@ -42,7 +41,7 @@ export const Productos = () => {
               renovación.
             </p>
           </div>
-          <Cards />
+          <Cards/>
         </div>
       </div>
       {cartItemCount > 0 && (

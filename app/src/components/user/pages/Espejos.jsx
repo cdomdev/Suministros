@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { EspejosCard } from "../cards/EspejosCard";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import { CardSubcategorias } from "../cards";
+import { Migajas } from "../migajas/Migajas";
 
 export const Espejos = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -18,14 +16,7 @@ export const Espejos = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/espejos">Espejos</Link>
-        </Breadcrumbs>
+        <Migajas categoriaRuta={"Baños"} subcategoriaRuta={"Espejos"} />
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">
@@ -40,7 +31,10 @@ export const Espejos = () => {
               pieza perfecta para añadir profundidad y elegancia a tus espacios.
             </p>
           </div>
-          <EspejosCard />
+          <CardSubcategorias
+            RutaSubCategoria={"espejos"}
+            nombreSubcategoria={"Griferias"}
+          />
         </div>
       </div>
       {cartItemCount > 0 && (

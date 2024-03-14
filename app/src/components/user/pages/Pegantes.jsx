@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { CardPegantes } from "../cards";
-import { Container } from "react-bootstrap";
-import { Breadcrumbs } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import {CardSubcategorias} from "../cards";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
+import {Migajas} from '../migajas/Migajas'
+
 
 export const Pegantes = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -19,14 +17,7 @@ export const Pegantes = () => {
     <>
       <section>
         <div className="migajas">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="medium" />}
-            aria-label="breadcrumb">
-            <Link to="/suministros/home">
-              <BiHomeAlt2 className="icon" />
-            </Link>
-            <Link to="/suministros/pegantes">Pegantes</Link>
-          </Breadcrumbs>
+        <Migajas categoriaRuta={'Construccion y remodelacion'}subcategoriaRuta={'Pegantes'} />
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">
@@ -41,7 +32,7 @@ export const Pegantes = () => {
                 tus proyectos de revestimiento.
               </p>
             </div>
-            <CardPegantes />
+            <CardSubcategorias RutaSubCategoria={'pegantes'} nombreSubcategoria={'Pegantes'} />
           </div>
         </div>
         {cartItemCount > 0 && (

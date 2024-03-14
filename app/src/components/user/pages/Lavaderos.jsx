@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { LavaderosCard } from "../cards/LavaderosCard";
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { BiHomeAlt2 } from "react-icons/bi";
+import { CardSubcategorias } from "../cards";
+import {Migajas} from '../migajas/Migajas'
+
 
 export const Lavaderos = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -17,14 +19,7 @@ export const Lavaderos = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/lavaderos">Lavaderos</Link>
-        </Breadcrumbs>
+       <Migajas categoriaRuta={'Cocinas'} subcategoriaRuta={'Lavaderos'}/>
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">
@@ -40,7 +35,7 @@ export const Lavaderos = () => {
               lavandería.
             </p>
           </div>
-          <LavaderosCard />
+          <CardSubcategorias RutaSubCategoria={'lavaderos'} nombreSubcategoria={'Lavaderos'}/>
         </div>
       </div>
       {cartItemCount > 0 && (

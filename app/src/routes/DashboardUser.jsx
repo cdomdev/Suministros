@@ -24,10 +24,10 @@ import {
   PagoPage,
   Pedidos,
   FinnallyBuy,
-  BañosCategoryPrimary,
-  CocinasCategoryPrimary,
-  ConstruccionCategoryPrimary,
-  PisosParedesCategoriPrimary,
+  BañosCategoria,
+  CocinasCategoria,
+  ConstruccionCategoria,
+  PisosParedesCategoria,
 } from "../components/user/pages";
 
 import { LoginModal } from "../components/user/autenticacion/LoginModal";
@@ -44,18 +44,15 @@ export const DashboardUser = () => {
     <>
       <NavCustome />
       <Routes>
-        <Route path="/suministros/baños/" element={<BañosCategoryPrimary />} />
+        <Route path="/suministros/baños/" element={<BañosCategoria />} />
+        <Route path="/suministros/cocinas" element={<CocinasCategoria />} />
         <Route
-          path="/suministros/cocinas"
-          element={<CocinasCategoryPrimary />}
+          path="/suministros/construccionyremodelacion"
+          element={<ConstruccionCategoria />}
         />
         <Route
-          path="/suministros/construccion-remodelacion"
-          element={<ConstruccionCategoryPrimary />}
-        />
-        <Route
-          path="/suministros/pisos-paredes"
-          element={<PisosParedesCategoriPrimary />}
+          path="/suministros/pisosyparedes"
+          element={<PisosParedesCategoria />}
         />
         <Route path="/suministros/productos" element={<Productos />} />
         <Route path="/suministros/ofertas" element={<Ofertas />} />

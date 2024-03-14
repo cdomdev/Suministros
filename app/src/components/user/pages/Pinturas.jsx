@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { CardPinturas } from "../cards";
-import { Container } from "react-bootstrap";
+import { CardSubcategorias } from "../cards";
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { BiHomeAlt2 } from "react-icons/bi";
+import {Migajas} from '../migajas/Migajas'
+
 
 export const Pinturas = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -19,14 +20,7 @@ export const Pinturas = () => {
     <>
       <section>
         <div className="migajas">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="medium" />}
-            aria-label="breadcrumb">
-            <Link to="/suministros/home">
-              <BiHomeAlt2 className="icon" />
-            </Link>
-            <Link to="/suministros/pinturas">Pinturas</Link>
-          </Breadcrumbs>
+          <Migajas categoriaRuta={'Construccion y remodelacion'} subcategoriaRuta={'Pinturas'} />
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">
@@ -41,7 +35,7 @@ export const Pinturas = () => {
                 permite crear ambientes que reflejen tu estilo y personalidad
               </p>
             </div>
-            <CardPinturas />
+            <CardSubcategorias RutaSubCategoria={'pinturas'} nombreSubcategoria={'Pinturas'} />
           </div>
         </div>
         {cartItemCount > 0 && (

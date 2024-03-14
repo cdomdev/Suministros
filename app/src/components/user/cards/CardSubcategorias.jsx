@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Accordion, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { BsDatabaseX } from "react-icons/bs";
 
-export const CardPegantes = () => {
+export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria}) => {
   const [productos, setProductos] = useState([]);
   const [marcasDisponibles, setMarcasDisponibles] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
@@ -16,7 +16,7 @@ export const CardPegantes = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categorias/pegantes")
+      .get(`http://localhost:3000/categorias/${RutaSubCategoria}`)
       .then((response) => {
         if (response.status === 200) {
           setProductos(response.data.categoria.Productos);
@@ -35,22 +35,23 @@ export const CardPegantes = () => {
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-  // Función para manejar cambios en la marca seleccionada en moile
-  const handleMarcaChangeMobile = (e) => {
-    // Obtenemos el valor de la marca seleccionada del evento
-    const marcaSeleccionada = e.target.value;
+  // // Función para manejar cambios en la marca seleccionada en moile
+  // const handleMarcaChangeMobile = (e) => {
+  //   // Obtenemos el valor de la marca seleccionada del evento
+  //   const marcaSeleccionada = e.target.value;
 
-    // Verificar si la marca ya está seleccionada
-    if (marcasSeleccionadas.includes(marcaSeleccionada)) {
-      // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
-      setMarcasSeleccionadas(
-        marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
-      );
-    } else {
-      // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
-      setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
-    }
-  };
+  //   console.log(marcaSeleccionada);
+  //   // Verificar si la marca ya está seleccionada
+  //   if (marcasSeleccionadas.includes(marcaSeleccionada)) {
+  //     // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
+  //     setMarcasSeleccionadas(
+  //       marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
+  //     );
+  //   } else {
+  //     // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
+  //     setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
+  //   }
+  // };
 
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
@@ -91,6 +92,7 @@ export const CardPegantes = () => {
   const handleSelectChange = (e) => {
     setCategoriaSeleccionada(e.target.value);
   };
+
   const productosFiltrados = productos.filter((producto) => {
     const categoriaPass =
       !categoriaSeleccionada || producto.title === categoriaSeleccionada;
@@ -103,7 +105,7 @@ export const CardPegantes = () => {
   return (
     <>
       <div className="filtros">
-        <h2>Pegantes ceramicos</h2>
+        <h2>{nombreSubcategoria}</h2>
         <span>Filtros*</span>
         <h3>Marca</h3>
         {marcasDisponibles.length === 0 ? (
@@ -136,7 +138,7 @@ export const CardPegantes = () => {
           <p>Productos</p>
         </div>
         <div className="filter-form">
-          <p>Filtro por:</p>
+          <p>Ordenar por:</p>
           <div>
             <Form.Select
               aria-label="Default select example"
@@ -181,23 +183,21 @@ export const CardPegantes = () => {
             )}
             {productosFiltrados.map((producto) => (
               <ul key={producto.id} className="card-products">
+                <span className="text-ref">REF: {producto.referencia}</span>
+                <img
+                  src={producto.image}
+                  alt="not found"
+                  className="img-products"
+                />
+                <div className="contenido-card">
+                  <li className="title">{producto.title}</li>
+                  <li className="text">{producto.nombre}</li>
+                  <li className="valor">
+                    $ {producto.valor}
+                    <span className="unidad">* UN</span>
+                  </li>
+                </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>
-                  <span className="text-ref">REF: {producto.referencia}</span>
-                  <img
-                    src={producto.image}
-                    alt="not found"
-                    className="img-products"
-                  />
-                  <div className="contenido-card">
-                    <li className="title">{producto.title}</li>
-                    <li className="text">{producto.nombre}</li>
-                    <li className="valor">
-                      $ {producto.valor}
-                      <span className="unidad">
-                        * M <span className="number">2</span>
-                      </span>
-                    </li>
-                  </div>
                   <Button onClick={() => navigateDetail(producto)}>
                     Ver producto
                   </Button>
