@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { BsDatabaseX } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 
-export const CardCategorias = ({rutaCategoria, nombreCategoria}) => {
+import {
+  obtenerMarcasUnicas,
+  obtenerSubCategorias,
+} from "../../../utils/filtrosDeProductos";
+
+export const CardCategorias = ({ rutaCategoria, nombreCategoria }) => {
   const [categorias, setCategorias] = useState([]);
   const [subCategorias, setSubCategorias] = useState([]);
   const [marcasUnicas, setMarcasUnicas] = useState([]);
@@ -16,27 +20,26 @@ export const CardCategorias = ({rutaCategoria, nombreCategoria}) => {
 
   // Solcicitud de lar categorias
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/categoria-padre/${rutaCategoria}`)
-      .then((response) => {
-        if (response.status === 200) {
-          setCategorias(response.data.productos);
-        }
-      })
-      .catch((e) => {
-        console.log("Se presento un errer en la solicitud", e);
-      });
+    const fetchData = async () => {
+      try {
+        axios
+          .get(`http://localhost:3000/categoria-padre/${rutaCategoria}`)
+          .then((response) => {
+            if (response.status === 200) {
+              setCategorias(response.data.productos);
+            }
+          })
+      } catch (e) {
+        console.log("Error en el proceso de solicitud ", e);
+      }
+    };
+    fetchData();
   }, []);
 
   // Extraer las categorias de los productos
   useEffect(() => {
-    // Extraer marcas únicas de los productos
-    const categoriasUnicas = [
-      ...new Set(categorias.map((producto) => producto.Categorium.nombre)),
-    ];
-    const marcasUnicas = [
-      ...new Set(categorias.map((producto) => producto.title)),
-    ];
+    const marcasUnicas = obtenerMarcasUnicas(categorias);
+    const categoriasUnicas = obtenerSubCategorias(categorias);
     setSubCategorias(categoriasUnicas);
     setMarcasUnicas(marcasUnicas);
   }, [categorias]);

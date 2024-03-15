@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   HomeUser,
-  Productos,
   Ofertas,
   Nosotros,
   Pinturas,
@@ -54,7 +53,6 @@ export const DashboardUser = () => {
           path="/suministros/pisosyparedes"
           element={<PisosParedesCategoria />}
         />
-        <Route path="/suministros/productos" element={<Productos />} />
         <Route path="/suministros/ofertas" element={<Ofertas />} />
         <Route path="/suministros/nosotros" element={<Nosotros />} />
         <Route path="/suministros/sanitarios" element={<Sanitarios />} />

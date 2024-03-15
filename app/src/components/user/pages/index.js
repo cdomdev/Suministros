@@ -1,7 +1,6 @@
 export { HomeUser } from './HomeUser';
 export { Nosotros } from './Nosotros';
 export { Ofertas } from './Ofertas';
-export { Productos } from './Productos';
 export { Pinturas } from './Pinturas'
 export { CarShopInfo }  from './CarShopInfo'
 export {DetallesProducto} from './DetallesProducto'

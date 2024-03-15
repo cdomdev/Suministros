@@ -1,5 +1,3 @@
-export {Cards} from './ProductosCard'
-export {CardParedes} from './CardParedes'
 export {CardsOfertas} from './CardsOfertas'
 export {CardSubcategorias} from './CardSubcategorias'
 export {CardCategorias} from './CardCategorias'

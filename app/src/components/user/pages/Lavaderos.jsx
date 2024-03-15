@@ -35,7 +35,7 @@ export const Lavaderos = () => {
               lavandería.
             </p>
           </div>
-          <CardSubcategorias RutaSubCategoria={'lavaderos'} nombreSubcategoria={'Lavaderos'}/>
+          <CardSubcategorias RutaSubCategoria={'lavaderos'} nombreSubcategoria={'Lavaderos'} unidad={'UN'}/>
         </div>
       </div>
       {cartItemCount > 0 && (

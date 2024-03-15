@@ -32,7 +32,7 @@ export const Pegantes = () => {
                 tus proyectos de revestimiento.
               </p>
             </div>
-            <CardSubcategorias RutaSubCategoria={'pegantes'} nombreSubcategoria={'Pegantes'} />
+            <CardSubcategorias RutaSubCategoria={'pegantes'} nombreSubcategoria={'Pegantes'} unidad={'UN'}/>
           </div>
         </div>
         {cartItemCount > 0 && (

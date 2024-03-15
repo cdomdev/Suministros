@@ -20,7 +20,7 @@ export const Pinturas = () => {
     <>
       <section>
         <div className="migajas">
-          <Migajas categoriaRuta={'Construccion y remodelacion'} subcategoriaRuta={'Pinturas'} />
+          <Migajas categoriaRuta={'Construccion y remodelacion'} subcategoriaRuta={'Pinturas'}/>
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">
@@ -35,7 +35,7 @@ export const Pinturas = () => {
                 permite crear ambientes que reflejen tu estilo y personalidad
               </p>
             </div>
-            <CardSubcategorias RutaSubCategoria={'pinturas'} nombreSubcategoria={'Pinturas'} />
+            <CardSubcategorias RutaSubCategoria={'pinturas'} nombreSubcategoria={'Pinturas'} unidad={'UN'}/>
           </div>
         </div>
         {cartItemCount > 0 && (

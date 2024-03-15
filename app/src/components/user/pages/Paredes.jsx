@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CardParedes } from "../cards";
+import { CardSubcategorias } from "../cards";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
@@ -16,7 +16,7 @@ export const Paredes = () => {
     <>
       <section>
         <div className="migajas">
-         <Migajas categoriaRuta={'Pisos y paredes'} subcategoriaRuta={'Paredes'}/>
+         <Migajas categoriaRuta={'Pisos y paredes'} subcategoriaRuta={'Paredes'} />
         </div>
         <div className="container-productos">
           <div className="contenedor-grid-products">
@@ -30,7 +30,7 @@ export const Paredes = () => {
                 único y acogedor.
               </p>
             </div>
-            <CardParedes />
+            <CardSubcategorias RutaSubCategoria={'pisos'} nombreSubcategoria={'Paredes'} unidad={'Mt'}/>
           </div>
         </div>
         {cartItemCount > 0 && (

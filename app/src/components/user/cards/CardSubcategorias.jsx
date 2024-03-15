@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { BsDatabaseX } from "react-icons/bs";
+import { obtenerMarcasUnicas } from "../../../utils/filtrosDeProductos";
 
-export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria}) => {
+export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria, unidad}) => {
   const [productos, setProductos] = useState([]);
   const [marcasDisponibles, setMarcasDisponibles] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
@@ -29,30 +30,11 @@ export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria}) => {
 
   useEffect(() => {
     // Extraer marcas únicas de los productos
-    const marcasUnicas = [
-      ...new Set(productos.map((producto) => producto.title)),
-    ];
+    const marcasUnicas = obtenerMarcasUnicas(productos)
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-  // // Función para manejar cambios en la marca seleccionada en moile
-  // const handleMarcaChangeMobile = (e) => {
-  //   // Obtenemos el valor de la marca seleccionada del evento
-  //   const marcaSeleccionada = e.target.value;
-
-  //   console.log(marcaSeleccionada);
-  //   // Verificar si la marca ya está seleccionada
-  //   if (marcasSeleccionadas.includes(marcaSeleccionada)) {
-  //     // Si está seleccionada, la eliminamos del estado de marcas seleccionadas
-  //     setMarcasSeleccionadas(
-  //       marcasSeleccionadas.filter((m) => m !== marcaSeleccionada)
-  //     );
-  //   } else {
-  //     // Si no está seleccionada, la agregamos al estado de marcas seleccionadas
-  //     setMarcasSeleccionadas([...marcasSeleccionadas, marcaSeleccionada]);
-  //   }
-  // };
-
+  
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
     // Verificar si la marca ya está seleccionada
@@ -194,7 +176,7 @@ export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria}) => {
                   <li className="text">{producto.nombre}</li>
                   <li className="valor">
                     $ {producto.valor}
-                    <span className="unidad">* UN</span>
+                    <span className="unidad"> * {unidad}</span>
                   </li>
                 </div>
                 <Link to={`/suministros/details/${producto.nombre}`}>

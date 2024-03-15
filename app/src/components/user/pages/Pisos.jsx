@@ -31,7 +31,7 @@ export const Pisos = () => {
               satisfacer tus necesidades
             </p>
           </div>
-          <CardSubcategorias RutaSubCategoria={'pisos'} nombreSubcategoria={'Pisos'} />
+          <CardSubcategorias RutaSubCategoria={'pisos'} nombreSubcategoria={'Pisos'} unidad={'Mt'}/>
         </div>
       </div>
       {cartItemCount > 0 && (

@@ -7,7 +7,7 @@ export const UserNotLoggin = ({setIsLoggedIn }) => {
   const navigate = useNavigate();
  
   const irProcutos = () => {
-    navigate("/suministros/productos");
+    navigate("/suministros/construccionyremodelacion");
   };
 
   return (

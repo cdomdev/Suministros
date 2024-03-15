@@ -33,7 +33,7 @@ export const Limpiadores = () => {
                 trabajo.
               </p>
             </div>
-            <CardSubcategorias RutaSubCategoria={'limpiadores'} nombreSubcategoria={'Limpiadores'} />
+            <CardSubcategorias RutaSubCategoria={'limpiadores'} nombreSubcategoria={'Limpiadores'} unidad={'UN'}/>
           </div>
         </div>
 

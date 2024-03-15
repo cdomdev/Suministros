@@ -34,6 +34,7 @@ export const Espejos = () => {
           <CardSubcategorias
             RutaSubCategoria={"espejos"}
             nombreSubcategoria={"Griferias"}
+            unidad={'UN'}
           />
         </div>
       </div>

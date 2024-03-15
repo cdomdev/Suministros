@@ -28,7 +28,7 @@ export const Sanitarios = () => {
               ofrece opciones para todo tipo de baños.
             </p>
           </div>
-          <CardSubcategorias  RutaSubCategoria={'sanitarios'} nombreSubcategoria={'Sanitarios'} />
+          <CardSubcategorias  RutaSubCategoria={'sanitarios'} nombreSubcategoria={'Sanitarios'} unidad={'UN'} />
         </div>
       </div>
       {cartItemCount > 0 && (

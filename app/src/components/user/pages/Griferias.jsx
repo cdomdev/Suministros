@@ -31,7 +31,7 @@ export const Griferias = () => {
               son elegantes, sino también duraderas y funcionales.
             </p>
           </div>
-          <CardSubcategorias RutaSubCategoria={'griferias'} nombreSubcategoria={'Griferias'} />
+          <CardSubcategorias RutaSubCategoria={'griferias'} nombreSubcategoria={'Griferias'} unidad={'UN'}/>
         </div>
       </div>
       {cartItemCount > 0 && (

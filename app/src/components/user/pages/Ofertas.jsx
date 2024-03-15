@@ -32,7 +32,7 @@ export const Ofertas = () => {
           <div className="content-text">
             <h1>Ofertas</h1>
             <h2>
-              Aprovecha nuestras ofertas especiales y encuentra prodcutos de
+              Aprovecha nuestras ofertas especiales y encuentra productos de
               calida a precios irresistibles
             </h2>
             <p>
