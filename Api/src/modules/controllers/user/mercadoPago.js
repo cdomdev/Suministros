@@ -1,45 +1,52 @@
-import   { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig, Preference } from "mercadopago";
 
 // Configura las credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
-  accessToken: "TEST-5505405215799840-031710-e8a57a0c465797dfb354fc344f5b8080-1732396978",
+  accessToken:
+    "TEST-5505405215799840-031710-e8a57a0c465797dfb354fc344f5b8080-1732396978",
 });
 
-// Crea una instancia de Preference
-const preference = new Preference(client);
+export const createPreference = async (req, res) => {
+  console.log(req.body);
+  const { cartItems } = req.body;
+  const { nombre, valor, cantidad } = cartItems[0];
 
-export const createOrder = (req, res) => {
-  const { title, quantity, unit_price } = req.body;
+  console.log(nombre);
 
-  // Verifica que los datos requeridos estén presentes en la solicitud
-  if (!title || !quantity || !unit_price) {
-    return res.status(400).json({ error: "Missing required fields" });
-  }
-
-  // Crea la preferencia usando los datos recibidos en la solicitud
-  preference
-    .create({
-      body: {
-        items: [
-          {
-            title: title,
-            quantity: Number(quantity),
-            unit_price: Number(unit_price),
-          },
-        ],
+  try {
+    const body = {
+      items: [
+        {
+          title: nombre,
+          quantity: Number(valor),
+          unit_price: Number(cantidad),
+        },
+      ],
+      back_urls: {
+        success: "http://localhost:3000/feedback",
+        failure: "http://localhost:3000/feedback",
+        pending: "http://localhost:3000/feedback",
       },
-    })
-    .then((response) => {
-      // Envía la respuesta al cliente con la preferencia creada
-      res.json(response);
-    })
-    .catch((error) => {
-      // Envía una respuesta de error al cliente si ocurre un problema
-      console.error("Error creating preference:", error);
-      res.status(500).json({ error: "Internal server error" });
+      auto_return: "approved",
+      notification_url: "https://833a-179-51-118-55.ngrok-free.app/webhooks",
+    };
+
+    const preference = new Preference(client);
+    const result = await preference.create({ body });
+
+    console.log(result.init_point);
+    res.status(200).json({
+      id: result.id,
+      init_point: result.init_point,
+      message: "Preferencia creada con éxito",
     });
+  } catch (error) {
+    console.error("Error al crear la preferencia:", error);
+    return res.status(500).json({ message: "Error en el servidor" });
+  }
 };
 
-// module.exports = {
-//   createOrder,
-// };
+export const reciveWebhook = async (req, res) => {
+  console.log(req.query);
+  res.send("webhook");
+};

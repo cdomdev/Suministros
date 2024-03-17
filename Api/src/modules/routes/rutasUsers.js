@@ -21,7 +21,8 @@ import {
   recoveryPassword,
   registroController,
 } from "../controllers/user/auth.js";
-// import mercadoPago from "../controllers/user/mercadoPago";
+
+import {createPreference, reciveWebhook} from "../controllers/user/mercadoPago.js";
 
 export const routerUser = express.Router();
 
@@ -63,9 +64,14 @@ routerUser.post("/finish/buy/invited", finalizarCompraInvitado);
 // finalizar compra usuario
 routerUser.post("/finish/buy/user", finalizarCompraUsuario);
 
-// ver pedidos
-routerUser.get("/user/listar/pedidos/:email", listarPedidos);
+// finalizar pago con mercado pago
+routerUser.post("/finish/buy/mercadopago" , createPreference );
 
-routerUser.post("/create-order-mercadopago");
+routerUser.get('/webhook', reciveWebhook )
+
+
+// ver pedidos
+routerUser.post("/user/listar/pedidos/:email", listarPedidos);
+
 
 // module.exports = router;

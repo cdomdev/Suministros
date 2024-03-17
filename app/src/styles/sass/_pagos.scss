@@ -2,13 +2,16 @@
     border: solid 1px #ebebeb ;
     box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
     box-sizing: border-box;
-    background-color: white;
+    // background-color: white;
 }
   $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
 $otro: 'Lato', sans-serif;
 
+.steps{
+    padding-top: 1.5em;
+}
 section{
     .details{
         width: 90vw;
@@ -24,12 +27,14 @@ section{
             flex-direction: column;
             gap: 2px;
             .box1{
+                background-color: #f4f4f4;
                 display: flex;
                 justify-content: center;
                 height: 45px;
                 @include bordeBox();
                 h3{
                     font-size: 20px;
+                    font-weight: bold;
                     margin: auto 0 ;
                 }
             }
@@ -134,35 +139,50 @@ section{
                 font-size: 20px;
                 display: flex;
                 justify-content: center;
-                gap: 20px;
                 flex-direction: column;
                 align-items: center;
-                padding: 20px 0;
+                padding: 10px 0;
+                margin-top: -1em;
+                background-color: #f4f4f4;
                 h4{
                     font-size:$tittlesFonts;
+                    margin: 0;
+                    font-size: 18px;
+                    font-weight: bold;
                 }
                 div{
                     display: flex;
-                    gap: 20px;
+                    flex-direction: column;
                     .btn-pago{
                         background-color: #243a5e;
-                        border-radius: 20px;
-                        padding:  5px 15px;
-                        display: flex;
+                        border-radius: 8px;
+                        padding:  6px 15px;
+                        flex-direction: row;
                         align-items: center;
                         justify-content: center;
                         cursor: pointer;
                         gap: 0;
-                        .icon{
-                            color: white;                            
-                            font-size: 30px;
-                            margin: -10px 0 0 -5px;
+                        .content{
+                            border: solid 1px;
+                            background-color: white;
+                            border-radius: 50%;
+                            padding: 12px;
+                            position: relative;
+                            .icon{
+                                position: absolute; 
+                                top: 6px;
+                                left: 9px;
+                                font-size: 17px;
+                                margin: -5px 0 0 -5px;
+                            }
                         }
+                       
                         .btn{
+                            text-transform: capitalize;
                             font-size: 13px;
                             background-color: #243a5e;
                             border: none;
-                            text-transform: uppercase;
+                            font-size: 16px;
                         }
                     }
                     .mercado-pago{
@@ -186,11 +206,13 @@ section{
             flex-direction: column;
             gap: 2px;
             .box3{
+                background-color: #f4f4f4;
                 display: flex;
                 justify-content: center;
                 height: 45px;
                 @include bordeBox();
                 h3{
+                    font-weight: bold;
                     font-size: 20px;
                     margin: auto 0 ;
                 }
@@ -200,13 +222,16 @@ section{
                 overflow-y:auto ;
                 padding: 20px;
                 height: 355px;
+                background-color: #f4f4f4;
                 @include bordeBox();
                 .card-product{
                     display: flex;
+                    background-color: white;
+                    padding: 10px;
+                    @include bordeBox();
                     justify-content: center;
                     align-items: center;
                     list-style: none;
-                    padding: 0;
                     li{
                         font-size: 12px;
                         padding: 0;
@@ -217,6 +242,13 @@ section{
                     .img-car-shop{
                         width: 5em;
                         height: 5em;
+                    }
+                    .item-sub{
+                        margin-top: -15px;
+                        p{
+                            padding: 0;
+                            font-size: 14px;
+                        }
                     }
                 }
                

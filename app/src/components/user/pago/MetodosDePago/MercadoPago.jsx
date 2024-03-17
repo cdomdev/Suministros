@@ -1,44 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
-import { initMercadoPago , Wallet} from "@mercadopago/sdk-react";
-
+import { useCarShop } from "../../../../hook";
+import { mercadoPagoIcon } from "../../../../assets/icons/iconos";
 export const MercadoPago = () => {
-  const [orderId, setOrderId] = useState(null);
-
-  // Inicializar mercado pago
+  const [productos, setProductos] = useState([]);
+  const [refernceId, setReferenceId] = useState(null);
   initMercadoPago("TEST-1eb0203c-5a68-4143-8770-2a87ea70ccd9", {
     locale: "es-CO",
   });
 
-  // funcion para obtener los productos de la compra
+  const { cartItems } = useCarShop();
+
   const createOrder = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/create-order-mercadopago",
+        "http://localhost:3000/finish/buy/mercadopago",
         {
-         title: 'compra',
-         quiantity: 1,
-         unit_price: 200
+          cartItems,
         }
       );
-
-      if (response) {
+      if (response.status === 200) {
         const { id } = response.data;
-        setOrderId(id);
+        const { init_point } = response.data;
+        console.log();
+        console.log(response.data);
+        setReferenceId(id);
+        window.location.href = init_point;
       }
+      console.log(id);
     } catch (e) {
-      console.log("Hubo un error en el proceso de pago", e);
+      console.log(e);
     }
   };
 
   return (
     <>
-      <div id="wallet_container">
+      <button onClick={createOrder}>
+        comprar
+      </button>
+      {refernceId && (
         <Wallet
-          initialization={{ preferenceId: orderId }}
+          initialization={{ preferenceId: refernceId }}
           customization={{ texts: { valueProp: "smart_option" } }}
         />
-      </div>
+      )}
     </>
   );
 };

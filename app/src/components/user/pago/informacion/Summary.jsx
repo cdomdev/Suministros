@@ -23,7 +23,7 @@ export const Summary = () => {
               </li>
               <div className="item-sub">
                 <p className="total-value-productos">
-                  <strong className="sub">Valor unidad: </strong>$ {item.valor}{" "}
+                  <strong className="sub"> Valor unidad: </strong>$ {item.valor}{" "}
                   <span className="line-in-info-car" />
                   <strong>Subtotal:</strong>$ {item.cantidad * item.valor}
                 </p>

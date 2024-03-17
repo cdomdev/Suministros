@@ -23,12 +23,15 @@ export const Info = () => {
         <div className="metodos-pago">
           <h4>Metodos de pago</h4>
           <div>
-            <div className="btn-pago">
-              {isLoggedIn ? <PagoUser /> : <PagoInvitado />}
-
-              <FaHandHoldingDollar className="icon" />
+            <div className="mercadopago">
+              <MercadoPago />
             </div>
-            <MercadoPago/>
+            <div className="btn-pago">
+              <div className="content">
+                <FaHandHoldingDollar className="icon" />
+              </div>
+              {isLoggedIn ? <PagoUser /> : <PagoInvitado />}
+            </div>
           </div>
         </div>
       </div>
