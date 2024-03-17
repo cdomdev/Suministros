@@ -1,18 +1,18 @@
-const {
+import  {
   User,
   Invitado
-} = require("../../models/usersModels");
+}from "../../models/usersModels.js";
 
-const {
+import {
   Productos,
   Pedido, 
   DetallesPedido, 
   Inventario,
-} = require("../../models/inventaryModel");
+} from "../../models/inventaryModel.js";
 
 
 // Controlador para gauradr productos
-const guardarProducto = async (req, res) => {
+export const guardarProducto = async (req, res) => {
   try {
     const { productos } = req.body;
     for (const producto of productos) {
@@ -53,15 +53,8 @@ const guardarProducto = async (req, res) => {
 };
 
 
-//Listar productos de inventario
-
-module.exports = {
-  guardarProducto,
-};
-
-
 // Controllador para listar usuario
-const listarUsuarios = async (req, res) => {
+export const listarUsuarios = async (req, res) => {
   try {
     const usuarios = await User.findAll({
       attributes: ["id", "name", "email", "role"],
@@ -76,7 +69,7 @@ const listarUsuarios = async (req, res) => {
 };
 // Controlador para guardar imagenes
 
-const saveImagenServer = (req, res) => {
+export const saveImagenServer = (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
       return res.status(400).send("Por favor, sube una o más imágenes");
@@ -99,7 +92,7 @@ const saveImagenServer = (req, res) => {
 
 // pedidos
 
-const listarPedidos = async (req, res) => {
+export const listarPedidos = async (req, res) => {
   try {
     const pedidosUsuarios = await Pedido.findAll({
       attributes: ["id", "cantidad", "metodo_pago", "total"], 
@@ -157,9 +150,17 @@ const listarPedidos = async (req, res) => {
   }
 };
 
-module.exports = {
-  listarUsuarios,
-  saveImagenServer,
-  listarPedidos, 
-  guardarProducto
-};
+// module.exports = {
+//   listarUsuarios,
+//   saveImagenServer,
+//   listarPedidos, 
+//   guardarProducto
+// };
+
+
+
+// //Listar productos de inventario
+
+// module.exports = {
+//   guardarProducto,
+// };

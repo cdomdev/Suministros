@@ -1,13 +1,13 @@
-const {
+import {
   Pedido,
   DetallesPedido,
   Productos,
-} = require("../../models/inventaryModel");
-const { User } = require("../../models/usersModels");
+} from "../../models/inventaryModel.js";
+import  { User } from "../../models/usersModels.js";
 
 // controlador para listado de pediudos usuarios
 
-const listarPedidos = async (req, res) => {
+export const listarPedidos = async (req, res) => {
   const { email } = req.params;
   try {
     const pedidos = await Pedido.findAll({
@@ -38,6 +38,6 @@ const listarPedidos = async (req, res) => {
   }
 };
 
-module.exports = {
-  listarPedidos,
-};
+// module.exports = {
+//   listarPedidos,
+// };

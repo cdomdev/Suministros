@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize');
-const dotenv = require('dotenv');
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 dotenv.config();
 
 // Configuración de la base de datos
@@ -11,19 +11,27 @@ const dbConfig = {
 };
 
 // Crear conexión de Sequelize
-const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
-  host: dbConfig.host,
-  dialect: 'mysql',
-});
+export const conecction = new Sequelize(
+  dbConfig.database,
+  dbConfig.user,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    dialect: "mysql",
+  }
+);
 
 // Verificar la conexión y sincronizar modelos
-sequelize.sync()
+conecction
+  .sync()
   .then(() => {
-    console.log('Conexión a la base de datos exitosa (Sequelize)');
+    console.log("Conexión a la base de datos exitosa (Sequelize)");
   })
   .catch((error) => {
-    console.error('Error al conectar a la base de datos (Sequelize):', error.message);
+    console.error(
+      "Error al conectar a la base de datos (Sequelize):",
+      error.message
+    );
   });
 
-// Exportar la instancia de Sequelize
-module.exports = sequelize;
+

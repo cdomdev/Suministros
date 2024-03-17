@@ -1,9 +1,9 @@
-const { userExisting } = require("../../middleware/authValidate");
-const { User } = require("../../models/usersModels");
+import  { userExisting } from "../../middleware/authValidate.js";
+import  { User } from "../../models/usersModels.js";
 
 // controladore para listar- obtener datos del usuario
 
-const obtenerDatosUsuario = async (req, res) => {
+export const obtenerDatosUsuario = async (req, res) => {
   const { email } = req.query;
 
   try {
@@ -23,7 +23,7 @@ const obtenerDatosUsuario = async (req, res) => {
 // acontrolador para actulziar datos del usuario
 
 
-const actulizarDatosDeUsuario = async (req, res) => {
+export const actulizarDatosDeUsuario = async (req, res) => {
     const { email, dataUpdate } = req.body;
   
     try {
@@ -77,7 +77,6 @@ const actulizarDatosDeUsuario = async (req, res) => {
       res.status(500).json({ message: "Error en la actualización de datos" });
   }
   };
-module.exports = {
-  actulizarDatosDeUsuario,
-  obtenerDatosUsuario
-};
+
+
+  

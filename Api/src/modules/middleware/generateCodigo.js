@@ -1,5 +1,5 @@
-function generarCodigoDesdeNombre(nombre) {
+export function generarCodigoDesdeNombre(nombre) {
   return nombre.toLowerCase().replace(/\s+/g, "");
 }
 
-module.exports = generarCodigoDesdeNombre;
+// module.exports = generarCodigoDesdeNombre;

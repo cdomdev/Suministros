@@ -1,7 +1,7 @@
-const { Ofertas, Productos } = require("../../models/inventaryModel");
+import  { Ofertas, Productos } from "../../models/inventaryModel.js";
 
 // listar ofertas con productos relacionados
-const listarOfertasConProductos = async (req, res) => {
+export const listarOfertasConProductos = async (req, res) => {
   try {
     const ofertas = await Ofertas.findAll({
       include: {
@@ -21,6 +21,6 @@ const listarOfertasConProductos = async (req, res) => {
   }
 };
 
-module.exports = {
-  listarOfertasConProductos,
-};
+// module.exports = {
+//   listarOfertasConProductos,
+// };

@@ -9,7 +9,10 @@ export const obtenerMarcasUnicas = (productos) => {
 };
 
 // Funcion para obtener subcategorias
-export const obtenerSubCategorias = (productos) =>{
-    const subcategorias = [...new Set(productos.map((producto) => producto.Categorium.nombre ) )]
-    return subcategorias
-}
+export const obtenerSubCategorias = (productos) => {
+  const subcategorias = [
+    ...new Set(productos.map((producto) => producto.Categorium.nombre)),
+  ];
+  return subcategorias;
+};
+

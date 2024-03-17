@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../../database/conecction");
-const { Pedido } = require("./inventaryModel");
+import  { DataTypes } from "sequelize";
+import {conecction} from "../../database/conecction.js";
+import  { Pedido } from "./inventaryModel.js";
 
-const User = sequelize.define(
+export const User = conecction.define(
   "usuarios",
   {
     id: {
@@ -53,7 +53,7 @@ const User = sequelize.define(
   }
 );
 
-const Invitado = sequelize.define(
+export const Invitado = conecction.define(
   "invitado",
   {
     id: {
@@ -103,7 +103,7 @@ Pedido.belongsTo(Invitado, { foreignKey: "invitado_id" });
 
 
 
-module.exports = {
-  User,
-  Invitado,
-};
+// module.exports = {
+//   User,
+//   Invitado,
+// };

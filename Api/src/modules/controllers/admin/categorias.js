@@ -1,20 +1,16 @@
-const {
-  Categoria,
-  CategoriaPadre
-} = require("../../models/inventaryModel");
-const generateCodigo = require("../../middleware/generateCodigo");
-
+import { Categoria, CategoriaPadre } from "../../models/inventaryModel.js";
+import {generarCodigoDesdeNombre} from "../../middleware/generateCodigo.js";
 
 // Controlador para  categorias y subcategorias
 
-const crearCategoriasPrincipales = async (req, res) => {
+export const crearCategoriasPrincipales = async (req, res) => {
   const { nombre } = req.body;
   try {
     // extraer elemntos
     if (nombre) {
       // genera codigo para categoria
 
-      const codigo = generateCodigo(nombre);
+      const codigo = generarCodigoDesdeNombre(nombre);
       // crear nueva categoria en la db
       const nuevaCategoria = await CategoriaPadre.create({
         nombre,
@@ -30,7 +26,6 @@ const crearCategoriasPrincipales = async (req, res) => {
           categoriasPrincipales: categoriasPrimary,
         });
       }
-
     }
   } catch (error) {
     console.log(error);
@@ -40,7 +35,7 @@ const crearCategoriasPrincipales = async (req, res) => {
     });
   }
 };
-const listarCategoriasPrincipales = async (req, res) => {
+export const listarCategoriasPrincipales = async (req, res) => {
   try {
     const categoriasPrincipales = await CategoriaPadre.findAll({
       attributes: ["id", "nombre"],
@@ -51,7 +46,7 @@ const listarCategoriasPrincipales = async (req, res) => {
     res.status(500).json({ error: "Error al obtener las categorias" });
   }
 };
-const eliminarCategoriaPrincipal = async (req, res) => {
+export const eliminarCategoriaPrincipal = async (req, res) => {
   const { categoriaId } = req.body;
 
   console.log(categoriaId);
@@ -82,7 +77,7 @@ const eliminarCategoriaPrincipal = async (req, res) => {
 
 // subcategorias
 
-const crearCategorias = async (req, res) => {
+export const crearCategorias = async (req, res) => {
   try {
     // extraer elemntos
     if (req) {
@@ -113,7 +108,7 @@ const crearCategorias = async (req, res) => {
   }
 };
 
-const listarCategorias = async (req, res) => {
+export const listarCategorias = async (req, res) => {
   try {
     const categorias = await Categoria.findAll({
       attributes: ["id", "nombre"],
@@ -125,7 +120,7 @@ const listarCategorias = async (req, res) => {
   }
 };
 
-const eliminarCategoria = async (req, res) => {
+export const eliminarCategoria = async (req, res) => {
   const { categoriaId } = req.body;
 
   console.log(categoriaId);
@@ -154,11 +149,11 @@ const eliminarCategoria = async (req, res) => {
   }
 };
 
-module.exports = {
-  listarCategorias,
-  eliminarCategoria,
-  crearCategorias,
-  crearCategoriasPrincipales,
-  listarCategoriasPrincipales,
-  eliminarCategoriaPrincipal,
-};
+// module.exports = {
+//   listarCategorias,
+//   eliminarCategoria,
+//   crearCategorias,
+//   crearCategoriasPrincipales,
+//   listarCategoriasPrincipales,
+//   eliminarCategoriaPrincipal,
+// };

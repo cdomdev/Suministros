@@ -1,10 +1,10 @@
 // controladores para las ofertas
-const moment = require("moment");
-const { Productos, Ofertas, Inventario } = require("../../models/inventaryModel");
-const { formatAndValidateDate } = require("../../utils/dateFormater");
+import  moment from "moment";
+import  { Productos, Ofertas, Inventario } from "../../models/inventaryModel.js";
+// import  { formatAndValidateDate } from "../../utils/dateFormater";
 // crear un oferta
 
-const crearOfetas = async (req, res) => {
+export const crearOfetas = async (req, res) => {
   // cuerpo de la oferta
   const { nombre, descuento, productos, fechaIni, fechaFin } = req.body;
   console.log(
@@ -57,7 +57,7 @@ const crearOfetas = async (req, res) => {
 };
 
 // obtener datos necesarios para relacion entre productos y ofertas
-const obtenerProductos = async (req, res) => {
+export const obtenerProductos = async (req, res) => {
   try {
     const productos = await Productos.findAll({
       attributes: ["id", "title", "nombre"],
@@ -81,7 +81,7 @@ const obtenerProductos = async (req, res) => {
 };
 
 // listar ofertas con productos relacionados
-const obtenerOfertasConProductos = async (req, res) => {
+export const obtenerOfertasConProductos = async (req, res) => {
   try {
     const ofertas = await Ofertas.findAll({
       include: {
@@ -103,7 +103,7 @@ const obtenerOfertasConProductos = async (req, res) => {
 
 // elimar ofertas
 
-const eliminarOferta = async (req, res) => {
+export const eliminarOferta = async (req, res) => {
   const { id } = req.body;
   try {
     const ofertaAElminar = await Ofertas.findByPk(id);
@@ -134,7 +134,7 @@ const eliminarOferta = async (req, res) => {
 };
 
 // actulizar
-const actulizarOfertas = async (req, res) => {
+export const actulizarOfertas = async (req, res) => {
   const { updatedValues, oferta_id } = req.body;
   const { nombre, descuento, fechaIni, fechaFin } = updatedValues;
 
@@ -174,10 +174,10 @@ const actulizarOfertas = async (req, res) => {
   }
 };
 
-module.exports = {
-  obtenerProductos,
-  crearOfetas,
-  obtenerOfertasConProductos,
-  eliminarOferta,
-  actulizarOfertas,
-};
+// module.exports = {
+//   obtenerProductos,
+//   crearOfetas,
+//   obtenerOfertasConProductos,
+//   eliminarOferta,
+//   actulizarOfertas,
+// };

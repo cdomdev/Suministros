@@ -1,8 +1,8 @@
-const path =  require('path');
-const multer = require('multer')
+import path from 'path';
+import  multer from 'multer'
 
 // Configuración de Multer para guardar archivos en el directorio 'uploads'
-const storage = multer.diskStorage({
+ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'src/modules/uploads/products');
   },
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 // Crear el middleware de Multer con la configuración
-const upload = multer({ storage: storage });
+export const imageUpload = multer({ storage: storage });
 
 
-module.exports = upload;
+// module.exports = upload;

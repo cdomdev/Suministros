@@ -1,32 +1,32 @@
-const express = require("express");
-const cors = require("cors");
-const mysql = require("./src/database/conecction");
-const morgan = require("morgan");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import path from 'path';
+
+// instancia de express
 const app = express();
 const port = process.env.PORT || 3100;
 
+// Formateo
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// rutas
+import {routerUser} from './src/modules/routes/rutasUsers.js'
+app.use("/",  routerUser);
 
-// rutas 
-const userRoutes = require("./src/modules/routes/rutasUsers");
-app.use("/", userRoutes);
-
-const adminRoutes = require("./src/modules/routes/rutasAdmin");
-app.use("/api", adminRoutes);
+import {routerAdmin} from "./src/modules/routes/rutasAdmin.js";
+app.use("/api", routerAdmin);
 
 
-// direcciones estaticas
+// Direcciones estáticas
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
 
-app.use(
-  "/src/modules/uploads/products",
-  express.static("src/modules/uploads/products")
-);
-
-app.use(express.static(__dirname + '/public'))
+app.use('/src/modules/uploads/products', express.static('src/modules/uploads/products'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Manejador de errores

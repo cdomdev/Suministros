@@ -13,7 +13,7 @@ $color-complementario: #f2efe1;
 
 // barra de navegacion 
 .nav-custom{
-    background-color: white;
+    background-color:white;
     box-shadow: 2px 2px 4px rgba(84, 84, 84, 0.4), -2px -2px 1px rgba(255, 0, 0, 0.4);
     font-family: $contenido2;
     .header-nav{
@@ -33,7 +33,7 @@ $color-complementario: #f2efe1;
                 width: 450px;
                 display: flex;
                 .form-control{
-                    background-color: #eeeeee;
+                    background-color: #f7f7f7;
                     border-radius: 1px;
                     color: black;
                     padding: 14px 10px;

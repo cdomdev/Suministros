@@ -1,6 +1,6 @@
-const axios = require('axios')
+import  axios from 'axios'
 
-async function getUserDataFromGoogle(token) {
+export async function getUserDataFromGoogle(token) {
   try {
     // Hacer una solicitud a Google para obtener la información del usuario usando el token de acceso
     const response = await axios.get(
@@ -22,4 +22,3 @@ async function getUserDataFromGoogle(token) {
   }
 }
 
-module.exports = getUserDataFromGoogle;

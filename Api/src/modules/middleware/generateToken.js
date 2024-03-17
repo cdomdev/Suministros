@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
+import  jwt from 'jsonwebtoken';
 const claveSecreta = 'esta_es_una_clave_para_token';
 
-function crearToken(idUsuario, usuario) {
+export function crearToken(idUsuario, usuario) {
     const informacion = {
         usuario_id: idUsuario,
         usuario: usuario
@@ -10,6 +10,6 @@ function crearToken(idUsuario, usuario) {
     return token;
 }
 
-module.exports = {
-    crearToken,
-};
+// module.exports = {
+//     crearToken,
+// };

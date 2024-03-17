@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { BsDatabaseX } from "react-icons/bs";
-
 import {
   obtenerMarcasUnicas,
   obtenerSubCategorias,
@@ -21,17 +20,16 @@ export const CardCategorias = ({ rutaCategoria, nombreCategoria }) => {
   // Solcicitud de lar categorias
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        axios
-          .get(`http://localhost:3000/categoria-padre/${rutaCategoria}`)
-          .then((response) => {
-            if (response.status === 200) {
-              setCategorias(response.data.productos);
-            }
-          })
-      } catch (e) {
-        console.log("Error en el proceso de solicitud ", e);
-      }
+      await axios
+        .get(`http://localhost:3000/categoria-padre/${rutaCategoria}`)
+        .then((response) => {
+          if (response.status === 200) {
+            setCategorias(response.data.productos);
+          }
+        })
+        .catch((e) => {
+          console.log("Se presento un error ne la solicitud");
+        });
     };
     fetchData();
   }, []);

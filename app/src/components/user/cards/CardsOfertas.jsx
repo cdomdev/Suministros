@@ -15,16 +15,20 @@ export const CardsOfertas = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/listar/ofertas")
-      .then((response) => {
-        if (response.status === 200) {
-          setOfertas(response.data.ofertas || []);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const fetchData = async () => {
+      await axios
+        .get("http://localhost:3000/listar/ofertas")
+        .then((response) => {
+          if (response.status === 200) {
+            setOfertas(response.data.ofertas || []);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    fetchData();
   }, []);
 
   return (

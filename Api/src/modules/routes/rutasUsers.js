@@ -1,58 +1,71 @@
-const express = require("express");
-const router = express.Router();
-const productsController = require("../controllers/user/productsController");
-const buysControllers = require('../controllers/user/buysControllers')
-const dataUserController = require('../controllers/user/dataUserController')
-const ordersController = require('../controllers/user/ordersController')
-const ofertasControler = require('../controllers/user/ofertasController')
-const auth = require('../controllers/user/auth')
+import express from "express";
+import {
+  buscarProductos,
+  listarCategoriaPadre,
+  listarCategoriaProducto,
+  listarProductos,
+} from "../controllers/user/productsController.js";
+import {
+  finalizarCompraInvitado,
+  finalizarCompraUsuario,
+} from "../controllers/user/buysControllers.js";
+import {
+  actulizarDatosDeUsuario,
+  obtenerDatosUsuario,
+} from "../controllers/user/dataUserController.js";
+import { listarPedidos } from "../controllers/user/ordersController.js";
+import { listarOfertasConProductos } from "../controllers/user/ofertasController.js";
+import {
+  googleLogin,
+  loginController,
+  recoveryPassword,
+  registroController,
+} from "../controllers/user/auth.js";
+// import mercadoPago from "../controllers/user/mercadoPago";
 
-// autenticacion 
-router.post("/user/login", auth.loginController);
+export const routerUser = express.Router();
+
+// autenticacion
+routerUser.post("/user/login", loginController);
 // resgistro
-router.post("/user/registro", auth.registroController);
+routerUser.post("/user/registro", registroController);
 // autenticacion y regsitro con google
-router.post("/user/oauth-google", auth.googleLogin);
+routerUser.post("/user/oauth-google", googleLogin);
 // restablecer contraseña
-router.post("/user/password/update", auth.recoveryPassword);
+routerUser.post("/user/password/update", recoveryPassword);
 
-
-// datos de usuario 
+// datos de usuario
 // perfil
-router.get('/user/profile', dataUserController.obtenerDatosUsuario)
+routerUser.get("/user/profile", obtenerDatosUsuario);
 // actualizar perfil
-router.post('/user/profile/update', dataUserController.actulizarDatosDeUsuario)
-
+routerUser.post("/user/profile/update", actulizarDatosDeUsuario);
 
 // listar productos
-router.get("/listar/productos", productsController.listarProductos);
+routerUser.get("/listar/productos", listarProductos);
 
-
-// Listar categoria padre con subcategorias 
-router.get('/categoria-padre/:codigo', productsController.listarCategoriaPadre)
+// Listar categoria padre con subcategorias
+routerUser.get("/categoria-padre/:codigo", listarCategoriaPadre);
 
 // listar productos por categorias
-router.get("/categorias/:codigoProducto", productsController.listarCategoriaProducto);
-
+routerUser.get("/categorias/:codigoProducto", listarCategoriaProducto);
 
 // ofertas
-router.get("/listar/ofertas", ofertasControler.listarOfertasConProductos);
+routerUser.get("/listar/ofertas", listarOfertasConProductos);
 // router.get("/obtener/ofertas", obtenerOfertasConProductos);
 
 // busqueda de prodcutos
-router.post("/busqueda-productos", productsController.buscarProductos);
+routerUser.post("/busqueda-productos", buscarProductos);
 
 // compra
 
 // Finalizar compra invitado
-router.post("/finish/buy/invited", buysControllers.finalizarCompraInvitado);
+routerUser.post("/finish/buy/invited", finalizarCompraInvitado);
 // finalizar compra usuario
-router.post("/finish/buy/user", buysControllers.finalizarCompraUsuario);
-
+routerUser.post("/finish/buy/user", finalizarCompraUsuario);
 
 // ver pedidos
-router.get('/user/listar/pedidos/:email', ordersController.listarPedidos)
+routerUser.get("/user/listar/pedidos/:email", listarPedidos);
 
+routerUser.post("/create-order-mercadopago");
 
-
-module.exports = router;
+// module.exports = router;

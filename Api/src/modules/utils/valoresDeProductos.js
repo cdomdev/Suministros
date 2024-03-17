@@ -1,5 +1,5 @@
 
-const calcularTotal = (productos) => {
+export const calcularTotal = (productos) => {
     let total = 0;
     for (const producto of productos) {
       total += parseFloat(producto.valor) * producto.cantidad;
@@ -7,7 +7,7 @@ const calcularTotal = (productos) => {
     return total;
 };
 
- const calcularCantidad = (productos) => {
+export const calcularCantidad = (productos) => {
     let cantidadTotal = 0;
     for (const producto of productos) {
       cantidadTotal += producto.cantidad;
@@ -15,7 +15,7 @@ const calcularTotal = (productos) => {
     return cantidadTotal;
 };
 
-const subTotal = (productos) =>{
+export const subTotal = (productos) =>{
   let subTotalValue = 0
   for(const producto of productos){
     subTotalValue += parseFloat(producto.valor)
@@ -23,8 +23,3 @@ const subTotal = (productos) =>{
   return subTotalValue
 }
 
-module.exports = {
-  calcularCantidad, 
-  calcularTotal,
-  subTotal
-}

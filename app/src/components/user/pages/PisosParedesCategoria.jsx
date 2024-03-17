@@ -6,6 +6,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
 import { BiHomeAlt2 } from "react-icons/bi";
 import {CardCategorias} from '../cards';
+import { Migajas } from "../migajas/Migajas";
 
 
 export const PisosParedesCategoria = () => {
@@ -19,14 +20,7 @@ export const PisosParedesCategoria = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/cocinas">Cocinas</Link>
-        </Breadcrumbs>
+       <Migajas categoriaRuta={'Pisos y paredes'}/>
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">

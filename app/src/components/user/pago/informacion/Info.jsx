@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DataUser } from "./DataUser";
 import { MercadoPago, PagoUser, PagoInvitado } from "../MetodosDePago";
-import { Button } from "react-bootstrap";
 import { FaHandHoldingDollar } from "react-icons/fa6";
-import { FaHandshake } from "react-icons/fa";
 import { isAuthenticated } from "../../../../auth";
 
 export const Info = () => {
@@ -30,10 +28,7 @@ export const Info = () => {
 
               <FaHandHoldingDollar className="icon" />
             </div>
-            <div className="btn-pago mercado-pago">
-              <Button>Mercadopago</Button>
-              <FaHandshake className="icon" />
-            </div>
+            <MercadoPago/>
           </div>
         </div>
       </div>

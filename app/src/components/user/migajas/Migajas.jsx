@@ -18,3 +18,5 @@ export const Migajas = ({ categoriaRuta, subcategoriaRuta }) => {
     </Breadcrumbs>
   );
 };
+
+

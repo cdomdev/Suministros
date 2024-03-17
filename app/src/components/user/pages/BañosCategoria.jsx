@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCarShop } from "../../../hook";
-import { BiHomeAlt2 } from "react-icons/bi";
-import {CardCategorias} from '../cards'
+import { CardCategorias } from "../cards";
+import { Migajas } from "../migajas/Migajas";
+
+
 export const BañosCategoria = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const { cartItems } = useCarShop();
@@ -17,20 +17,12 @@ export const BañosCategoria = () => {
   return (
     <section>
       <div className="migajas">
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb">
-          <Link to="/suministros/home">
-            <BiHomeAlt2 className="icon" />
-          </Link>
-          <Link to="/suministros/baños">Baños</Link>
-        </Breadcrumbs>
+        <Migajas categoriaRuta={"Baños"} />
       </div>
       <div className="container-productos">
         <div className="contenedor-grid-products">
-          <div className="content-text">
-          </div>
-          <CardCategorias rutaCategoria={'baños'} nombreCategoria={'Baños'}/>
+          <div className="content-text"></div>
+          <CardCategorias rutaCategoria={"baños"} nombreCategoria={"Baños"} />
         </div>
       </div>
       {cartItemCount > 0 && (

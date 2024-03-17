@@ -1,17 +1,18 @@
-const { User } = require("../../models/usersModels");
-const middlewares = require('../../middleware/authValidate')
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const axios = require("axios");
-const getUserDataFromGoogle = require("../../middleware/getUserDataFromGoogle");
-const CLIENT_ID = process.env.CLIENT_ID;
-const claveSecreta = process.env.CLAVE_SECRETA;
-const tiempoExpiracion = 3600;
-const sendMailsRegistro = require('../../../../functions/sendMailsRegistro')
+import  axios from "axios";
+import  jwt from "jsonwebtoken";
+import  bcrypt from "bcrypt";
+import  { User } from "../../models/usersModels.js";
+import  {passwordValidate, userExisting}from '../../middleware/authValidate.js'
+import { getUserDataFromGoogle}from "../../middleware/getUserDataFromGoogle.js";
+import  {sendMailsRegistro} from '../../../../functions/sendMailsRegistro.js'
+
+const   claveSecreta = process.env.CLAVE_SECRETA;
+const   CLIENT_ID = process.env.CLIENT_ID;
+const   tiempoExpiracion = 3600;
 
 
 // inciio con google
-const googleLogin = async (req, res) => {
+export const googleLogin = async (req, res) => {
   const { token } = req.body;
   const defaultPassword = process.env.PASSWORD_DEFAULT;
   try {
@@ -63,11 +64,11 @@ const googleLogin = async (req, res) => {
 
 // constrolador para el resgitro de usaurios
 
-const registroController = async (req, res) => {
+export const registroController = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    const existingUser = await middlewares.userExisting(email);
+    const existingUser = await userExisting(email);
     if (existingUser) {
       return res.status(400).json({ error: "El correo ya está registrado" });
     }
@@ -102,14 +103,14 @@ const registroController = async (req, res) => {
 };
 // constrolador para el login de usuarios
 
-const loginController = async (req, res) => {
+export const loginController = async (req, res) => {
   const { email1, password } = req.body;
 
   try {
-    const userFromDB = await middlewares.userExisting(email1);
+    const userFromDB = await userExisting(email1);
 
     if (userFromDB) {
-      const passwordMatch = await middlewares.passwordValidate(
+      const passwordMatch = await passwordValidate(
         password,
         userFromDB.password
       );
@@ -150,7 +151,7 @@ const loginController = async (req, res) => {
 };
 
 // controlador para restablecer contraseñas
-const recoveryPassword = async (req, res) => {
+export const recoveryPassword = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -182,9 +183,9 @@ const recoveryPassword = async (req, res) => {
   }
 };
 
-module.exports = {
-  registroController,
-  loginController,
-  recoveryPassword,
-  googleLogin,
-};
+// module.exports = {
+//   registroController,
+//   loginController,
+//   recoveryPassword,
+//   googleLogin,
+// };

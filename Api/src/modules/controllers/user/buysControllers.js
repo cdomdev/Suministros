@@ -1,17 +1,17 @@
-const { Invitado, User } = require("../../models/usersModels");
-const sendMailsCompra = require("../../../../functions/sendMailsCompra");
-const sequelize = require("../../../database/conecction");
-const {
+import { Invitado, User } from "../../models/usersModels.js";
+import {sendMailsCompra} from "../../../../functions/sendMailsCompra.js";
+import {conecction} from "../../../database/conecction.js";
+import {
   calcularCantidad,
   calcularTotal,
   subTotal,
-} = require("../../utils/valoresDeProductos");
+} from "../../utils/valoresDeProductos.js";
 
-const {Pedido, DetallesPedido} = require('../../models/inventaryModel')
+import { Pedido, DetallesPedido } from "../../models/inventaryModel.js";
 // controladores de compras usuarios - invitados
 
 // controlador para compras invitados
-const finalizarCompraInvitado = async (req, res) => {
+export const finalizarCompraInvitado = async (req, res) => {
   try {
     const { dataProducts, dataUser, metodoPago } = req.body;
 
@@ -66,7 +66,13 @@ const finalizarCompraInvitado = async (req, res) => {
     }
 
     // Enviar email invitado
-    sendMailsCompra(0, usuarioInvitado.nombre, usuarioInvitado.email, nuevoPedido, dataProducts );
+    sendMailsCompra(
+      0,
+      usuarioInvitado.nombre,
+      usuarioInvitado.email,
+      nuevoPedido,
+      dataProducts
+    );
 
     // enviar respuesta de la solcitud
     return res.status(200).json({ message: "Compra realzida con exito" });
@@ -77,8 +83,8 @@ const finalizarCompraInvitado = async (req, res) => {
 };
 
 // controladora para compras usuario
-const finalizarCompraUsuario = async (req, res) => {
-  const t = await sequelize.transaction();
+export const finalizarCompraUsuario = async (req, res) => {
+  const t = await conecction.transaction();
   try {
     const { dataProducts, dataUser, metodoPago } = req.body;
     // Validación de datos
@@ -146,9 +152,4 @@ const finalizarCompraUsuario = async (req, res) => {
     console.error("Error al finalizar la compra", error);
     return res.status(500).json({ message: "Error interno en el servidor" });
   }
-};
-
-module.exports = {
-  finalizarCompraInvitado,
-  finalizarCompraUsuario,
 };

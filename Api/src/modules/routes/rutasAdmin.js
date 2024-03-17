@@ -1,71 +1,82 @@
-const express = require("express");
-const router = express.Router();
-const upload = require("../utils/imageUpload");
-const adminController = require("../controllers/admin/adminController");
-const inventarioController = require('../controllers/admin/inventarioController')
-const ofertasController = require("../controllers/admin/ofertasControler");
-const categoriasController = require("../controllers/admin/categorias");
+import { imageUpload }from "../utils/imageUpload.js";
+import {
+  guardarProducto,
+  listarPedidos,
+  listarUsuarios,
+  saveImagenServer,
+} from "../controllers/admin/adminController.js";
+import {
+  actualizarProducto,
+  actulizarInventario,
+  eliminarProductos,
+  listarProductos,
+} from "../controllers/admin/inventarioController.js";
+import {
+  actulizarOfertas,
+  crearOfetas,
+  eliminarOferta,
+  obtenerOfertasConProductos,
+  obtenerProductos,
+} from "../controllers/admin/ofertasControler.js";
+import {
+  crearCategorias,
+  crearCategoriasPrincipales,
+  eliminarCategoria,
+  eliminarCategoriaPrincipal,
+  listarCategorias,
+  listarCategoriasPrincipales,
+} from "../controllers/admin/categorias.js";
+
+import express from "express";
+
+export const routerAdmin = express.Router();
 
 // productos guardar
-router.post("/guardarproductos", adminController.guardarProducto);
+routerAdmin.post("/guardarproductos", guardarProducto);
 
-router.post("/upload", upload.array("files"), adminController.saveImagenServer);
+routerAdmin.post("/upload", imageUpload.array("files"), saveImagenServer);
 
 // usuarios
-router.get("/listar/usuarios", adminController.listarUsuarios);
+routerAdmin.get("/listar/usuarios", listarUsuarios);
 
 // categorias
-router.post(
-  "/crear/categoria-primary",
-  categoriasController.crearCategoriasPrincipales
-);
+routerAdmin.post("/crear/categoria-primary", crearCategoriasPrincipales);
 
-router.get(
-  "/obtener/categorias-primary",
-  categoriasController.listarCategoriasPrincipales
-);
+routerAdmin.get("/obtener/categorias-primary", listarCategoriasPrincipales);
 
-router.delete(
-  "/delete/:id/categorias-primary",
-  categoriasController.eliminarCategoriaPrincipal
-);
+routerAdmin.delete("/delete/:id/categorias-primary", eliminarCategoriaPrincipal);
 
 // subcategorias
-router.post("/crear/categoria", categoriasController.crearCategorias);
+routerAdmin.post("/crear/categoria", crearCategorias);
 
-router.get("/obtener/categorias", categoriasController.listarCategorias);
+routerAdmin.get("/obtener/categorias", listarCategorias);
 
-router.delete(
-  "/categorias/:id/eliminar",
-  categoriasController.eliminarCategoria
-);
-
-
+routerAdmin.delete("/categorias/:id/eliminar", eliminarCategoria);
 
 // inventario
 
-router.get("/listar/productos", inventarioController.listarProductos);
+routerAdmin.get("/listar/productos", listarProductos);
 
-router.put("/productos/:id/inventario", inventarioController.actulizarInventario);
+routerAdmin.put("/productos/:id/inventario", actulizarInventario);
 
-router.put("/productos/:id/actualizar", inventarioController.actualizarProducto);
+routerAdmin.put("/productos/:id/actualizar", actualizarProducto);
 
-router.delete("/productos/:id/eliminar", inventarioController.eliminarProductos);
+routerAdmin.delete("/productos/:id/eliminar", eliminarProductos);
 
 // ofertas
 
-router.get("/productos", ofertasController.obtenerProductos);
+routerAdmin.get("/productos", obtenerProductos);
 
-router.post("/crear/ofertas", ofertasController.crearOfetas);
+routerAdmin.post("/crear/ofertas", crearOfetas);
 
-router.get("/listar/ofertas", ofertasController.obtenerOfertasConProductos);
+routerAdmin.get("/listar/ofertas", obtenerOfertasConProductos);
 
-router.delete("/oferta/:id/eliminar", ofertasController.eliminarOferta);
+routerAdmin.delete("/oferta/:id/eliminar", eliminarOferta);
 
-router.put("/oferta/:id/actualizar", ofertasController.actulizarOfertas);
+routerAdmin.put("/oferta/:id/actualizar", actulizarOfertas);
 
 // listar pedido
 
-router.get("/listar/pedidos", adminController.listarPedidos);
+routerAdmin.get("/listar/pedidos", listarPedidos);
 
-module.exports = router;
+// module.exports = router;

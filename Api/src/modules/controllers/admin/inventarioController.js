@@ -1,13 +1,13 @@
-const {
+import  {
   Categoria,
   Productos,
   Inventario, 
   CategoriaPadre
-} = require("../../models/inventaryModel");
+} from "../../models/inventaryModel.js";
 
 // Controlador para listar productos invenatario
 
-const listarProductos = async (req, res) => {
+export const listarProductos = async (req, res) => {
   try {
     const productos = await Productos.findAll({
       attributes: [
@@ -42,7 +42,7 @@ const listarProductos = async (req, res) => {
 };
 
 // Controlador para actulizar inventario
-const actulizarInventario = async (req, res) => {
+export const actulizarInventario = async (req, res) => {
   const { producto_Id, newStock } = req.body;
 
 
@@ -98,7 +98,7 @@ const actulizarInventario = async (req, res) => {
 };
 
 // Actulizar los productos en inventario
-const actualizarProducto = async (req, res) => {
+export const actualizarProducto = async (req, res) => {
   const { producto_Id, newProduct } = req.body;
   console.log(newProduct)
   const { nombre, title, valor, description, referencia, categoria_Id, categoria_padre_id} =
@@ -152,7 +152,7 @@ const actualizarProducto = async (req, res) => {
   }
 };
 
-const eliminarProductos = async (req, res) => {
+export const eliminarProductos = async (req, res) => {
   const { producto_Id } = req.body;
 
   try {
@@ -213,9 +213,9 @@ const eliminarProductos = async (req, res) => {
   }
 };
 
-module.exports = {
-  listarProductos,
-  actualizarProducto,
-  actulizarInventario,
-  eliminarProductos,
-};
+// module.exports = {
+//   listarProductos,
+//   actualizarProducto,
+//   actulizarInventario,
+//   eliminarProductos,
+// };

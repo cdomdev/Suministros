@@ -1,13 +1,13 @@
-const Sequelize = require("sequelize");
-const {
+import  Sequelize from "sequelize";
+import  {
   Productos,
   Inventario,
   Categoria,
   CategoriaPadre
-} = require("../../models/inventaryModel");
+}  from "../../models/inventaryModel.js";
 
 
-const listarProductos = async (req, res) => {
+export const listarProductos = async (req, res) => {
   try {
     const productos = await Productos.findAll({
       attributes: [
@@ -39,7 +39,7 @@ const listarProductos = async (req, res) => {
 };
 
 // Modulo para busqueda de productos
-const buscarProductos = (req, res) => {
+export const buscarProductos = (req, res) => {
   const { query } = req.body;
 
   // Realizar la búsqueda
@@ -72,7 +72,7 @@ const buscarProductos = (req, res) => {
 };
 
 // Modulo de subcategorias
-const listarCategoriaProducto = async (req, res) => {
+export const listarCategoriaProducto = async (req, res) => {
   try {
     const { codigoProducto } = req.params;
 
@@ -111,7 +111,7 @@ const listarCategoriaProducto = async (req, res) => {
 
 
 // Categoria padre con subcategorias y productos asociados
-const listarCategoriaPadre = async (req, res) => {
+export const listarCategoriaPadre = async (req, res) => {
   try {
     const { codigo } = req.params;
 
@@ -156,9 +156,9 @@ const listarCategoriaPadre = async (req, res) => {
 
 
 
-module.exports = {
-  listarProductos,
-  listarCategoriaPadre,
-  listarCategoriaProducto,
-  buscarProductos,
-};
+// module.exports = {
+//   listarProductos,
+//   listarCategoriaPadre,
+//   listarCategoriaProducto,
+//   buscarProductos,
+// };

@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+import  nodemailer from "nodemailer";
 
 const USER_MAIL = process.env.USER_FROM_MAILS;
 const PASS_MAILS = process.env.PASS_FOR_MAILS;
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Función para enviar correo de notificación
-function enviarCorreo(cualNotificacion, nombre, email, pedido, dataProducts) {
+export function sendMailsCompra(cualNotificacion, nombre, email, pedido, dataProducts) {
   // Definir las notificaciones
   const notificaciones = [
     // compra
@@ -210,4 +210,4 @@ function enviarCorreo(cualNotificacion, nombre, email, pedido, dataProducts) {
     });
 }
 
-module.exports = enviarCorreo;
+// module.exports = enviarCorreo;

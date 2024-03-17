@@ -6,7 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { BsDatabaseX } from "react-icons/bs";
 import { obtenerMarcasUnicas } from "../../../utils/filtrosDeProductos";
 
-export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria, unidad}) => {
+export const CardSubcategorias = ({
+  RutaSubCategoria,
+  nombreSubcategoria,
+  unidad,
+}) => {
   const [productos, setProductos] = useState([]);
   const [marcasDisponibles, setMarcasDisponibles] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
@@ -16,25 +20,27 @@ export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria, unidad
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/categorias/${RutaSubCategoria}`)
-      .then((response) => {
-        if (response.status === 200) {
-          setProductos(response.data.categoria.Productos);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3000/categorias/${RutaSubCategoria}`)
+        .then((response) => {
+          if (response.status === 200) {
+            setProductos(response.data.categoria.Productos);
+          }
+        })
+        .catch((error) => {
+          console.log("Error en la solicitud", error);
+        });
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
     // Extraer marcas únicas de los productos
-    const marcasUnicas = obtenerMarcasUnicas(productos)
+    const marcasUnicas = obtenerMarcasUnicas(productos);
     setMarcasDisponibles(marcasUnicas);
   }, [productos]);
 
-  
   // Función para manejar cambios en las marcas seleccionadas
   const handleMarcaChange = (marca) => {
     // Verificar si la marca ya está seleccionada
@@ -50,7 +56,7 @@ export const CardSubcategorias  = ({RutaSubCategoria, nombreSubcategoria, unidad
   function navigateDetail(producto) {
     localStorage.setItem("selectedProduct", JSON.stringify(producto));
     localStorage.setItem("categroyselectedProduct", JSON.stringify(productos));
-    navigate(`/suministros/details/${producto.description}`);
+    navigate(`/suministros/details/${producto.title}`);
   }
 
   const handlePrecioChange = (e) => {

@@ -1813,6 +1813,39 @@ p {
   overflow: hidden;
   height: 450px;
 }
+.carrusel .text-carrusel {
+  left: -250px;
+  top: 30%;
+  justify-content: left;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+.carrusel .text-carrusel h4 {
+  color: #07224e;
+  font-weight: bold;
+  font-size: 19px;
+}
+.carrusel .text-carrusel h5 {
+  text-align: left;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-wrap: wrap;
+  color: #243a5e;
+  font-weight: bold;
+}
+.carrusel .text-carrusel a {
+  color: white;
+  background-color: #243a5e;
+  width: 20%;
+  padding: 7px 0;
+  border-radius: 5px;
+  margin: 1em 0;
+}
+.carrusel .btn {
+  background-color: #243a5e;
+}
 
 .popover-user-profile {
   display: flex;
@@ -1857,7 +1890,6 @@ p {
   text-wrap: wrap;
   text-align: left;
   line-height: 20px;
-  font-family: "Montserrat", sans-serif;
   margin: 0 auto;
 }
 .contenido h2 {
@@ -1906,14 +1938,33 @@ p {
   text-shadow: 0 0 3px rgb(69, 69, 69);
 }
 .contenido .jumping-text {
-  font-size: 14px;
   text-align: center;
-  color: #243a5e;
-  margin: 6em 0;
+  margin: 4em 0;
   font-weight: bold;
 }
-.contenido .animated-truck {
+.contenido .svg {
+  display: flex;
+  justify-content: space-between;
+}
+.contenido .svg .svg-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.contenido .svg .svg-content h5 {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0;
+}
+.contenido .svg .svg-content span {
+  font-size: 12px;
+  margin: 0;
+}
+.contenido .svg .svg-content .animated-truck {
   float: right;
+  width: 90px;
+  height: 90px;
   font-size: 80px;
   animation: moveTruck 3s linear infinite;
 }
@@ -1927,38 +1978,6 @@ p {
   100% {
     transform: translateX(0);
   }
-}
-.contenido .svg-home {
-  display: flex;
-  justify-content: space-between;
-}
-.contenido .svg-store {
-  font-family: "Montserrat", sans-serif;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.contenido .svg-store .text-svg-store {
-  font-size: 13px;
-  font-weight: bold;
-  text-align: left;
-}
-.contenido .svg-store .text-svg {
-  font-size: 12px;
-}
-.contenido .svg-truck {
-  font-family: "Montserrat", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.contenido .svg-truck .text-svg-truck {
-  font-size: 13px;
-  font-weight: bold;
-  text-align: left;
-}
-.contenido .svg-truck .text-svg {
-  font-size: 12px;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1280px) {
@@ -2876,7 +2895,7 @@ p {
   display: flex;
 }
 .nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .form-control {
-  background-color: #eeeeee;
+  background-color: #f7f7f7;
   border-radius: 1px;
   color: black;
   padding: 14px 10px;

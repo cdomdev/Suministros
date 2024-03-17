@@ -1,4 +1,4 @@
-const moment = require("moment");
+import moment from "moment";
 
 // Función para validar y formatear la fecha
 const formatAndValidateDate = (date) => {

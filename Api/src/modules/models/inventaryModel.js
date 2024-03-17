@@ -1,8 +1,8 @@
-const { DataTypes, } = require("sequelize");
-const sequelize = require("../../database/conecction");
+import  { DataTypes, }  from "sequelize";
+import { conecction } from "../../database/conecction.js";
 
 
-const Productos = sequelize.define(
+export const Productos = conecction.define(
   "Productos",
   {
     id: {
@@ -90,7 +90,7 @@ const Productos = sequelize.define(
 
 // Modelo  para la tabla inventario
 
-const Inventario = sequelize.define(
+export const Inventario = conecction.define(
   "Inventario",
   {
     id: {
@@ -128,7 +128,7 @@ const Inventario = sequelize.define(
 
 // Modelo de categorias
 
-const CategoriaPadre = sequelize.define(
+export const CategoriaPadre = conecction.define(
   "categoria_padre",
   {
     id: {
@@ -163,7 +163,7 @@ const CategoriaPadre = sequelize.define(
 );
 
 // modelo de las subcategorias
-const Categoria = sequelize.define(
+export const Categoria = conecction.define(
   "Categoria",
   {
     id: {
@@ -198,7 +198,7 @@ const Categoria = sequelize.define(
 );
 
 // modelo de ofertas
-const Ofertas = sequelize.define(
+export const Ofertas = conecction.define(
   "ofertas",
   {
     id: {
@@ -251,7 +251,7 @@ const Ofertas = sequelize.define(
 
 // modeo de relacion entre productos y ofertas
 
-const OfertasProductos = sequelize.define(
+export const OfertasProductos = conecction.define(
   "productos_ofertas",
   {
     id_ofertas: {
@@ -272,7 +272,7 @@ const OfertasProductos = sequelize.define(
 );
 
 // modelo de pedidos
-const Pedido = sequelize.define(
+export const Pedido = conecction.define(
   "pedido",
   {
     id: {
@@ -309,7 +309,7 @@ const Pedido = sequelize.define(
 );
 
 // modelo de detalles pedidos
-const DetallesPedido = sequelize.define(
+export const DetallesPedido = conecction.define(
   "detalles_pedido",
   {
     id: {
@@ -401,13 +401,13 @@ Ofertas.belongsToMany(Productos, {
 
 
 
-module.exports = {
-  Productos,
-  Inventario,
-  CategoriaPadre,
-  Categoria,
-  Ofertas,
-  OfertasProductos,
-  Pedido,
-  DetallesPedido
-};
+// module.exports = {
+//   Productos,
+//   Inventario,
+//   CategoriaPadre,
+//   Categoria,
+//   Ofertas,
+//   OfertasProductos,
+//   Pedido,
+//   DetallesPedido
+// };
