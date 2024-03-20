@@ -1896,24 +1896,23 @@ p {
 }
 .contenido .card-categorias {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5em;
-  margin: 0 0 2em 0;
-  padding: 20px;
+  gap: 1em;
+  padding: 0 0 2em 0;
 }
 .contenido .card-categorias div {
   background-color: white;
   width: 18rem;
+  max-width: 19rem;
   background-size: cover;
   height: 12rem;
+  max-height: 12rem;
   position: relative;
   display: flex;
   justify-content: center;
 }
 .contenido .card-categorias div img {
   object-fit: cover;
+  background-size: cover;
   border-radius: 15px;
   width: 100%;
   height: 100%;
@@ -2885,32 +2884,27 @@ p {
   display: flex;
   flex-direction: column;
 }
-.nav-custom .header-nav .contenedor-header-nav {
-  flex-direction: column;
-  display: flex;
-  gap: 2px;
-}
-.nav-custom .header-nav .contenedor-header-nav .header-logo {
+.nav-custom .header-nav .header {
   width: 100%;
   justify-content: space-between;
   display: flex;
   align-items: center;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search {
+.nav-custom .header-nav .header .contenedor-search {
   width: 450px;
   display: flex;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .form-control {
+.nav-custom .header-nav .header .contenedor-search .form-control {
   background-color: #f7f7f7;
   border-radius: 1px;
   color: black;
   padding: 14px 10px;
   font-size: 14px;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .btn {
+.nav-custom .header-nav .header .contenedor-search .btn {
   border-radius: 1px;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .btn-icon {
+.nav-custom .header-nav .header .contenedor-search .btn-icon {
   border: solid 1px rgb(197, 197, 197);
   padding: 0 15px;
   background-color: #909193;
@@ -2920,20 +2914,20 @@ p {
   justify-content: center;
   cursor: pointer;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .btn-icon .icon {
+.nav-custom .header-nav .header .contenedor-search .btn-icon .icon {
   font-size: 20px;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .contenedor-search .input-nav {
+.nav-custom .header-nav .header .contenedor-search .input-nav {
   justify-content: center;
   height: 37px;
   display: flex;
   width: 90%;
   align-self: center;
 }
-.nav-custom .header-nav .contenedor-header-nav .header-logo .navbar-brand {
+.nav-custom .header-nav .header .navbar-brand {
   padding-left: 1em;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav {
+.nav-custom .header-nav .content-icons-nav {
   width: auto;
   padding: 0 5px;
   padding-right: 2em;
@@ -2942,26 +2936,26 @@ p {
   align-items: center;
   gap: 10px;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav span {
+.nav-custom .header-nav .content-icons-nav span {
   font-size: 8px;
   transition: all ease 0.3s;
   color: gray;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav span:hover {
+.nav-custom .header-nav .content-icons-nav span:hover {
   scale: 1.1;
   cursor: pointer;
   color: black;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .contenedor-car {
+.nav-custom .header-nav .content-icons-nav .contenedor-car {
   flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .contenedor-car .carshop {
+.nav-custom .header-nav .content-icons-nav .contenedor-car .carshop {
   margin-bottom: -1px;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .pedidos div {
+.nav-custom .header-nav .content-icons-nav .pedidos div {
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -2969,19 +2963,19 @@ p {
   gap: 3px;
   margin-bottom: -7px;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .pedidos div .box-pedidos {
+.nav-custom .header-nav .content-icons-nav .pedidos div .box-pedidos {
   width: 32px;
   height: 32px;
   cursor: pointer;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .perfil div {
+.nav-custom .header-nav .content-icons-nav .perfil div {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: -4px;
   gap: 6px;
 }
-.nav-custom .header-nav .contenedor-header-nav .content-icons-nav .perfil div .MuiAvatar-circular {
+.nav-custom .header-nav .content-icons-nav .perfil div .MuiAvatar-circular {
   background-color: #214277;
   width: 36px;
   height: 36px;
@@ -3013,6 +3007,10 @@ p {
 .nav-custom .header-nav .menu-navegacion .nav-link-custom:hover {
   color: rgb(158, 158, 207);
 }
+.nav-custom .header-nav .menu-navegacion .ofertas {
+  color: #1ca1db;
+  font-weight: bold;
+}
 .nav-custom .header-nav .menu-navegacion .contenedor-search {
   display: none;
 }
@@ -3042,9 +3040,8 @@ p {
   width: 100vw;
   transform: translateX(-12vw);
   background-color: #fff;
-  padding: 10px;
   justify-content: flex-start;
-  padding-left: 16em;
+  padding-left: 14em;
   display: flex;
   transition: all 0.5s ease;
   box-shadow: 2px 2px 4px rgba(107, 107, 107, 0.1);
@@ -3291,15 +3288,13 @@ p {
   padding: 10px;
 }
 .modal-pedido .modal-content .modal-body {
-  font-size: 14px;
   font-family: "Lato", sans-serif;
   display: block;
   line-height: 18px;
 }
-.modal-pedido .modal-content .modal-body h1 {
-  font-size: 17px !important;
+.modal-pedido .modal-content .modal-body h4 {
+  font-size: 19px !important;
   text-align: center;
-  color: black;
 }
 .modal-pedido .modal-content .modal-body ul {
   margin: 0;

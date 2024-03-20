@@ -37,18 +37,16 @@ export const Buscador = () => {
         setIsLoading(false);
       }
     } catch (error) {
+      console.log("Error al buscar productos:", error);
       navigate(`/suministros/resultados-busqueda/${searchTerm}`);
-
       setSearchTerm("");
       setIsLoading(false);
-
-      console.log("Error al buscar productos:", error);
       setSearchResults([]);
     }
   };
 
   return (
-    <>
+    <div className="contenedor-search">
       <Form className="input-nav">
         <Form.Control
           type="search"
@@ -69,6 +67,6 @@ export const Buscador = () => {
           <BsSearch className="icon" />
         )}
       </div>
-    </>
+    </div>
   );
 };

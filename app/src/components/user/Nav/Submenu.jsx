@@ -15,26 +15,26 @@ export const SubMenu = ({ label, items, className, link }) => {
       className="menu-container"
       onMouseEnter={handleSubMenuToggle}
       onMouseLeave={handleSubMenuToggle}>
-      <Link to={link}>
-        <div className="menu-item">
+      <div className="menu-item">
+        <NavLink to={link}>
           {label} <FaAngleDown />
-          {isSubMenuOpen && (
-            <div className={className}>
-              <div>
-                <ul>
-                  {items.map((item, index) => (
-                    <li key={index}>
-                      <NavLink to={item.to} className="nav-link-item">
-                        {item.label}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        </NavLink>
+        {isSubMenuOpen && (
+          <div className={className}>
+            <div>
+              <ul>
+                {items.map((item, index) => (
+                  <li key={index}>
+                    <NavLink to={item.to} className="nav-link-item">
+                      {item.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
             </div>
-          )}
-        </div>
-      </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -8,30 +8,30 @@ export const CategoriasCards = () => {
   return (
     <>
       <div className="card-categorias">
-        <div>
-          <Link to={"/suministros/baños"}>
+        <Link to={"/suministros/baños"}>
+          <div>
             <img src={baños} alt="baños" />
             <span>Baños</span>
-          </Link>
-        </div>
-        <div>
-          <Link to={"/suministros/cocinas"}>
+          </div>
+        </Link>
+        <Link to={"/suministros/cocinas"}>
+          <div>
             <img src={cocinas} alt="cocinas" />
             <span>cocinas</span>
-          </Link>
-        </div>
-        <div>
-          <Link to={"/suministros/construccionyremodelacion"}>
+          </div>
+        </Link>
+        <Link to={"/suministros/construccionyremodelacion"}>
+          <div>
             <img src={constr} alt="const" />
             <span>construccion y remodelacion</span>
-          </Link>
-        </div>
-        <div>
-          <Link to={"/suministros/pisosyparedes"}>
+          </div>
+        </Link>
+        <Link to={"/suministros/pisosyparedes"}>
+          <div>
             <img src={pisos} alt="psiso" />
             <span>Pisos y paredes</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     </>
   );

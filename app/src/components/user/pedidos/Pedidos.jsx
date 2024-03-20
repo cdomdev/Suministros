@@ -40,7 +40,7 @@ export const Pedidos = () => {
               style={{ border: "none", padding: "0 10px" }}
             />
             <Modal.Body>
-              <h1>Debes inicar sesion par ver tus pedidos</h1>
+              <h4>Debes inicar sesion par ver tus pedidos</h4>
               <LoginModal
                 setIsLoggedIn={setIsLoggedIn}
                 controlComponent={(handleShow) => (
