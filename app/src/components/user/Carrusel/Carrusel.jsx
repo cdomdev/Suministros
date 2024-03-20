@@ -31,7 +31,7 @@ export const Carrusel = () => {
               VISITA NUESTRO CATALOGO DE PRODUCTOS <br />
             </h4>
             <h5>Y ENCUANTRA LO NECESARIO PARA RENOVAR CADA ESPACIO DE TU HOGAR</h5>
-            <Link to={'/suministros/construccionyremodelacion'}>IR AL CATALOGO</Link>
+            <Link to={'/suministros/construccionyremodelacion'}>Ver catalogo</Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>

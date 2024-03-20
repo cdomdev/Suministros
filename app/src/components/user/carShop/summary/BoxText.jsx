@@ -3,7 +3,6 @@ import { GrSecure } from "react-icons/gr";
 import { LuPackageCheck } from "react-icons/lu";
 import { BsCardChecklist } from "react-icons/bs";
 
-
 export const BoxText = () => {
   return (
     <>
@@ -23,9 +22,9 @@ export const BoxText = () => {
           <div>
             <h5>Envio gratis</h5>
             <p>
-              Por compras mayores a $ 90.000. <br />{" "}
-              <strong>El envio es total mente gratis</strong>
+              Por compras mayores a $ 90.000.
             </p>
+            <strong>El envio es total mente gratis</strong>
           </div>
         </div>
         <div className="box-text">
@@ -37,7 +36,7 @@ export const BoxText = () => {
               producto debe estar en perfecto estado: sin uso, tener todos sus
               accesorios, manuales y embalaje original. Si tienes dudas,
               comunícate a nuestra línea de atención al cliente desde Bogotá
-              3077115 o a la línea nacional 320 889 9933.
+              30237455 o a la línea nacional 320 859 9323.
             </p>
           </div>
         </div>

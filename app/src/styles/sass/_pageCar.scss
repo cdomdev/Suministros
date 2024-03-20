@@ -5,11 +5,11 @@ $contenido2: "Montserrat", sans-serif;
 $otro: 'Lato', sans-serif;
 
 @mixin bordeBox{
-  border: solid 1px #ebebeb ;
+  border: solid 1px #e3e3e3 ;
   box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
   box-sizing: border-box;
-  // background-color: white;
 }
+
 .contenedor-car{
   position: relative;
   .carshop{
@@ -80,8 +80,7 @@ $otro: 'Lato', sans-serif;
           gap: 15px;
           .car-empty{
             font-family:$otro;
-            @include bordeBox();
-            padding: 10px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -92,15 +91,15 @@ $otro: 'Lato', sans-serif;
           }
           .add-product{
             box-shadow: 0 0 5px 1px rgb(217, 217, 217);
-            width: 14em;
+            width: 15em;
             margin: 1em auto;
             border: none;
             border-radius: 20px;
-            padding: 5px;
+            padding:  7px 10px;
             background-color: #f4f4f4;
             transition: all ease 0.3s;
             &:hover{
-              background-color: #243a5e;
+              background-color: #0d6efd;
               color: white;
             }
           }
@@ -118,11 +117,9 @@ $otro: 'Lato', sans-serif;
               .item-sub{
                 display: flex;
                 justify-content: end;
-                .total-value-productos{
-                  display: flex;
-                  gap: 20px;
-                  text-align: right;
-                }
+                align-items: center;
+                gap: 25px;
+                padding-bottom: 10px;
               } 
             .cont-lis-delete{
               display: flex;
@@ -179,7 +176,6 @@ $otro: 'Lato', sans-serif;
           }
            
             .loged-user-from-car{
-              @include bordeBox();
               padding: 2em 20px;
               .content-modal-for-loggin{
                 display: flex;
@@ -327,7 +323,6 @@ $otro: 'Lato', sans-serif;
           height: 40px ;
           padding: 5px;
           .summary-text{
-            color: #213C65;
             font-size: 18px;
             margin-left: 10px;
             font-family: $tittlesFonts;
@@ -339,11 +334,9 @@ $otro: 'Lato', sans-serif;
             background-color: #f4f4f4;
             font-family: $contenidoFonts;
             padding: 10px;
-            .subtotal{
-                color: #213C65;
-            }
+           
             h3{
-                font-size: 20px;
+                font-size: 20px ;
                 font-weight: bold;   
             }
             .costo{
@@ -365,8 +358,8 @@ $otro: 'Lato', sans-serif;
                 .btn-comtinue{
                     width: 90%;
                     margin: auto;
-                    background-color: #213C65;
                     color: white;
+                    background-color: #0d6efd;
                     &:hover{
                         background-color: opacify($color: #345c98, $amount: 0);
                     }
@@ -388,104 +381,129 @@ $otro: 'Lato', sans-serif;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap:10px;
         .box-text{
             border-style: dotted;
             padding: 5px;
             margin-bottom: 10px;
             margin: 0;
+            height: auto ;
             display: flex;
-            gap: 20px;
+            gap: 10px;
+            div{
+              gap: 0 ;
+              display: flex;
+              flex-direction: column;
+              height: auto;
+            }
             h5{
                 font-size: 15px;
                 font-weight: bold;
                 margin: 0;
             }
             p{
-                font-weight: lighter;
-                font-size: 12px;
-                text-align: left;
-                margin: 0;
-              
+              font-size: 12px;
+              line-height: 14px;
+              margin: 0;
+              text-wrap: wrap !important;
+            }
+            strong{
+              font-size: 12px;
+              margin: 0;
             }
             .icon1{
                 font-size: 70px;
             }
             .icon2{
-                font-size: 50px;
+                font-size: 45px;
             }
             .icon3{
-              font-size: 250px;
+              width: 250px;
+              height: 250px;
               margin-top: -100px;
             }
         }
     }
    
   }
-
   .steps{
     margin-bottom: 1em;
-    font-family: $contenidoFonts;
   }
-}
-.content-use{
-  padding: 20px 10px;
-  .txt-oaut{
-    font-size: 16px;
-    margin-bottom: 1em;
-    font-family: $otro;
-    color: #213C65;
-    text-align: center;
-  }
-  .oaut-modal-summary{
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    gap: 20px;
-  }
-  .oaut-modal-summary div{
-    display: flex;
-    .btn{
-      color:black;
-      transition: all ease 0.3s;
-      font-size: 11px;
-      &:hover{
-        color: white;
-        background-color: #213C65;
-      }
 
+}
+.modal-content {
+  .modal-header{
+    padding: 0 !important;
+   .btn-close{
+    color: red;
+    font-size: 15px;
+    padding: 10px 12px;
+   }
+  }   
+  .content-use{
+    padding: 10px;
+   .outh{
+    h2{
+      font-family: $otro; 
+      padding-top: 1em ;
+      font-weight: bold;
+      text-align: center;
+      font-size: 16px !important;
     }
+    .btn-content{
+      padding: 1em 0;
+      display: grid;
+      gap: 10px;
+      .btn{
+        transition: all ease 0.3s;
+        font-size: 12px;
+        padding:  8px 15px;
+        background-color: #0d6efd;
+        color: white;
+        &:hover{
+          background-color: #5e9dfb;
+        }
+      }
+    }
+   }
+    
+    .modal-envio{
+      font-family: $otro;
+      h4{
+        font-size: 19px !important;
+        color: black !important;
+        font-weight: bold;
+      }
+      h5{
+        text-align: left;
+        font-size: 17px ;
+      }
+      .icon{
+        font-size: 10px;
+        margin-left: 5px;
+      }
+      .btn{
+        margin: 20px 0;
+        float: right;
+        width: 100%;
+        font-size: 17px;
+      }
+      .error{
+        color: red;
+      }
+      .details-text{
+        font-size: 15px;
+        text-wrap: wrap;
+        line-height: 20px;
+        margin: 0;
+      }
+     
+    }
+    
+    
   }
- 
-  .modal-envio{
-    font-family: $otro;
-    h4{
-      font-size: 25px;
-      color: #213C65;
-    }
-    p{
-      margin: 1em 0;
-      text-align: left;
-    }
-    .icon{
-      font-size: 10px;
-      margin-left: 5px;
-    }
-    .btn{
-      margin: 20px 0;
-      float: right;
-    }
-    .error{
-      color: red;
-    }
-    span{
-      font-size: 15px;
-      line-height: 11px;
-    }
-   
-  }
-  
-  
+
+
 }
 
 @media (min-width: 800px) and (max-width: 1400px) {

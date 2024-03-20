@@ -37,6 +37,9 @@ export const UserDates = ({ handleClose }) => {
           if (!values.telefono) {
             errors.telefono = "*El teléfono es requerido*";
           }
+          if (!values.detalles) {
+            errors.detalles = "*Por favor ingrese detalles adicionales*";
+          }
           return errors;
         }}
         onSubmit={handleSubmit}>
@@ -51,7 +54,7 @@ const FormFormik = ({ formik }) => {
     <>
       <div className="modal-envio">
         <h4>Datos de envío</h4>
-        <p>Los campos marcados con ( * ) son obligatorios</p>
+        <h5>Los campos marcados con ( * ) son obligatorios</h5>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3"></Form.Group>
           <Form.Group className="mb-3">
@@ -66,7 +69,9 @@ const FormFormik = ({ formik }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.direccion && formik.errors.direccion ? (
+            {formik.touched.direccion &&
+            formik.errors.direccion &&
+            formik.errors.detalles ? (
               <div className="error">{formik.errors.direccion}</div>
             ) : null}
           </Form.Group>
@@ -87,11 +92,14 @@ const FormFormik = ({ formik }) => {
             ) : null}
           </Form.Group>
           <div className="add">
-            <span>
+            <p className="details-text">
               Por favor ingrese detalles adicionales para esta entrega, como
               conjunto ( Torre, Apto ) barrio ( Nombre del barrio ) localidad
               (Nombre de la localidad).
-            </span>
+            </p>
+            {formik.touched.detalles ? (
+              <div className="error">{formik.errors.detalles}</div>
+            ) : null}
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Control
                 as="textarea"

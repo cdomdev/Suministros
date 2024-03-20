@@ -19,7 +19,7 @@ export const PagoInvitado = () => {
         handleClose={handleClose}
         show={show}
         content={<Informacion handleClose={handleClose} />}
-        texto={'Pagar al recibir'}
+        texto={"Pagar al recibir"}
       />
     </>
   );
@@ -27,9 +27,9 @@ export const PagoInvitado = () => {
 
 const Informacion = ({ handleClose }) => {
   const [data, setData] = useState([]);
-  // const [succes, setSucess] = useState(false)
   const navigate = useNavigate();
   const { activeStep, setStep, cartItems, setCartItems } = useCarShop();
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const dataUser = sessionStorage.getItem("DtUerForEnComp");
@@ -40,6 +40,13 @@ const Informacion = ({ handleClose }) => {
   }, []);
 
   const finnalyBuy = async () => {
+    if (data.length === 0 || cartItems === null) {
+      setMessage("¡No podemos cotinuar con la compra, faltan datos!");
+      setTimeout(() => {
+        setMesage("");
+      }, 3000);
+      return;
+    }
     try {
       const response = await axios.post(
         "http://localhost:3000/finish/buy/invited",
@@ -51,7 +58,6 @@ const Informacion = ({ handleClose }) => {
       );
 
       if (response.status === 200) {
-        // setSucess(true)
         setStep(activeStep + 1);
         handleClose(false);
         navigate(`/purchaseProcessCompleted/${response.data.message}`);
@@ -61,24 +67,28 @@ const Informacion = ({ handleClose }) => {
       }
     } catch (error) {
       console.log("Se produjo un error en el servidor", error);
+      setMessage('¡Hubo problamas para finalizar la compra, intentalo de nuevo!')
     }
   };
 
   return (
-    <>
+    <div className="pago-invitado-content">
       <h4>Tenga en cuenta lo siguiente</h4>
       <ul>
         <li>
-          En caso de no poder recibir la compra, por favor deje a
-          alguien encargado para que la reciba.
+          En caso de no poder recibir la compra, por favor deje a alguien
+          encargado para que la reciba.
         </li>
       </ul>
-      <div className="buttons-content">
-        <Button variant="secondary" onClick={handleClose}>Cambiar el metodo de pago</Button>
+      <span>{message}</span>
+      <div className="btn-content">
+        <Button variant="primary" onClick={handleClose}>
+          Cambiar el metodo de pago
+        </Button>
         <Button variant="success" onClick={finnalyBuy}>
-          Continuar
+          Quiero pagar al recibir
         </Button>
       </div>
-    </>
+    </div>
   );
 };

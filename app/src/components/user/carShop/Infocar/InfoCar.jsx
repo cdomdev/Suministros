@@ -8,15 +8,14 @@ import { useCarShop } from "../../../../hook";
 import { isAuthenticated } from "../../../../auth";
 
 export const InfoCar = ({ cartItems }) => {
-  const { deleFromCar} = useCarShop();
+  const { deleFromCar } = useCarShop();
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
-  
+
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(isAuthenticated());
   }, [isLoggedIn]);
 
-  
   const handleDeleteProduct = (productId) => {
     deleFromCar(productId);
   };
@@ -53,11 +52,13 @@ export const InfoCar = ({ cartItems }) => {
                   </div>
                   <hr />
                   <div className="item-sub">
-                    <p className="total-value-productos">
-                      <strong className="sub">Valor unidad: </strong>${" "}
-                      {item.valor} <span className="line-in-info-car" />
-                      <strong>Subtotal:</strong>$ {item.cantidad * item.valor}
-                    </p>
+                    <div>
+                      <strong className="sub">Valor unidad: </strong> $
+                      {item.valor}
+                    </div>
+                    <div>
+                      <strong>Subtotal:</strong> $ {item.cantidad * item.valor}
+                    </div>
                   </div>
                 </ul>
               ))
@@ -66,7 +67,7 @@ export const InfoCar = ({ cartItems }) => {
         )}
         {cartItems.length !== 0 && (
           <button
-            onClick={() => navigate("/suministros/productos")}
+            onClick={() => navigate("/suministros/cocinas")}
             className="add-product">
             Agregar mas productos <TiShoppingCart />
           </button>

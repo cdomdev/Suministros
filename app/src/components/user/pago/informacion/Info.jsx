@@ -32,6 +32,7 @@ export const Info = () => {
               </div>
               {isLoggedIn ? <PagoUser /> : <PagoInvitado />}
             </div>
+            <p>Paga en la puerta de tu casa</p>
           </div>
         </div>
       </div>

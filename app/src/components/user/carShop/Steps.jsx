@@ -1,8 +1,6 @@
 // import * as React from "react";
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
-
-
 const steps = ["Carrito de compras", "Entrega", "Pago"];
 
 export const Steps = ({ activeStep }) => {

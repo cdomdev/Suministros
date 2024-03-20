@@ -20,8 +20,9 @@ $otro: 'Lato', sans-serif;
             display: block;
             line-height: 18px;
             h1{
-                font-size: 17px;
+                font-size: 17px !important;
                 text-align: center;
+                color: black ;
             }
             ul{
                 margin: 0;

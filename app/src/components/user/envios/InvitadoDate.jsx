@@ -44,12 +44,15 @@ export const InvitadoDate = ({ handleClose }) => {
             errors.direccion = "*La dirección es requerida*";
           }
           if (!values.email) {
-            errors.email = "Este campo es requerido";
+            errors.email = "*El correo es requerido*";
           } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-            errors.email = "Ingrese un correo electrónico válido";
+            errors.email = "*Ingrese un correo electrónico válido*";
           }
           if (!values.telefono) {
             errors.telefono = "*El teléfono es requerido*";
+          }
+          if (!values.detalles) {
+            errors.detalles = "*Por favor ingrese detalles adicionales*";
           }
           return errors;
         }}
@@ -60,12 +63,13 @@ export const InvitadoDate = ({ handleClose }) => {
   );
 };
 
+
 const FormFormik = ({ formik }) => {
   return (
     <>
       <div className="modal-envio">
         <h4>Datos de envío</h4>
-        <p>Los campos marcados con (*) son obligatorios</p>
+        <h5>Los campos marcados con (*) son obligatorios</h5>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>
@@ -106,6 +110,9 @@ const FormFormik = ({ formik }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
+             {formik.touched.email && formik.errors.email ? (
+              <div className="error">{formik.errors.email}</div>
+            ) : null}
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>
@@ -140,10 +147,13 @@ const FormFormik = ({ formik }) => {
             ) : null}
           </Form.Group>
           <div className="add">
-            <span>
+            <p className="details-text">
               Ingrese detalles adicionales, como conjunto (Torre, Apto), barrio
               (Nombre del barrio), localidad (Nombre de la localidad)
-            </span>
+            </p>
+            {formik.touched.detalles && formik.errors.detalles ? (
+              <div className="error">{formik.errors.detalles}</div>
+            ) : null}
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Control
                 as="textarea"

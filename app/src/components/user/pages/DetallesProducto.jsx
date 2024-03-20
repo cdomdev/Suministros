@@ -49,14 +49,6 @@ export const DetallesProducto = () => {
 
   const handleAddToCart = () => {
     addToCart({ ...producto, cantidad: quantity });
-
-    // Obtener el carrito actualizado después de agregar el producto
-    const updatedCart = [{ ...producto, cantidad: quantity }];
-
-    // Guardar el carrito actualizado en el localStorage
-    SaveStorage("cartItems", JSON.stringify(updatedCart));
-    // localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-
     setQuantity(1);
   };
 

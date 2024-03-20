@@ -5,13 +5,13 @@ export const AddToCar = () => {
   const navigate = useNavigate();
 
   const navegateStore = () => {
-    navigate("/suministros/productos");
+    navigate("/suministros/cocinas");
   };
   return (
     <div className="car-empty">
       <span>Tu carrito esta vacio.</span>
       <span>
-        Visita la seccion de productos y añade uno nuevo a tu carrito.
+        Navega y añade nuevos productos para verlos aqui.
       </span>
       <div>
         <Button className="mt-4" onClick={navegateStore}>

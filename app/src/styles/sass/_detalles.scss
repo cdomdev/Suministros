@@ -22,7 +22,6 @@ $contenido2: "Montserrat", sans-serif;
     grid-template-columns:1fr 1fr;
     gap: 10px;
     .detail-img{
-        // @include bordeBox();
         width: 100%;
         display: flex;
         justify-content: center;
@@ -111,10 +110,6 @@ $contenido2: "Montserrat", sans-serif;
                 font-weight: bold;
             }
         }
-        // .text{
-        //     font-size: 12px;
-        //     line-height: 14px;
-        // }
         .contendor-quantity{
             display: flex;
             margin: 2em 0;
@@ -177,14 +172,11 @@ $contenido2: "Montserrat", sans-serif;
    
 }
 h3{
-    font-size: 21px;
     font-family: $tittlesFonts;
-    color: #243a5e;
-    margin-top: 2em;
+    padding-top: 1em !important;
 }
 .sideProducts-relacionados{
-    max-width: 95vw;
-    // @include bordeBox();
+    max-width: 85vw;
     margin: 2em auto;
     display: flex;
     padding: 20px 0;
@@ -204,7 +196,7 @@ h3{
             flex-direction: column;
             justify-content: space-between;
             max-width: 18em;
-            width: 17em;
+            width: 18em;
             text-align: center;
             align-items: center;
             list-style: none;
