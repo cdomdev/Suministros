@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Accordion } from "react-bootstrap";
 import axios from "axios";
 import { Eliminar } from "./Eliminar";
@@ -6,19 +6,21 @@ import { Actualizar } from "./Actualizar";
 
 export const Listado = ({ ofertaListado, setOfertaListado }) => {
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/listar/ofertas")
-      .then((response) => {
-        const { ofertas } = response.data;
-        if (response.status === 200) {
-          setOfertaListado(ofertas || []);
-        } 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []); 
-
+    const fecthData = async () => {
+      await axios
+        .get("http://localhost:3000/api/listar/ofertas")
+        .then((response) => {
+          const { ofertas } = response.data;
+          if (response.status === 200) {
+            setOfertaListado(ofertas || []);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    fecthData();
+  }, []);
 
   return (
     <div className="section-listado-ofertas">
@@ -26,10 +28,12 @@ export const Listado = ({ ofertaListado, setOfertaListado }) => {
       <Accordion defaultActiveKey="0">
         {ofertaListado.length === 0 ||
         ofertaListado === "No hay ofertas disponibles" ? (
-          <p className="ofertas-no-disponibles">No hay ofertas disponibles...</p>
+          <p className="ofertas-no-disponibles">
+            No hay ofertas disponibles...
+          </p>
         ) : (
-          ofertaListado.map((oferta, index) => (
-            <Accordion.Item key={index} eventKey={index.toString()}>
+          ofertaListado.map((oferta) => (
+            <Accordion.Item key={oferta.id}>
               <Accordion.Header>
                 <strong>{oferta.nombre}</strong>
               </Accordion.Header>
@@ -52,12 +56,16 @@ export const Listado = ({ ofertaListado, setOfertaListado }) => {
                       Productos en la oferta:
                     </h5>
                     <ul>
-                      {oferta.Productos.map((producto) => (
-                        <li key={producto.id}>
-                          {producto.title} - {producto.nombre} - Ref:{" "}
-                          {producto.referencia}
-                        </li>
-                      ))}
+                      {oferta.Productos && oferta.Productos.length > 0 ? (
+                        oferta.Productos.map((producto) => (
+                          <li key={producto.id}>
+                            {producto.title} - {producto.nombre} - Ref:{" "}
+                            {producto.referencia}
+                          </li>
+                        ))
+                      ) : (
+                        <li>No hay productos disponibles</li>
+                      )}
                     </ul>
                   </div>
                   <div className="content-buttons-section">

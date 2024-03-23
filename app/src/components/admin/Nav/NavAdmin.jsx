@@ -17,9 +17,10 @@ export const NavAdmin = () => {
   const finnalySection = () => {
     localStorage.clear();
     sessionStorage.clear();
+    navigate('/suministros/home')
     setTimeout(() => {
       logout();
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -30,7 +31,7 @@ export const NavAdmin = () => {
         className=" bg-body-tertiary nav-custome-admin w-100"
         fixed="top">
         <Container className="custom-navbar nav-layout-admin">
-          <Link to="/admin" onClick={redirectToHome}>
+          <Link to="/admin" >
             <img src={LogoImg} alt="img-logo" className="logotipo" />
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

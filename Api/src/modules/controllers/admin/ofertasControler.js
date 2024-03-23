@@ -1,27 +1,15 @@
 // controladores para las ofertas
 import  moment from "moment";
 import  { Productos, Ofertas, Inventario } from "../../models/inventaryModel.js";
-// import  { formatAndValidateDate } from "../../utils/dateFormater";
-// crear un oferta
+
 
 export const crearOfetas = async (req, res) => {
   // cuerpo de la oferta
   const { nombre, descuento, productos, fechaIni, fechaFin } = req.body;
-  console.log(
-    `Este es el nombre: ${nombre},
-      descuento: ${descuento},
-      productos ${productos}, 
-      fecha de inicio: ${fechaFin},
-      fecha de fin: ${fechaFin}`
-  );
   //  formetaer fechas dia-mes-anio
   const fechaInicio = moment(fechaIni, "DD-MM-YYYY").format("YYYY-MM-DD");
   const fechaFinal = moment(fechaFin, "DD-MM-YYYY").format("YYYY-MM-DD");
 
-  console.log(
-    "fehas despues del ser parseadas",
-    `fecha de iicio ${fechaInicio}, fecha final: ${fechaFinal}`
-  );
 
   //   crear la oferta
   try {
@@ -39,7 +27,7 @@ export const crearOfetas = async (req, res) => {
     const nuevasOfertas = await Ofertas.findAll({
       include: {
         model: Productos,
-        attributes: ["title", "description", "referencia"],
+        attributes: ["id", "title", "description", "referencia"],
         through: "productos_ofertas",
       },
     });
@@ -86,7 +74,7 @@ export const obtenerOfertasConProductos = async (req, res) => {
     const ofertas = await Ofertas.findAll({
       include: {
         model: Productos,
-        attributes: ["title", "nombre", "referencia"],
+        attributes: ["id", "title", "nombre", "referencia"],
         through: "productos_ofertas",
       },
     });
@@ -173,11 +161,3 @@ export const actulizarOfertas = async (req, res) => {
     });
   }
 };
-
-// module.exports = {
-//   obtenerProductos,
-//   crearOfetas,
-//   obtenerOfertasConProductos,
-//   eliminarOferta,
-//   actulizarOfertas,
-// };

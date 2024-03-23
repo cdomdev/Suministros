@@ -2,20 +2,16 @@ import { useState } from "react";
 import { Crear } from "./Crear";
 import { Listado } from "./Listado";
 import { GuardarProductos } from "../Guardar/GuardarProductos";
-import { RutasAside } from "../aside";
+import { Layout } from "../layout/Layout";
 
 export const Admin = () => {
   const [listadoState, setListadoState] = useState([]);
   return (
     <>
-      <div className="body-components-admin">
-        <div className="layout-crear-productos">
-        <div className="contenedor-rutas">
-          <div className="aside-rutas">
-            <RutasAside />
-          </div>
-        </div>
-          <section>
+      <Layout
+        title={"Agregar productos"}
+        component={
+          <div className="layout-crear-productos">
             <div className="sidebar">
               <aside>
                 <Crear setListadoState={setListadoState} />
@@ -27,18 +23,17 @@ export const Admin = () => {
                 />
               </article>
             </div>
-          </section>
-          <section>
-            <div className="content">
-              <Listado
-                listadoState={listadoState}
-                setListadoState={setListadoState}
-              />
+            <div className="content-add-products">
+              <div className="content">
+                <Listado
+                  listadoState={listadoState}
+                  setListadoState={setListadoState}
+                />
+              </div>
             </div>
-          </section>
-        </div>
-      </div>
+          </div>
+        }
+      />
     </>
   );
 };
-

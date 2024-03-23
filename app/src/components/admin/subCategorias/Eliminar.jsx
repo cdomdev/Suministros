@@ -65,9 +65,10 @@ export const Eliminar = ({ categorias, setCategoria }) => {
       <div className="contenedor-category-delete">
         <h4 className="title-delete-category">Eliminar subcategoria</h4>
         <p className="text">
-          Antes de eliminar una categoria, asegurece que esta no tenga productos
+          Antes de eliminar una categoria, asegurece que tenga productos
           asociados.
         </p>
+        <br />
         <p className="text">Selecione la categoria a eliminar</p>
         <Form.Select className="mt-3" onChange={(e) => handleCategoryChange(e)}>
           <option>Seleccionar categoría</option>
@@ -82,7 +83,7 @@ export const Eliminar = ({ categorias, setCategoria }) => {
             <p
               style={{
                 color: deleteMessage.includes("éxito") ? "green" : "red",
-                fontSize: "18px",
+                fontSize: "17px",
                 margin: "auto",
               }}>
               {deleteMessage}

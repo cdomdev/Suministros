@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { CiWarning } from "react-icons/ci";
+import { IoIosWarning } from "react-icons/io";
 import axios from "axios";
 
 export const Eliminar = ({ ofertaId, oferta,  setOfertaListado, ofertaListado }) => {
@@ -50,10 +50,10 @@ export const Eliminar = ({ ofertaId, oferta,  setOfertaListado, ofertaListado })
         keyboard={false}
         className="modal-ofertas-delete">
         <Modal.Title className="title-modal-delete">
-          Eliminar oferta
+          Esta a punto de eliminar una oferta
         </Modal.Title>
         <div className="body-modal-ofertas-delete">
-          <CiWarning className="w-ofertas" />
+          <IoIosWarning className="w-ofertas" />
           <p className="text-delete-oferta">
             Esta seguro de elminar:{" "}
             <strong className="t">{oferta.nombre}</strong>{" "}

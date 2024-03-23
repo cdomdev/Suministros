@@ -1,4 +1,3 @@
-
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
 $contenido2: "Montserrat", sans-serif;
@@ -7,45 +6,16 @@ $contenido2: "Montserrat", sans-serif;
 $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
-@mixin bordeBox{
-  border: solid 1px #ebebeb ;
-  box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
-  box-sizing: border-box;
-  background-color: white;
-}
 
-.body-components-admin{
-  // @include bordeBox();
-  padding: 20px;
-  width: 100vw;
-  margin: auto;
-  h1{
-    text-align: center;
-    color: #213C65;
-    font-weight: 600;
-    font-size: 25px;
-    font-family: $tittlesFonts;
-  }
-     .layout-admin-user{
-      display: grid;
-      grid-template-columns: 0.2fr 3fr;
-      grid-template-areas:
-      'aside content content content'
-      'aside content content content'
-      'aside content content content'
-      'aside content content content';
-      justify-content: flex-start;
-      align-items: flex-start;
-         .table-user-admin{
-            box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);
-             width: 100%;
-             margin-top: 1em;
-             grid-area: content;
-             .thead-table-users{
-                 background-color: #032e6e;
-                 color: $color-complementario;
-            }
-        }
+
+.body-content {
+  padding: 10px;
+  .table-user {
+    box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);
+    width: 100%;
+    .thead-table-users {
+      background-color: #032e6e;
+      color: $color-complementario;
     }
-     
+  }
 }

@@ -71,8 +71,8 @@ export const Crear = ({setCategoria}) => {
         <p
           style={{
             color: messageCategory.includes("éxito") ? "green" : "red",
-            fontSize: "18px",
-            height: '20px',
+            fontSize: "17px",
+            height: '10px',
             marginTop: '10px'
           }}>
           {messageCategory}

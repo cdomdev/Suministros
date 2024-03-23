@@ -16,27 +16,8 @@ $color-complementario: #f2efe1;
 }
 
   
-.section-category{
-    // @include bordeBox();
-    width: 95vw;
-    padding: 20px;
-    margin: auto;
-    align-items: flex-start;
-    .contenedor-rutas{
-        margin: 1em 0 2em 0;
-        .aside-rutas{
-            flex-direction: row;
-            justify-content: center;
-        }
-    }
-    h1{
-        text-align: center;
-        color: #213C65;
-        font-weight: 600;
-        font-size: 25px;
-        font-family: $tittlesFonts;
-        margin: -20px 0 1em 0;
-    }
+.body-content{
+    padding: 10px;
     .categorias{
         margin: auto;
         display: grid;
@@ -45,18 +26,19 @@ $color-complementario: #f2efe1;
         gap: 15px;
         align-items: flex-start;
         .body-category{
+            border-radius: 10px;
             background-color: white;
             box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);  
             padding: 25px;
             height: 250px;
             display: flex;
+            width: 100%;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             .title-add-category{
                 font-size: 20px;
                 font-family: $tittlesFonts;
-                color: #243a5e;
                 margin: 0 0 20px 0;
             }  
             .input-category{
@@ -70,9 +52,15 @@ $color-complementario: #f2efe1;
                 text-align: center;
                     
             }  
+         
+            .btn{
+                width: 300px;
+            }
+           
                         
         }
         .contenedor-category-delete{
+            border-radius: 10px;
             background-color: white;
             padding: 20px;
             height: 300px;
@@ -80,16 +68,14 @@ $color-complementario: #f2efe1;
             margin-top: 2em;
             box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);   
             .title-delete-category{
-                color:$color-principal;
                 font-family: $tittlesFonts;
                 font-size: 20px;
                 text-align: center;
             }
             .text{
-                color: #213C65;
                 font-family: $contenido2;
                 margin: 10px 0;
-                line-height: 18px;
+                line-height: 16px;
                 text-align: left;
                 font-size: 14px;
                 margin: 0;
@@ -105,6 +91,7 @@ $color-complementario: #f2efe1;
             }
         }
         .lista-categrtorias{
+            border-radius: 10px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2); 
@@ -112,7 +99,6 @@ $color-complementario: #f2efe1;
             overflow-y: auto;
             overflow-wrap: break-word;
             .title-table-category{
-                color: #243a5e;
                 font-family: $tittlesFonts;
                 font-size: 20px;
                 margin: 10px 0;
@@ -138,6 +124,7 @@ $color-complementario: #f2efe1;
         align-items: flex-start;
         .body-category{
             background-color: white;
+            border-radius: 10px;
             box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);  
             padding: 25px;
             height: 250px;
@@ -148,7 +135,6 @@ $color-complementario: #f2efe1;
             .title-add-category{
                 font-size: 20px;
                 font-family: $tittlesFonts;
-                color: #243a5e;
                 margin: 0 0 20px 0;
             }  
             .input-category{
@@ -162,9 +148,14 @@ $color-complementario: #f2efe1;
                 text-align: center;
                     
             }  
+            .btn{
+                width: 300px;
+            }
+           
                         
         }
         .contenedor-category-delete{
+            border-radius: 10px;
             background-color: white;
             padding: 20px;
             height: 300px;
@@ -178,7 +169,6 @@ $color-complementario: #f2efe1;
                 text-align: center;
             }
             .text{
-                color: #213C65;
                 font-family: $contenido2;
                 margin: 10px 0;
                 line-height: 18px;
@@ -197,6 +187,7 @@ $color-complementario: #f2efe1;
             }
         }
         .lista-categrtorias{
+            border-radius: 10px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2); 
@@ -204,7 +195,6 @@ $color-complementario: #f2efe1;
             overflow-y: auto;
             overflow-wrap: break-word;
             .title-table-category{
-                color: #243a5e;
                 font-family: $tittlesFonts;
                 font-size: 20px;
                 margin: 10px 0;

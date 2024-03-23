@@ -16,25 +16,8 @@ $color-complementario: #f2efe1;
     box-sizing: border-box;
     background-color: white;
 }
-.section-ofertas{
-    // @include bordeBox();
-    padding: 20px;
-    margin: auto;
-    .contenedor-rutas{
-        .aside-rutas{
-            flex-direction: row;
-            justify-content: center;
-        }
-    }
-    .title-ofertas{
-        font-family: $tittlesFonts;
-        color: #243a5e;
-        text-align: center;
-        margin-top: 1em;
-        font-size: 25px;
-        font-weight: 600;
-    }
-   .container-section-ofertas{
+.body-content{
+   .container-ofertas{
     display: grid;
     padding: 2em 0;
     display: grid;
@@ -169,12 +152,15 @@ $color-complementario: #f2efe1;
     }
 }
 .modal-ofertas-delete{
+    
     .title-modal-delete{
         color: red;
         font-family: $tittlesFonts;
-        padding: 20px;
+        padding: 10px;
+        font-size: 19px;
         text-align: center;
     }
+   
     .w-ofertas{
         display: block;
         width: 80px;
@@ -182,46 +168,44 @@ $color-complementario: #f2efe1;
         height: 80px;
         color: red;
     }
-    .body-modal-ofertas-delete{
-        padding:20px ;
-    }
+  
     .content-button-ofertas{
         display: flex;
         gap: 10px;
         justify-content: end;
-        padding: 20px;
-        margin-top: 2em;
+        padding: 10px;
+        .btn{
+            width: 45%;
+            margin: auto;
+        }
     }
     .text-delete-oferta{
-        color: #243a5e;
         font-family: $contenidoFonts;
         text-align: center;
-        margin-top: 2em;
     }
     .t{
         color: red;
-        margin-left: 10px ;
+        text-transform: uppercase;
+        margin-left: 5px ;
     }
 }
 .modal-ofertas-update{
+    font-family: $contenido2;
     .header-modal-update{
         border: none;
         .title-modal-update{
-            color: #243a5e;
             font-family: $tittlesFonts;
         }
     }
     .text-ofertas{
-        color: #243a5e;
         text-align: left;
         font-size: 15px;
-        margin: 0 ;
-        font-family: $contenido2;
-        padding: 0 20px;
+        line-height: 17px;
+        padding: 20px 0 0 10px ;
+        margin: 0;
     }
     .body-modal-ofertas-update{
-        padding: 20px;
-        font-family: $contenido2;
+        padding: 0 10px;
         color: #243a5e;
         text-align: center;
 
@@ -234,5 +218,9 @@ $color-complementario: #f2efe1;
         padding: 20px;
         display: flex;
         justify-content: end;
+        .btn{
+            width: 100%;
+
+        }
     }
 }

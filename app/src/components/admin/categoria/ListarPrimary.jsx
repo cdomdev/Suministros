@@ -2,20 +2,24 @@ import React, { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 
-export const ListarPrimary = ({setCategoriasPriMary, categoriasPriMary }) => {
+export const ListarPrimary = ({ setCategoriasPriMary, categoriasPriMary }) => {
   // listar categorias
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/obtener/categorias-primary")
-      .then((response) => {
-        const { categoriasPrincipales } = response.data;
-        if (response.status === 200) {
-          setCategoriasPriMary(categoriasPrincipales);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud:", error);
-      });
+    const fechtData = async () => {
+      axios
+        .get("http://localhost:3000/api/obtener/categorias-primary")
+        .then((response) => {
+          const { categoriasPrincipales } = response.data;
+          if (response.status === 200) {
+            setCategoriasPriMary(categoriasPrincipales);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+    };
+    fechtData();
   }, []);
 
   return (

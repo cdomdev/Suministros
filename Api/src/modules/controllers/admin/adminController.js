@@ -23,8 +23,10 @@ export const guardarProducto = async (req, res) => {
         description: producto.description,
         referencia: producto.referencia,
         categoria_Id: producto.categoria_id,
+        categoria_padre_id: producto.categoriaPadre_id,
         image: producto.image,
       });
+
     
       if (!nuevoProducto) {
         return res.status(500).json({ error: "No se pudo crear el producto" });

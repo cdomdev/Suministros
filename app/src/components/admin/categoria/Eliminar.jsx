@@ -63,8 +63,9 @@ export const Eliminar = ({ setCategoriasPriMary, categoriasPriMary  }) => {
       <div className="contenedor-category-delete">
         <h4 className="title-delete-category">Eliminar categoria:</h4>
         <p className="text">
-          Antes de eliminar una categoria, asegurece que esta no tenga productos
+          Antes de eliminar una categoria, asegurece que no tenga productos
           asociados.
+          <br />
           <br />
         </p>
         <p className="text">Selecione la categoria a eliminar:</p>
@@ -81,7 +82,7 @@ export const Eliminar = ({ setCategoriasPriMary, categoriasPriMary  }) => {
             <p
               style={{
                 color: deleteMessage.includes("éxito") ? "green" : "red",
-                fontSize: "18px",
+                fontSize: "17px",
                 margin: "auto",
               }}>
               {deleteMessage}

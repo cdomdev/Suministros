@@ -1,35 +1,31 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
 import { NuevaOferta } from "./NuevaOferta";
 import { Listado } from "./Listado";
-import { RutasAside } from "../aside";
+import { Layout } from "../layout/Layout";
 
 export const Ofertas = () => {
   const [ofertaListado, setOfertaListado] = useState([]);
   return (
     <>
-      <div className="section-ofertas">
-        <div className="contenedor-rutas">
-          <div className="aside-rutas">
-            <RutasAside />
+      <Layout
+        title={"Agregar nuevas ofertas"}
+        component={
+          <div className="container-ofertas">
+            <section>
+              <Listado
+                setOfertaListado={setOfertaListado}
+                ofertaListado={ofertaListado}
+              />
+            </section>
+            <aside className="aside-ofertas">
+              <NuevaOferta
+                setOfertaListado={setOfertaListado}
+                ofertaListado={ofertaListado}
+              />
+            </aside>
           </div>
-        </div>
-        <h1 className="title-ofertas"> Añade nuevas ofertas</h1>
-        <Container className="container-section-ofertas">
-          <section>
-            <Listado
-              setOfertaListado={setOfertaListado}
-              ofertaListado={ofertaListado}
-            />
-          </section>
-          <aside className="aside-ofertas">
-            <NuevaOferta
-              setOfertaListado={setOfertaListado}
-              ofertaListado={ofertaListado}
-            />
-          </aside>
-        </Container>
-      </div>
+        }
+      />
     </>
   );
 };

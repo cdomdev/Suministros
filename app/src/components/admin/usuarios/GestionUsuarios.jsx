@@ -1,43 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { NavAdmin } from "../Nav/NavAdmin";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { RutasAside } from "../aside";
+import { Layout } from "../layout/Layout";
+
 export const GestionUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    // solicitud al servido
-    try {
-      axios
-        .get("http://localhost:3000/api/listar/usuarios")
-        .then((response) => {
-          // Manejar la respuesta exitosa
-          setUsuarios(response.data.usuarios);
-        })
-        .catch((error) => {
-          // Manejar errores en la solicitud
-          console.error("Error al obtener usuarios:", error);
-        });
-    } catch (error) {
-      // Manejar otros errores
-      console.error("Error:", error);
-    }
+    const fetchData = async () => {
+      try {
+        await axios
+          .get("http://localhost:3000/api/listar/usuarios")
+          .then((response) => {
+            // Manejar la respuesta exitosa
+            setUsuarios(response.data.usuarios);
+          })
+          .catch((error) => {
+            // Manejar errores en la solicitud
+            console.error("Error al obtener usuarios:", error);
+          });
+      } catch (error) {
+        // Manejar otros errores
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
   }, []);
-
 
   return (
     <>
-      <header>
-        <NavAdmin />
-      </header>
-      <div className="body-components-admin">
-          <h1 className="title-user-layout"> Gestion de usuarios</h1>
-        <div className="layout-admin-user">
-          <div className="aside-rutas">
-            <RutasAside />
-          </div>
-          <div className="table-user-admin">
+      <Layout
+        title={"Gestion de usuarios"}
+        component={
+          <div className="table-user">
             <Table striped bordered hover size="sm" responsive>
               <thead>
                 <tr>
@@ -59,8 +55,8 @@ export const GestionUsuarios = () => {
               </tbody>
             </Table>
           </div>
-        </div>
-      </div>
+        }
+      />
     </>
   );
 };

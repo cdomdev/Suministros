@@ -4,6 +4,9 @@ import cocinas from "../../../assets/images/cocinas.webp";
 import constr from "../../../assets/images/constr.webp";
 import pisos from "../../../assets/images/pisos.webp";
 import { Link } from "react-router-dom";
+
+
+
 export const CategoriasCards = () => {
   return (
     <>

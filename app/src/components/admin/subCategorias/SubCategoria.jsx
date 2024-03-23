@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import { Listar, Crear, Eliminar} from "./";
+import { Listar, Crear, Eliminar } from "./";
 import { RutasAside } from "../aside";
+import { Layout } from "../layout/Layout";
 
 export const Subcategorias = () => {
   const [categorias, setCategoria] = useState([]);
 
   return (
     <>
-      <section className="section-category">
-        <div className="contenedor-rutas">
-          <div className="aside-rutas">
-            <RutasAside />
-          </div>
-        </div>
-        <aside>
-          <h1>Agrega nuevas subcategorias</h1>
+      <Layout
+        title={"Agregar nuevas Subcategorias"}
+        component={
           <div className="subcategorias">
             <div>
               <Crear setCategoria={setCategoria} categorias={categorias} />
@@ -24,8 +20,8 @@ export const Subcategorias = () => {
               <Listar setCategoria={setCategoria} categorias={categorias} />
             </div>
           </div>
-        </aside>
-      </section>
+        }
+      />
     </>
   );
 };

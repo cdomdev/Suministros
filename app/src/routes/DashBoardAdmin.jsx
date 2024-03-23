@@ -14,6 +14,7 @@ import {
   NotExisting,
   Pedidos,
 } from "../components/admin";
+import { Layout } from "../components/admin/layout/Layout";
 
 export const DashboardAdmin = () => {
   const { isAdmin, setIsAdmin } = useUser();
@@ -27,6 +28,7 @@ export const DashboardAdmin = () => {
   return (
     <>
       {isAdmin && <NavAdmin />}
+      <NavAdmin />
       <Routes>
         {isAdmin && (
           <>
@@ -36,6 +38,7 @@ export const DashboardAdmin = () => {
             <Route path="/gestion/inventario" element={<GestionInventary />} />
             <Route path="/crear/ofertas" element={<Ofertas />} />
             <Route path="/gestionar/categorias" element={<CategoriaHome />} />
+            <Route path="/layout" element={<Layout />} />
             <Route
               path="/gestionar/subcategorias"
               element={<Subcategorias />}

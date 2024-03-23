@@ -1,39 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { FormAdd } from "./FormAdd";
 
 export const Crear = ({ setListadoState }) => {
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
   const [categorias, setCategoria] = useState({});
   const [selectedCategoria, setSelectedCategoria] = useState("");
-
-  useEffect(() => {
-    // Peticion de la categoria
-    axios
-      .get("http://localhost:3000/api/obtener/categorias")
-      .then((response) => {
-        const categoriasObj = {};
-        if (response.status === 200 || response.status === 201) {
-          response.data.categorias.forEach((categoria) => {
-            categoriasObj[categoria.id] = categoria.nombre;
-          });
-          setCategoria(categoriasObj);
-        }
-      })
-      .catch((e) => {
-        if (
-          error.response &&
-          error.response.status === 500 &&
-          error.response.data.error
-        ) {
-          console.error("Error interno del servidor");
-        }
-        console.log(`Error al obtener las categorias ${e}`);
-      });
-  }, []);
-
+  const [categoriaPadreId, setCategoriaPadreId] = useState('')
+  const [categoriaPadre, setCategoriaPadre] = useState([]);
+  const [fechtSuccess, setFechtSuccess] = useState(false);
   const [productState, setProductState] = useState({
     title: "",
     nombre: "",
@@ -44,6 +21,54 @@ export const Crear = ({ setListadoState }) => {
     referencia: "",
     imagesToSend: "",
   });
+
+  useEffect(() => {
+    // Peticion de la categoria
+    const fetchData = async () => {
+      await axios
+        .get("http://localhost:3000/api/obtener/categorias")
+        .then((response) => {
+          const categoriasObj = {};
+          if (response.status === 200 || response.status === 201) {
+            response.data.categorias.forEach((categoria) => {
+              categoriasObj[categoria.id] = categoria.nombre;
+            });
+            setCategoria(categoriasObj);
+            setFechtSuccess(true);
+          }
+        })
+        .catch((e) => {
+          if (
+            error.response &&
+            error.response.status === 500 &&
+            error.response.data.error
+          ) {
+            console.error("Error interno del servidor");
+          }
+          console.log(`Error al obtener las categorias ${e}`);
+        });
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (fechtSuccess) {
+      const fetchData = async () => {
+        await axios
+          .get("http://localhost:3000/api/obtener/categorias-primary")
+          .then((response) => {
+            if (response.status === 200) {
+              setCategoriaPadre(response.data.categoriasPrincipales);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      };
+      fetchData();
+    }
+  }, [fechtSuccess]);
+
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -58,6 +83,9 @@ export const Crear = ({ setListadoState }) => {
 
   const handleCategoriaChange = (event) => {
     setSelectedCategoria(event.target.value);
+  };
+  const handleCategoriaPadreChange = (event) => {
+    setCategoriaPadreId(event.target.value);
   };
 
   const getFormValues = async (e) => {
@@ -115,8 +143,12 @@ export const Crear = ({ setListadoState }) => {
           referencia: referencia,
           image: imageUrls[0],
           categoria: categorias[selectedCategoria],
+          categoriaPadre_id: categoriaPadreId,  
+          categoriaPadre: categoriaPadre[categoriaPadreId].nombre, 
           categoria_id: selectedCategoria,
         };
+
+ 
 
         setListadoState((prevListado) => {
           const newListado = prevListado
@@ -159,134 +191,19 @@ export const Crear = ({ setListadoState }) => {
   };
 
   return (
-    <div className="add">
-      <h3 className="text-titles-admin">Añadir productos </h3>
-      {message && (
-        <span
-          style={{
-            color: message.includes("exito") ? "green" : "red",
-            fontWeight: "340",
-            fontSize: "18px",
-            margin: "10px",
-            height: '30px'
-          }}>
-          {message}
-        </span>
-      )}
-      <Form onSubmit={getFormValues}>
-        <Form.Control
-          className="mt-2"
-          type="text"
-          placeholder="Marca del producto"
-          value={productState.title}
-          onChange={(e) =>
-            setProductState({ ...productState, title: e.target.value })
-          }
-          minLength={1}
-          maxLength={50}
-        />
-        <Form.Control
-          className="mt-2"
-          type="text"
-          placeholder="Nombre del producto"
-          value={productState.nombre}
-          onChange={(e) =>
-            setProductState({ ...productState, nombre: e.target.value })
-          }
-          minLength={1}
-          maxLength={100}
-        />
-        <Form.Control
-          type="number"
-          placeholder="Precio del producto"
-          value={productState.valor}
-          onChange={(e) =>
-            setProductState({ ...productState, valor: e.target.value })
-          }
-          className="mt-2"
-          maxLength={30}
-          minLength={1}
-        />
-
-        <Form.Control
-          type="text"
-          placeholder="Referencia del producto"
-          value={productState.referencia}
-          onChange={(e) => {
-            setProductState({ ...productState, referencia: e.target.value });
-          }}
-          className="mt-2"
-          maxLength={20}
-          minLength={1}
-        />
-        <span className="contenedor-refStock">
-          <Form.Control
-            type="number"
-            placeholder="Cantidad en stock"
-            value={productState.cantidad}
-            onChange={(e) => {
-              setProductState({ ...productState, cantidad: e.target.value });
-            }}
-            className="mt-2 form-ref"
-            maxLength={10}
-            minLength={1}
-          />
-          <label htmlFor="file-upload" className="custom-file-upload form-ref">
-            <span className="container-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1}
-                stroke="currentColor"
-                className="w-5 h-5 uploap ">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                />
-              </svg>
-              Añadir imagen
-            </span>
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-            name="imagen"
-          />
-        </span>
-        <span style={{ color: "#213C65" }}>{fileName}</span>
-        <Form.Select
-          className="mt-3"
-          onChange={handleCategoriaChange}
-          value={selectedCategoria}>
-          <option>Seleccionar categoria</option>
-          {Object.keys(categorias).map((categoriaId) => (
-            <option key={categoriaId} value={categoriaId}>
-              {categorias[categoriaId]}
-            </option>
-          ))}
-        </Form.Select>
-        <Form.Control
-          as="textarea"
-          placeholder="Descripcion (Nombre del producto) "
-          value={productState.description}
-          onChange={(e) =>
-            setProductState({ ...productState, description: e.target.value })
-          }
-          className="mt-3"
-        />
-        <span className="container-btn">
-          <Button
-            className="btn btn-custom mt-3"
-            variant="primary"
-            type="submit">
-            Añadir
-          </Button>
-        </span>
-      </Form>
-    </div>
+    <FormAdd
+      categorias={categorias}
+      getFormValues={getFormValues}
+      handleCategoriaChange={handleCategoriaChange}
+      handleFileChange={handleFileChange}
+      message={message}
+      categoriaPadreId={categoriaPadreId}
+      productState={productState}
+      selectedCategoria={selectedCategoria}
+      setProductState={setProductState}
+      fileName={fileName}
+      categoriaPadre={categoriaPadre}
+      handleCategoriaPadreChange={handleCategoriaPadreChange}
+    />
   );
 };

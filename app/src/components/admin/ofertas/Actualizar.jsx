@@ -2,12 +2,16 @@ import { Button, Form, Modal, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import React, { useState, useRef, useEffect } from "react";
 
-export const Actualizar = ({ ofertaData , ofertaId, ofertaListado, setOfertaListado}) => {
+export const Actualizar = ({
+  ofertaData,
+  ofertaId,
+  ofertaListado,
+  setOfertaListado,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [messageUpdate, setMessageUpdate] = useState("");
   const [updatedValues, setUpdatedValues] = useState({});
 
- 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
@@ -35,28 +39,40 @@ export const Actualizar = ({ ofertaData , ofertaId, ofertaListado, setOfertaList
   };
   const handleUpdate = () => {
     // Realizar la solicitud para actualizar la oferta
-    axios
-      .put(`http://localhost:3000/api/oferta/${ofertaId}/actualizar`, {
-        oferta_id: ofertaId,
-        updatedValues: updatedValues,
-      })
-      .then((response) => {
-        const updatedOferta = response.data.ofertas;
-        if (updatedOferta) {
-          const updatedList = ofertaListado.map((oferta) =>
-            oferta.id === ofertaId ? updatedOferta : oferta
-          );
-          setOfertaListado(updatedList);
-          setMessageUpdate("Oferta actualizada con éxito");
-          setTimeout(() => {
-            setMessageUpdate("");
-            setShowModal(false);
-          }, 2000);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    if(ofertaId || updatedValues === null || updatedValues.length === 0){
+      setMessageUpdate('¡No hay nuevos datos para actulizar esta oferta!')
+      setTimeout(() =>{
+        setMessageUpdate('')
+      }, 2000)
+      return
+    }
+    const fechtData = async () => {
+      await axios
+        .put(`http://localhost:3000/api/oferta/${ofertaId}/actualizar`, {
+          oferta_id: ofertaId,
+          updatedValues: updatedValues,
+        })
+        .then((response) => {
+          const updatedOferta = response.data.ofertas;
+          if (updatedOferta) {
+            const updatedList = ofertaListado.map((oferta) =>
+              oferta.id === ofertaId ? updatedOferta : oferta
+            );
+            setOfertaListado(updatedList);
+            setMessageUpdate("Oferta actualizada con éxito");
+            setTimeout(() => {
+              setMessageUpdate("");
+              setShowModal(false);
+            }, 2000);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      fechtData();
+    };
   };
   return (
     <>
@@ -75,8 +91,7 @@ export const Actualizar = ({ ofertaData , ofertaId, ofertaListado, setOfertaList
           </Modal.Title>
         </Modal.Header>
         <p className="text-ofertas">
-          Aqui podra modificar valores de la oferta actual <br />( nombre,
-          descuento, fechas )
+         Ingrese los nuevos valores de la oferta
         </p>
         <div className="body-modal-ofertas-update">
           <Form className="mt-4">
@@ -132,7 +147,7 @@ export const Actualizar = ({ ofertaData , ofertaId, ofertaListado, setOfertaList
             style={{
               color: messageUpdate.includes("éxito") ? "green" : "red",
               fontWeight: "bold",
-              fontSize: "18px",
+              fontSize: "17px",
               margin: " 0 auto",
               height: "20px",
               transition: "color 0.3s, font-size 0.3s",
@@ -142,7 +157,7 @@ export const Actualizar = ({ ofertaData , ofertaId, ofertaListado, setOfertaList
           </p>
         )}
         <div className="content-button-ofertas">
-          <Button variant="secondary" onClick={handleUpdate}>
+          <Button variant="primary" onClick={handleUpdate}>
             Actualizar oferta
           </Button>
         </div>

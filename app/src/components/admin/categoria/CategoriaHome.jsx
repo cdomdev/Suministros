@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import { CrearPrimary,  Eliminar, ListarPrimary } from "./";
-import { RutasAside } from "../aside";
+import { CrearPrimary, Eliminar, ListarPrimary } from "./";
+import { Layout } from "../layout/Layout";
+
 
 export const CategoriaHome = () => {
   const [categoriasPriMary, setCategoriasPriMary] = useState([]);
 
   return (
     <>
-      <section className="section-category">
-        <div className="contenedor-rutas">
-          <div className="aside-rutas">
-            <RutasAside />
-          </div>
-        </div>
-        <aside>
-          <h1>Agrega nuevas categorias</h1>
+      <Layout
+        title={"Añadir nuevas categorias"}
+        component={
           <div className="categorias">
             <div>
               <CrearPrimary
@@ -33,8 +29,8 @@ export const CategoriaHome = () => {
               />
             </div>
           </div>
-        </aside>
-      </section>
+        }
+      />
     </>
   );
 };

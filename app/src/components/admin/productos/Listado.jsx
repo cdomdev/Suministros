@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Button, Modal } from "react-bootstrap";
+import React, {  useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { Editar } from "./Editar";
 
 export const Listado = ({
   listadoState,
   setListadoState,
-  setProductoState,
 }) => {
-  const [editar, setEditar] = useState(0);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     getProductos();
@@ -34,49 +31,53 @@ export const Listado = ({
     }
   };
 
-  const handleEditar = (producto) => {
-    setEditar(producto.id);
-    setSelectedProduct(producto);
-  };
-
-  const handleCloseModal = () => {
-    setEditar(0);
-    setSelectedProduct(null);
-  };
-
+  console.log(listadoState)
   return (
     <>
       {listadoState != null ? (
-        listadoState.map((producto) => {
+        listadoState.map((producto, index) => {
           return (
-            <article key={producto.id} className="container-card">
-              <div className="productos-cards-listar">
-                {producto.image && (
-                  <img
-                    className="img-productos"
-                    src={producto.image}
-                    alt="Preview"
-                  />
-                )}
-                <div className="container-datail-product-edits">
-                  <span className="title-cards">Marca: {producto.title}</span>
-                  <span className="title-cards">Nombre: {producto.nombre}</span>
-                  <span className="valor-cards">Valor: $ {producto.valor}</span>
-                  <span className="cantidad">
-                    Cantidad: {producto.cantidad}
+            <article key={producto.id || index} className="container-card">
+              <div className="productos-cards">
+                {producto.image && <img src={producto.image} alt="Preview" />}
+                <div className="details">
+                  <span>
+                    <strong>Marca: </strong>
+                    {producto.title}
                   </span>
-                  <span className="descripcion">
-                    Descripcion: {producto.description}
+                  <span>
+                    <strong>Nombre: </strong>
+                    {producto.nombre}
                   </span>
-                  <span> Referencia: {producto.referencia}</span>
-                  <span>Categoria: {producto.categoria}</span>
+                  <span>
+                    <strong>Valor: $ </strong>
+                    {producto.valor}
+                  </span>
+                  <span>
+                    <strong>Cantidad: </strong>
+                    {producto.cantidad}
+                  </span>
+                  <span>
+                    <strong>Referencia: </strong>
+                    {producto.referencia}
+                  </span>
+                  <span>
+                    <strong>Categoria: </strong>
+                    {producto.categoriaPadre}
+                  </span>
+                  <span>
+                    <strong>Subcategoria: </strong>
+                    {producto.categoria}
+                  </span>
+                  <strong>Descripción:</strong>
+                  <p className="description">{producto.description}</p>
                 </div>
                 <div className="content-btn-card">
-                  <Button
-                    className="btn-custom"
-                    onClick={() => handleEditar(producto)}>
-                    Editar
-                  </Button>
+                  <Editar
+                    producto={producto}
+                    setListadoState={setListadoState}
+                    getProductos={getProductos}
+                  />
                   <Button
                     className="btn-custom"
                     variant="primary"
@@ -84,31 +85,13 @@ export const Listado = ({
                     Borrar
                   </Button>
                 </div>
-                {editar === producto.id && (
-                  <Modal
-                    show={editar === producto.id}
-                    onHide={handleCloseModal}
-                    className="modal-editar">
-                    <Modal.Header closeButton style={{ border: "none" }}>
-                      <Modal.Title>Editar Producto</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className="modal-body-editar">
-                      <Editar
-                        producto={selectedProduct}
-                        getProductos={getProductos}
-                        setEditar={setEditar}
-                        setListadoState={setListadoState}
-                      />
-                    </Modal.Body>
-                  </Modal>
-                )}
               </div>
             </article>
           );
         })
       ) : (
-        <div className="contendor-alter-products-card d-flex" >
-          <span className="text-shadow"style={{margin: 'auto'}}>
+        <div className="contendor-alter-products-card d-flex">
+          <span className="text-shadow" style={{ margin: "auto" }}>
             Agregue nuevos productos para verlos aquí.
           </span>
         </div>

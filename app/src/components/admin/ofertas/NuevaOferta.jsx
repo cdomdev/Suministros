@@ -4,7 +4,7 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import { PopoverProductos } from "./PopoverProductos";
 import moment from 'moment'
 
-export const NuevaOferta = ({setOfertaListado, ofertaListado}) => {
+export const NuevaOferta = ({setOfertaListado}) => {
   const [listaProductos, setListaProductos] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [message, setMessage] = useState("");
@@ -116,8 +116,8 @@ export const NuevaOferta = ({setOfertaListado, ofertaListado}) => {
     <div className="add-ofertas">
       <h3 className="title-add-ofertas">Crear una nueva oferta</h3>
       <p className="text">
-        Aqui podra agragar un nueva oforta a los productos existentes,
-        <strong> ( Marca - producto - cantidad )</strong> , esta es la
+        Aqui podra agragar ofertas a los productos existentes,
+        <strong> ( Marca - producto - cantidad )</strong>, esta es la
         referencia de como se listan los productos disponibles para nuevas
         ofertas.
       </p>

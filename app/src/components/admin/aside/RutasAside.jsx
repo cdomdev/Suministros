@@ -6,13 +6,15 @@ import { BiSolidOffer } from "react-icons/bi";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
+import { BsBoxSeam } from "react-icons/bs";
+
 
 export const RutasAside = () => {
   const renderTooltip = (text) => <Tooltip id="button-tooltip">{text}</Tooltip>;
 
   return (
-    <>
-     <OverlayTrigger
+    <div className="rutas">
+      <OverlayTrigger
         placement="top"
         delay={{ show: 100, hide: 150 }}
         overlay={renderTooltip("Home")}>
@@ -82,6 +84,16 @@ export const RutasAside = () => {
           </div>
         </Link>
       </OverlayTrigger>
-    </>
+      <OverlayTrigger
+        placement="top"
+        delay={{ show: 100, hide: 150 }}
+        overlay={renderTooltip("Pedidos")}>
+        <Link className="link-box" to="/admin/gestionar/pedidos">
+          <div className="box-rutas-admin">
+            <BsBoxSeam className="icon-box" />
+          </div>
+        </Link>
+      </OverlayTrigger>
+    </div>
   );
 };

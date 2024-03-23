@@ -3,7 +3,7 @@
 @use 'sass/productos';
 @use 'sass/login';
 @use 'sass/nosotros';
-@use 'sass/adminHome';
+@use 'sass/nav-admin';
 @use 'sass/crearProductosAdmin';
 @use 'sass/dateUsersAdmin';
 @use 'sass/inventaryAdmin';
@@ -19,5 +19,5 @@
 @use 'sass/buscador';
 @use 'sass/pagos';
 @use 'sass/tikeck';
-@use 'sass/aside-rutas';
 @use 'sass/not-fount';
+@use 'sass/layout-admin'

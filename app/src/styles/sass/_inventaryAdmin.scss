@@ -1,12 +1,10 @@
-
-
-@mixin bordeBox{
-    border: solid 1px #ebebeb ;
-    box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+@mixin bordeBox {
+    border: solid 1px #ebebeb;
+    box-shadow: 0 0 5px rgba(84, 84, 84, 0);
     box-sizing: border-box;
     background-color: white;
 }
-  
+
 
 $tittlesFonts: "Roboto Condensed", sans-serif;
 $contenidoFonts: "Roboto", sans-serif;
@@ -17,236 +15,258 @@ $color-principal: #243a5e;
 $color-complementario: #f2efe1;
 
 // pagina de listar productos en admin --- inventario 
-
-.body-components-inventary{
-    display: flex;
-    width: 95vw;
-    padding: 20px;
-    @include bordeBox();
-    margin: auto;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: 0.2fr 3fr;
-    grid-template-areas: 
-    'filtros filtros filtros filtros'
-    'aside contenido contenido contenido'
-    'aside contenido contenido contenido'
-    'aside contenido contenido contenido';
-    grid-row: auto auto auto;
-    .filtros-content{
-        grid-area: filtros;
-        width: 95vw;
-        justify-content: space-between;
-        margin: auto;
+.body-content {
+    .body-components-inventary {
         display: flex;
-        div{
-            h1{
-                font-size: 25px;
-                padding-left: 6em;
-                color: #243a5e;
-                font-family: $tittlesFonts;
-                font-weight: 600;
-            }
-        }
-        .filtros {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            margin-bottom: 1em;
-            padding-right: 6em;
-            .f-select {
-                height: 40px;
-                width: 200px;
-                border-radius: 1px;
-                margin-top: 0 !important;
-                max-width: 400px;
-            }
-            .form-select{
-                height: 40px;
-                width: 200px;
-                border-radius: 1px;
-                max-width: 400px;
-            }
-        }
-       
-    }
-
-    .contenedor-inventario{
-        grid-area: contenido;
-        justify-content: flex-start;
-        row-gap: 10px;
-        column-gap: 10px;
-        flex-wrap: wrap;
-        padding: 20px ;
+        width: 100%;
+        margin: auto;
+        justify-content: center;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(620px, 600px ));
-        .contenedor-det-img{
-            display: flex;   
-            justify-content: space-between; 
-            gap: 30px;
-        }
-        .card-products-inventario{
-            max-width: 650px;
-            width: 620px;
-            @include bordeBox();
-            font-family: $contenido2;
+        grid-template-columns: 0.2fr 3fr;
+        grid-template-areas:
+            'filtros filtros filtros filtros'
+            'aside contenido contenido contenido'
+            'aside contenido contenido contenido'
+            'aside contenido contenido contenido';
+        grid-row: auto auto auto;
+
+        .filtros-content {
+            grid-area: filtros;
+            width: 100%;
+            justify-content: flex-end;
+            margin: auto;
             display: flex;
-            align-items: center;
-            padding: 20px;
-            flex-direction: column;
-            .content-img{
+            padding-right: 2.3em;
+            .filtros {
                 display: flex;
-                flex-direction: column;
-                max-width: 300px;
-                text-align: left;
-                img{
-                    width: 14em;
+                flex-direction: row;
+                gap: 20px;
+                margin-bottom: 1em;
+                padding-right: 2.1em;
+
+                .f-select {
+                    height: 40px;
+                    width: 200px;
+                    border-radius: 1px;
+                    margin-top: 0 !important;
+                    max-width: 400px;
                 }
-                .nombre{
-                    line-height: 18px;
-                    font-size: 14px;
+
+                .form-select {
+                    height: 40px;
+                    width: 200px;
+                    border-radius: 1px;
+                    max-width: 400px;
                 }
             }
-            .details{
-                line-height: 17px;
-                max-width: 450px;
-                display: flex;
-                flex-direction: column;
-                font-size: 14px;
-                strong{
-                    font-size: 14px;
-                    margin: 2px 0;
-                    
-                }
-                p{
-                    font-size: 13px;
-                    text-align: left;
-                    margin: 0;
-                }
-            }
-           
+
         }
-        .container-btn{
-            display: flex;
-            gap: 20px;
-            background-color: #f4f4f4 !important;
-            margin: 1em 0;
-            @include bordeBox();
+
+        .contenedor-inventario {
+            grid-area: contenido;
+            justify-content: flex-start;
+            row-gap: 10px;
+            column-gap: 10px;
+            flex-wrap: wrap;
             padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(620px, 600px));
+
+            .chage-text{
+                text-align: center;
+                font-size: 19px;
+            }
+            .contenedor-det-img {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+            }
+
+            .card-products-inventario {
+                max-width: 650px;
+                width: 600px;
+                @include bordeBox();
+                font-family: $contenido2;
+                display: flex;
+                align-items: center;
+                padding: 20px;
+                flex-direction: column;
+
+                .content-img {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 300px;
+                    text-align: left;
+
+                    img {
+                        width: 14em;
+                    }
+
+                    .nombre {
+                        line-height: 18px;
+                        font-size: 14px;
+                    }
+                }
+
+                .details {
+                    line-height: 17px;
+                    max-width: 450px;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 14px;
+
+                    strong {
+                        font-size: 14px;
+                        margin: 2px 0;
+
+                    }
+
+                    p {
+                        font-size: 13px;
+                        text-align: left;
+                        margin: 0;
+                    }
+                }
+
+            }
+
+            .container-btn {
+                display: flex;
+                gap: 20px;
+                background-color: #f4f4f4 !important;
+                margin: 1em 0;
+                @include bordeBox();
+                padding: 10px;
+            }
+
+
+
+
+            // @media screen and (max-width: 1280px){
+            //     .card-products-inventario{
+            //         display: flex;
+            //         width: 18em;
+            //     }
+
+            // }
+
         }
-       
-        
-         
-       
-        // @media screen and (max-width: 1280px){
-        //     .card-products-inventario{
+
+        // @media screen and (max-width: 1280px) {
+        //     .contenedor-inventario{
         //         display: flex;
-        //         width: 18em;
+        //         justify-content: center;
         //     }
-           
-        // }
-    
+        // } 
+
     }
-    // @media screen and (max-width: 1280px) {
-    //     .contenedor-inventario{
-    //         display: flex;
-    //         justify-content: center;
-    //     }
-    // } 
-   
 }
 
 .modal-edit-inventary {
-    .modal-title{
+    .modal-title {
         color: #243a5e;
         font-family: $tittlesFonts;
     }
+
     .modal-body-editar-inventary {
         margin: 20px;
-        line-height:17px ;
+        line-height: 17px;
+
         .text-modal-inventary {
             font-family: $contenidoFonts;
-            color:#243a5e;
+            color: #243a5e;
             margin: 0;
             text-align: justify;
-           
+
         }
-        .text-recorderi{
+
+        .text-recorderi {
             font-size: 14px;
             font-family: $contenidoFonts;
             color: #243a5e;
             margin-bottom: 10px;
         }
-        .text-modal{
+
+        .text-modal {
             margin-top: 10px;
             color: #243a5e;
             text-align: left;
             font-family: $contenidoFonts
         }
-       
+
     }
-   
+
 }
-.modal-update-inventory-products{
-    .title-modal-update{
+
+.modal-update-inventory-products {
+    .title-modal-update {
         font-family: $tittlesFonts;
         color: #243a5e;
     }
-    .modal-body-update-inventory{
+
+    .modal-body-update-inventory {
         margin: 20px;
-        .text-modal-update-inventary{
+
+        .text-modal-update-inventary {
             font-family: $contenidoFonts;
             color: #243a5e;
             line-height: 17px;
             text-align: justify;
-            
+
         }
-        .text-update{
+
+        .text-update {
             font-size: 14px;
             font-family: $contenido2;
             color: #243a5e;
         }
-        form{
-            textarea{
+
+        form {
+            textarea {
                 height: 200px;
                 font-size: 14px;
             }
-            .btn-custom{
+
+            .btn-custom {
                 float: right;
             }
         }
-        
-       
+
+
     }
-   
+
 }
 
 
-.modal-delete-inventary{
-    .modal-body-delete-inventary{
+.modal-delete-inventary {
+    .modal-body-delete-inventary {
         display: flex;
         flex-direction: column;
     }
-    .title-delete-modal{
+
+    .title-delete-modal {
         color: red;
         margin: auto;
         font-size: 18px;
         font-family: $tittlesFonts;
     }
-    .icon-warning-modal-delete{
+
+    .icon-warning-modal-delete {
         width: 100px;
         margin: auto;
         height: 100px;
         color: red;
     }
-    span  {
+
+    span {
         text-align: center;
         font-size: 13px;
         margin-bottom: 1em;
         color: rgb(246, 24, 12);
         text-transform: uppercase;
     }
-    .warning{
+
+    .warning {
         font-size: 13px;
         font-weight: 500;
         margin: 0 20px 10px;
@@ -255,7 +275,8 @@ $color-complementario: #f2efe1;
         text-align: justify;
         font-family: $contenidoFonts;
     }
-    strong{
+
+    strong {
         color: black;
     }
 }

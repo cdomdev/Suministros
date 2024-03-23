@@ -18,6 +18,7 @@ export const Actualizar = ({ productId, productInfo, setProductos }) => {
   const descripcionRef = useRef(null);
   const categoriaRef = useRef(null);
   const categoriaPadreRef = useRef(null);
+  
   // listar categorias en el modal
   useEffect(() => {
     // Peticion de la categoria

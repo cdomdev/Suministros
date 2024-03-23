@@ -7,13 +7,13 @@ const client = new MercadoPagoConfig({
 });
 
 export const createPreference = async (req, res) => {
-  console.log(req.body);
   const { cartItems } = req.body;
   const { nombre, valor, cantidad } = cartItems[0];
 
-  console.log(nombre);
-
   try {
+    if (!nombre || !valor || !cantidad) {
+      res.status(400).json({ message: "Faltan datos para procesesar el pago" });
+    }
     const body = {
       items: [
         {
@@ -34,7 +34,6 @@ export const createPreference = async (req, res) => {
     const preference = new Preference(client);
     const result = await preference.create({ body });
 
-    console.log(result.init_point);
     res.status(200).json({
       id: result.id,
       init_point: result.init_point,

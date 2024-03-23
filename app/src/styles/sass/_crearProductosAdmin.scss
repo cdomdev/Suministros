@@ -1,7 +1,6 @@
-
-@mixin bordeBox{
-    border: solid 1px #ebebeb ;
-    box-shadow: 0 0 5px  rgba(84, 84, 84, 0);
+@mixin bordeBox {
+    border: solid 1px #ebebeb;
+    box-shadow: 0 0 5px rgba(84, 84, 84, 0);
     box-sizing: border-box;
     background-color: white;
 }
@@ -17,228 +16,259 @@ $color-complementario: #f2efe1;
 
 // estilos para la pagina de crear productos seccion de administrador
 
-.layout-crear-productos{
-    display: grid;
-    width: 95vw;
-    margin: auto;
-    padding: 20px;
-    grid-template-areas: 
-    'aside aside aside aside'
-    'sidebar content content content '
-    'sidebar content content content '
-    'sidebar content content content '
-    ;
-    grid-template-columns: 1fr 3fr;
-    .contenedor-rutas{
-        grid-area: aside;
-        flex-direction:row ;
-        .aside-rutas{
-            flex-direction: row;
-            justify-content: center;
-        }
-    }
-    .content {
-        display: flex;
-        grid-template-columns: repeat(2, 1fr);
-        justify-content: flex-start;
-        align-items: flex-start;
-        text-align: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin: 10px 20px;
-        .productos-cards-listar{
-            box-shadow: 0 0 5px 1px rgba(135, 135, 135, 0.2);
-            display:grid;
-            width: 530px;
-            padding: 10px 30px;
-            justify-content: center;
-            align-items: center;
-            grid-template-columns: 20% 60% 20%;
-            gap: 10px;
-            background-color: white;
-            transition: box-shadow 0.3s ease-in-out;
-            .img-productos{
-                width: 7em; 
-                height: 7em; 
-                
-            }
-            
-            .container-datail-product-edits{
-                padding-left: 10px;
-                font-size:14px ;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-                .title-cards{
-                    font-weight: 400;
-                }
-                .descripcion{
-                    text-align: left;
-                    font-size: 12px;
-                }
-               
-            }
-            .content-btn-card{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                .btn-custom{
-                    width: 70%;
-                }
-              
+.body-content {
+    height: auto;
 
-              
+    .layout-crear-productos {
+        display: grid;
+        width: 100%;
+        margin: auto;
+        grid-template-areas:
+            'content content content sidebar '
+            'content content content sidebar  '
+            'content content content sidebar '
+            'content content content sidebar  '
+        ;
+        grid-template-columns: 10fr 1fr;
+
+        .content {
+            grid-area: content;
+            grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+            gap: 20px;
+            display: grid;
+            font-family: $contenidoFonts;
+
+            .container-card {
+                .productos-cards {
+                    width: 18em;
+                    padding: 20px;
+                    max-width: 19em;
+                    height: auto;
+                    @include bordeBox();
+                    justify-content: center;
+                    border-radius: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        width: 8em;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+
+
+                    .details {
+                        display: flex;
+                        flex-direction: column;
+                        max-width: 17em;
+                        width: 100%;
+
+                        .description {
+                            overflow-wrap: break-word;
+                            word-wrap: break-word;
+                            white-space: pre-wrap;
+                            margin: 0;
+                            font-size: 14px;
+                            line-height: 18px;
+
+                        }
+
+                    }
+
+                    .content-btn-card {
+                        width: 100%;
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 10px 0;
+
+                        .btn {
+                            width: 40%;
+                        }
+
+                        .edit-form {
+                            .btn {
+                                width: 100px;
+                            }
+                        }
+                    }
+                }
             }
+
+
+        }
+
+
+        .sidebar {
+            grid-area: sidebar;
+            max-width: 600px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+
+            .textarea-crear {
+                display: block;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: rgb(236, 236, 236);
+                border: none;
+                margin: 5px auto;
+                width: 90%;
+                color: black;
+                border-color: transparent;
+                outline: 0;
+                margin-top: 1em;
+            }
+
             .custom-file-upload {
-                border: 1px solid #ccc;
-                display: inline-block;
-                padding: 6px 12px;
+                padding: 7px 10px;
                 cursor: pointer;
-                background-color: #f7f7f7;
                 color: #333;
-                margin-top: 10px;
                 border-radius: 4px;
+                background-color: #6c757d;
                 color: white;
-                .uploap{
-                    margin: 5px 1px 0 0;
-                  }
-            }
-                    
-        }
-        .productos-cards:hover{
-            box-shadow: 0 0 5px rgba(156, 154, 154, 0.2);
-        }
-     
-        .contendor-alter-products-card{
-            width: 100%;
-            .text-shadow{
-                font-size: 30px;
-                font-weight: 800;
-                opacity: 40%;
-                color: gray;
-                align-self: center;
-            }
-        }
-        
-    }
-   
-   
-    .sidebar{
-        grid-area: sidebar;
-        max-width: 600px;
-        width: 400px;
-        display: flex;
-        justify-content: right;
-        flex-direction:column;
-        .textarea-crear{
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgb(236, 236, 236);
-            border: none;
-            margin: 5px auto;
-            width: 90%;
-            color: black;
-            border-color:transparent;
-            outline: 0;
-            margin-top: 1em;
-        }
-        .custom-file-upload {
-            padding: 6px 10px;
-            cursor: pointer;
-            color: #333;
-            margin-top: 10px;
-            border-radius: 4px;
-            background-color: #6c757d;
-            color: white;
-            .uploap{
-                width: 20px;
-                margin: -1px 4px 0 0;
-              }
-        }
-        .contenedor-refStock{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 5px;
-            .form-ref{
-                width: 50%;
-             } 
-        }
-         
-        .container-btn{
-            display: flex;
-            border: none;
-            justify-content: center;
-        }
-        
-        .btn-custom{
-            width: 150px;
-        }
-        .text-titles-admin{
-            margin-top: -0.5rem;
-            font-size: 20px;
-        }
-        
-    }
- 
-    .sidebar div {
-        background-color: white;
-        width:100%;
-        max-width: 400px; 
-        word-wrap: break-word; 
-        box-sizing: border-box;
-        padding: 15px;
-        border-radius: 3px;
-        box-shadow: 0 0 5px 1px rgba(135, 135, 135, 0.2);
-        margin: 10px 0;
-        align-items: center;
-        overflow: hidden; 
-    }
-    
-    
-    @media screen and (max-width: 1280px) {
-        .content {
-            display: flex;
-            justify-content: center;
-            
-        } 
-    }
-  
-    
-    @media screen and (max-width: 1024px) {
-        .content {
-            display: flex;
-            justify-content: center;
-            .productos-cards-listar {
-               display: flex;
-               width: 250px;
-               flex-direction: column;
+                margin-top: -1px;
 
-               .container-datail-product-edits{
-                text-align: left;
-               }
-               .content-btn-card{
+                .uploap {
+                    width: 20px;
+                    margin: -1px 4px 0 0;
+                }
+            }
+
+            .contenedor-refStock {
                 display: flex;
-                flex-direction: row;
-               }
-              }
-        } 
-    }
+                justify-content: space-between;
+                align-items: center;
+                gap: 5px;
 
+                .form-ref {
+                    width: 50%;
+                }
+            }
+
+            .container-btn {
+                display: flex;
+                border: none;
+                justify-content: center;
+            }
+
+            .btn-custom {
+                width: 150px;
+            }
+
+            .text-titles-admin {
+                margin-top: -0.5rem;
+                font-size: 20px;
+                text-align: center;
+            }
+
+        }
+
+        .sidebar div {
+            background-color: white;
+            width: 100%;
+            padding: 20px;
+            margin: auto;
+            font-family: $contenidoFonts;
+            margin: auto;
+            word-wrap: break-word;
+            box-sizing: border-box;
+            padding: 20px;
+            border-radius: 3px;
+            // @include bordeBox();
+            box-shadow: 0 0 5px rgb(199, 199, 199);
+            margin: 10px 0;
+            align-items: center;
+            overflow: hidden;
+
+            label {
+                padding-left: 10px;
+                font-size: 14px;
+            }
+
+            input {
+                font-size: 14px;
+            }
+        }
+
+
+        @media screen and (max-width: 1280px) {
+            .content {
+                display: flex;
+                justify-content: center;
+
+            }
+        }
+
+
+        @media screen and (max-width: 1024px) {
+            .content {
+                display: flex;
+                justify-content: center;
+
+                .productos-cards-listar {
+                    display: flex;
+                    width: 250px;
+                    flex-direction: column;
+
+                    .container-datail-product-edits {
+                        text-align: left;
+                    }
+
+                    .content-btn-card {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+
+    }
 }
 
 // modal para editar productos en el componente crear
-.modal-body-editar{
-    margin: 15px;
+.modal-content {
+    .modal-header{
+       .modal-title{
+        padding-left: 16px;
+        font-family: $tittlesFonts;
+       }
+    }
+   
+    .modal-body-editar {
+        text-align: left;
+
+        h3 {
+            font-size: 19px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+        label{
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .message {
+            height: 20px;
+            padding-top: 5px;
+            font-size: 15px;
+            text-align: center;
+            color: green;
+            margin: 10px 0;
+        }
+    }
+
 }
+
 // media para el layout admin general
-@media screen and (max-width: 770px ){
-    
-    .layout-crear-productos{
+@media screen and (max-width: 770px) {
+
+    .layout-crear-productos {
         display: flex;
         flex-direction: column;
         align-items: center;
