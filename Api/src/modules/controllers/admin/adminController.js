@@ -55,20 +55,20 @@ export const guardarProducto = async (req, res) => {
 };
 
 
-// Controllador para listar usuario
-export const listarUsuarios = async (req, res) => {
-  try {
-    const usuarios = await User.findAll({
-      attributes: ["id", "name", "email", "role"],
-    });
+// // Controllador para listar usuario
+// export const listarUsuarios = async (req, res) => {
+//   try {
+//     const usuarios = await User.findAll({
+//       attributes: ["id", "name", "email", "role"],
+//     });
 
-    //Eviar usuarios en la repsuesta
-    res.json({ usuarios });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ error: "Error al obtener usuarios" });
-  }
-};
+//     //Eviar usuarios en la repsuesta
+//     res.json({ usuarios });
+//   } catch (e) {
+//     console.log(e);
+//     res.status(500).json({ error: "Error al obtener usuarios" });
+//   }
+// };
 // Controlador para guardar imagenes
 
 export const saveImagenServer = (req, res) => {
@@ -93,76 +93,3 @@ export const saveImagenServer = (req, res) => {
 };
 
 // pedidos
-
-export const listarPedidos = async (req, res) => {
-  try {
-    const pedidosUsuarios = await Pedido.findAll({
-      attributes: ["id", "cantidad", "metodo_pago", "total"], 
-      include: [
-        {
-          model: DetallesPedido,
-          attributes: ["id", "precio_unitario", "sub_total","descuento", "createdAt" ], 
-          include: [
-            {
-              model: Productos, 
-              attributes: ['id',"title", "image", "referencia", "valor"]
-            },
-          ],
-        },
-        {
-          model: User,
-          as: "usuario",
-          attributes: ["id", "name", "email", "telefono", "detalles", "direccion"],
-        },
-        {
-          model: Invitado,
-        },
-      ],
-    });
-    const pedidosInvitados = await Pedido.findAll({
-      attributes: ["id", "cantidad", "metodo_pago", "total"], 
-      include: [
-        {
-          model: DetallesPedido,
-          attributes: ["id", "precio_unitario", "sub_total","descuento", "createdAt" ], 
-          include: [
-            {
-              model: Productos, 
-              attributes: ['id',"title", "image", "referencia", "valor", "createdAt"]
-            },
-          ],
-        },
-        {
-          model: Invitado,
-          as: "invitado",
-        },
-      ],
-    });
-    const pedidos = {
-      usuarios: pedidosUsuarios,
-      invitador: pedidosInvitados,
-    };
-    if (!pedidos || pedidos.length === 0) {
-      return res.status(400).json({ message: "No se encontraron pedidos" });
-    }
-    res.status(200).json({ pedidos: pedidos });
-  } catch (e) {
-    console.log("Error al listar pedidos", e);
-    res.status(500).json({ message: "Error interno en el servidor" });
-  }
-};
-
-// module.exports = {
-//   listarUsuarios,
-//   saveImagenServer,
-//   listarPedidos, 
-//   guardarProducto
-// };
-
-
-
-// //Listar productos de inventario
-
-// module.exports = {
-//   guardarProducto,
-// };

@@ -1,10 +1,14 @@
-import { imageUpload }from "../utils/imageUpload.js";
+import { imageUpload } from "../utils/imageUpload.js";
 import {
   guardarProducto,
-  listarPedidos,
-  listarUsuarios,
   saveImagenServer,
 } from "../controllers/admin/adminController.js";
+import {
+  listarPedidos,
+  listarPedidoPorUsuario,
+  listarUsuariosConPedidos,
+  listarInvitadosConPedidos
+} from "../controllers/admin/pedidosController.js";
 import {
   actualizarProducto,
   actulizarInventario,
@@ -37,14 +41,16 @@ routerAdmin.post("/guardarproductos", guardarProducto);
 routerAdmin.post("/upload", imageUpload.array("files"), saveImagenServer);
 
 // usuarios
-routerAdmin.get("/listar/usuarios", listarUsuarios);
 
 // categorias
 routerAdmin.post("/crear/categoria-primary", crearCategoriasPrincipales);
 
 routerAdmin.get("/obtener/categorias-primary", listarCategoriasPrincipales);
 
-routerAdmin.delete("/delete/:id/categorias-primary", eliminarCategoriaPrincipal);
+routerAdmin.delete(
+  "/delete/:id/categorias-primary",
+  eliminarCategoriaPrincipal
+);
 
 // subcategorias
 routerAdmin.post("/crear/categoria", crearCategorias);
@@ -77,6 +83,7 @@ routerAdmin.put("/oferta/:id/actualizar", actulizarOfertas);
 
 // listar pedido
 
+routerAdmin.get("/listar/usuarios", listarUsuariosConPedidos);
+routerAdmin.get("/listar/invitados", listarInvitadosConPedidos);
 routerAdmin.get("/listar/pedidos", listarPedidos);
-
-// module.exports = router;
+routerAdmin.get("/listar/pedidos-usuario/:id", listarPedidoPorUsuario);

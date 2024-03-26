@@ -94,7 +94,7 @@ export const Invitado = conecction.define(
 );
 
 
-// // deficion de relaciones entre modelos
+// // // deficion de relaciones entre modelos
 
 // // realcion usuario - pedidos
 Pedido.belongsTo(User, { foreignKey: "usuario_id" });
@@ -103,7 +103,3 @@ Pedido.belongsTo(Invitado, { foreignKey: "invitado_id" });
 
 
 
-// module.exports = {
-//   User,
-//   Invitado,
-// };

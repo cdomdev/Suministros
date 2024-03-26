@@ -27,10 +27,10 @@ export const RutasAside = () => {
       <OverlayTrigger
         placement="top"
         delay={{ show: 100, hide: 150 }}
-        overlay={renderTooltip("Gestión de usuarios")}>
+        overlay={renderTooltip("Ordenes de compras")}>
         <Link className="link-box" to="/admin/gestion/usuarios">
           <div className="box-rutas-admin">
-            <BsPersonLinesFill className="icon-box" />
+          <BsBoxSeam className="icon-box" />
           </div>
         </Link>
       </OverlayTrigger>
@@ -81,16 +81,6 @@ export const RutasAside = () => {
         <Link className="link-box" to="/admin/gestionar/subcategorias">
           <div className="box-rutas-admin">
             <MdAssignmentAdd className="icon-box" />
-          </div>
-        </Link>
-      </OverlayTrigger>
-      <OverlayTrigger
-        placement="top"
-        delay={{ show: 100, hide: 150 }}
-        overlay={renderTooltip("Pedidos")}>
-        <Link className="link-box" to="/admin/gestionar/pedidos">
-          <div className="box-rutas-admin">
-            <BsBoxSeam className="icon-box" />
           </div>
         </Link>
       </OverlayTrigger>

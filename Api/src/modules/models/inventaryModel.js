@@ -1,7 +1,6 @@
 import  { DataTypes, }  from "sequelize";
 import { conecction } from "../../database/conecction.js";
 
-
 export const Productos = conecction.define(
   "Productos",
   {
@@ -356,6 +355,7 @@ Productos.belongsTo(Categoria, { foreignKey: "categoria_id" });
 Productos.belongsTo(CategoriaPadre, { foreignKey: 'categoria_padre_id' });
 
 
+
 // categoria - productos 
 Categoria.hasMany(Productos, {foreignKey: 'categoria_id'})
 
@@ -374,6 +374,13 @@ Pedido.hasMany(DetallesPedido, { foreignKey: 'pedido_id' });
 
 DetallesPedido.belongsTo(Pedido, { foreignKey: 'pedido_id' });
 
+
+// pedidos - usuarios
+
+// Pedido.belongsTo(User, { foreignKey: 'usuario_id' });
+
+// // peidos - invitados
+//  Pedido.belongsTo(Invitado, {foreignKey: 'invitado_id'})
 
 // detalles_pedidos - productos
 DetallesPedido.belongsTo(Productos, { foreignKey: 'producto_id' });
@@ -397,17 +404,3 @@ Ofertas.belongsToMany(Productos, {
   onDelete: 'CASCADE'
 });
 
-
-
-
-
-// module.exports = {
-//   Productos,
-//   Inventario,
-//   CategoriaPadre,
-//   Categoria,
-//   Ofertas,
-//   OfertasProductos,
-//   Pedido,
-//   DetallesPedido
-// };

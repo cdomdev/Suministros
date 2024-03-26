@@ -10,9 +10,12 @@ $color-complementario: #f2efe1;
 
 .body-content {
   padding: 10px;
+  // height: 100vh;
   .table-user {
-    box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);
     width: 100%;
+    .table-responsive{
+      border-radius: 5px;
+    }
     .thead-table-users {
       background-color: #032e6e;
       color: $color-complementario;

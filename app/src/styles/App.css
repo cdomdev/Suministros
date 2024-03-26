@@ -1087,8 +1087,10 @@
   padding: 10px;
 }
 .body-content .table-user {
-  box-shadow: 0 0 5px 1px rgba(117, 117, 117, 0.2);
   width: 100%;
+}
+.body-content .table-user .table-responsive {
+  border-radius: 5px;
 }
 .body-content .table-user .thead-table-users {
   background-color: #032e6e;
@@ -4455,6 +4457,7 @@ section .details .summary .box4 .card-product .item-sub p {
   box-sizing: border-box;
   border-radius: 5px;
   padding: 2em 10px;
+  height: auto;
 }
 .layout-body-admin .aside-admin .rutas {
   max-width: 70px;
@@ -4494,7 +4497,6 @@ section .details .summary .box4 .card-product .item-sub p {
   box-shadow: 0 0 5px rgba(133, 133, 133, 0);
   box-sizing: border-box;
   border-radius: 5px;
-  height: auto;
 }
 
 /*# sourceMappingURL=App.css.map */

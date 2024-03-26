@@ -40,6 +40,7 @@ $contenido2: "Montserrat", sans-serif;
         grid-area: aside;
         @include bordeBox();
         padding: 2em 10px;
+        height: auto ;
 
         .rutas {
             max-width: 70px;
@@ -83,6 +84,6 @@ $contenido2: "Montserrat", sans-serif;
     .body-content {
         grid-area: content;
         @include bordeBox();       
-        height: auto;
+        // height: 100vh;
     }
 }
